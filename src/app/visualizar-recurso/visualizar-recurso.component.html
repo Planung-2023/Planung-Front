@@ -1,0 +1,28 @@
+<div class="flip-card" [ngClass]="{ 'flipped': isFlipped }" (click)="flipCard()">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img class="icono-cocaCola" src="assets/iconoCocaCola.png" alt="Icono CocaCola">
+      <h2>Tipo: {{ recurso?.nombre }}</h2>
+      <div class="cumpleCantidad">
+        <img class="icono-mal" *ngIf="recurso && recurso.cantidadActual >= recurso.cantidadNecesaria" src="assets/iconoBien.png" alt="Icono Bien">
+        <img class="icono-bien" *ngIf="recurso && recurso.cantidadActual < recurso.cantidadNecesaria" src="assets/iconoMal.png" alt="Icono Mal">
+        <p>{{ getTextoCantidad() }}</p>
+      </div>
+      <img class="icono-mas" src="assets/iconoMas.png" alt="Icono Más">
+    </div>
+    <div class="flip-card-back">
+      <h2>{{ recurso?.nombre }}</h2>
+      <div class="responsables">
+        <h3>Responsable y Cantidad</h3>
+        <div class="responsable" *ngFor="let responsable of responsables">
+          <p class="nombre">{{ responsable.nombre }}</p>
+          <p class="cantidad">{{ responsable.cantidad }}</p>
+        </div>
+        
+      </div>
+      <h3>Descripción</h3>
+      <p class="descripcion">{{ recurso?.descripcion }}</p>
+      <img class="icono-menos" src="assets/iconoMenos.png" alt="Icono Menos">
+    </div>
+  </div>
+</div>

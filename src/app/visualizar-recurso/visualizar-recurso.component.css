@@ -1,0 +1,126 @@
+.flip-card {
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.flip-card-inner {
+  width: 300px;
+  height: 400px;
+  text-align: start;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 30px;
+}
+
+.flip-card-front {
+  background-color: #E47130;
+  color: black;
+  font-size: 20px;
+}
+
+.flip-card-front h2 {
+  padding-left: 15px;
+}
+
+.flip-card-back {
+  background-color: #F9CF90;
+  color: black;
+  transform: rotateY(180deg);
+}
+
+.flip-card-back h3{
+  padding-left: 15px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+.flip-card-back h2{
+  text-decoration: underline;
+  padding-left: 70px;
+  padding-top: 20px;
+}
+
+.flip-card-back p{
+  padding-left: 15px;
+}
+
+.descripcion {
+  background: #ffffff91;
+  border-radius: 30px;
+  padding-left: 15px;
+}
+
+.icono-mas,
+.icono-menos {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.icono-cocaCola {
+  margin: 50px 95px 25px;
+}
+
+.tipo-recurso {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.icono-bien,
+.icono-mal {
+  width: 50px;
+  height: 50px;
+}
+
+.cumpleCantidad {
+  padding-left: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.cumpleCantidad p {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.responsable {
+  display: flex;
+  justify-content: space-between;
+}
+
+.responsable p {
+  margin: 0;
+}
+
+.responsable .nombre {
+  margin-right: auto;
+}
+
+.responsable .cantidad {
+  padding-right: 20px;
+}
