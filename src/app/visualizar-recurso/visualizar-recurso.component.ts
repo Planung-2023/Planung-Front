@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-visualizar-recurso',
@@ -10,6 +11,10 @@ export class VisualizarRecursoComponent implements OnInit {
   responsables: Responsable[] = [];
   isFlipped: boolean = false;
 
+  constructor(private router: Router) {
+    this.recurso = this.router.getCurrentNavigation()?.extras.state?.['recurso'];
+  }
+
   ngOnInit() {
     this.responsables = [
       { id: 1, nombre: 'Juan', cantidad: 2 },
@@ -18,13 +23,13 @@ export class VisualizarRecursoComponent implements OnInit {
       { id: 4, nombre: 'Daniel', cantidad: 2 }
     ];
 
-    this.recurso = {
+    /*this.recurso = {
       id: 1,
       cantidadActual: this.responsables.reduce((total, responsable) => total + responsable.cantidad, 0),
       cantidadNecesaria: 6,
       descripcion: 'Esta es la coca para el fernet. No compren light ni cero.',
       nombre: 'Coca Cola'
-    };
+    };*/
   }
 
   flipCard() {

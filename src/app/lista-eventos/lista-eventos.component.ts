@@ -44,7 +44,7 @@ export class ListaEventosComponent implements OnInit {
   }
 
   visualizarRecurso(recurso: Recurso): void {
-    this.router.navigate(['/visualizar-recurso'], { state: { recurso } });
+    this.router.navigate(['/visualizar-recurso'], { state: { recurso: recurso } });
   }
 }
 
