@@ -24,6 +24,7 @@
     "@coreui/coreui": "^4.2.6",
     "@coreui/icons-angular": "^4.5.2",
     "angular-carousel": "^1.1.0",
+    "bootstrap": "^5.3.1",
     "ngx-slick-carousel": "^15.0.0",
     "rxjs": "~7.8.0",
     "swiper": "^9.4.1",
