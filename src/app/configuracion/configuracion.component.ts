@@ -13,18 +13,5 @@ export class ConfiguracionComponent {
   cambiarModoLight() {
     this.lightMode = true;
     this.darkMode = false;
-    this.verificarModos();
-  }
-
-  cambiarModoDark() {
-    this.darkMode = true;
-    this.lightMode = false;
-    this.verificarModos();
-  }
-
-  verificarModos() {
-    if (!this.lightMode && !this.darkMode) {
-      this.lightMode = true;
-    }
   }
 }

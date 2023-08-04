@@ -1,4 +1,5 @@
-<div class="configuracion-container">
+<div class="body">
+  <div class="configuracion-container">
     <h2>Configuracion</h2>
     <button mat-icon-button class="icon-home" routerLink="/lista-eventos">
       <mat-icon>arrow_back</mat-icon>
@@ -16,9 +17,7 @@
   
     <div class="seccion-tema">
       <h3>Tema</h3>
-      <mat-slide-toggle [(ngModel)]="lightMode" (click)="cambiarModoLight()">Light mode</mat-slide-toggle>
-      <br>
-      <mat-slide-toggle [(ngModel)]="darkMode" (click)="cambiarModoDark()">Dark mode</mat-slide-toggle>
+      <mat-slide-toggle [(ngModel)]="lightMode" (change)="cambiarModoLight()">Light mode</mat-slide-toggle>
     </div>
   
     <div class="seccion-acerca">
@@ -34,4 +33,4 @@
       <button mat-raised-button class="cerrar-sesion-button">Cerrar Sesión</button>
     </div>
   </div>
-  
+</div>

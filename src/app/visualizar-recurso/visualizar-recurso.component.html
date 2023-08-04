@@ -1,4 +1,8 @@
 <div class="flip-card" [ngClass]="{ 'flipped': isFlipped }" (click)="flipCard()">
+  <button mat-icon-button class="icon-home" routerLink="/lista-eventos">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  
   <div class="flip-card-inner">
     <div class="flip-card-front">
       <img class="icono-cocaCola" src="assets/iconoCocaCola.png" alt="Icono CocaCola">

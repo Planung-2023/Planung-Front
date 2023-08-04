@@ -22,6 +22,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
+import {HttpClientModule} from '@angular/common/http'
+import { ListaEventosService } from './lista-eventos/lista-eventos.service';
 
 @NgModule({
   declarations: [
@@ -49,9 +51,12 @@ import { NotificacionesComponent } from './notificaciones/notificaciones.compone
     MatSelectModule,
     MatIconModule,
     MatRadioModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    ListaEventosService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
