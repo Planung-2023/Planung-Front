@@ -22,6 +22,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
+import { NzStepsModule } from 'ng-zorro-antd/steps';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { NotificacionesComponent } from './notificaciones/notificaciones.compone
     MatSelectModule,
     MatIconModule,
     MatRadioModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    NzStepsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

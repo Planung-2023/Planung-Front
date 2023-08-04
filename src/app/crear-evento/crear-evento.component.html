@@ -1,1 +1,8 @@
-<p>Funciona</p>
+<div class="d-flex container justify-content-center align-items-center">
+    <nz-steps [nzCurrent]="pasoActual">
+        <nz-step nz-Size="small" *ngFor="let paso of pasos " nzTitle="{{paso.titulo}}"></nz-step>
+      </nz-steps>
+    
+</div>
+<button (click)="proximoPaso()">Apretar</button>
+<button (click)="pasoAnterior()">atrás</button>
