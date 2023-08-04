@@ -43,6 +43,14 @@ export class ListaEventosComponent implements OnInit {
     this.router.navigate(['/crear-recurso']);
   }
 
+  irAConfiguracion(): void {
+    this.router.navigate(['/configuracion']);
+  }
+
+  irANotificaciones(): void {
+    this.router.navigate(['/notificaciones']);
+  }
+
   visualizarRecurso(recurso: Recurso): void {
     this.router.navigate(['/visualizar-recurso'], { state: { recurso: recurso } });
   }

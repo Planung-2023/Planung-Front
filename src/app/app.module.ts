@@ -17,6 +17,11 @@ import { CrearRecursoComponent } from './crear-recurso/crear-recurso.component';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { VisualizarRecursoComponent } from './visualizar-recurso/visualizar-recurso.component';
+import { ConfiguracionComponent } from './configuracion/configuracion.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +32,8 @@ import { VisualizarRecursoComponent } from './visualizar-recurso/visualizar-recu
     NavbarComponent,
     CrearRecursoComponent,
     VisualizarRecursoComponent,
+    ConfiguracionComponent,
+    NotificacionesComponent,
   ],
   imports: [
     FormsModule,
@@ -35,10 +42,13 @@ import { VisualizarRecursoComponent } from './visualizar-recurso/visualizar-recu
     MatTabsModule,
     MatCardModule,
     BrowserAnimationsModule,
+    MatSlideToggleModule,
     MatExpansionModule,
     AlertModule,
     CarouselModule,
+    MatSelectModule,
     MatIconModule,
+    MatRadioModule,
     MatFormFieldModule
   ],
   providers: [],

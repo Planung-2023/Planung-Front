@@ -2,15 +2,60 @@ body, html {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: #3f4244;
 }
 
 body {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 14px;
-  color: #000;
+  color: #fff;
   margin: 0;
   padding: 0;
   overflow: hidden;
+  position: relative;
+}
+
+.top-bar {
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  background-color: #262626;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.icon-configuracion {
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  color: white;
+  font-size: 24px;
+}
+
+.img-configuracion {
+  width: 30px;
+  height: 30px;
+  padding-top: 10px;
+  padding-right: 20px;
+}
+
+
+.icon-notificaciones {
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  color: white; 
+  font-size: 24px;
+}
+
+.img-notificaciones {
+  width: 40px;
+  height: 40px;
+}
+
+.boton-crear-evento {
+  width: 30px;
+  height: 30px;
 }
 
 .swiper-container {
@@ -27,17 +72,21 @@ body {
   flex-direction: column;
   padding-right: 20px;
   text-align: left;
-  border: 1px solid #000;
-  border-radius: 8%;
+  border-radius: 5%;
   margin-left: 8%;
   width: 80%;
   margin-top: 60px;
+  background-color: #6a6d71;
 }
 
 .swiper-slide p {
   font-size: 16px;
   color: #000;
   margin-left: 12px;
+}
+
+.swiper-slide p strong {
+  color: #fff;
 }
 
 .swiper-slide .titulo-container {
@@ -50,7 +99,7 @@ body {
 .swiper-slide .titulo-evento {
   font-size: 18px;
   font-weight: bold;
-  color: blue;
+  color: #fff;
 }
 
 
@@ -85,11 +134,11 @@ body {
 
 .lista-eventos-container h1 {
   position: fixed;
-  top: 20px;
+  top: 55px;
   z-index: 999;
   margin: 0;
   padding: 10px;
-  color: #000;
+  color: #fff;
 }
 
 .sin-eventos-container {
@@ -97,14 +146,20 @@ body {
 }
 
 .sin-eventos-container h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
+  font-size: 30px;
+  margin-bottom: 45px;
 }
 
-.sin-eventos-container img {
-  width: 250px;
-  height: 250px;
-  margin-bottom: 10px;
+
+.sin-eventos-container h3 {
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+.imagen-calendario {
+  width: 120px;
+  height: 102px;
+  margin-bottom: 80px;
 }
 
 .crear-evento-container p {
@@ -113,7 +168,7 @@ body {
 }
 
 .custom-button {
-  background-color: #181616c4;
+  background-color: #262626;
   color: #fff;
   padding: 8px 16px;
   border-radius: 50px;
@@ -128,23 +183,39 @@ body {
 
 
 .mat-expansion-panel-header {
-  background-color: #D9D9D9;
-  color: #333;
-  font-weight: bold;
+  background-color: #262626;
+  color: #fff;
 }
 
 .mat-expansion-panel-content {
-  background-color: #D9D9D9;
-  color: #333;
+  background-color: #262626;
+  color: #fff;
   padding: 16px;
 }
 
 .mat-expanded .mat-expansion-panel-header {
-  background-color: #D9D9D9;
+  background-color: #262626;
 }
 
 .mat-expansion-indicator {
-  color: #333;
+  color: #fff;
+}
+
+.mat-expansion-indicator {
+  color: #fff;
+}
+
+@media (hover: none){}
+.mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+    background: #262626;
+}
+
+.mat-expansion-panel-header-description, .mat-expansion-indicator::after {
+  color: #fff;
+}
+
+.mat-expansion-panel-header-description, .mat-expansion-indicator::after {
+  color: #fff;
 }
 
 .mat-expanded .mat-expansion-indicator {
@@ -153,15 +224,14 @@ body {
 
 .mat-expansion-panel {
   margin-bottom: 16px;
-  border: 1px solid #D9D9D9;
+  background: #9a9fa5;
   border-radius: 30px;
   overflow: hidden;
   margin-left: 12px;
 }
 
-.mat-expansion-panel-header:hover {
-  background-color: #D9D9D9;
-  cursor: pointer;
+.mat-expansion-panel-header-title {
+  color: rgb(255 255 255);
 }
 
 .agregar-recurso-button {
@@ -171,6 +241,7 @@ body {
   background-color: transparent;
   border: none;
   font-weight: bold;
+  color: #fff;
 }
 
 .recurso-container {
