@@ -5,7 +5,6 @@ import { CrearEventoComponent } from './crear-evento.component';
 describe('CrearEventoComponent', () => {
   let component: CrearEventoComponent;
   let fixture: ComponentFixture<CrearEventoComponent>;
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [CrearEventoComponent]
