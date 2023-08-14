@@ -1,0 +1,21 @@
+<div class="encabezado">
+  <div class="d-flex container justify-content-center align-items-center">
+    <nz-steps [nzCurrent]="pasoActual">
+        <nz-step nz-Size="small" *ngFor="let paso of pasos " nzTitle="{{paso.titulo}}"></nz-step>
+    </nz-steps>
+    
+  </div>
+
+</div>
+<div class="body-evento">
+    <app-paso1 *ngIf="pasoActual == 0"></app-paso1>
+    <app-paso2 *ngIf="pasoActual == 1"></app-paso2>
+    <app-paso3 *ngIf="pasoActual == 2"></app-paso3>
+    <app-paso4 *ngIf="pasoActual == 3"></app-paso4>
+    <app-paso5 *ngIf="pasoActual == 4"></app-paso5>
+
+</div>
+<div class="footer">
+  <button (click)="proximoPaso()">Apretar</button>
+  <button (click)="pasoAnterior()">atrás</button>
+</div>

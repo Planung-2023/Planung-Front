@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CrearEventoComponent } from './crear-evento/crear-evento.component';
+import { CrearEventoComponent } from './eventos/crear-evento/crear-evento.component';
 import { ListaEventosComponent } from './lista-eventos/lista-eventos.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -22,12 +22,11 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
-import { NzStepsModule } from 'ng-zorro-antd/steps';
+import { EventosModule } from './eventos/eventos.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CrearEventoComponent,
     ListaEventosComponent,
     PerfilComponent,
     NavbarComponent,
@@ -51,7 +50,7 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
     MatIconModule,
     MatRadioModule,
     MatFormFieldModule,
-    NzStepsModule
+    EventosModule
   ],
   providers: [],
   bootstrap: [AppComponent]
