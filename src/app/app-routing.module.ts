@@ -8,6 +8,7 @@ import { VisualizarRecursoComponent } from './visualizar-recurso/visualizar-recu
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 
+
 const routes: Routes = [
   { path: 'lista-eventos', component: ListaEventosComponent },
   { path: 'perfil', component: PerfilComponent },

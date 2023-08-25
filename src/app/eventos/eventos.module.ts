@@ -10,6 +10,7 @@ import { Paso5Component } from './paso5/paso5.component';
 import { CrearEventoComponent } from './crear-evento/crear-evento.component';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { MatCardModule } from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { MatCardModule } from '@angular/material/card';
     EventosRoutingModule,
     NzStepsModule,
     MatCardModule,
+    MatIconModule,
   ]
 })
 export class EventosModule { }
