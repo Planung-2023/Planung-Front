@@ -1,21 +1,24 @@
 <div class="encabezado">
-  <div class="d-flex container justify-content-center align-items-center">
+  <div class="d-flex container justify-content-center align-items-center py-2">
     <nz-steps [nzCurrent]="pasoActual">
-        <nz-step nz-Size="small" *ngFor="let paso of pasos " nzTitle="{{paso.titulo}}"></nz-step>
+        <nz-step *ngFor="let paso of pasos"></nz-step>
     </nz-steps>
     
   </div>
-
 </div>
-<div class="body-evento">
-    <app-paso1 *ngIf="pasoActual == 0"></app-paso1>
-    <app-paso2 *ngIf="pasoActual == 1"></app-paso2>
-    <app-paso3 *ngIf="pasoActual == 2"></app-paso3>
-    <app-paso4 *ngIf="pasoActual == 3"></app-paso4>
-    <app-paso5 *ngIf="pasoActual == 4"></app-paso5>
-
-</div>
-<div class="footer">
-  <button (click)="proximoPaso()">Apretar</button>
-  <button (click)="pasoAnterior()">atrás</button>
-</div>
+<div class="h-75 d-flex row align-content-between bg-primary">
+  <div>
+      <app-paso1 *ngIf="pasoActual == 0"></app-paso1>
+      <app-paso2 *ngIf="pasoActual == 1"></app-paso2>
+      <app-paso3 *ngIf="pasoActual == 2"></app-paso3>
+      <app-paso4 *ngIf="pasoActual == 3"></app-paso4>
+      <app-paso5 *ngIf="pasoActual == 4"></app-paso5>
+  </div>
+  <div  
+    [ngClass]="{'justify-content-center' : pasoActual === 0, 'justify-content-between' : pasoActual != 0 }"
+    class="d-flex"
+    >
+    <button *ngIf="pasoActual != 0" (click)="pasoAnterior()">atrás</button>
+    <button *ngIf="pasoActual != 4" (click)="proximoPaso()">Apretar</button>
+  </div>
+</div> 
