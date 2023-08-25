@@ -22,8 +22,11 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule} from '@angular/common/http'
 import { ListaEventosService } from './lista-eventos/lista-eventos.service';
+import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { environment } from 'src/environments/environment.development';
 
 @NgModule({
   declarations: [
@@ -52,10 +55,28 @@ import { ListaEventosService } from './lista-eventos/lista-eventos.service';
     MatIconModule,
     MatRadioModule,
     MatFormFieldModule,
-    HttpClientModule
+    HttpClientModule,
+    AuthModule.forRoot({
+      domain: 'dev-jr3a6576vnf4x0e6.us.auth0.com',
+      clientId: 'x2bhBlJfZpZTBRG3qqRL0F5XP8f2SZLW',
+      authorizationParams: {
+        redirect_uri: window.location.origin
+      },
+      useRefreshTokens: true,
+      httpInterceptor: {
+        allowedList: [
+          {
+            uri:environment.url
+            +'/*',
+            allowAnonymous: true,
+          },
+        ], 
+      }
+    }),
   ],
   providers: [
-    ListaEventosService
+    ListaEventosService,
+    { provide: HTTP_INTERCEPTORS,useClass: AuthHttpInterceptor,multi:true }
   ],
   bootstrap: [AppComponent]
 })

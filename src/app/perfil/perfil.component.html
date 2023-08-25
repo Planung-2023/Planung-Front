@@ -15,5 +15,10 @@
     <button class="ver-perfil-button">
         <mat-icon>chevron_right</mat-icon>
       </button>
+      <ul *ngIf="auth.user$ | async as user">
+        <li>{{ user.name }}</li>
+        <li>{{ user.email }}</li>
+      </ul>
+      <button (click)="verToken()">ver token</button>
   </div>
   
