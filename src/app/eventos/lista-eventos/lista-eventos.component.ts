@@ -36,11 +36,11 @@ export class ListaEventosComponent implements OnInit {
   }
 
   redireccionarCrearEvento(): void {
-    this.router.navigate(['/crear-evento']);
+    this.router.navigate(['/eventos', 'crear']);
   }
 
-  agregarRecurso(): void {
-    this.router.navigate(['/crear-recurso']);
+  agregarRecurso(evento: Evento): void {
+    this.router.navigate(['/eventos', evento.id, 'recursos', 'crear']);
   }
 
   irAConfiguracion(): void {
@@ -51,8 +51,8 @@ export class ListaEventosComponent implements OnInit {
     this.router.navigate(['/notificaciones']);
   }
 
-  visualizarRecurso(recurso: Recurso): void {
-    this.router.navigate(['/visualizar-recurso'], { state: { recurso: recurso } });
+  visualizarRecurso(evento: Evento, recurso: Recurso): void {
+    this.router.navigate(['/eventos', evento.id, 'recursos', recurso.id ], { state: { recurso: recurso } });
   }
 }
 

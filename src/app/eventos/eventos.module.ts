@@ -1,3 +1,5 @@
+import { MatExpansionModule } from '@angular/material/expansion';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -12,6 +14,7 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { MatCardModule } from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ListaEventosComponent } from './lista-eventos/lista-eventos.component';
 
 @NgModule({
   declarations: [
@@ -20,12 +23,16 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     Paso2Component,
     Paso3Component,
     Paso4Component,
-    Paso5Component
+    Paso5Component,
+    ListaEventosComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     EventosRoutingModule,
     NzStepsModule,
+    MatExpansionModule,
     MatCardModule,
     MatIconModule,
     MatSlideToggleModule,
