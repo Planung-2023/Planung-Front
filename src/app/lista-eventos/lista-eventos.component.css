@@ -22,6 +22,7 @@ body {
   background-color: #262626;
   display: flex;
   justify-content: flex-end;
+  z-index: 1000;
 }
 
 .icon-configuracion {
@@ -34,9 +35,7 @@ body {
 
 .img-configuracion {
   width: 30px;
-  height: 30px;
-  padding-top: 10px;
-  padding-right: 20px;
+  padding: 5%;
 }
 
 
@@ -49,8 +48,8 @@ body {
 }
 
 .img-notificaciones {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  padding: 5%;
 }
 
 .boton-crear-evento {
@@ -72,7 +71,7 @@ body {
   flex-direction: column;
   padding-right: 20px;
   text-align: left;
-  border-radius: 5%;
+  border-radius: 20px;
   margin-left: 8%;
   width: 80%;
   margin-top: 60px;
@@ -109,7 +108,7 @@ body {
   align-items: center;
   justify-content: flex-start;
   text-align: center;
-  height: 80%;
+  height: 90%;
   padding-top: 50px;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -190,7 +189,10 @@ body {
 .mat-expansion-panel-content {
   background-color: #262626;
   color: #fff;
-  padding: 16px;
+}
+mat-panel-description{
+  padding: 10px;
+  padding-top: 4%;
 }
 
 .mat-expanded .mat-expansion-panel-header {
@@ -214,9 +216,7 @@ body {
   color: #fff;
 }
 
-.mat-expansion-panel-header-description, .mat-expansion-indicator::after {
-  color: #fff;
-}
+
 
 .mat-expanded .mat-expansion-indicator {
   transform: rotate(180deg);

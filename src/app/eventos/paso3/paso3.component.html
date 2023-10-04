@@ -1,21 +1,28 @@
 <mat-card>
-    <div id="paso3">
-        <h1 class="tituloTipoEvento">Ubicacion</h1>
+    <div id="paso3" class="body">
+        <h1 class="tituloTipoEvento d-flex align-items-center justify-content-center">Ubicacion</h1>
 
-        <form>
-            <div id="cajaLugarEvento">
+        <form class="d-flex justify-content-center">
+            <div id="cajaLugarEvento" class="cajaPrincipal d-flex flex-column justify-content-center">
                 <h2 id="tituloUbicacion" class="d-flex justify-content-center">Defina la Ubicacion para el Evento</h2>
-                <div id="buscarUbicacion" class="d-flex justify-content-around">
-                    <input type="text" id="ingresarTexto" string="Ingrese Lugar">
-                    <label for="ingresarTexto">Ingrese la Ubicacion</label>
-                    <button>
-                        <mat-icon aria-hidden="false" aria-label="Example search icon" fontIcon="search"></mat-icon>
+                <div id="buscarUbicacion" class="d-flex justify-content-center">
+                    <div id="cajaBusqueda" class="d-flex align-items-center justify-content-center">
+                       <input type="text" id="ingresarTexto" placeholder="Ingrese Ubicacion">
+                    <button >
+                        <mat-icon fontIcon="search" class="d-flex justify-content-center align-items-center"></mat-icon>
                     </button>
-                    <button>
-                        <mat-icon aria-hidden="false" aria-label="Example close icon" fontIcon="close"></mat-icon>
-                    </button>
+                    <button >
+                        <mat-icon fontIcon="close" class="d-flex justify-content-center align-items-center"></mat-icon>
+                    </button> 
+                    </div>
+                    
                 </div>
-
+                <div id="a" class="d-flex align-items-center justify-content-center">
+                    <div id="mapa" >
+                        <img src="assets/gigachad.jpg">
+                    </div>
+                </div>
+                
             </div>
         </form>
         

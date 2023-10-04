@@ -1,0 +1,51 @@
+h1{
+    color: white;
+    font-weight: bold;
+    margin-top: 8%;
+    margin-bottom: 6%;
+}
+
+h2{
+    color: rgb(22, 22, 22);
+    padding-top: 10%;
+    padding-bottom: 4%;
+    margin-bottom: 0%;
+}
+p{
+    color: white;
+    font-weight: bold;
+}
+
+.cajaPrincipal{
+    padding-bottom: 5%;
+    width: 90%;
+}
+
+input[type="text"], input[type="date"], input[type="time"]{
+    background: none;
+    border: none;
+}
+input[type="date"], input[type="time"]{
+    color: #000000;
+}
+input[type="text"]::placeholder{
+    color: #000000;
+}
+input[type="text"]:focus, input[type="date"]:focus, input[type="time"]:focus{
+    outline: none;
+}
+input[type="date"]:focus, input[type="time"]:focus{
+    color: rgb(78, 78, 78);
+    transition: 0.1s;
+}
+input[type="text"]:focus::placeholder{
+    color: rgb(78, 78, 78);
+    transition: 0.1s;
+}
+
+#inputText input{
+    width: 90%;
+    background-color: darkgrey;
+    text-align: center;
+    border-radius: 20px;
+}

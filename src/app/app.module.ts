@@ -23,9 +23,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { EventosModule } from './eventos/eventos.module';
+import { PruebaMapaComponent } from './prueba-mapa/prueba-mapa.component';
+import {} from 'googlemaps';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     ListaEventosComponent,
     PerfilComponent,
@@ -34,7 +36,8 @@ import { EventosModule } from './eventos/eventos.module';
     VisualizarRecursoComponent,
     ConfiguracionComponent,
     NotificacionesComponent,
-  ],
+      PruebaMapaComponent
+   ],
   imports: [
     FormsModule,
     BrowserModule,

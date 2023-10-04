@@ -1,7 +1,7 @@
 <div class="encabezado">
-  <div class="d-flex container justify-content-center align-items-center">
+  <div class="d-flex container justify-content-center align-items-center py-2">
     <nz-steps [nzCurrent]="pasoActual">
-        <nz-step nz-Size="small" *ngFor="let paso of pasos " nzTitle="{{paso.titulo}}"></nz-step>
+        <nz-step *ngFor="let paso of pasos"></nz-step>
     </nz-steps>
     
   </div>
@@ -15,7 +15,8 @@
     <app-paso5 *ngIf="pasoActual == 4"></app-paso5>
 
 </div>
-<div class="footer">
-  <button (click)="pasoAnterior()"><-</button>
-  <button (click)="proximoPaso()">-></button>
-  </div>
+<div [ngClass]="{'justify-content-center' : pasoActual === 0, 'justify-content-around' : pasoActual != 0 }"class="footer d-flex align-items-center">
+  
+  <button *ngIf="pasoActual != 0" (click)="pasoAnterior()" class="btn"><-</button>
+  <button *ngIf="pasoActual != 4" (click)="proximoPaso()" class="btn">-></button>
+</div>

@@ -11,7 +11,7 @@ import { CrearEventoComponent } from './crear-evento/crear-evento.component';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { MatCardModule } from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -28,6 +28,7 @@ import {MatIconModule} from '@angular/material/icon';
     NzStepsModule,
     MatCardModule,
     MatIconModule,
+    MatSlideToggleModule,
   ]
 })
 export class EventosModule { }
