@@ -36,5 +36,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatRadioModule,
     MatFormFieldModule,
   ],
+  exports: [
+    VisualizarRecursoComponent,
+  ],
 })
 export class RecursosModule { }

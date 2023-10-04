@@ -1,3 +1,4 @@
+import { RecursosModule } from './../recursos/recursos.module';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -36,6 +37,7 @@ import { ListaEventosComponent } from './lista-eventos/lista-eventos.component';
     MatCardModule,
     MatIconModule,
     MatSlideToggleModule,
+    RecursosModule,
   ]
 })
 export class EventosModule { }

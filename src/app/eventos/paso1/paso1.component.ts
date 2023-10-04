@@ -7,5 +7,15 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Paso1Component {
+  dataEvento = {
+    nombre: '',
+    fecha: null,
+    todoElDia: false,
+    descripcion: '',
+  }
 
+
+  public datos() {
+    return this.dataEvento;
+  }
 }
