@@ -5,10 +5,132 @@
         <form class="d-flex justify-content-center">
             <div id="cajaRevisionFinal" class="cajaPrincipal">
                 <h2 id="tituloRevision" class="d-flex justify-content-center align-items-center">Revise los Campos</h2>
-                <div id="camposRevision" class="d-flex justify-content-around flex-wrap">
-                    <div class="row d-flex justify-content-center align-items-center" id="completa">
-                        <div class="col-5" id="nombreTitulo"><p>Nombre</p></div>
-                        <div class="col-6" id="informacion"><p>Traer Info</p></div>
+                <div id="camposRevision" class="row col-md-12 d-flex justify-content-evenly flex-wrap text-center" style="margin: 15px;">
+                    <!--Nombre-->
+                    <div class="row">
+                        <div class="col-5">
+                            <p id="nombreEvento">Nombre</p>
+                        </div>
+                        <div class="col-6">
+                            <p id="placeholder">[Nombre]</p>
+                        </div>
+                        <div class="col-1" style="margin-top: 7px;">
+                            <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                        </div>
+                    </div>
+
+                    <!--Fecha-->
+                    <div class="row col-md-12">
+                        <div class="col-4">
+                            <p id="nombreEvento">Fecha</p>
+                        </div>
+                        <div class="col-2" id="icon">
+                            <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="calendar_month"></mat-icon>
+                        </div>
+                        <div class="col-5">
+                            <p id="placeholder">[Fecha]</p>
+                        </div>
+                        <div class="col-1">
+                            <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                        </div>
+                    </div>
+
+                    <!--Hora-->
+                    <div class="row col-md-12">
+                        <div class="col-4">
+                            <p id="nombreEvento">Fecha</p>
+                        </div>
+                        <div class="col-2" id="icon">
+                            <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="calendar_month"></mat-icon>
+                        </div>
+                        <div class="col-5">
+                            <p id="placeholder">[Hora Ini]</p>
+                        </div>
+                        <div class="col-1">
+                            <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                        </div>
+                    </div>
+
+                    <!-- Hora Fin -->
+                    <div class="row">
+                        <div class="col-5 offset-6">
+                            <p id="horaFin">[Hora Fin]</p>
+                        </div>
+                    </div>
+
+                    <!--Tipo evento-->
+                    <div class="row">
+                        <div class="col-6">
+                            <p id="nombreEvento">Tipo de Evento</p>
+                        </div>
+                        <div class="col-5">
+                            <p id="placeholder">[Tipo Evento]</p>
+                        </div>
+                        <div class="col-1" style="margin-top: 7px;">
+                            <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                        </div>
+                    </div>
+
+                    <!--Tipo Invitacion-->
+                    <div class="row">
+                        <div class="col-6">
+                            <p id="nombreEvento">Tipo de Invitación</p>
+                        </div>
+                        <div class="col-5">
+                            <p id="placeholder">[Tipo Inv]</p>
+                        </div>
+                        <div class="col-1" style="margin-top: 7px;">
+                            <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                        </div>
+                    </div>
+
+                    <!--Ubicacion-->
+                    <div class="row">
+                        <div class="col-4">
+                            <p id="nombreEvento">Ubicacion</p>
+                        </div>
+                        <div class="col-7">
+                            <p id="placeholder">[Ubicacion]</p>
+                        </div>
+                        <div class="col-1" style="margin-top: 7px;">
+                            <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                        </div>
+                    </div>
+
+                    <!--Objetos-->
+                    <div class="row">
+                        <div class="col-4">
+                            <p id="nombreEvento">Objetos</p>
+                        </div>
+                        <div class="col-7">
+                            <p id="placeholder">[Desplegable]</p>
+                        </div>
+                        <div class="col-1" style="margin-top: 7px;">
+                            <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                        </div>
+                    </div>
+
+                    <!--Boton Crear-->
+                    <div class="row">
+                        <a id="btnCrear" class="col-md-12">
+                            Crear Evento
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</mat-card>
+
+<!--
+    <div class="row col-md-12 d-flex justify-content-around align-items-center" id="completa">
+                        <div class="col-4" id="nombreTitulo">
+                            <p>Nombre</p>
+                        </div>
+                        <div class="col-6" id="informacion">
+                            <p>Traer Info</p>
+                        </div>
                         <button class="col-1" id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                     </div>
                     <div class="row" id="completa">
@@ -50,11 +172,4 @@
                         <div class="col-6" id="informacion"><p>Traer Info</p></div>
                         <button class="col-1" id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                     </div>
-
-                </div>
-
-            </div>
-        </form>
-        
-    </div>
-</mat-card>
+-->

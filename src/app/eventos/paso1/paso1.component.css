@@ -21,6 +21,42 @@ p{
     width: 90%;
 }
 
+.titulo{
+    padding: 12px;
+}
+
+.descripcion{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#containerTodoElDia{
+    padding: 20px;
+    background-color: rgb(182, 182, 182);
+    text-align: center;
+}
+
+.fechaYHora-container {
+    padding: 10px;
+    border-radius: 10px;
+    background: #919191;
+    margin-bottom: 15px;
+}
+
+.tituloToggle{
+    padding: 10px;
+    border-radius: 10px;
+    background: #919191;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.hora-container {
+    padding: 10px;
+    background: #919191;
+}
+
+
 input[type="text"], input[type="date"], input[type="time"]{
     background: none;
     border: none;
@@ -47,5 +83,5 @@ input[type="text"]:focus::placeholder{
     width: 90%;
     background-color: darkgrey;
     text-align: center;
-    border-radius: 20px;
+    border-radius: 12px;
 }
