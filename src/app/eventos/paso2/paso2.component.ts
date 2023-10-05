@@ -7,5 +7,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Paso2Component {
+  
+  dataEvento = {
+    esFormal: document.getElementById(formalidad).value,
+    esPorAprobacion: false,
+  }
 
+  public datos() {
+    return this.dataEvento;
+  }
 }

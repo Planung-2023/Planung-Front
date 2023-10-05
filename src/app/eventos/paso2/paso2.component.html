@@ -1,1 +1,51 @@
+<<<<<<< Updated upstream
 <p>paso2 works!</p>
+=======
+<mat-card>
+    <div id="paso2" class="body">
+        <h1 class="tituloTipoEvento d-flex align-items-center justify-content-center">Tipo de Evento y Modalidad</h1>
+        
+        <form class="d-flex justify-content-center">
+            <div id="cajaTipoEvento" class="cajaPrincipal">
+                <h2 id="tituloTipoEvento" class="d-flex justify-content-center align-items-center">Defina el Tipo de Evento</h2>
+                <div id="formalOInformal" class="button-box d-flex justify-content-center">
+                    <div class="toggle-btn" id="informal">
+                        <p class="d-flex align-items-center justify-content-center">Informal</p>
+                        <label class="d-flex align-items-center justify-content-around">
+                            <input type="radio" name="formalOInformal" value="false" class="">
+                            <img src="assets/iconoBien.png">
+                        </label>
+                    </div>
+                    <div class="toggle-btn" id="formal">
+                        <p class="d-flex align-items-center justify-content-center">Formal</p>
+                        <label class="d-flex align-items-center justify-content-around">
+                            <input type="radio" name="formalOInformal" id="formalidad" value="true" [(ngModel)]="dataEvento.esFormal" [ngModelOptions]="{standalone: true}"> <!--Si es formal, entonces es true-->
+                            <img src="assets/iconoMal.png">
+                        </label>
+                    </div>
+                </div>
+
+                <h2 id="tituloTipoInvitacion" class="d-flex justify-content-center align-items-center">Defina el Tipo de Invitacion</h2>
+                <div id="directaOPorAprobacion" class="d-flex justify-content-center align-items-center">
+                    <div class="toggle-btn" id="directa">
+                        <p class="d-flex align-items-center justify-content-center">Directa</p>
+                        <label class="d-flex align-items-center justify-content-around">
+                            <input type="radio" name="tituloTipoInvitacion" id="directa" value="directa">
+                            <img src="assets/iconoMas.png">
+                        </label>
+                    </div>
+                    <div class="toggle-btn" id="porAprobacion">
+                        <p class="d-flex align-items-center justify-content-center">Por Aprobacion</p>
+                        <label class="d-flex align-items-center justify-content-around">
+                            <input type="radio" name="tituloTipoInvitacion" id="porAprobacion" value="porAprobacion">
+                            <img src="assets/iconoMenos.png">
+                        </label>
+                    </div>
+                </div>
+                
+            </div>
+        </form>
+        
+    </div>
+</mat-card>
+>>>>>>> Stashed changes
