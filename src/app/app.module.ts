@@ -20,7 +20,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { EventosModule } from './eventos/eventos.module';
 import { PruebaMapaComponent } from './prueba-mapa/prueba-mapa.component';
-import {} from 'googlemaps';
+import {GoogleMapsModule} from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -47,7 +47,8 @@ import {} from 'googlemaps';
     MatIconModule,
     MatRadioModule,
     MatFormFieldModule,
-    EventosModule
+    EventosModule,
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

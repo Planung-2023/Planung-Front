@@ -11,6 +11,15 @@ h2{
     padding-bottom: 4%;
     margin-bottom: 0%;
 }
+h3{
+    margin: 2%;
+    font-size: 13px;
+    font-weight: bold;
+}
+h4{
+    margin: 0;
+    font-size: 11px;
+}
 p{
     color: white;
     font-weight: bold;
@@ -20,7 +29,10 @@ p{
     padding-bottom: 5%;
     width: 90%;
 }
-
+#cajaDeInput{
+    height: 140px;
+    width: 70%;
+}
 input[type="text"], input[type="date"], input[type="time"]{
     background: none;
     border: none;
@@ -42,10 +54,42 @@ input[type="text"]:focus::placeholder{
     color: rgb(78, 78, 78);
     transition: 0.1s;
 }
-
 #inputText input{
     width: 90%;
+    height: 31px;
     background-color: darkgrey;
     text-align: center;
     border-radius: 20px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator::after,
+  input[type="time"]::-webkit-calendar-picker-indicator::after {
+    content: "v";
+}
+
+textarea{
+    width: 90%;
+    height: 100px;
+    background-color: darkgrey;
+    text-align: center;
+    border-radius: 20px;
+}
+textarea::placeholder{
+    color: #000000;
+}
+textarea:focus{
+    outline: none;
+}
+textarea:focus::placeholder{
+    color: rgb(78, 78, 78);
+    transition: 0.1s;
+}
+
+
+.box{
+    background: darkgrey;
+    border-radius: 10px;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin: 1%;
 }
