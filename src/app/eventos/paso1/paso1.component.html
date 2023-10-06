@@ -18,25 +18,25 @@
                     </div>
                     <div class=" box">
                         <h3 *ngIf="!dataEvento.todoElDia">Hora</h3>
-                                               
+
                         <div class="d-flex justify-content-between">
-                            <input class="d-flex flex-row-reverse" type="time"[(ngModel)]="dataEvento.horaInicio" *ngIf="!dataEvento.todoElDia">
+                            <input class="d-flex flex-row-reverse" type="time"[(ngModel)]="dataEvento.horaInicio" *ngIf="!dataEvento.todoElDia" [ngModelOptions]="{standalone: true}">
                             <h4 *ngIf="!dataEvento.todoElDia">-</h4>
                             <h4 *ngIf="!dataEvento.todoElDia">Hasta</h4>
                             <h4 *ngIf="!dataEvento.todoElDia">-</h4>
-                            <input class="d-flex flex-row-reverse" type="time"[(ngModel)]="dataEvento.horaFin" *ngIf="!dataEvento.todoElDia">
+                            <input class="d-flex flex-row-reverse" type="time"[(ngModel)]="dataEvento.horaFin" *ngIf="!dataEvento.todoElDia" [ngModelOptions]="{standalone: true}">
                         </div>
-                        
+
                     </div>
-                    
+
                     <div class="containerTodoElDia d-flex align-items-center justify-content-between">
                         <h3 class="box">¿Todo el Día?</h3>
                         <h3><mat-slide-toggle (change)="cambiarTodoElDia($event)"></mat-slide-toggle></h3>
                     </div>
                 </div>
             </div>
-            
-            
+
+
 
             <h2 class="d-flex justify-content-center align-items-center">¿Quiere agregar una Descripción?</h2>
             <div id="inputText" class="d-flex align-items-center justify-content-center">
