@@ -8,8 +8,8 @@
                 <div id="buscarUbicacion" class="d-flex justify-content-center">
 
                 </div>
-                <div id="a" class="d-flex align-items-center justify-content-center">
-                  <div *ngIf="apiLoaded">
+                <div id="a" class="d-flex align-items-center justify-content-center map-container">
+                  <div *ngIf="apiLoaded" >
                     <google-map [options]="options"></google-map>
                   </div>
                 </div>

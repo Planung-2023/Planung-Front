@@ -17,13 +17,12 @@
                         <input class="d-flex flex-row-reverse" type="date" [(ngModel)]="dataEvento.fecha" [ngModelOptions]="{standalone: true}" min="2023-12-01" required>
                     </div>
                     <div class=" box">
-                        <h3 *ngIf="!dataEvento.todoElDia">Hora</h3>
-
                         <div class="d-flex justify-content-between">
+                            <h3 *ngIf="!dataEvento.todoElDia">Hora Inicio</h3>
                             <input class="d-flex flex-row-reverse" type="time"[(ngModel)]="dataEvento.horaInicio" *ngIf="!dataEvento.todoElDia" [ngModelOptions]="{standalone: true}">
-                            <h4 *ngIf="!dataEvento.todoElDia">-</h4>
-                            <h4 *ngIf="!dataEvento.todoElDia">Hasta</h4>
-                            <h4 *ngIf="!dataEvento.todoElDia">-</h4>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <h3 *ngIf="!dataEvento.todoElDia">Hora Fin</h3>
                             <input class="d-flex flex-row-reverse" type="time"[(ngModel)]="dataEvento.horaFin" *ngIf="!dataEvento.todoElDia" [ngModelOptions]="{standalone: true}">
                         </div>
 

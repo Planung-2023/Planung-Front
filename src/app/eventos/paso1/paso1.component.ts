@@ -69,5 +69,7 @@ ngOnInit() {
   );
 
 }
-;
+getDatosPaso1(){
+  return this.dataEvento
+}
 }

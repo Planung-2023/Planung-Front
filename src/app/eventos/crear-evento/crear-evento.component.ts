@@ -56,6 +56,19 @@ export class CrearEventoComponent {
   proximoPaso(){
     this.pasos[this.pasoActual].titulo = "";
 
+    if(this.pasoActual==0){
+      this.traerDatosPaso1();
+    } 
+    if(this.pasoActual==1){
+      this.traerDatosPaso2();
+    } 
+    if(this.pasoActual==2){
+      this.traerDatosPaso3();
+    } 
+    if(this.pasoActual==3){
+      this.traerDatosPaso4();
+    } 
+
     if(this.pasoActual < this.ultimoPaso){
       this.pasoActual++;
     }
@@ -69,18 +82,46 @@ export class CrearEventoComponent {
     }
     this.pasos[this.pasoActual].titulo = this.titulos[this.pasoActual];
   }
-/*
+
   dataEvento = {
-    nombre: this.paso1Component?.dataEvento.nombre,
-    fecha: this.paso1Component?.dataEvento.fecha,
-    horaInicio: this.paso1Component?.dataEvento.horaInicio,
-    horaFin: this.paso1Component?.dataEvento.horaFin,
-    todoElDia: this.paso1Component?.dataEvento.todoElDia,
-    descripcion: this.paso1Component?.dataEvento.descripcion,
-    latitud: this.paso3Component?.dataEvento.latitud,
-    longitud: this.paso3Component?.dataEvento.longitud,
+    paso1: this.traerDatosPaso1(),
+    paso2: this.traerDatosPaso2(),
+    paso3: this.traerDatosPaso3(),
+    paso4: this.traerDatosPaso4(),
   }
-  */
+  traerDatosPaso1() {
+    if (this.paso1Component) {
+    return this.paso1Component.getDatosPaso1();
+    }
+    else return {};
+ }
+
+traerDatosPaso2(){
+
+}
+/*
+traerDatosPaso2() {
+  const datosPaso2 = {
+    esFormal: false,
+    esPrivado: false,
+    
+  };
+
+  if (this.pasoActual === 0 && this.paso1Component) {
+  datosPaso2.esFormal = this.paso1Component.dataEvento.nombre || false;
+  datosPaso2.esPrivado = this.paso1Component.dataEvento.fecha || false;
+  }
+
+
+return datosPaso2;
+}*/
+
+traerDatosPaso3(){
+  
+}
+traerDatosPaso4(){
+  
+}
   crearEvento() {
     console.log(this.paso1Component?.datos());
   }

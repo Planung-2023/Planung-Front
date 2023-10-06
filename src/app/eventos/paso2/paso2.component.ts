@@ -7,5 +7,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Paso2Component {
+  dataEvento={
 
+  }
+  getDatosPaso2(){
+    return this.dataEvento
+  }
 }
