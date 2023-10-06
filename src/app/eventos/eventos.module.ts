@@ -18,6 +18,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ListaEventosComponent } from './lista-eventos/lista-eventos.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSlideToggleModule,
     RecursosModule,
     GoogleMapsModule,
+    NgbModule,
   ]
 })
 export class EventosModule { }
