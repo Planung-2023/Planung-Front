@@ -69,8 +69,18 @@ export class CrearEventoComponent {
     }
     this.pasos[this.pasoActual].titulo = this.titulos[this.pasoActual];
   }
-
-
+/*
+  dataEvento = {
+    nombre: this.paso1Component?.dataEvento.nombre,
+    fecha: this.paso1Component?.dataEvento.fecha,
+    horaInicio: this.paso1Component?.dataEvento.horaInicio,
+    horaFin: this.paso1Component?.dataEvento.horaFin,
+    todoElDia: this.paso1Component?.dataEvento.todoElDia,
+    descripcion: this.paso1Component?.dataEvento.descripcion,
+    latitud: this.paso3Component?.dataEvento.latitud,
+    longitud: this.paso3Component?.dataEvento.longitud,
+  }
+  */
   crearEvento() {
     console.log(this.paso1Component?.datos());
   }

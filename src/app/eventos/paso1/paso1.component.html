@@ -3,7 +3,7 @@
         <h1 class="tituloTipoEvento d-flex align-items-center justify-content-center">Nombre y Fecha</h1>
 
     <form #paso1Form="ngForm" class="d-flex justify-content-center">
-        <div id="cajaTipoEvento" class="cajaPrincipal d-flex flex-column justify-content-center">
+        <div id="cajaTipoEvento" class="cajaPrincipal">
             <h2 id="tituloTipoEvento" class="d-flex justify-content-center align-items-center">Defina el Nombre del Evento</h2>
             <div id="inputText" class="d-flex align-items-center justify-content-center">
                 <input class="titulo" [(ngModel)]="dataEvento.nombre" type="text" placeholder="Escriba Aquí" [ngModelOptions]="{standalone: true}">
@@ -28,14 +28,7 @@
                         </div>
                         
                     </div>
-                    <!-- <div class=" box d-flex align-items-center justify-content-between">
-                        <h3 *ngIf="!dataEvento.todoElDia">Inicio</h3>
-                        <input type="time"[(ngModel)]="dataEvento.horaInicio" placeholder="Hora" *ngIf="!dataEvento.todoElDia">
-                    </div>
-                    <div class=" box d-flex align-items-center justify-content-between">
-                        <h3 *ngIf="!dataEvento.todoElDia">Fin</h3>
-                        <input type="time"[(ngModel)]="dataEvento.horaFin" placeholder="Hora" *ngIf="!dataEvento.todoElDia">
-                    </div>-->
+                    
                     <div class="containerTodoElDia d-flex align-items-center justify-content-between">
                         <h3 class="box">¿Todo el Día?</h3>
                         <h3><mat-slide-toggle (change)="cambiarTodoElDia($event)"></mat-slide-toggle></h3>
@@ -52,5 +45,23 @@
 
         </div>
     </form>
+    <form>
+        <input type="time" id="inputHoraInicio">
+        <p>
+          <span id="horaInicio">Inicio</span>
+        </p>
+
+        <input type="time" id="inputHoraFin">
+        <p>
+          <span id="horaFin">Fin</span>
+        </p>
+
+        <input type="date" id="inputFecha">
+        <p>
+          <span id="fecha">Inicio</span>
+        </p>
+
+
+      </form>
     </div>
 </mat-card>

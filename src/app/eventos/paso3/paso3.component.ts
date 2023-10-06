@@ -7,5 +7,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Paso3Component {
-
+  dataEvento = {
+    latitud: '-34.604471',
+    longitud: ' -58.564287'
+  }
 }
+

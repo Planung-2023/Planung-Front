@@ -33,6 +33,7 @@ p{
     height: 140px;
     width: 70%;
 }
+
 input[type="text"], input[type="date"], input[type="time"]{
     background: none;
     border: none;
@@ -89,7 +90,7 @@ textarea:focus::placeholder{
 .box{
     background: darkgrey;
     border-radius: 10px;
-    padding-left: 2%;
-    padding-right: 2%;
-    margin: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
+    margin: 2%;
 }
