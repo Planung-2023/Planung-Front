@@ -7,10 +7,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./prueba-mapa.component.css']
   
 })
-
 export class PruebaMapaComponent implements OnInit {
-
-  @ViewChild('map', { static: true }) mapElement: any;
+  @ViewChild('map',{static:true}) mapElement: any;
   map: google.maps.Map;
   
   
@@ -23,8 +21,8 @@ export class PruebaMapaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    
   };
-
+  
 }
 

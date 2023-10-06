@@ -1,1 +1,23 @@
-<p>paso3 works!</p>
+<mat-card>
+    <div id="paso3" class="body">
+        <h1 class="tituloTipoEvento d-flex align-items-center justify-content-center">Ubicacion</h1>
+
+        <form class="d-flex justify-content-center">
+            <div id="cajaLugarEvento" class="cajaPrincipal d-flex flex-column justify-content-center">
+                <h2 id="tituloUbicacion" class="d-flex justify-content-center">Defina la Ubicacion para el Evento</h2>
+                <div id="buscarUbicacion" class="d-flex justify-content-center">
+
+                </div>
+                <div id="a" class="d-flex align-items-center justify-content-center">
+                  <div *ngIf="apiLoaded">
+                    <google-map [options]="options"></google-map>
+                  </div>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</mat-card>
+
+

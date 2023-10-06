@@ -1,18 +1,67 @@
-<!--
-<div class="py-2 px-2 d-flex justify-content-center row">
-    <h1 class="text text-center">Nombre y fecha del evento</h1>
-</div>
-<mat-card class="d-flex bg-primary flex-column">
-    <mat-card-title class="text-center">Define el nombre del evento</mat-card-title>
-    <input type="text" class="form-text">
-    <mat-card-title class="pt-2 text-center">Define la fecha para tu evento</mat-card-title>
-    
+<mat-card>
+    <div id="paso2" class="body">
+        <h1 class="tituloTipoEvento d-flex align-items-center justify-content-center">Nombre y Fecha</h1>
+
+    <form #paso1Form="ngForm" class="d-flex justify-content-center">
+        <div id="cajaTipoEvento" class="cajaPrincipal">
+            <h2 id="tituloTipoEvento" class="d-flex justify-content-center align-items-center">Defina el Nombre del Evento</h2>
+            <div id="inputText" class="d-flex align-items-center justify-content-center">
+                <input class="titulo" [(ngModel)]="dataEvento.nombre" type="text" placeholder="Escriba Aquí" [ngModelOptions]="{standalone: true}">
+            </div>
+
+            <h2 id="tituloTipoEvento" class="d-flex justify-content-center align-items-center">Defina la Fecha para el Evento</h2>
+            <div class="d-flex justify-content-center">
+                <div id="cajaDeInput" class="d-flex flex-column align-items-evenly">
+                    <div class=" box d-flex align-items-center justify-content-between">
+                        <h3>Día</h3>
+                        <input class="d-flex flex-row-reverse" type="date" [(ngModel)]="dataEvento.fecha" [ngModelOptions]="{standalone: true}" min="2023-12-01" required>
+                    </div>
+                    <div class=" box">
+                        <h3 *ngIf="!dataEvento.todoElDia">Hora</h3>
+
+                        <div class="d-flex justify-content-between">
+                            <input class="d-flex flex-row-reverse" type="time"[(ngModel)]="dataEvento.horaInicio" *ngIf="!dataEvento.todoElDia" [ngModelOptions]="{standalone: true}">
+                            <h4 *ngIf="!dataEvento.todoElDia">-</h4>
+                            <h4 *ngIf="!dataEvento.todoElDia">Hasta</h4>
+                            <h4 *ngIf="!dataEvento.todoElDia">-</h4>
+                            <input class="d-flex flex-row-reverse" type="time"[(ngModel)]="dataEvento.horaFin" *ngIf="!dataEvento.todoElDia" [ngModelOptions]="{standalone: true}">
+                        </div>
+
+                    </div>
+
+                    <div class="containerTodoElDia d-flex align-items-center justify-content-between">
+                        <h3 class="box">¿Todo el Día?</h3>
+                        <h3><mat-slide-toggle (change)="cambiarTodoElDia($event)"></mat-slide-toggle></h3>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <h2 class="d-flex justify-content-center align-items-center">¿Quiere agregar una Descripción?</h2>
+            <div id="inputText" class="d-flex align-items-center justify-content-center">
+                <textarea [(ngModel)]="dataEvento.descripcion" class="descripcion" type="text" placeholder="Agrega una Descripción" [ngModelOptions]="{standalone: true}" ></textarea>
+            </div>
+
+        </div>
+    </form>
+    <form>
+        <input type="time" id="inputHoraInicio">
+        <p>
+          <span id="horaInicio">Inicio</span>
+        </p>
+
+        <input type="time" id="inputHoraFin">
+        <p>
+          <span id="horaFin">Fin</span>
+        </p>
+
+        <input type="date" id="inputFecha">
+        <p>
+          <span id="fecha">Inicio</span>
+        </p>
+
+
+      </form>
+    </div>
 </mat-card>
--->
-<div class="d-flex container flex-column justify-content-center">
-    <h1 class="text-center">Hola</h1>
-    <mat-card class="d-flex h-100 flex-column justify-content-center">
-        <mat-card-title class="text-center">Define el nombre del evento</mat-card-title>
-        <input type="text">
-    </mat-card>
-</div>

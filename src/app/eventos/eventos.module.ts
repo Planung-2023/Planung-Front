@@ -1,3 +1,7 @@
+import { GoogleMapsModule } from '@angular/google-maps';
+import { RecursosModule } from './../recursos/recursos.module';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +14,10 @@ import { Paso5Component } from './paso5/paso5.component';
 import { CrearEventoComponent } from './crear-evento/crear-evento.component';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { MatCardModule } from '@angular/material/card';
-
+import {MatIconModule} from '@angular/material/icon';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ListaEventosComponent } from './lista-eventos/lista-eventos.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,13 +26,22 @@ import { MatCardModule } from '@angular/material/card';
     Paso2Component,
     Paso3Component,
     Paso4Component,
-    Paso5Component
+    Paso5Component,
+    ListaEventosComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     EventosRoutingModule,
     NzStepsModule,
+    MatExpansionModule,
     MatCardModule,
+    MatIconModule,
+    MatSlideToggleModule,
+    RecursosModule,
+    GoogleMapsModule,
   ]
 })
 export class EventosModule { }

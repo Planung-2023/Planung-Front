@@ -1,18 +1,27 @@
 <div class="fijarNav">
-  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" animationDuration="400ms" headerPosition="below" class="navbar-icons">
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" animationDuration="300ms" headerPosition="below" class="navbar-icons">
     <mat-tab>
-      <ng-template mat-tab-label>
-        <img src="assets/crearEvento.png" alt="Crear Evento" routerLink="/crear-evento">
+      <ng-template mat-tab-label >
+        <div alt="Crear Evento" routerLink="/eventos/crear">
+          <img src="assets/crearEvento.png" >
+        </div>
+
       </ng-template>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
-        <img src="assets/listaEventos.png" alt="Lista Eventos" routerLink="/lista-eventos">
+        <div alt="Lista Eventos" routerLink="/eventos">
+          <img src="assets/listaEventos.png" >
+        </div>
+
       </ng-template>
     </mat-tab>
-    <mat-tab>
+    <mat-tab class="d-flex justify-content-center">
       <ng-template mat-tab-label>
-        <img src="assets/perfil.png" alt="Perfil" routerLink="/perfil">
+        <div alt="Perfil" routerLink="/perfil">
+          <img src="assets/perfil.png" >
+        </div>
+
       </ng-template>
     </mat-tab>
   </mat-tab-group>

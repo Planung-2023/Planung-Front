@@ -3,8 +3,25 @@
     <nz-steps [nzCurrent]="pasoActual">
         <nz-step *ngFor="let paso of pasos"></nz-step>
     </nz-steps>
-    
+
   </div>
+
+</div>
+<div class="body-evento">
+    <app-paso1 #paso1 [ngStyle]="{'display': pasoActual === 0? 'block' : 'none'}"></app-paso1>
+    <app-paso2 #paso2 [ngStyle]="{'display': pasoActual === 1? 'block' : 'none'}"></app-paso2>
+    <app-paso3 #paso3 [ngStyle]="{'display': pasoActual === 2? 'block' : 'none'}"></app-paso3>
+    <app-paso4 #paso4 [ngStyle]="{'display': pasoActual === 3? 'block' : 'none'}"></app-paso4>
+    <app-paso5 #paso5 [ngStyle]="{'display': pasoActual === 4? 'block' : 'none'}"></app-paso5>
+
+    <div>
+      <button class="btn btn-seconday" (click)="crearEvento()">Guardar</button>
+    </div>
+</div>
+<div [ngClass]="{'justify-content-center' : pasoActual === 0, 'justify-content-around' : pasoActual != 0 }"class="footer d-flex align-items-center">
+
+  <button *ngIf="pasoActual != 0" (click)="pasoAnterior()" class="btn"><-</button>
+  <button *ngIf="pasoActual != 4" (click)="proximoPaso()" class="btn">-></button>
 </div>
 <div class="h-75 d-flex row align-content-between bg-primary">
   <div>
