@@ -15,55 +15,60 @@
       <button (click)="flipCard()" class="boton-mas"></button>
     </div>
     <div class="flip-card-back">
-      <h2>{{ recurso?.nombre }}</h2>
-      <mat-expansion-panel class="recurso-panel" *ngIf="panelAbierto === 'tipoObjeto' || panelAbierto === 'todos'" (opened)="abrirPanel('tipoObjeto')" (closed)="cerrarPanel('tipoObjeto')">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <p class="texto-panel-header">Tipo de Objeto</p>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <div class="button-grid">
-            <button class="custom-button" (click)="selectObjectType(type)" *ngFor="let type of objectTypes">
-              {{ type }}
-            </button>
-          </div>
-        </mat-expansion-panel>
-        <mat-expansion-panel class="recurso-panel" *ngIf="panelAbierto === 'descripcion' || panelAbierto === 'todos'" (opened)="abrirPanel('descripcion')" (closed)="cerrarPanel('descripcion')">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <p class="texto-panel-header">Descripción</p>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <div>
-            <input [(ngModel)]="descripcion" type="text" class="texto-descripcion" placeholder="Agregue una descripción">
-          </div>
-        </mat-expansion-panel>
-      <div class="cantidad-container" *ngIf="panelAbierto === 'todos'">
-        <div class="cantidad-label">Cantidad</div>
-        <div class="cantidad-divider"></div>
-        <div class="cantidad-valor">{{ getCantidadTotal() }}</div>
-      </div>
-      <mat-expansion-panel class="recurso-panel" *ngIf="panelAbierto === 'responsables' || panelAbierto === 'todos'" (opened)="abrirPanel('responsables')" (closed)="cerrarPanel('responsables')">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <p class="texto-panel-header">Responsables</p>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div class="responsables-table">
-          <table>
-            <tbody>
-              <tr *ngFor="let responsable of responsables">
-                <td>{{ responsable.nombre }}</td>
-                <td>{{ responsable.cantidad }}</td>
-              </tr>
-            </tbody>
-          </table>
-          <button class="agregar-responsable">Agregar</button>
+      <div *ngIf="!mostrarColorPicker; else colorPicker">
+        <h2>{{ recurso?.nombre }}</h2>
+        <mat-expansion-panel class="recurso-panel" *ngIf="panelAbierto === 'tipoObjeto' || panelAbierto === 'todos'" (opened)="abrirPanel('tipoObjeto')" (closed)="cerrarPanel('tipoObjeto')">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <p class="texto-panel-header">Tipo de Objeto</p>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="button-grid">
+              <button class="custom-button" (click)="selectObjectType(type)" *ngFor="let type of objectTypes">
+                {{ type }}
+              </button>
+            </div>
+          </mat-expansion-panel>
+          <mat-expansion-panel class="recurso-panel" *ngIf="panelAbierto === 'descripcion' || panelAbierto === 'todos'" (opened)="abrirPanel('descripcion')" (closed)="cerrarPanel('descripcion')">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <p class="texto-panel-header">Descripción</p>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+              <input [(ngModel)]="descripcion" type="text" class="texto-descripcion" placeholder="Agregue una descripción">
+            </div>
+          </mat-expansion-panel>
+        <div class="cantidad-container" *ngIf="panelAbierto === 'todos'">
+          <div class="cantidad-label">Cantidad</div>
+          <div class="cantidad-divider"></div>
+          <div class="cantidad-valor">{{ getCantidadTotal() }}</div>
         </div>
-      </mat-expansion-panel>
-      <button (click)="mostrarComponenteColorPicker()" class="boton-pintura"></button>
+        <mat-expansion-panel class="recurso-panel" *ngIf="panelAbierto === 'responsables' || panelAbierto === 'todos'" (opened)="abrirPanel('responsables')" (closed)="cerrarPanel('responsables')">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <p class="texto-panel-header">Responsables</p>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="responsables-table">
+            <table>
+              <tbody>
+                <tr *ngFor="let responsable of responsables">
+                  <td>{{ responsable.nombre }}</td>
+                  <td>{{ responsable.cantidad }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <button class="agregar-responsable">Agregar</button>
+          </div>
+        </mat-expansion-panel>
+        <button (click)="mostrarComponenteColorPicker()" class="boton-pintura"></button>
+      </div>
+      <ng-template #colorPicker>
+        <button (click)="ocultarComponenteColorPicker()" class="boton-flecha"></button>
+        <app-recurso-color-picker *ngIf="mostrarColorPicker"></app-recurso-color-picker>
+      </ng-template>
       <button (click)="flipCard()" class="boton-menos"></button>
     </div>
   </div>
-  <app-recurso-color-picker *ngIf="mostrarColorPicker"></app-recurso-color-picker>
 </div>

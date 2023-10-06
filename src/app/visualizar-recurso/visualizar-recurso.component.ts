@@ -77,6 +77,10 @@ export class VisualizarRecursoComponent implements OnInit {
   mostrarComponenteColorPicker(){
     this.mostrarColorPicker = true;
   }
+
+  ocultarComponenteColorPicker(){
+    this.mostrarColorPicker = false;
+  }
 }
 
 interface Responsable {
