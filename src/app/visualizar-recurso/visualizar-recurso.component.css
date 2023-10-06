@@ -16,7 +16,6 @@
 
 .flip-card-inner {
   width: 300px;
-  height: 400px;
   text-align: start;
   transition: transform 0.6s;
   transform-style: preserve-3d;
@@ -26,6 +25,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  min-height: 400px;
 }
 
 
@@ -43,7 +43,7 @@
 }
 
 .flip-card-front {
-  background-color: #E47130;
+  background-color: #ef7d16;
   color: black;
   font-size: 20px;
 }
@@ -53,7 +53,7 @@
 }
 
 .flip-card-back {
-  background-color: #F9CF90;
+  background-color: #f9b668;
   color: black;
   transform: rotateY(180deg);
 }
@@ -65,10 +65,11 @@
   margin-top: 10px;
 }
 
-.flip-card-back h2{
-  text-decoration: underline;
-  padding-left: 70px;
+.flip-card-back h2 {
+  text-align: center;
   padding-top: 20px;
+  font-weight: bold;
+  font-size: 30px;
 }
 
 .flip-card-back p{
@@ -84,10 +85,17 @@
 .icono-mas,
 .icono-menos {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
-  width: 30px;
-  height: 30px;
+  bottom: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+}
+.icono-pintura {
+  position: absolute;
+  bottom: 15px;
+  left: 25px;
+  width: 50px;
+  height: 50px;
 }
 
 .icono-cocaCola {
@@ -131,4 +139,131 @@
 
 .responsable .cantidad {
   padding-right: 20px;
+}
+
+.mat-expansion-panel {
+  max-width: 90%;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+.mat-expansion-panel .mat-expansion-panel-header {
+  background-color: #ff9933;
+  height: 38px;
+}
+
+.mat-expansion-panel .mat-expansion-panel-header:hover {
+  background-color: #ff9933;
+}
+
+.mat-expansion-panel-header-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recurso-panel{
+  margin-bottom: 15px;
+}
+
+::ng-deep .recurso-panel .mat-expansion-panel-body {
+  background-color: #f9c78d !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0px 15px;
+}
+
+.texto-panel-header {
+  font-size: 15px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 40px;
+  padding-top: 10px;
+}
+
+.recurso-panel table tbody td {
+  padding: 10px 45px;
+  background-color: #f9cfa0;
+  font-weight: bold;
+  text-align: center;
+}
+
+.recurso-panel table {
+  border-collapse: separate;
+  width: 100%;
+}
+
+.agregar-responsable {
+  background-color: #f9b668;
+  color: white;
+  border: none;
+  margin: 0 auto;
+  display: block;
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.cantidad-container {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  margin: 15px auto;
+  background-color: #ff9933;
+  border-radius: 10px;
+  height: 38px;
+}
+
+.cantidad-label,
+.cantidad-valor {
+  font-size: 15px;
+  color: #ffffff;
+  padding: 10px;
+}
+
+.cantidad-divider {
+  background-color: #f9b668;
+  width: 10px;
+  margin: 0 10px;
+}
+
+.texto-descripcion{
+  padding: 30px 0px;
+  font-size: 17px;
+  background-color: #f9c78d;
+  border: none;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.custom-button {
+  background-color: #f9cfa0;
+  color: black;
+  font-size: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px 15px;
+  width: 110px;
+  text-align: center;
+}
+
+.custom-button:hover {
+  background-color: #f9b668;
+  font-weight: bold;
+}
+
+.active-button {
+  background-color: #f9b668;
+  font-weight: bold;
 }

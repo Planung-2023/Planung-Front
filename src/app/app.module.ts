@@ -27,6 +27,7 @@ import { ListaEventosService } from './lista-eventos/lista-eventos.service';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { environment } from 'src/environments/environment.development';
     MatExpansionModule,
     AlertModule,
     CarouselModule,
+    MatButtonToggleModule,
     MatSelectModule,
     MatIconModule,
     MatRadioModule,
