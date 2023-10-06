@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swiper from 'swiper';
+import {HttpClient} from '@angular/common/http'
+import { ListaEventosService } from './lista-eventos.service';
 
 @Component({
   selector: 'app-lista-eventos',
@@ -8,16 +10,21 @@ import Swiper from 'swiper';
   styleUrls: ['./lista-eventos.component.css']
 })
 export class ListaEventosComponent implements OnInit {
-  eventos: Evento[] = [];
+  eventos: any[] = [];
   recursos: Recurso[] = [];
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient, private listaEventosService: ListaEventosService) {
+
+  }
 
   ngOnInit() {
-    this.eventos = [
-      { id: 1, titulo: 'Reunión Bayer', fecha: '18-09-2023', hora:'10:30 am', lugar: 'Malvinas Argentinas 568, Caballito', estilo: 'Formal', organizador: 'German Sánchez' },
-      { id: 2, titulo: 'Charla Siemens', fecha: '04-11-2023', hora:' 15:00 pm', lugar: 'Aviador Matienzo 2026, Ciudad jardin', estilo: 'Formal', organizador: 'Andrea Fernandez' },
-      { id: 3, titulo: 'Cumpleaños Lucas', fecha: '25-07-2023', hora:' 22:00 pm', lugar: 'Padre Vanini 1490, El Palomar', estilo: 'Informal', organizador: 'Lucas Espinoza' }
-    ];
+    /*this.http.get('http://localhost:8000/eventos', {params: {usuario_id: 1}}).subscribe((eventos: any) => {
+      console.log("eventos: ", eventos)
+      this.eventos = eventos;
+    });  */
+    this.listaEventosService.getEventos().subscribe((eventos: any) => {
+      console.log(eventos);
+      this.eventos = eventos;
+    });
 
     this.recursos = [
       {id: 1, cantidadActual: 3, cantidadNecesaria:6, descripcion: 'Esta es la coca para el fernet. No compren light ni cero.', nombre: 'Coca Cola'},
@@ -54,16 +61,6 @@ export class ListaEventosComponent implements OnInit {
   visualizarRecurso(recurso: Recurso): void {
     this.router.navigate(['/visualizar-recurso'], { state: { recurso: recurso } });
   }
-}
-
-interface Evento {
-  id: number;
-  organizador: string;
-  fecha: string;
-  hora: string;
-  lugar: string;
-  estilo: string;
-  titulo: string;
 }
 
 interface Recurso {
