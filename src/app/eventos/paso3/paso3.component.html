@@ -6,26 +6,17 @@
             <div id="cajaLugarEvento" class="cajaPrincipal d-flex flex-column justify-content-center">
                 <h2 id="tituloUbicacion" class="d-flex justify-content-center">Defina la Ubicacion para el Evento</h2>
                 <div id="buscarUbicacion" class="d-flex justify-content-center">
-                    <div id="cajaBusqueda" class="d-flex align-items-center justify-content-center">
-                       <input type="text" id="ingresarTexto" placeholder="Ingrese Ubicacion">
-                    <button >
-                        <mat-icon fontIcon="search" class="d-flex justify-content-center align-items-center"></mat-icon>
-                    </button>
-                    <button >
-                        <mat-icon fontIcon="close" class="d-flex justify-content-center align-items-center"></mat-icon>
-                    </button> 
-                    </div>
-                    
+
                 </div>
                 <div id="a" class="d-flex align-items-center justify-content-center">
-                    <button id="mapa" >
-                        <img src="assets/gigachad.jpg">
-                    </button>
+                  <div *ngIf="apiLoaded">
+                    <google-map [options]="options"></google-map>
+                  </div>
                 </div>
-                
+
             </div>
         </form>
-        
+
     </div>
 </mat-card>
 

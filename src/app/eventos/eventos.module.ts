@@ -1,3 +1,4 @@
+import { GoogleMapsModule } from '@angular/google-maps';
 import { RecursosModule } from './../recursos/recursos.module';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ListaEventosComponent } from './lista-eventos/lista-eventos.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { ListaEventosComponent } from './lista-eventos/lista-eventos.component';
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     EventosRoutingModule,
     NzStepsModule,
@@ -38,6 +41,7 @@ import { ListaEventosComponent } from './lista-eventos/lista-eventos.component';
     MatIconModule,
     MatSlideToggleModule,
     RecursosModule,
+    GoogleMapsModule,
   ]
 })
 export class EventosModule { }
