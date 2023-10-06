@@ -7,9 +7,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./visualizar-recurso.component.css']
 })
 export class VisualizarRecursoComponent implements OnInit {
+  public selectedObjectType: string | null = null;
+  public objectTypes: string[] = ['Bebida', 'Mobiliario', 'Comida', 'Juego', 'Tecnología', 'Otro'];
   recurso: Recurso | undefined;
   responsables: Responsable[] = [];
   isFlipped: boolean = false;
+  descripcion: string = '';
+  panelAbierto: string = 'todos';
 
   constructor(private router: Router) {
     this.recurso = this.router.getCurrentNavigation()?.extras.state?.['recurso'];
@@ -32,6 +36,14 @@ export class VisualizarRecursoComponent implements OnInit {
     };*/
   }
 
+  getCantidadTotal(): number {
+    let cantidadTotal = 0;
+    for (const responsable of this.responsables) {
+      cantidadTotal += responsable.cantidad;
+    }
+    return cantidadTotal;
+  }
+
   flipCard() {
     this.isFlipped = !this.isFlipped;
   }
@@ -45,6 +57,20 @@ export class VisualizarRecursoComponent implements OnInit {
       }
     }
     return '';
+  }
+
+  selectObjectType(type: string) {
+    this.selectedObjectType = type;
+  }
+
+  abrirPanel(panel: string) {
+    this.panelAbierto = panel;
+  }
+
+  cerrarPanel(panel: string) {
+    if (this.panelAbierto === panel) {
+      this.panelAbierto = 'todos';
+    }
   }
 }
 
@@ -61,3 +87,4 @@ interface Recurso {
   descripcion: string;
   nombre: string;
 }
+

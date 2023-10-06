@@ -2,6 +2,7 @@ body, html {
     height: 100%;
     margin: 0;
     padding: 0;
+    background-color: #3f4244;
   }
   
   .configuracion-container {
@@ -14,13 +15,14 @@ body, html {
     padding: 0;
     overflow: hidden;
     position: relative;
+    background-color: #3f4244;
   }
   
   h2 {
     font-size: 24px;
-    font-weight: bold;
     margin-bottom: 20px;
     margin-top: 30px;
+    color: #fff;
   }
   
   .icon-home {
@@ -42,8 +44,8 @@ body, html {
   
   h3 {
     font-size: 18px;
-    font-weight: bold;
     margin-bottom: 10px;
+    color: #fff;
   }
   
   mat-slide-toggle {
@@ -51,7 +53,7 @@ body, html {
   }
   
   .cerrar-sesion-button {
-    background-color: #ff0000;
+    background-color: #000;
     color: #fff;
     font-weight: bold;
     border: none;
@@ -62,6 +64,6 @@ body, html {
   }
   
   .cerrar-sesion-button:hover {
-    background-color: #cc0000;
+    background-color: #202020;
   }
   
