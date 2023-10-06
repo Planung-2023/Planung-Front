@@ -1,10 +1,3 @@
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
-</head>
-
-<body>
 
   <div class="top-bar">
     <button mat-icon-button class="icon-notificaciones d-flex justify-content-center align-items-center" (click)="irANotificaciones()">
@@ -35,13 +28,12 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide" *ngFor="let evento of eventos">
           <div class="titulo-container">
-            <p class="titulo-evento">{{ evento.titulo }}</p>
+            <p class="titulo-evento">{{ evento.nombre }}</p>
           </div>
-          <p><strong>Organizador:</strong> {{ evento.organizador }}</p>
-          <p><strong>Fecha:</strong> {{ evento.fecha }}</p>
-          <p><strong>Hora:</strong> {{ evento.hora }}</p>
-          <p><strong>Tipo de evento:</strong> {{ evento.estilo }}</p>
-
+          <p><strong>Organizador:</strong> {{ evento.creador.nombreUsuario }}</p>
+          <p><strong>Fecha:</strong> {{ evento.fechaHora | date: 'dd MMM yyyy'}}</p>
+          <p><strong>Hora:</strong> {{ evento.fechaHora | date: 'hh:mm a' }}</p>
+          <p><strong>Tipo de evento:</strong> {{ evento.tipoEvento }}</p>
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
@@ -49,7 +41,7 @@
               </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-panel-description>
-              {{ evento.lugar }}
+              {{ evento.ubicacion.calle + ' '+ evento.ubicacion.altura }}
             </mat-panel-description>
           </mat-expansion-panel>
 
@@ -90,4 +82,3 @@
       </div>
     </ng-template>
   </div>
-</body>

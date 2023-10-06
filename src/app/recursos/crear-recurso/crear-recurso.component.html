@@ -4,13 +4,13 @@
       <mat-card-content>
         <form class="crear-recurso-form">
           <mat-form-field>
-            <input matInput placeholder="Nombre" [(ngModel)]="nombre" required class="crear-recurso-input">
+            <input matInput placeholder="Nombre" [(ngModel)]="nombre" required class="crear-recurso-input" [ngModelOptions]="{standalone: true}">
           </mat-form-field>
           <mat-form-field>
-            <input matInput type="number" placeholder="Cantidad Necesaria" [(ngModel)]="cantidadNecesaria" required class="crear-recurso-input">
+            <input matInput type="number" placeholder="Cantidad Necesaria" [(ngModel)]="cantidadNecesaria" required class="crear-recurso-input" [ngModelOptions]="{standalone: true}">
           </mat-form-field>
           <mat-form-field>
-            <textarea matInput placeholder="Descripción" [(ngModel)]="descripcion" required class="crear-recurso-input"></textarea>
+            <textarea matInput placeholder="Descripción" [(ngModel)]="descripcion" required class="crear-recurso-input" [ngModelOptions]="{standalone: true}"></textarea>
           </mat-form-field>
         </form>
       </mat-card-content>
@@ -19,4 +19,3 @@
       </mat-card-actions>
     </mat-card>
   </div>
-  

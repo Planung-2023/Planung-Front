@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-paso4',
@@ -9,6 +10,16 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 export class Paso4Component {
 dataEvento={
 
+  constructor(private modal: NgbModal) {
+
+  }
+
+  mostrarCardAgregar(modal: any) {
+    this.modal.open(modal, { centered: true }).result.then(
+      (result: any) => {},
+      (reason: any) => {}
+    );
+  }
 }
 getDatosPaso4(){
   return this.dataEvento

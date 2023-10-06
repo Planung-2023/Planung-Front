@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-perfil',
@@ -6,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent {
+  constructor(public auth: AuthService) {}
 
+  verToken(){
+    this.auth.idTokenClaims$.subscribe((claims) => {
+      console.log(claims);
+    });
+  }
 }

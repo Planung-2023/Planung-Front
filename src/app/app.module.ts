@@ -19,8 +19,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { EventosModule } from './eventos/eventos.module';
-import { PruebaMapaComponent } from './prueba-mapa/prueba-mapa.component';
-import {GoogleMapsModule} from '@angular/google-maps';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { HttpClientModule} from '@angular/common/http'
+import { ListaEventosService } from './eventos/lista-eventos.service';
+import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { environment } from 'src/environments/environment.development';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +35,6 @@ import {GoogleMapsModule} from '@angular/google-maps';
     NavbarComponent,
     ConfiguracionComponent,
     NotificacionesComponent,
-    PruebaMapaComponent
    ],
   imports: [
     FormsModule,
@@ -43,14 +48,36 @@ import {GoogleMapsModule} from '@angular/google-maps';
     MatExpansionModule,
     AlertModule,
     CarouselModule,
+    MatButtonToggleModule,
     MatSelectModule,
     MatIconModule,
     MatRadioModule,
     MatFormFieldModule,
     EventosModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    HttpClientModule,
+    AuthModule.forRoot({
+      domain: 'dev-jr3a6576vnf4x0e6.us.auth0.com',
+      clientId: 'x2bhBlJfZpZTBRG3qqRL0F5XP8f2SZLW',
+      authorizationParams: {
+        redirect_uri: window.location.origin
+      },
+      useRefreshTokens: true,
+      httpInterceptor: {
+        allowedList: [
+          {
+            uri:environment.url
+            +'/*',
+            allowAnonymous: true,
+          },
+        ],
+      }
+    }),
   ],
-  providers: [],
+  providers: [
+    ListaEventosService,
+    { provide: HTTP_INTERCEPTORS,useClass: AuthHttpInterceptor,multi:true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
