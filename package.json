@@ -26,11 +26,8 @@
     "@coreui/icons-angular": "^4.5.2",
     "angular-carousel": "^1.1.0",
     "bootstrap": "^5.3.1",
-<<<<<<< Updated upstream
-=======
     "bootstrap-icons": "^1.11.1",
     "google-maps": "^4.3.3",
->>>>>>> Stashed changes
     "ng-zorro-antd": "^16.1.0",
     "ngx-slick-carousel": "^15.0.0",
     "rxjs": "~7.8.0",

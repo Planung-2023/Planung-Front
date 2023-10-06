@@ -9,8 +9,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 export class Paso2Component {
   
   dataEvento = {
-    esFormal: document.getElementById(formalidad).value,
-    esPorAprobacion: false,
+    esFormal: "Ninguno",
+    esPorAprobacion: "Ninguno",
   }
 
   public datos() {
