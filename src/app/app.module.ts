@@ -28,6 +28,7 @@ import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { RecursoColorPickerComponent } from './recurso-color-picker/recurso-color-picker.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     VisualizarRecursoComponent,
     ConfiguracionComponent,
     NotificacionesComponent,
+    RecursoColorPickerComponent,
   ],
   imports: [
     FormsModule,

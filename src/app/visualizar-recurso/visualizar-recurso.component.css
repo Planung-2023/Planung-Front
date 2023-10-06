@@ -82,22 +82,6 @@
   padding-left: 15px;
 }
 
-.icono-mas,
-.icono-menos {
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-  width: 40px;
-  height: 40px;
-}
-.icono-pintura {
-  position: absolute;
-  bottom: 15px;
-  left: 25px;
-  width: 50px;
-  height: 50px;
-}
-
 .icono-cocaCola {
   margin: 50px 95px 25px;
 }
@@ -266,4 +250,49 @@
 .active-button {
   background-color: #f9b668;
   font-weight: bold;
+}
+
+.boton-pintura {
+  background-image: url('src/assets/iconoPintura.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  bottom: 15px;
+  left: 25px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  background-color: #ffffff00;
+  border: none;
+}
+
+.boton-mas {
+  background-image: url('src/assets/iconoMas.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #ffffff00;
+  border: none;
+}
+
+.boton-menos {
+  background-image: url('src/assets/iconoMenos.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #ffffff00;
+  border: none;
 }
