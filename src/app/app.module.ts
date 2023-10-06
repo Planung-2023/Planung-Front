@@ -19,10 +19,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { EventosModule } from './eventos/eventos.module';
-import { PruebaMapaComponent } from './prueba-mapa/prueba-mapa.component';
-import {GoogleMapsModule} from '@angular/google-maps';
+import { GoogleMapsModule } from '@angular/google-maps';
 import { HttpClientModule} from '@angular/common/http'
-import { ListaEventosService } from './lista-eventos/lista-eventos.service';
+import { ListaEventosService } from './eventos/lista-eventos.service';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
@@ -36,7 +35,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     NavbarComponent,
     ConfiguracionComponent,
     NotificacionesComponent,
-    PruebaMapaComponent
    ],
   imports: [
     FormsModule,

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swiper from 'swiper';
-import {HttpClient} from '@angular/common/http'
-import { ListaEventosService } from './lista-eventos.service';
+import {HttpClient} from '@angular/common/http';
+import { ListaEventosService } from '../lista-eventos.service';
 
 @Component({
   selector: 'app-lista-eventos',
@@ -46,7 +46,7 @@ export class ListaEventosComponent implements OnInit {
     this.router.navigate(['/eventos', 'crear']);
   }
 
-  agregarRecurso(evento: Evento): void {
+  agregarRecurso(evento: any): void {
     this.router.navigate(['/eventos', evento.id, 'recursos', 'crear']);
   }
 
@@ -58,7 +58,7 @@ export class ListaEventosComponent implements OnInit {
     this.router.navigate(['/notificaciones']);
   }
 
-  visualizarRecurso(evento: Evento, recurso: Recurso): void {
+  visualizarRecurso(evento: any, recurso: Recurso): void {
     this.router.navigate(['/eventos', evento.id, 'recursos', recurso.id ], { state: { recurso: recurso } });
   }
 }

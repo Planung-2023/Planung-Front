@@ -1,3 +1,4 @@
+import { ListaEventosComponent } from './lista-eventos/lista-eventos.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { RecursosModule } from './../recursos/recursos.module';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -16,7 +17,6 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { MatCardModule } from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ListaEventosComponent } from './lista-eventos/lista-eventos.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -28,7 +28,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     Paso3Component,
     Paso4Component,
     Paso5Component,
-    ListaEventosComponent,
+    ListaEventosComponent
   ],
   imports: [
     CommonModule,
