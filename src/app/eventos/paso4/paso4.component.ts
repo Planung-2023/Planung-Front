@@ -8,20 +8,20 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Paso4Component {
-dataEvento={
 
+dataEvento={
+}
   constructor(private modal: NgbModal) {
 
   }
 
   mostrarCardAgregar(modal: any) {
-    this.modal.open(modal, { centered: true }).result.then(
-      (result: any) => {},
-      (reason: any) => {}
-    );
+  this.modal.open(modal, { centered: true }).result.then(
+    (result: any) => {},
+    (reason: any) => {}
+  );
+}
+  getDatosPaso4(){
+    return this.dataEvento
   }
-}
-getDatosPaso4(){
-  return this.dataEvento
-}
 }
