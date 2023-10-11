@@ -1,0 +1,24 @@
+<div class="perfil-container">
+    <button mat-icon-button class="icon-home" routerLink="/lista-eventos">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2>Configuración del perfil</h2>
+    <div class="perfil-info">
+      <div class="foto-perfil">
+        <img src="assets/imagenUsuario.jpg" alt="Foto de perfil">
+      </div>
+      <div class="perfil-details">
+        <p class="username">Nombre de usuario</p>
+        <a class="ver-perfil-link" href="/perfil">Ver perfil</a>
+      </div>
+    </div>
+    <button class="ver-perfil-button">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+      <ul *ngIf="auth.user$ | async as user">
+        <li>{{ user.name }}</li>
+        <li>{{ user.email }}</li>
+      </ul>
+      <button (click)="verToken()">ver token</button>
+  </div>
+  
