@@ -5,12 +5,14 @@
         <form class="d-flex justify-content-center">
             <div id="cajaLugarEvento" class="cajaPrincipal d-flex flex-column justify-content-center">
                 <h2 id="tituloUbicacion" class="d-flex justify-content-center">Defina la Ubicacion para el Evento</h2>
-                <div id="buscarUbicacion" class="d-flex justify-content-center">
-
-                </div>
-                <div id="a" class="d-flex align-items-center justify-content-center map-container">
-                  <div *ngIf="apiLoaded" >
-                    <google-map [options]="options"></google-map>
+                
+                <div id="a" class="map d-flex align-items-center justify-content-center">
+                  <div *ngIf="apiLoaded">
+                    <google-map class="map" [options]="options" width="350px" height="300px" 
+                    (mapClick)="moveMap($event)"><map-marker
+                      [position]= "position">
+                    </map-marker>
+                  </google-map>
                   </div>
                 </div>
 
