@@ -1,16 +1,9 @@
 body, html {
     height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #000000;
   }
   
   .configuracion-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     margin-top: 50px;
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -36,15 +29,16 @@ body, html {
   .seccion-tema,
   .seccion-acerca,
   .seccion-otro {
-    margin-top: 30px;
-    text-align: left;
-    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    color: #ffffff;
   }
   
   h3 {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
+    color: darkgray;
   }
   
   mat-slide-toggle {
@@ -66,3 +60,13 @@ body, html {
     background-color: #cc0000;
   }
   
+  .seccion-configuracion{
+    padding: 20px;
+    border-radius: 30px; 
+    background: #5a5a5a;
+  }
+
+  .titulo-configuracion{
+    margin-top: 20px;
+    color: #ffffff;
+  }

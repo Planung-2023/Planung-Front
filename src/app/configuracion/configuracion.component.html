@@ -1,9 +1,16 @@
-<div class="configuracion-container">
-    <h2>Configuracion</h2>
-    <button mat-icon-button class="icon-home" routerLink="/lista-eventos">
-      <mat-icon>arrow_back</mat-icon>
-    </button>
-  
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg col-md-12" style="background-color: #262626">
+  <div class="container-fluid">
+      <button mat-icon-button style="background-color: white;" class="navbar-toggler" type="button" routerLink="">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+  </div>
+</nav>
+
+<!-- Configuracion -->
+<div class="col-md-12">
+  <h2 class="titulo-configuracion text-center">Configuración</h2>
+  <div class="col-11 mx-auto seccion-configuracion">
     <div class="seccion-cuenta">
       <h3>Cuenta:</h3>
       <p>Profile / Email: pepito@ejemplo.com</p>
@@ -16,9 +23,11 @@
   
     <div class="seccion-tema">
       <h3>Tema</h3>
-      <mat-slide-toggle [(ngModel)]="lightMode" (click)="cambiarModoLight()">Light mode</mat-slide-toggle>
-      <br>
-      <mat-slide-toggle [(ngModel)]="darkMode" (click)="cambiarModoDark()">Dark mode</mat-slide-toggle>
+      <div style="color: #ffffff">
+        <mat-slide-toggle [(ngModel)]="lightMode" (click)="cambiarModoLight()"><p style="color: #ffffff; padding-top: 10px;">Light mode</p></mat-slide-toggle>
+        <br>
+        <mat-slide-toggle [(ngModel)]="darkMode" (click)="cambiarModoDark()"><p style="color: #ffffff; padding-top: 10px;">Dark mode</p></mat-slide-toggle>
+      </div>
     </div>
   
     <div class="seccion-acerca">
@@ -34,4 +43,41 @@
       <button mat-raised-button class="cerrar-sesion-button">Cerrar Sesión</button>
     </div>
   </div>
+</div>
+
+
+
+<!--
+    <div class="col-11 seccion-configuracion">
+      <div class="seccion-cuenta">
+        <h3>Cuenta:</h3>
+        <p>Profile / Email: pepito@ejemplo.com</p>
+      </div>
+    
+      <div class="seccion-notificaciones">
+        <h3>Notificaciones</h3>
+        <mat-slide-toggle></mat-slide-toggle>
+      </div>
+    
+      <div class="seccion-tema">
+        <h3>Tema</h3>
+        <mat-slide-toggle [(ngModel)]="lightMode" (click)="cambiarModoLight()">Light mode</mat-slide-toggle>
+        <br>
+        <mat-slide-toggle [(ngModel)]="darkMode" (click)="cambiarModoDark()">Dark mode</mat-slide-toggle>
+      </div>
+    
+      <div class="seccion-acerca">
+        <h3>Acerca de:</h3>
+        <p>Version</p>
+        <p>Terminos y condiciones</p>
+        <p>Politica de privacidad</p>
+        <p>Ayuda / FAQ</p>
+      </div>
+    
+      <div class="seccion-otro">
+        <h3>Otro</h3>
+        <button mat-raised-button class="cerrar-sesion-button">Cerrar Sesión</button>
+      </div>
+    </div>
+-->
   
