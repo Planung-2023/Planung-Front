@@ -8,7 +8,19 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class Paso2Component {
   dataEvento={
+    tipoEvento: 'Informal',
+    tipoInvitacion: 'Directa',
+  }
 
+  actualizarTipoEvento(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.dataEvento.tipoEvento = target.value;
+    console.log(this.dataEvento);
+  }
+  actualizarTipoInvitacion(event: Event){
+    const target = event.target as HTMLInputElement;
+    this.dataEvento.tipoInvitacion = target.value;
+    console.log(this.dataEvento);
   }
   getDatosPaso2(){
     return this.dataEvento

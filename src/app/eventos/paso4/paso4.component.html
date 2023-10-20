@@ -6,7 +6,6 @@
                 <h2 id="tituloObjetos" class="text-center">Defina Objetos Necesarios</h2>
                 <div class="d-flex flex-column justify-content-around align-items-center">
                     <p>Agregar recurso</p>
-                    <input type="text">
                     
                     <button (click)="mostrarCardAgregar(contenidoAgregar)">
                         <img class="btn btn-secondary" src="assets/iconoMas.png">
@@ -18,5 +17,5 @@
 </mat-card>
 
 <ng-template #contenidoAgregar let-modal>
-  <app-visualizar-recurso></app-visualizar-recurso>
+  <app-crear-recurso></app-crear-recurso>
 </ng-template>
