@@ -1,5 +1,6 @@
 <mat-card>
     <div id="paso2" class="body">
+<<<<<<< Updated upstream
         <h1 class="tituloTipoEvento d-flex align-items-center justify-content-center">Nombre y Fecha</h1>
 
     <form #paso1Form="ngForm" class="d-flex justify-content-center">
@@ -25,24 +26,57 @@
                             <h4 *ngIf="!dataEvento.todoElDia">Hasta</h4>
                             <h4 *ngIf="!dataEvento.todoElDia">-</h4>
                             <input class="d-flex flex-row-reverse" type="time"[(ngModel)]="dataEvento.horaFin" *ngIf="!dataEvento.todoElDia" [ngModelOptions]="{standalone: true}">
-                        </div>
+=======
+        <h1 class="mt-3 tituloTipoEvento text-center">Nombre y Fecha</h1>
 
+    <form #paso1Form="ngForm" class="d-flex justify-content-center h-100">
+        <div id="cajaTipoEvento" class="w-75 pb-4 pt-2 cajaPrincipal rounded-5">
+            <div>
+                <h2 id="tituloTipoEvento" class="m-2 fw-bold text-center fs-5">Defina el Nombre del Evento</h2>
+                <div id="inputText" class="d-flex justify-content-center">
+                    <input class="titulo rounded-2" [(ngModel)]="dataEvento.nombre" type="text" placeholder="Escriba Aquí" [ngModelOptions]="{standalone: true}">
+                </div>
+            </div>
+            <div class="d-flex row justify-content-center px-2">
+                <h2 id="tituloTipoEvento" class="m-2 fw-bold text-center fs-5">Defina la Fecha para el Evento</h2>
+                <div id="cajaDeInput" class="d-flex justify-content-center row w-75">
+                    <div class="mb-2 box rounded-2 d-flex align-items-center justify-content-between">
+                        <h3 class="m-0 fs-6 fw-bold">Día</h3>
+                        <input aria-describedby="basic-addon1" class="text-end" type="date" [(ngModel)]="dataEvento.fecha" [ngModelOptions]="{standalone: true}" min="2023-12-01" required>
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-3-square-fill"></i></span>
                     </div>
-
-                    <div class="containerTodoElDia d-flex align-items-center justify-content-between">
-                        <h3 class="box">¿Todo el Día?</h3>
+                    <div class="mb-2 box rounded-2">
+                        <div class="d-flex justify-content-between">
+                            <h3 *ngIf="!dataEvento.todoElDia" class="m-0 fw-bold fs-6">Hora Inicio</h3>
+                            <input class="text-end" type="time"[(ngModel)]="dataEvento.horaInicio" *ngIf="!dataEvento.todoElDia" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <h3 *ngIf="!dataEvento.todoElDia" class="m-0 fw-bold fs-6">Hora Fin</h3>
+                            <input class="text-end" type="time"[(ngModel)]="dataEvento.horaFin" *ngIf="!dataEvento.todoElDia" [ngModelOptions]="{standalone: true}">
+>>>>>>> Stashed changes
+                        </div>
+                    </div>
+                    <div class="d-flex p-0 justify-content-between">
+                        <h3 class="rounded-2 fw-bold box fs-6">¿Todo el Día?</h3>
                         <h3><mat-slide-toggle (change)="cambiarTodoElDia($event)"></mat-slide-toggle></h3>
                     </div>
                 </div>
             </div>
+<<<<<<< Updated upstream
 
 
 
             <h2 class="d-flex justify-content-center align-items-center">¿Quiere agregar una Descripción?</h2>
             <div id="inputText" class="d-flex align-items-center justify-content-center">
                 <textarea [(ngModel)]="dataEvento.descripcion" class="descripcion" type="text" placeholder="Agrega una Descripción" [ngModelOptions]="{standalone: true}" ></textarea>
+=======
+            <div>
+                <h2 class="text-center fs-5 mx-2">¿Quiere agregar una Descripción?</h2>
+                <div id="inputText" class="d-flex align-items-center justify-content-center">
+                    <textarea [(ngModel)]="dataEvento.descripcion" class="pt-1 rounded-4 fs-6 text-center" type="text" placeholder="Agrega una Descripción" [ngModelOptions]="{standalone: true}" ></textarea>
+                </div>
+>>>>>>> Stashed changes
             </div>
-
         </div>
     </form>
     <form>
