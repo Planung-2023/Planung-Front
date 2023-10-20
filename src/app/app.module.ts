@@ -29,7 +29,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     PerfilComponent,
     NavbarComponent,

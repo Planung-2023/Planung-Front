@@ -14,6 +14,7 @@ export class VisualizarRecursoComponent implements OnInit {
   isFlipped: boolean = false;
   descripcion: string = '';
   panelAbierto: string = 'todos';
+  mostrarColorPicker: boolean = false;
 
   constructor(private router: Router) {
     this.recurso = this.router.getCurrentNavigation()?.extras.state?.['recurso'];
@@ -72,6 +73,14 @@ export class VisualizarRecursoComponent implements OnInit {
       this.panelAbierto = 'todos';
     }
   }
+
+  mostrarComponenteColorPicker(){
+    this.mostrarColorPicker = true;
+  }
+
+  ocultarComponenteColorPicker(){
+    this.mostrarColorPicker = false;
+  }
 }
 
 interface Responsable {
@@ -87,4 +96,3 @@ interface Recurso {
   descripcion: string;
   nombre: string;
 }
-

@@ -89,5 +89,7 @@ export class Paso3Component {
     latitud: -34.598613,
     longitud: -58.415632,
   }
-  
+  getDatosPaso3(){
+    return this.dataEvento
+  }
 }

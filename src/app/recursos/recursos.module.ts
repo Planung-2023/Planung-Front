@@ -15,10 +15,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { RecursoColorPickerComponent } from './recurso-color-picker/recurso-color-picker.component';
+
+
 @NgModule({
   declarations: [
     CrearRecursoComponent,
-    VisualizarRecursoComponent
+    VisualizarRecursoComponent,
+    RecursoColorPickerComponent,
   ],
   imports: [
     CommonModule,

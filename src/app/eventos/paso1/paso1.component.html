@@ -1,15 +1,15 @@
 <mat-card>
     <div id="paso2" class="body">
-        <h1 class="tituloTipoEvento d-flex align-items-center justify-content-center">Nombre y Fecha</h1>
+        <h1 class="tituloTipoEvento text-center">Nombre y Fecha</h1>
 
     <form #paso1Form="ngForm" class="d-flex justify-content-center">
         <div id="cajaTipoEvento" class="cajaPrincipal">
-            <h2 id="tituloTipoEvento" class="d-flex justify-content-center align-items-center">Defina el Nombre del Evento</h2>
+            <h2 id="tituloTipoEvento" class="text-center">Defina el Nombre del Evento</h2>
             <div id="inputText" class="d-flex align-items-center justify-content-center">
                 <input class="titulo" [(ngModel)]="dataEvento.nombre" type="text" placeholder="Escriba Aquí" [ngModelOptions]="{standalone: true}">
             </div>
 
-            <h2 id="tituloTipoEvento" class="d-flex justify-content-center align-items-center">Defina la Fecha para el Evento</h2>
+            <h2 id="tituloTipoEvento" class="text-center">Defina la Fecha para el Evento</h2>
             <div class="d-flex justify-content-center">
                 <div id="cajaDeInput" class="d-flex flex-column align-items-evenly">
                     <div class=" box d-flex align-items-center justify-content-between">
@@ -37,7 +37,7 @@
 
 
 
-            <h2 class="d-flex justify-content-center align-items-center">¿Quiere agregar una Descripción?</h2>
+            <h2 class="text-center">¿Quiere agregar una Descripción?</h2>
             <div id="inputText" class="d-flex align-items-center justify-content-center">
                 <textarea [(ngModel)]="dataEvento.descripcion" class="descripcion" type="text" placeholder="Agrega una Descripción" [ngModelOptions]="{standalone: true}" ></textarea>
             </div>
