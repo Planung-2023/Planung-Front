@@ -24,11 +24,13 @@ import { MatRadioModule } from '@angular/material/radio';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { HttpClientModule} from '@angular/common/http'
 import { ListaEventosService } from './lista-eventos/lista-eventos.service';
+import { RecursoColorPickerService } from './recurso-color-picker/recurso-color-picker.service';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { RecursoColorPickerComponent } from './recurso-color-picker/recurso-color-picker.component';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -80,6 +82,7 @@ import { RecursoColorPickerComponent } from './recurso-color-picker/recurso-colo
   ],
   providers: [
     ListaEventosService,
+    RecursoColorPickerService,
     { provide: HTTP_INTERCEPTORS,useClass: AuthHttpInterceptor,multi:true }
   ],
   bootstrap: [AppComponent]
