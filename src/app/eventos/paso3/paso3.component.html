@@ -1,0 +1,27 @@
+<mat-card>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvpyvaW8UylnXWof2sdHjfObxsbNuBZIE"></script>
+
+    <div id="paso3" class="body">
+        <h1 class="tituloTipoEvento text-center">Ubicacion</h1>
+
+        <form class="d-flex justify-content-center">
+            <div id="cajaLugarEvento" class="cajaPrincipal d-flex flex-column justify-content-center">
+                <h2 id="tituloUbicacion" class="text-center">Defina la Ubicacion para el Evento</h2>
+
+                <div id="a" class="map d-flex align-items-center justify-content-center">
+                  <div *ngIf="apiLoaded">
+                    <google-map class="map" [options]="options" width="350px" height="300px" border-radius="15px"
+                    (mapClick)="moveMap($event)"><map-marker
+                      [position]= "position">
+                    </map-marker>
+                  </google-map>
+                  </div>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</mat-card>
+
+

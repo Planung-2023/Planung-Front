@@ -1,28 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CrearEventoComponent } from './crear-evento/crear-evento.component';
-import { ListaEventosComponent } from './lista-eventos/lista-eventos.component';
 import { PerfilComponent } from './perfil/perfil.component';
-import { CrearRecursoComponent } from './crear-recurso/crear-recurso.component';
-import { VisualizarRecursoComponent } from './visualizar-recurso/visualizar-recurso.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { AuthGuard } from '@auth0/auth0-angular';
+import { VerPerfilComponent } from './perfil/ver-perfil/ver-perfil.component';
+import { CambiarImagenComponent } from './perfil/cambiar-imagen/cambiar-imagen.component';
+
 
 const routes: Routes = [
-  { path: '', redirectTo:'lista-eventos', pathMatch:'full'},
-  { path: 'crear-evento', component: CrearEventoComponent, canActivate: [AuthGuard]},
-  { path: 'lista-eventos', component: ListaEventosComponent, canActivate: [AuthGuard]},
-  { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard]},
-  { path: 'crear-recurso', component: CrearRecursoComponent, canActivate: [AuthGuard]},
-  { path: 'visualizar-recurso', component: VisualizarRecursoComponent, canActivate: [AuthGuard]},
-  { path: 'configuracion', component: ConfiguracionComponent, canActivate: [AuthGuard]},
-  { path: 'notificaciones', component: NotificacionesComponent, canActivate: [AuthGuard]},
+  { path: '', redirectTo: 'eventos', pathMatch: 'full' },
+  { path: 'perfil', component: PerfilComponent },
+  { path: 'configuracion', component: ConfiguracionComponent},
+  { path: 'notificaciones', component: NotificacionesComponent},
+  { path: 'eventos', loadChildren: () => import('./eventos/eventos.module').then(m => m.EventosModule)},
+  { path: 'perfil/ver-perfil', component: VerPerfilComponent },
+  { path: 'perfil/cambiar-imagen', component: CambiarImagenComponent },
 ];
 
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
+
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

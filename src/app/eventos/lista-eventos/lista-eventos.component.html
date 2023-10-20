@@ -1,0 +1,84 @@
+
+  <div class="top-bar">
+    <button mat-icon-button class="icon-notificaciones d-flex justify-content-center align-items-center" (click)="irANotificaciones()">
+      <img class="img-notificaciones" src="assets/iconoNotificacion.png" alt="Notificaciones">
+    </button>
+    <button mat-icon-button class="icon-configuracion" (click)="irAConfiguracion()">
+      <img class="img-configuracion" src="assets/iconoConfiguracion.png" alt="Configuracion">
+    </button>
+  </div>
+
+  <div class="lista-eventos-container">
+
+    <div *ngIf="eventos.length === 0; else eventosLista">
+      <div class="sin-eventos-container">
+        <h2>Tu lista de eventos</h2>
+        <h3>No tienes eventos :(</h3>
+        <img class="imagen-calendario" src="assets/calendarioNegro.png" alt="Icono de calendario">
+        <div class="crear-evento-container">
+          <p>Crea un evento</p>
+          <button mat-button class="custom-button" routerLink="/crear-evento">
+            <img class="boton-crear-evento" src="assets/crearEvento2.png" alt="Crear Evento">
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #eventosLista>
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" *ngFor="let evento of eventos">
+          <div class="titulo-container">
+            <p class="titulo-evento">{{ evento.nombre }}</p>
+          </div>
+          <p><strong>Organizador:</strong> {{ evento.creador.nombreUsuario }}</p>
+          <p><strong>Fecha:</strong> {{ evento.fechaHora | date: 'dd MMM yyyy'}}</p>
+          <p><strong>Hora:</strong> {{ evento.fechaHora | date: 'hh:mm a' }}</p>
+          <p><strong>Tipo de evento:</strong> {{ evento.tipoEvento }}</p>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Dirección:
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-panel-description>
+              {{ evento.ubicacion.calle + ' '+ evento.ubicacion.altura }}
+            </mat-panel-description>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Recursos:
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-panel-description>
+              <ul>
+                <li *ngFor="let recurso of recursos">
+                  <div class="recurso-container">
+                    <span>{{ recurso.nombre }} {{ recurso.cantidadActual }} / {{ recurso.cantidadNecesaria }}</span>
+                    <button mat-icon-button class="ver-recurso-button" (click)="visualizarRecurso(evento, recurso)">
+                      <mat-icon>visibility</mat-icon>
+                    </button>
+                  </div>
+                </li>
+              </ul>
+              <button mat-raised-button class="agregar-recurso-button" (click)="agregarRecurso(evento)">Agregar</button>
+            </mat-panel-description>
+
+
+          </mat-expansion-panel>
+
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Invitados:
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-panel-description>
+              21 invitados
+            </mat-panel-description>
+          </mat-expansion-panel>
+        </div>
+      </div>
+    </ng-template>
+  </div>

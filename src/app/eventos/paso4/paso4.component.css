@@ -1,0 +1,32 @@
+h1{
+    color: white;
+    font-weight: bold;
+    margin-top: 8%;
+    margin-bottom: 6%;
+}
+
+h2{
+    color: rgb(22, 22, 22);
+    padding-top: 10%;
+    padding-bottom: 4%;
+    margin-bottom: 0%;
+}
+p{
+    color: white;
+    font-weight: bold;
+}
+.cajaPrincipal{
+    padding-bottom: 5%;
+    width: 90%;
+}
+
+button{
+    background: none;
+    border: none;
+    padding-top: 48.4%;
+    padding-bottom: 48.3%;
+}
+img{
+    background: none;
+    border: none;
+}

@@ -1,0 +1,22 @@
+<mat-card>
+    <div id="paso4" class="body">
+        <h1 class="tituloAgregarObjetos text-center">Recursos</h1>
+        <form class="d-flex justify-content-center">
+            <div id="cajaObjetos" class="cajaPrincipal">
+                <h2 id="tituloObjetos" class="text-center">Defina Objetos Necesarios</h2>
+                <div class="d-flex flex-column justify-content-around align-items-center">
+                    <p>Agregar recurso</p>
+                    <input type="text">
+                    
+                    <button (click)="mostrarCardAgregar(contenidoAgregar)">
+                        <img class="btn btn-secondary" src="assets/iconoMas.png">
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</mat-card>
+
+<ng-template #contenidoAgregar let-modal>
+  <app-visualizar-recurso></app-visualizar-recurso>
+</ng-template>

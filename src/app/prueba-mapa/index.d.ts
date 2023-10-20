@@ -1,0 +1,1 @@
+declare module 'googlemaps'; //Esto es para que ande el mapa (Sigue sin andar)
