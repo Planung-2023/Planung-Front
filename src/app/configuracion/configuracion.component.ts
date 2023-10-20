@@ -1,6 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-configuracion',
@@ -9,20 +7,24 @@ import { AuthService } from '@auth0/auth0-angular';
 })
 
 export class ConfiguracionComponent {
-  constructor(@Inject(DOCUMENT) private doc: Document, public auth: AuthService) {}
   lightMode: boolean = true;
   darkMode: boolean = false;
 
   cambiarModoLight() {
     this.lightMode = true;
     this.darkMode = false;
+    this.verificarModos();
   }
 
-  logOut(){
-    this.auth.logout({ 
-      logoutParams: { 
-        returnTo: this.doc.location.origin 
-      }
-    });
+  cambiarModoDark() {
+    this.darkMode = true;
+    this.lightMode = false;
+    this.verificarModos();
+  }
+
+  verificarModos() {
+    if (!this.lightMode && !this.darkMode) {
+      this.lightMode = true;
+    }
   }
 }
