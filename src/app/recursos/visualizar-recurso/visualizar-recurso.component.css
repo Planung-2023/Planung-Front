@@ -82,22 +82,6 @@
   padding-left: 15px;
 }
 
-.icono-mas,
-.icono-menos {
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-  width: 40px;
-  height: 40px;
-}
-.icono-pintura {
-  position: absolute;
-  bottom: 15px;
-  left: 25px;
-  width: 50px;
-  height: 50px;
-}
-
 .icono-cocaCola {
   margin: 50px 95px 25px;
 }
@@ -148,12 +132,7 @@
 }
 
 .mat-expansion-panel .mat-expansion-panel-header {
-  background-color: #ff9933;
   height: 38px;
-}
-
-.mat-expansion-panel .mat-expansion-panel-header:hover {
-  background-color: #ff9933;
 }
 
 .mat-expansion-panel-header-title {
@@ -167,7 +146,6 @@
 }
 
 ::ng-deep .recurso-panel .mat-expansion-panel-body {
-  background-color: #f9c78d !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -184,7 +162,6 @@
 
 .recurso-panel table tbody td {
   padding: 10px 45px;
-  background-color: #f9cfa0;
   font-weight: bold;
   text-align: center;
 }
@@ -211,31 +188,27 @@
 
 .cantidad-container {
   display: flex;
-  justify-content: center;
   width: 90%;
   margin: 15px auto;
-  background-color: #ff9933;
   border-radius: 10px;
   height: 38px;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .cantidad-label,
 .cantidad-valor {
+  border-radius: 10px;
   font-size: 15px;
   color: #ffffff;
-  padding: 10px;
-}
-
-.cantidad-divider {
-  background-color: #f9b668;
-  width: 10px;
-  margin: 0 10px;
+  padding: 10px 47px;
+  text-align: center;
 }
 
 .texto-descripcion{
   padding: 30px 0px;
   font-size: 17px;
-  background-color: #f9c78d;
   border: none;
 }
 
@@ -247,23 +220,279 @@
 }
 
 .custom-button {
-  background-color: #f9cfa0;
   color: black;
   font-size: 12px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  padding: 10px 15px;
-  width: 110px;
-  text-align: center;
+  width: 120px;
+  text-align: inherit;
 }
 
 .custom-button:hover {
-  background-color: #f9b668;
   font-weight: bold;
 }
 
-.active-button {
-  background-color: #f9b668;
+.selected {
+  background-color: #4e5fa8;
+  color: white;
+  border: 2px solid #4e5fa8;
   font-weight: bold;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  transform: translateY(2px);
+}
+
+.icon-container {
+  display: inline-block; /* Alinea el icono e el texto horizontalmente */
+  vertical-align: middle; /* Alinea el icono y el texto verticalmente */
+}
+
+.custom-icon {
+  width: 24px; /* Ancho del icono */
+  margin-right: 8px; /* Espacio entre el icono y el texto */
+}
+
+.custom-icon-bebida .custom-icon {
+  width: 18px; /* Ancho específico para el icono "Bebida" */
+  height: 24px; /* Alto del icono (igual al de los demás) */
+}
+
+.boton-pintura {
+  background-image: url('src/assets/iconoPintura.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  bottom: 15px;
+  left: 25px;
+  width: 38px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #ffffff00;
+  border: none;
+}
+
+.boton-flecha {
+  background-image: url('src/assets/iconoFlecha.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  bottom: 15px;
+  left: 25px;
+  width: 28px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #ffffff00;
+  border: none;
+}
+
+.boton-mas {
+  background-image: url('src/assets/iconoMas.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #ffffff00;
+  border: none;
+}
+
+.boton-menos {
+  background-image: url('src/assets/iconoMenos.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #ffffff00;
+  border: none;
+}
+
+.color-naranja-front {
+  background-color: #ef7d16;
+}
+
+.color-verde-front {
+  background-color: #76b730;
+}
+
+.color-azul-front {
+  background-color: #4e5fa8;
+}
+
+.color-rosa-front {
+  background-color: #df3c65;
+}
+
+.color-gris-front {
+  background-color: #9f9f9e;
+}
+
+.color-naranja-back {
+  background-color: #f9b668;
+}
+
+.color-verde-back {
+  background-color: #b2d06e;
+}
+
+.color-azul-back {
+  background-color: #949cce;
+}
+
+.color-rosa-back {
+  background-color: #e77493;
+}
+
+.color-gris-back {
+  background-color: #cccccc;
+}
+
+.color-naranja .mat-expansion-panel-header {
+  background-color: #ef923e;
+}
+
+.color-verde .mat-expansion-panel-header {
+  background-color: #8ccf43;
+}
+
+.color-azul .mat-expansion-panel-header {
+  background-color: #7985ce;
+}
+
+.color-rosa .mat-expansion-panel-header {
+  background-color: #df5e7e;
+}
+
+.color-gris .mat-expansion-panel-header {
+  background-color: #696c70;
+}
+
+.color-naranja .mat-expansion-panel-header:hover {
+  background-color: #ef923e;
+}
+
+.color-verde .mat-expansion-panel-header:hover {
+  background-color: #8ccf43;
+}
+
+.color-azul .mat-expansion-panel-header:hover {
+  background-color: #7985ce;
+}
+
+.color-rosa .mat-expansion-panel-header:hover {
+  background-color: #df5e7e;
+}
+
+.color-gris .mat-expansion-panel-header:hover {
+  background-color: #696c70;
+}
+
+::ng-deep .color-naranja .mat-expansion-panel-body {
+  background-color: #f9c78d;
+}
+
+::ng-deep .color-verde .mat-expansion-panel-body {
+  background-color: #c6de92;
+}
+
+::ng-deep .color-azul .mat-expansion-panel-body {
+  background-color: #bec2e0;
+}
+
+::ng-deep .color-rosa .mat-expansion-panel-body {
+  background-color: #f097af;
+}
+
+::ng-deep .color-gris .mat-expansion-panel-body {
+  background-color: #d8d7d7;
+}
+
+.color-naranja-cantidad {
+  background-color: #ef923e;
+}
+
+.color-verde-cantidad {
+  background-color: #8ccf43;
+}
+
+.color-azul-cantidad {
+  background-color: #7985ce;
+}
+
+.color-rosa-cantidad {
+  background-color: #df5e7e;
+}
+
+.color-gris-cantidad {
+  background-color: #696c70;
+}
+
+.color-naranja-td {
+  background-color: #f9cfa0;
+}
+
+.color-verde-td {
+  background-color: #d3deb9;
+}
+
+.color-azul-td {
+  background-color: #cfd2e5;
+}
+
+.color-rosa-td {
+  background-color: #eebbc8;
+}
+
+.color-gris-td {
+  background-color: #f3f2f2;
+}
+
+.color-naranja-td:hover {
+  background-color: #f9b668;
+}
+
+.color-verde-td:hover {
+  background-color: #b6cc85;
+}
+
+.color-azul-td:hover {
+  background-color: #a7acce;
+}
+
+.color-rosa-td:hover {
+  background-color: #e6a5b6;
+}
+
+.color-gris-td:hover {
+  background-color: #cccccc;
+}
+
+::ng-deep .color-naranja .texto-descripcion {
+  background-color: #f9c78d;
+}
+
+::ng-deep .color-verde .texto-descripcion {
+  background-color: #c6de92;
+}
+
+::ng-deep .color-azul .texto-descripcion {
+  background-color: #bec2e0;
+}
+
+::ng-deep .color-rosa .texto-descripcion {
+  background-color: #f097af;
+}
+
+::ng-deep .color-gris .texto-descripcion {
+  background-color: #d8d7d7;
 }
