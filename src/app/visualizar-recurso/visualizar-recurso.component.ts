@@ -34,6 +34,8 @@ export class VisualizarRecursoComponent implements OnInit {
 
   ngOnInit() {
 
+    this.selectedObjectType = 'Bebida';
+    console.log(this.selectedObjectType);
     this.RecursoColorPickerService.getSelectedColor().subscribe((color) => {
       this.selectedColor = color || '#ef7d16';
     });
@@ -79,6 +81,7 @@ export class VisualizarRecursoComponent implements OnInit {
 
   selectObjectType(type: string) {
     this.selectedObjectType = type;
+    console.log(this.selectedObjectType);
   }
 
   abrirPanel(panel: string) {

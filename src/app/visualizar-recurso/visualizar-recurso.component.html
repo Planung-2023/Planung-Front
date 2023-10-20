@@ -30,7 +30,8 @@
                 'color-azul-td': selectedColor === '#4e5fa8',
                 'color-rosa-td': selectedColor === '#df3c65',
                 'color-gris-td': selectedColor === '#9f9f9e',
-                'custom-icon-bebida': type === 'Bebida'
+                'custom-icon-bebida': type === 'Bebida',
+                'selected': type === selectedObjectType
               }">
                 <div class="icon-container">
                   <img class="custom-icon" [src]="'assets/icono' + type + '.png'" alt="Icono {{ type }}">
