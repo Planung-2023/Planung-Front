@@ -21,8 +21,8 @@ import { RecursoColorPickerComponent } from './recurso-color-picker/recurso-colo
 @NgModule({
   declarations: [
     CrearRecursoComponent,
-    VisualizarRecursoComponent,
     RecursoColorPickerComponent,
+    VisualizarRecursoComponent,
   ],
   imports: [
     CommonModule,

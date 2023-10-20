@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RecursoColorPickerService } from 'src/app/recurso-color-picker/recurso-color-picker.service';
+import { RecursoColorPickerService } from '../recurso-color-picker/recurso-color-picker.service';
 
 
 @Component({

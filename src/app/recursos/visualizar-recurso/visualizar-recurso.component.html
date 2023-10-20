@@ -4,7 +4,7 @@
   </button>
   
   <div class="flip-card-inner">
-    <div class="flip-card-front">
+    <div class="flip-card-front" [ngClass]="{ 'color-naranja-front': selectedColor === '#ef7d16', 'color-verde-front': selectedColor === '#76b730', 'color-azul-front': selectedColor === '#4e5fa8', 'color-rosa-front': selectedColor === '#df3c65', 'color-gris-front': selectedColor === '#9f9f9e' }">
       <img class="icono-cocaCola" src="assets/iconoCocaCola.png" alt="Icono CocaCola">
       <h2>Tipo: {{ recurso?.nombre }}</h2>
       <div class="cumpleCantidad">
@@ -14,22 +14,33 @@
       </div>
       <button (click)="flipCard()" class="boton-mas"></button>
     </div>
-    <div class="flip-card-back">
-      <div *ngIf="!mostrarColorPicker;">
+    <div class="flip-card-back"[ngClass]="{ 'color-naranja-back': selectedColor === '#ef7d16', 'color-verde-back': selectedColor === '#76b730', 'color-azul-back': selectedColor === '#4e5fa8', 'color-rosa-back': selectedColor === '#df3c65', 'color-gris-back': selectedColor === '#9f9f9e' }">
+      <div *ngIf="!mostrarColorPicker; else colorPicker">
         <h2>{{ recurso?.nombre }}</h2>
-        <mat-expansion-panel class="recurso-panel" *ngIf="panelAbierto === 'tipoObjeto' || panelAbierto === 'todos'" (opened)="abrirPanel('tipoObjeto')" (closed)="cerrarPanel('tipoObjeto')">
+        <mat-expansion-panel class="recurso-panel" *ngIf="panelAbierto === 'tipoObjeto' || panelAbierto === 'todos'" (opened)="abrirPanel('tipoObjeto')" (closed)="cerrarPanel('tipoObjeto')"[ngClass]="selectedColorClass">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 <p class="texto-panel-header">Tipo de Objeto</p>
               </mat-panel-title>
             </mat-expansion-panel-header>
             <div class="button-grid">
-              <button class="custom-button" (click)="selectObjectType(type)" *ngFor="let type of objectTypes">
+              <button class="custom-button" (click)="selectObjectType(type)" *ngFor="let type of objectTypes" [ngClass]="{
+                'color-naranja-td': selectedColor === '#ef7d16',
+                'color-verde-td': selectedColor === '#76b730',
+                'color-azul-td': selectedColor === '#4e5fa8',
+                'color-rosa-td': selectedColor === '#df3c65',
+                'color-gris-td': selectedColor === '#9f9f9e',
+                'custom-icon-bebida': type === 'Bebida',
+                'selected': type === selectedObjectType
+              }">
+                <div class="icon-container">
+                  <img class="custom-icon" [src]="'assets/icono' + type + '.png'" alt="Icono {{ type }}">
+                </div>
                 {{ type }}
               </button>
             </div>
           </mat-expansion-panel>
-          <mat-expansion-panel class="recurso-panel" *ngIf="panelAbierto === 'descripcion' || panelAbierto === 'todos'" (opened)="abrirPanel('descripcion')" (closed)="cerrarPanel('descripcion')">
+          <mat-expansion-panel class="recurso-panel" *ngIf="panelAbierto === 'descripcion' || panelAbierto === 'todos'" (opened)="abrirPanel('descripcion')" (closed)="cerrarPanel('descripcion')"[ngClass]="selectedColorClass">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 <p class="texto-panel-header">Descripción</p>
@@ -40,11 +51,14 @@
             </div>
           </mat-expansion-panel>
         <div class="cantidad-container" *ngIf="panelAbierto === 'todos'">
-          <div class="cantidad-label">Cantidad</div>
-          <div class="cantidad-divider"></div>
-          <div class="cantidad-valor">{{ getCantidadTotal() }}</div>
+          <div class="cantidad-label" [ngClass]="{ 'color-naranja-cantidad': selectedColor === '#ef7d16', 'color-verde-cantidad': selectedColor === '#76b730', 'color-azul-cantidad': selectedColor === '#4e5fa8', 'color-rosa-cantidad': selectedColor === '#df3c65', 'color-gris-cantidad': selectedColor === '#9f9f9e' }">
+            Cantidad
+          </div>
+          <div class="cantidad-valor" [ngClass]="{ 'color-naranja-cantidad': selectedColor === '#ef7d16', 'color-verde-cantidad': selectedColor === '#76b730', 'color-azul-cantidad': selectedColor === '#4e5fa8', 'color-rosa-cantidad': selectedColor === '#df3c65', 'color-gris-cantidad': selectedColor === '#9f9f9e' }">
+            {{ getCantidadTotal() }}
+          </div>
         </div>
-        <mat-expansion-panel class="recurso-panel" *ngIf="panelAbierto === 'responsables' || panelAbierto === 'todos'" (opened)="abrirPanel('responsables')" (closed)="cerrarPanel('responsables')">
+        <mat-expansion-panel class="recurso-panel" *ngIf="panelAbierto === 'responsables' || panelAbierto === 'todos'" (opened)="abrirPanel('responsables')" (closed)="cerrarPanel('responsables')"[ngClass]="selectedColorClass">
           <mat-expansion-panel-header>
             <mat-panel-title>
               <p class="texto-panel-header">Responsables</p>
@@ -54,17 +68,24 @@
             <table>
               <tbody>
                 <tr *ngFor="let responsable of responsables">
-                  <td>{{ responsable.nombre }}</td>
-                  <td>{{ responsable.cantidad }}</td>
+                  <td [ngClass]="{ 'color-naranja-td': selectedColor === '#ef7d16', 'color-verde-td': selectedColor === '#76b730', 'color-azul-td': selectedColor === '#4e5fa8', 'color-rosa-td': selectedColor === '#df3c65', 'color-gris-td': selectedColor === '#9f9f9e' }">
+                    {{ responsable.nombre }}</td>
+                    <td [ngClass]="{ 'color-naranja-td': selectedColor === '#ef7d16', 'color-verde-td': selectedColor === '#76b730', 'color-azul-td': selectedColor === '#4e5fa8', 'color-rosa-td': selectedColor === '#df3c65', 'color-gris-td': selectedColor === '#9f9f9e' }">
+                    {{ responsable.cantidad }}</td>
                 </tr>
               </tbody>
             </table>
-            <button class="agregar-responsable">Agregar</button>
+            <button class="agregar-responsable"[ngClass]="{ 'color-naranja-back': selectedColor === '#ef7d16', 'color-verde-back': selectedColor === '#76b730', 'color-azul-back': selectedColor === '#4e5fa8', 'color-rosa-back': selectedColor === '#df3c65', 'color-gris-back': selectedColor === '#9f9f9e' }">
+              Agregar
+            </button>
           </div>
         </mat-expansion-panel>
         <button (click)="mostrarComponenteColorPicker()" class="boton-pintura"></button>
       </div>
-      
+      <ng-template #colorPicker>
+        <button (click)="ocultarComponenteColorPicker()" class="boton-flecha"></button>
+        <app-recurso-color-picker *ngIf="mostrarColorPicker"></app-recurso-color-picker>
+      </ng-template>
       <button (click)="flipCard()" class="boton-menos"></button>
     </div>
   </div>
