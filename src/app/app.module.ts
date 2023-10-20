@@ -26,15 +26,19 @@ import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-
+import {} from 'googlemaps';
+import { VerPerfilComponent } from './perfil/ver-perfil/ver-perfil.component';
+import { CambiarImagenComponent } from './perfil/cambiar-imagen/cambiar-imagen.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     PerfilComponent,
     NavbarComponent,
     ConfiguracionComponent,
     NotificacionesComponent,
+    VerPerfilComponent,
+    CambiarImagenComponent
    ],
   imports: [
     FormsModule,
