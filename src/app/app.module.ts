@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PerfilComponent } from './perfil/perfil.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
@@ -27,19 +26,14 @@ import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { VerPerfilComponent } from './perfil/ver-perfil/ver-perfil.component';
-import { CambiarImagenComponent } from './perfil/cambiar-imagen/cambiar-imagen.component';
 import {} from 'googlemaps';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PerfilComponent,
     NavbarComponent,
     ConfiguracionComponent,
     NotificacionesComponent,
-    VerPerfilComponent,
-    CambiarImagenComponent,
    ],
   imports: [
     FormsModule,

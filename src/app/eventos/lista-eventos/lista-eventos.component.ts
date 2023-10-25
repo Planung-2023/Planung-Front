@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import Swiper from 'swiper';
 import {HttpClient} from '@angular/common/http';
 import { ListaEventosService } from '../lista-eventos.service';
+import { InvitacionControlService } from '../invitacion-control.service';
+import { InvitadosControlService } from '../invitados-control.service';
+import { Time } from '@angular/common';
 
 @Component({
   selector: 'app-lista-eventos',
@@ -10,11 +13,27 @@ import { ListaEventosService } from '../lista-eventos.service';
   styleUrls: ['./lista-eventos.component.css']
 })
 export class ListaEventosComponent implements OnInit {
-  eventos: any[] = [];
+  eventos: Evento[] = [];
   recursos: Recurso[] = [];
-  constructor(private router: Router, private http: HttpClient, private listaEventosService: ListaEventosService) {
+  mostrarPopupInvitados = false;
 
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private listaEventosService: ListaEventosService,
+    private invitacionControlService: InvitacionControlService,
+    private invitadosControlService: InvitadosControlService // Inyecta el servicio de invitados
+  ) {}
+
+  // Método para mostrar el popup
+  showPopup() {
+    this.invitacionControlService.showPopup();
   }
+
+  showPopupInvitado() {
+    this.invitadosControlService.showPopupInvitado();
+  }
+
 
   ngOnInit() {
     /*this.http.get('http://localhost:8000/eventos', {params: {usuario_id: 1}}).subscribe((eventos: any) => {
@@ -25,6 +44,14 @@ export class ListaEventosComponent implements OnInit {
       console.log(eventos);
       this.eventos = eventos;
     });
+
+    
+    //Agregado para pruebas
+    this.eventos = [
+      { id: 1, nombre: 'Reunión Bayer', fechaHora: new Date(2023, 8, 18), hora: {hours: 10, minutes: 30}, ubicacion: 'Malvinas Argentinas 568, Caballito', tipoEvento: 'Formal', creador: 'German Sánchez', calle: 'Malvinas Argentinas', altura: 568 },
+      { id: 2, nombre: 'Charla Siemens', fechaHora: new Date(2023, 10, 4), hora: {hours: 15, minutes: 0}, ubicacion: 'Aviador Matienzo 2026, Ciudad jardin', tipoEvento: 'Formal', creador: 'Andrea Fernandez', calle: 'Av. Rivadavia', altura: 656 },
+      { id: 3, nombre: 'Cumpleaños Lucas', fechaHora: new Date(2023, 6, 25), hora: {hours: 22, minutes: 0}, ubicacion: 'Padre Vanini 1490, El Palomar', tipoEvento: 'Informal', creador: 'Lucas Espinoza', calle: 'Av. Rivadavia', altura: 656 }
+    ];
 
     this.recursos = [
       {id: 1, cantidadActual: 3, cantidadNecesaria:6, descripcion: 'Esta es la coca para el fernet. No compren light ni cero.', nombre: 'Coca Cola'},
@@ -63,6 +90,19 @@ export class ListaEventosComponent implements OnInit {
   }
 }
 
+//Agregado para pruebas
+interface Evento {
+  id: number;
+  nombre: string;
+  creador: string;
+  fechaHora: Date;
+  hora: Time;
+  ubicacion: string;
+  calle: string;
+  altura: number;
+  tipoEvento: string;
+}
+
 interface Recurso {
   id: number;
   cantidadActual: number;
@@ -70,3 +110,10 @@ interface Recurso {
   descripcion: string;
   nombre: string;
 }
+
+function showPopup() {
+  throw new Error('Function not implemented.');
+}
+
+
+

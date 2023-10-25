@@ -1,0 +1,43 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg col-md-12" style="background-color: #262626">
+  <div class="container-fluid">
+      <button mat-icon-button class="icon-home" type="button" routerLink="../">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+  </div>
+</nav>
+<!-- Perfil -->
+<div class="col-md-12">
+  <h2 class="titulo-perfil text-center">Perfil</h2>
+  <div class="col-11 mx-auto perfil-container">
+    <div class="col-md-5 row justify-content-evenly row-perfil">
+      <div class="foto-perfil col-2">
+        <!--Aca deberia haber una variable que determine la ruta de la foto => (src="{ruta_foto}")-->
+        <img src="assets/foto-perfil-3.png" alt="Foto de perfil">
+      </div>
+      <div class="col-7 info-perfil">
+        <p class="username" style="margin-bottom: 20px;">[Nombre de usuario]</p>
+        <a class="ver-perfil-link" routerLink="/perfil/ver-perfil">Editar perfil</a>
+     </div>
+     <div class="col-1 mx-auto arrow-perfil">
+      <a>
+        <mat-icon style="font-size: 33px;">chevron_right</mat-icon>
+      </a>
+     </div>
+    </div>
+    <div class="info-de-perfil mx-auto text-center" style="margin-top: 20%;">
+      <div class="col-10 mx-auto elemento-perfil text-center" style="margin-bottom: 20px; margin-top: 5px;">
+        <p>[nombre_cuenta]</p>
+      </div>
+      <div class="col-10 mx-auto elemento-perfil text-center" style="margin-bottom: 20px; margin-top: 5px;">
+        <p>[correo_cuenta]</p>
+      </div>
+      <div class="col-10 mx-auto elemento-perfil text-center" style="margin-bottom: 20px;">
+        <p>[historial_eventos_creados_cuenta]</p>
+      </div>
+      <div class="col-10 mx-auto elemento-perfil text-center" style="margin-bottom: 20px;">
+        <p>[historial_participacion_eventos_cuenta]</p>
+      </div>
+    </div>
+  </div>
+</div>
