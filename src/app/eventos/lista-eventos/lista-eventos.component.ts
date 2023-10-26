@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swiper from 'swiper';
-import {HttpClient} from '@angular/common/http';
 import { ListaEventosService } from '../lista-eventos.service';
 import { InvitacionControlService } from '../invitacion-control.service';
 import { InvitadosControlService } from '../invitados-control.service';
@@ -19,7 +18,6 @@ export class ListaEventosComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private http: HttpClient,
     private listaEventosService: ListaEventosService,
     private invitacionControlService: InvitacionControlService,
     private invitadosControlService: InvitadosControlService // Inyecta el servicio de invitados
@@ -36,17 +34,26 @@ export class ListaEventosComponent implements OnInit {
 
 
   ngOnInit() {
-    /*this.http.get('http://localhost:8000/eventos', {params: {usuario_id: 1}}).subscribe((eventos: any) => {
-      console.log("eventos: ", eventos)
-      this.eventos = eventos;
-    });  */
-    this.listaEventosService.getEventos().subscribe((eventos: any) => {
-      console.log(eventos);
-      this.eventos = eventos;
+    this.recuperarEventos();
+    const swiper = new Swiper('.swiper-container', {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
     });
+  }
 
-    
-    //Agregado para pruebas
+  private recuperarEventos() {
+    this.listaEventosService.getEventos().subscribe(data => {
+      this.eventos = data;
+    }, error => {
+      this.mockearEventos();
+    });
+  }
+
+  private mockearEventos() {
     this.eventos = [
       { id: 1, nombre: 'Reunión Bayer', fechaHora: new Date(2023, 8, 18), hora: {hours: 10, minutes: 30}, ubicacion: 'Malvinas Argentinas 568, Caballito', tipoEvento: 'Formal', creador: 'German Sánchez', calle: 'Malvinas Argentinas', altura: 568 },
       { id: 2, nombre: 'Charla Siemens', fechaHora: new Date(2023, 10, 4), hora: {hours: 15, minutes: 0}, ubicacion: 'Aviador Matienzo 2026, Ciudad jardin', tipoEvento: 'Formal', creador: 'Andrea Fernandez', calle: 'Av. Rivadavia', altura: 656 },
@@ -58,15 +65,6 @@ export class ListaEventosComponent implements OnInit {
       {id: 2, cantidadActual: 8, cantidadNecesaria:8, descripcion: 'Silla o banqueta, informar elección.', nombre: 'Silla'},
       {id: 3, cantidadActual: 0, cantidadNecesaria:1, descripcion: 'Parlante grande para exterior, no traer portatil.', nombre: 'Parlantes'},
     ];
-
-    const swiper = new Swiper('.swiper-container', {
-      slidesPerView: 1,
-      spaceBetween: 10,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
   }
 
   redireccionarCrearEvento(): void {
@@ -110,10 +108,5 @@ interface Recurso {
   descripcion: string;
   nombre: string;
 }
-
-function showPopup() {
-  throw new Error('Function not implemented.');
-}
-
 
 

@@ -20,12 +20,13 @@ p{
     width: 90%;
 }
 
-button{
-    background: none;
-    border: none;
-    padding-top: 48.4%;
-    padding-bottom: 48.3%;
+.boton-central {
+  background: none;
+  border: none;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
+
 img{
     background: none;
     border: none;

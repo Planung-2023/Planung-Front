@@ -36,7 +36,7 @@
             <p class="titulo-evento">{{ evento.nombre }}</p>
           </div>
           <p><strong>Organizador:</strong> {{ evento.creador }}</p>
-          <p><strong>Fecha:</strong> {{ evento.fechaHora | date: 'dd MMM yyyy'}}</p>
+          <p><strong>Fecha:</strong> {{ evento.fechaHora | date : 'dd MMM yyyy'}}</p>
           <p><strong>Hora:</strong> {{ evento.hora }}</p>
           <p><strong>Tipo de evento:</strong> {{ evento.tipoEvento }}</p>
           <mat-expansion-panel *ngIf="evento.ubicacion != null">
