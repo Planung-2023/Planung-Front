@@ -95,10 +95,19 @@ export class CrearEventoComponent {
     }
     this.pasos[this.pasoActual].titulo = this.titulos[this.pasoActual];
   }
-  paso1(){
-    this.pasos[this.pasoActual].titulo= "Nombre y Fecha";
+  irAPaso1(){
+    this.pasoActual = 0;
   }
-
+  irAPaso2(){
+    this.pasoActual = 1;
+  }
+  irAPaso3(){
+    this.pasoActual = 2;
+  }
+  irAPaso4(){
+    this.pasoActual = 3;
+    console.log("Anda Boton");
+  }
   
 traerDatosPaso1() {
   if (this.paso1Component) {

@@ -6,7 +6,41 @@
                 <h2 id="tituloObjetos" class="text-center">Defina Objetos Necesarios</h2>
                 <div class="d-flex flex-column justify-content-around align-items-center">
                     <p>Agregar recurso</p>
-                    
+                    <!--
+                    <button (click)="createDiv()">Create div</button>
+                    <div id="container">
+                        <div *ngFor="let div of divs">
+                            {{ div.textContent }}
+                          </div>
+                    </div>
+                -->
+                    <button (click)="createDiv()">Create div</button>
+                    <div id="containerToCopy">
+                        <div *ngFor="let container of containers">
+                            <div [innerHTML]="container.innerHTML"></div>
+                          </div>
+                    </div>
+                   
+                    <div #containerToCopy >
+                        <!-- Aquí define el contenido del contenedor que deseas copiar -->
+                        <div>Aaaa</div>
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                CocaCola:
+                            </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <mat-panel-description>
+                                <input type="text">
+                            </mat-panel-description>
+                            <mat-panel-description>
+                                Cantidad:
+                                <input type="number">
+                            </mat-panel-description>
+                        </mat-expansion-panel>
+                    </div>
+
+
                     <button (click)="mostrarCardAgregar(contenidoAgregar)">
                         <img class="btn btn-secondary" src="assets/iconoMas.png">
                     </button>

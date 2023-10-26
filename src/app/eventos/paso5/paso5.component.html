@@ -15,7 +15,7 @@
                             <p id="placeholder"> {{ datos?.paso1?.nombre }}</p>
                         </div>
                         <div class="col-1" style="margin-top: 7px;">
-                            <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                            <button id="editar" (click)="volverAPaso1()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
 
@@ -31,7 +31,7 @@
                             <p id="placeholder">{{ datos?.paso1?.fecha }}</p>
                         </div>
                         <div class="col-1">
-                            <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit" routerLink="/eventos"></mat-icon></button>
+                            <button id="editar" (click)="volverAPaso1()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
 
@@ -50,7 +50,7 @@
                             <p id="placeholder">Todo el Día</p>
                         </div>
                         <div class="col-1">
-                            <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                            <button id="editar" (click)="volverAPaso1()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
 
@@ -70,7 +70,7 @@
                             <p id="placeholder">{{ datos?.paso2?.tipoEvento}}</p>
                         </div>
                         <div class="col-1" style="margin-top: 7px;">
-                            <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                            <button id="editar" (click)="volverAPaso2()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
 
@@ -83,7 +83,7 @@
                             <p id="placeholder">{{ datos?.paso2?.tipoInvitacion }}</p>
                         </div>
                         <div class="col-1" style="margin-top: 7px;">
-                            <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                            <button id="editar" (click)="volverAPaso2()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
 
@@ -96,7 +96,7 @@
                             <p id="placeholder">Mostrar Mapa</p>
                         </div>
                         <div class="col-1" style="margin-top: 7px;">
-                            <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                            <button id="editar" (click)="volverAPaso3()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
 
@@ -109,7 +109,7 @@
                             <p id="placeholder">[Lista de elementos]</p>
                         </div>
                         <div class="col-1" style="margin-top: 7px;">
-                            <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                            <button id="editar" (click)="volverAPaso4()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
 

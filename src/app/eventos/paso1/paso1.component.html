@@ -18,11 +18,11 @@
                     <div class=" box">
                         <div class="d-flex justify-content-between">
                             <h3 *ngIf="!dataEvento.todoElDia">Hora Inicio</h3>
-                            <input class="d-flex flex-row-reverse" type="time"[(ngModel)]="dataEvento.horaInicio" *ngIf="!dataEvento.todoElDia" [ngModelOptions]="{standalone: true}">
+                            <input class="d-flex flex-row-reverse" type="time" [(ngModel)]="dataEvento.horaInicio" *ngIf="!dataEvento.todoElDia" [ngModelOptions]="{standalone: true}">
                         </div>
                         <div class="d-flex justify-content-between">
                             <h3 *ngIf="!dataEvento.todoElDia">Hora Fin</h3>
-                            <input class="d-flex flex-row-reverse" type="time"[(ngModel)]="dataEvento.horaFin" *ngIf="!dataEvento.todoElDia" [ngModelOptions]="{standalone: true}">
+                            <input class="d-flex flex-row-reverse" type="time" [(ngModel)]="dataEvento.horaFin" *ngIf="!dataEvento.todoElDia" [ngModelOptions]="{standalone: true}">
                         </div>
 
                     </div>

@@ -10,12 +10,12 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 })
 
 
-export class Paso1Component implements OnInit{
+export class Paso1Component{
   dataEvento = {
     nombre: '',
     fecha: null,
-    horaInicio:'',
-    horaFin:'',
+    horaInicio:'00:00',
+    horaFin:'23:00',
     todoElDia: false,
     descripcion: '',
   }
@@ -28,50 +28,10 @@ export class Paso1Component implements OnInit{
   }
 
 
-ngOnInit() {
-  const horaInicio = document.getElementById("inputHoraInicio") as HTMLInputElement;
-  const textoHoraIncicio = document.getElementById("horaInicio");
 
-  const horaFin = document.getElementById("inputHoraFin") as HTMLInputElement;
-  const textoHoraFin = document.getElementById("horaFin");
-
-  const fecha = document.getElementById("inputFecha") as HTMLInputElement;
-  const textoFecha = document.getElementById("fecha");
-
-  horaInicio?.addEventListener(
-    "input",
-    () => {
-      if (horaInicio && textoHoraIncicio) {
-        textoHoraIncicio.innerText = horaInicio.value;
-      }
-    },
-    false
-  );
-
-  horaFin?.addEventListener(
-    "input",
-    () => {
-      if (horaFin && textoHoraFin) {
-        textoHoraFin.innerText = horaFin.value;
-      }
-    },
-    false
-  );
-  
-  fecha?.addEventListener(
-    "input",
-    () => {
-      if (fecha && textoFecha) {
-        textoFecha.innerText = fecha.value;
-      }
-    },
-    false
-  );
-
-}
 getDatosPaso1(){
   if(this.dataEvento.todoElDia == true){
-    this.dataEvento.horaInicio = '';
+    this.dataEvento.horaInicio = '00:00';
     this.dataEvento.horaFin = null!;
   }
   return this.dataEvento
