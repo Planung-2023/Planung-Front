@@ -3,7 +3,7 @@
         <h1 class="tituloAgregarObjetos text-center">Recursos</h1>
         <form class="d-flex justify-content-center">
             <div id="cajaObjetos" class="cajaPrincipal">
-                <h2 id="tituloObjetos" class="text-center">Defina Objetos Necesarios</h2>
+                <h2 id="tituloObjetos" class="text-center">¿Qué vas a necesitar en tu evento?</h2>
                 <div>
                   <div *ngFor="let recurso of recursos">
                     <ul>
@@ -15,7 +15,7 @@
                   </div>
                 </div>
                 <div class="d-flex flex-column justify-content-around align-items-center">
-                    <p>Agregar recurso</p>
+                    <p>Agregá un recurso para tu evento</p>
                     <button class="boton-central" (click)="mostrarCardAgregar(contenidoAgregar)">
                         <img class="btn btn-secondary" src="assets/iconoMas.png">
                     </button>
