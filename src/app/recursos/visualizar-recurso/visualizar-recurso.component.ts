@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RecursoColorPickerService } from '../recurso-color-picker/recurso-color-picker.service';
+
 
 @Component({
   selector: 'app-visualizar-recurso',
@@ -7,15 +9,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./visualizar-recurso.component.css']
 })
 export class VisualizarRecursoComponent implements OnInit {
+  public selectedObjectType: string | null = null;
+  public objectTypes: string[] = ['Bebida', 'Mobiliario', 'Comida', 'Juego', 'Tecnología', 'Otro'];
   recurso: Recurso | undefined;
   responsables: Responsable[] = [];
   isFlipped: boolean = false;
+  descripcion: string = '';
+  panelAbierto: string = 'todos';
+  mostrarColorPicker: boolean = false;
+  selectedColor: string | null = '#ef7d16';
+  selectedColorClass: string = '#ef7d16';
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private RecursoColorPickerService: RecursoColorPickerService
+  ) {
+    this.RecursoColorPickerService.getSelectedColor().subscribe((color) => {
+      this.selectedColor = color;
+      this.selectedColorClass = this.getColorClass(color);
+    });
     this.recurso = this.router.getCurrentNavigation()?.extras.state?.['recurso'];
   }
 
   ngOnInit() {
+
+    this.selectedObjectType = 'Bebida';
+    console.log(this.selectedObjectType);
+    this.RecursoColorPickerService.getSelectedColor().subscribe((color) => {
+      this.selectedColor = color || '#ef7d16';
+    });
+
     this.responsables = [
       { id: 1, nombre: 'Juan', cantidad: 2 },
       { id: 2, nombre: 'Bruno', cantidad: 1 },
@@ -32,6 +55,14 @@ export class VisualizarRecursoComponent implements OnInit {
     };*/
   }
 
+  getCantidadTotal(): number {
+    let cantidadTotal = 0;
+    for (const responsable of this.responsables) {
+      cantidadTotal += responsable.cantidad;
+    }
+    return cantidadTotal;
+  }
+
   flipCard() {
     this.isFlipped = !this.isFlipped;
   }
@@ -45,6 +76,49 @@ export class VisualizarRecursoComponent implements OnInit {
       }
     }
     return '';
+  }
+
+  selectObjectType(type: string) {
+    this.selectedObjectType = type;
+    console.log(this.selectedObjectType);
+  }
+
+  abrirPanel(panel: string) {
+    this.panelAbierto = panel;
+  }
+
+  cerrarPanel(panel: string) {
+    if (this.panelAbierto === panel) {
+      this.panelAbierto = 'todos';
+    }
+  }
+
+  mostrarComponenteColorPicker(){
+    this.mostrarColorPicker = true;
+  }
+
+  ocultarComponenteColorPicker(){
+    this.mostrarColorPicker = false;
+  }
+
+  getColorClass(color: string | null): string {
+    if (!color) {
+      return 'color-naranja';
+    }
+
+    if (color === '#ef7d16') {
+      return 'color-naranja';
+    } else if (color === '#76b730') {
+      return 'color-verde';
+    } else if (color === '#4e5fa8') {
+      return 'color-azul';
+    } else if (color === '#df3c65') {
+      return 'color-rosa';
+    } else if (color === '#9f9f9e') {
+      return 'color-gris';
+    }
+
+    return 'color-naranja';
   }
 }
 

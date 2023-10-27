@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-paso5',
@@ -7,5 +7,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Paso5Component {
+  @Input() datos: any;
 
+  setDatos(datos: any) {
+    this.datos = datos;
+  }
 }

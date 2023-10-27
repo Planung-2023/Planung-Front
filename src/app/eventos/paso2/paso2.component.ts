@@ -7,13 +7,22 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Paso2Component {
-  
-  dataEvento = {
-    esFormal: "Ninguno",
-    esPorAprobacion: "Ninguno",
+  dataEvento={
+    tipoEvento: 'Informal',
+    tipoInvitacion: 'Directa',
   }
 
-  public datos() {
-    return this.dataEvento;
+  actualizarTipoEvento(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.dataEvento.tipoEvento = target.value;
+    console.log(this.dataEvento);
+  }
+  actualizarTipoInvitacion(event: Event){
+    const target = event.target as HTMLInputElement;
+    this.dataEvento.tipoInvitacion = target.value;
+    console.log(this.dataEvento);
+  }
+  getDatosPaso2(){
+    return this.dataEvento
   }
 }

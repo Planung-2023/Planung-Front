@@ -25,3 +25,9 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Deploy Dockerized front
+How to use the Dockerfile in order to deploy the app-front
+1- build the front image, can be done with: docker build -f "it-2023-gestion-eventos-front/Dockerfile" -t proyecto:version3 "it-2023-gestion-eventos-front"
+2- Create and run a container from the image: docker run -d -p 4200:4200/tcp -p 80:80/tcp proyecto:version1 

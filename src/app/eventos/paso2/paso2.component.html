@@ -1,52 +1,41 @@
 <mat-card>
-    <div class="body">
+    <div id="paso2" class="body">
         <h1 class="tituloTipoEvento text-center">Tipo de Evento y Modalidad</h1>
+        
         <form class="d-flex justify-content-center">
-            <div class="cajaPrincipal">
-                <h2 class="d-flex justify-content-center align-items-center">Defina el Tipo de Evento</h2>
-                <div id="elegirFormalidad" class="button-box d-flex justify-content-center row">
-                    <div>
-                        <input type="radio" id="formal" name="formalOInformal" value="false">
-                        <label for="formal">
-                            <i class="bi bi-ariplane-fill">
-                            </i>
+            <div id="cajaTipoEvento" class="cajaPrincipal">
+                <h2 id="tituloTipoEvento" class="text-center">Defina el Tipo de Evento</h2>
+                <div id="formalOInformal" class="button-box d-flex justify-content-center">
+                    <div class="toggle-btn" id="informal">
+                        <p class="text-center">Informal</p>
+                        <label class="d-flex align-items-center justify-content-around">
+                            <input type="radio" name="formalOInformal" id="informal" value="Informal" (change)="actualizarTipoEvento($event)" checked>
+                            <i class="bi bi-balloon-fill text-center"></i>
                         </label>
                     </div>
-                        <!--
-                        <p class="d-flex align-items-center justify-content-center">Informal</p>
+                    <div class="toggle-btn" id="formal">
+                        <p class="text-center">Formal</p>
                         <label class="d-flex align-items-center justify-content-around">
-                            <input type="radio" name="formalOInformal" value="false" class="">
-                            <img src="assets/iconoBien.png">
+                            <input type="radio" name="formalOInformal" id="formal" value="Formal" (change)="actualizarTipoEvento($event)">
+                            <i class="bi bi-briefcase-fill text-center"></i>
                         </label>
-
-                        <label class="d-flex align-items-center justify-content-center">Informal</label>
-                        <div class="d-flex align-items-center justify-content-around">
-                          <input type="radio" name="formalOInformal" id="informal" value="informal">
-                          <i class="bi bi-airplane-fill"></i>
-                        </div>
-                        -->
-                    <div id="formal">
-                        <p>Formal</p>
-                        <label class="d-flex align-items-center justify-content-around"></label>
-                        <input type="radio" name="formalOInformal" id="formal" value="formal">
-                        <i class="bi bi-airplane-fill"></i>
                     </div>
                 </div>
-
-                <h2 id="tituloTipoInvitacion" class="d-flex justify-content-center align-items-center">Defina el Tipo de Invitacion</h2>
+    
+                <h2 id="tituloTipoInvitacion" class="text-center">Defina el Tipo de Invitacion</h2>
                 <div id="directaOPorAprobacion" class="d-flex justify-content-center align-items-center">
                     <div class="toggle-btn" id="directa">
-                        <p class="d-flex align-items-center justify-content-center">Directa</p>
+                        <p class="text-center">Directa</p>
                         <label class="d-flex align-items-center justify-content-around">
-                            <input type="radio" name="tipoInvitacion" id="directa" value="directa">
-                            <img src="assets/iconoMas.png">
+                            <input type="radio" name="tipoInvitacion" id="directa" value="Directa" (change)="actualizarTipoInvitacion($event)" checked>
+                            <i class="bi bi-unlock-fill text-center"></i>
                         </label>
                     </div>
                     <div class="toggle-btn" id="porAprobacion">
-                        <p class="d-flex align-items-center justify-content-center">Por Aprobacion</p>
+                        <p class="text-center">Por Aprobacion</p>
                         <label class="d-flex align-items-center justify-content-around">
-                            <input type="radio" name="tipoInvitacion" id="porAprobacion" value="porAprobacion">
-                            <img src="assets/iconoMenos.png">
+                            <input type="radio" name="tipoInvitacion" id="porAprobacion" value="Por Aprobación" (change)="actualizarTipoInvitacion($event)">
+                            <i class="bi bi-lock-fill text-center"></i>
                         </label>
                     </div>
                 </div>

@@ -44,16 +44,7 @@ button{
 #a{
     height: 376px;
 }
-#mapa{
-    height: 100%;
-    width: 90%;
-
-}
-img{
-    height: 100%;
+.map {
     width: 100%;
-    object-fit: cover;
-    
-    border-radius: 15px;
-}
-
+    height: 100%;
+  }

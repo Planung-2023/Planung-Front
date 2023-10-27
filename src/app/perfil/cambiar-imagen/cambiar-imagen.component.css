@@ -1,0 +1,79 @@
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.row {
+    margin-left: 0%;
+    margin-right: 0%;
+}
+
+.titulo-perfil{
+    margin-top: 20px;
+    color: #ffffff;
+}
+
+.perfil-container{
+    font-family: Arial, sans-serif;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    border-radius: 50px;
+    background: #5a5a5a;
+}
+
+.foto-perfil {
+    border-radius: 50%;
+    padding: 0%;
+    overflow: hidden;
+    width: 175px;
+    height: 175px;
+    border: 2px solid black;
+}
+
+.foto-perfil img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.subtitulo-perfil{
+    color: #ffffff;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.subtitulo{
+    color: #ffffff;
+    margin-top: 30px;
+    font-size: 18px;
+    margin-bottom: 0%;
+}
+
+.foto-perfil-seleccion{
+    margin-top: 15px;
+    padding: 0%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid black;
+    overflow: hidden;
+}
+
+.foto-perfil-seleccion img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.btn-guardar{
+    padding: 12px;
+    margin-top: 30px;
+    background-color: #ffffff
+}
+
+.icon-home{
+    background-color: #3f4244;
+    color: white;
+}

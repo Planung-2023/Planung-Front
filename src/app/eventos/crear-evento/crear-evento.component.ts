@@ -52,13 +52,39 @@ export class CrearEventoComponent {
 
   }
 
-
+  pasarDatos(){
+    return {
+      paso1: this.traerDatosPaso1(),
+      paso2: this.traerDatosPaso2(),
+      paso3: this.traerDatosPaso3(),
+      paso4: this.traerDatosPaso4(),
+    }
+  }
   proximoPaso(){
     this.pasos[this.pasoActual].titulo = "";
 
-    if(this.pasoActual < this.ultimoPaso){
+    if(this.pasoActual==0){
+      this.traerDatosPaso1();
+    } 
+    if(this.pasoActual==1){
+      this.traerDatosPaso2();
+    } 
+    if(this.pasoActual==2){
+      this.traerDatosPaso3();
+    } 
+    if(this.pasoActual==3){
+      this.traerDatosPaso4();
+    } 
+    
+
+    if(this.pasoActual <= this.ultimoPaso){
       this.pasoActual++;
     }
+
+    if(this.pasoActual === 4) {
+      this.paso5Component?.setDatos(this.pasarDatos());
+    }
+
     this.pasos[this.pasoActual].titulo = this.titulos[this.pasoActual];
   }
 
@@ -69,18 +95,35 @@ export class CrearEventoComponent {
     }
     this.pasos[this.pasoActual].titulo = this.titulos[this.pasoActual];
   }
-/*
-  dataEvento = {
-    nombre: this.paso1Component?.dataEvento.nombre,
-    fecha: this.paso1Component?.dataEvento.fecha,
-    horaInicio: this.paso1Component?.dataEvento.horaInicio,
-    horaFin: this.paso1Component?.dataEvento.horaFin,
-    todoElDia: this.paso1Component?.dataEvento.todoElDia,
-    descripcion: this.paso1Component?.dataEvento.descripcion,
-    latitud: this.paso3Component?.dataEvento.latitud,
-    longitud: this.paso3Component?.dataEvento.longitud,
+  paso1(){
+    this.pasos[this.pasoActual].titulo= "Nombre y Fecha";
   }
-  */
+
+  
+traerDatosPaso1() {
+  if (this.paso1Component) {
+  return this.paso1Component.getDatosPaso1();
+  }
+  else return {};
+}
+
+traerDatosPaso2(){
+  if (this.paso2Component) {
+    return this.paso2Component.getDatosPaso2();
+    }
+    else return {};
+}
+
+
+traerDatosPaso3(){
+  if (this.paso3Component) {
+    return this.paso3Component.getDatosPaso3();
+    }
+    else return {};
+}
+traerDatosPaso4(){
+  
+}
   crearEvento() {
     console.log(this.paso1Component?.datos());
   }
