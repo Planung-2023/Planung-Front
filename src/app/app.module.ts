@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,17 +23,13 @@ import { EventosModule } from './eventos/eventos.module';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { HttpClientModule} from '@angular/common/http'
 import { ListaEventosService } from './eventos/lista-eventos.service';
-import { RecursoColorPickerService } from './recurso-color-picker/recurso-color-picker.service';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import {} from 'googlemaps';
 import { VerPerfilComponent } from './perfil/ver-perfil/ver-perfil.component';
 import { CambiarImagenComponent } from './perfil/cambiar-imagen/cambiar-imagen.component';
-import { RecursoColorPickerComponent } from './recurso-color-picker/recurso-color-picker.component';
-import { from } from 'rxjs';
-
+import {} from 'googlemaps';
 
 @NgModule({
   declarations: [
@@ -43,7 +40,6 @@ import { from } from 'rxjs';
     NotificacionesComponent,
     VerPerfilComponent,
     CambiarImagenComponent,
-    RecursoColorPickerComponent,
    ],
   imports: [
     FormsModule,
@@ -85,7 +81,6 @@ import { from } from 'rxjs';
   ],
   providers: [
     ListaEventosService,
-    RecursoColorPickerService,
     { provide: HTTP_INTERCEPTORS,useClass: AuthHttpInterceptor,multi:true }
   ],
   bootstrap: [AppComponent]

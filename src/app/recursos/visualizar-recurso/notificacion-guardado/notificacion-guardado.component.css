@@ -1,0 +1,39 @@
+
+.custom-snackbar {
+    background-color: #333;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+  }
+  
+
+  .custom-snackbar button {
+    background-color: #6a6d71;
+    color: #fff;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  .custom-snackbar button:hover {
+    background-color: #b9b9b9da;
+  }
+
+   ::ng-deep .mdc-snackbar__label {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+::ng-deep .cdk-overlay-pane {
+    pointer-events: auto;
+    box-sizing: border-box;
+    max-width: 70%;
+    max-height: 100%;
+    margin-top: 0px !important;
+}

@@ -24,13 +24,18 @@ export class ListaEventosComponent implements OnInit {
     this.listaEventosService.getEventos().subscribe((eventos: any) => {
       console.log(eventos);
       this.eventos = eventos;
+      this.listaEventosService.getRecursosByEventoId(this.eventos[0].id).subscribe(
+        (data: Recurso[]) => {
+          this.recursos = data;
+        }
+      );
     });
 
-    this.recursos = [
+  /*  this.recursos = [
       {id: 1, cantidadActual: 3, cantidadNecesaria:6, descripcion: 'Esta es la coca para el fernet. No compren light ni cero.', nombre: 'Coca Cola'},
       {id: 2, cantidadActual: 8, cantidadNecesaria:8, descripcion: 'Silla o banqueta, informar elección.', nombre: 'Silla'},
       {id: 3, cantidadActual: 0, cantidadNecesaria:1, descripcion: 'Parlante grande para exterior, no traer portatil.', nombre: 'Parlantes'},
-    ];
+    ];*/
 
     const swiper = new Swiper('.swiper-container', {
       slidesPerView: 1,
@@ -65,8 +70,19 @@ export class ListaEventosComponent implements OnInit {
 
 interface Recurso {
   id: number;
+  nombre: string;
+  descripcion: string;
   cantidadActual: number;
   cantidadNecesaria: number;
-  descripcion: string;
+  proveedor: string;
+  recursoCategoriaId: number;
+  colorTarjeta: string;
+  eventoId: number;
+  categoria: Categoria;
+}
+
+interface Categoria {
+  id: number;
   nombre: string;
+  icono: string;
 }

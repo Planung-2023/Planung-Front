@@ -209,7 +209,16 @@
 .texto-descripcion{
   padding: 30px 0px;
   font-size: 17px;
-  border: none;
+  border: none !important;
+  width: 240px;
+  resize: none;
+  outline: none;
+}
+
+::ng-deep .texto-descripcion:focus{
+  padding: 30px 0px;
+  font-size: 17px;
+  border: none !important;
 }
 
 .button-grid {
@@ -240,6 +249,26 @@
   font-weight: bold;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   transform: translateY(2px);
+}
+
+.selected-naranja {
+  background-color: #f9b668;
+}
+
+.selected-verde {
+  background-color: #b6cc85;
+}
+
+.selected-azul {
+  background-color: #a7acce;
+}
+
+.selected-rosa {
+  background-color: #e6a5b6;
+}
+
+.selected-gris-td {
+  background-color: #cccccc;
 }
 
 .icon-container {
@@ -378,23 +407,23 @@
 }
 
 .color-naranja .mat-expansion-panel-header:hover {
-  background-color: #ef923e;
+  background-color: #ef923e !important;
 }
 
 .color-verde .mat-expansion-panel-header:hover {
-  background-color: #8ccf43;
+  background-color: #8ccf43 !important;
 }
 
 .color-azul .mat-expansion-panel-header:hover {
-  background-color: #7985ce;
+  background-color: #7985ce !important;
 }
 
 .color-rosa .mat-expansion-panel-header:hover {
-  background-color: #df5e7e;
+  background-color: #df5e7e !important;
 }
 
 .color-gris .mat-expansion-panel-header:hover {
-  background-color: #696c70;
+  background-color: #696c70 !important;
 }
 
 ::ng-deep .color-naranja .mat-expansion-panel-body {

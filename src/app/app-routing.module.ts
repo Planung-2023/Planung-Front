@@ -10,7 +10,7 @@ import { CambiarImagenComponent } from './perfil/cambiar-imagen/cambiar-imagen.c
 
 const routes: Routes = [
   { path: '', redirectTo: 'eventos', pathMatch: 'full' },
-  { path: 'perfil', component: PerfilComponent },
+  { path: 'perfil', component: PerfilComponent , canActivate: [AuthGuard]},
   { path: 'configuracion', component: ConfiguracionComponent},
   { path: 'notificaciones', component: NotificacionesComponent},
   { path: 'eventos', loadChildren: () => import('./eventos/eventos.module').then(m => m.EventosModule)},

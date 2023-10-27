@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RecursoColorPickerService } from './recurso-color-picker.service';
 
 @Component({
   selector: 'app-recurso-color-picker',
@@ -8,4 +9,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class RecursoColorPickerComponent {
 
+  constructor(private RecursoColorPickerService: RecursoColorPickerService) {}
+  
+  selectedColor: string = '';
+
+  seleccionarColor(color: string) {
+    this.RecursoColorPickerService.setSelectedColor(color);
+  }
 }

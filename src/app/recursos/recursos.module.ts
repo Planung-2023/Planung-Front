@@ -16,19 +16,23 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { RecursoColorPickerComponent } from './recurso-color-picker/recurso-color-picker.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NotificacionGuardadoComponent } from './visualizar-recurso/notificacion-guardado/notificacion-guardado.component';
 
 
 @NgModule({
   declarations: [
     CrearRecursoComponent,
-    VisualizarRecursoComponent,
     RecursoColorPickerComponent,
+    VisualizarRecursoComponent,
+    NotificacionGuardadoComponent,
   ],
   imports: [
     CommonModule,
     RecursosRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
     MatTabsModule,
     MatCardModule,
     MatSlideToggleModule,

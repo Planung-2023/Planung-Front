@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RecursoColorPickerService } from 'src/app/recurso-color-picker/recurso-color-picker.service';
-
+import { RecursoColorPickerService } from '../recurso-color-picker/recurso-color-picker.service';
+import { RecursoService } from '../recurso.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificacionGuardadoComponent } from './notificacion-guardado/notificacion-guardado.component';
 
 @Component({
   selector: 'app-visualizar-recurso',
@@ -9,9 +11,9 @@ import { RecursoColorPickerService } from 'src/app/recurso-color-picker/recurso-
   styleUrls: ['./visualizar-recurso.component.css']
 })
 export class VisualizarRecursoComponent implements OnInit {
-  public selectedObjectType: string | null = null;
+  public selectedObjectType: string | undefined;
   public objectTypes: string[] = ['Bebida', 'Mobiliario', 'Comida', 'Juego', 'Tecnología', 'Otro'];
-  recurso: Recurso | undefined;
+  recurso: Recurso;
   responsables: Responsable[] = [];
   isFlipped: boolean = false;
   descripcion: string = '';
@@ -19,25 +21,34 @@ export class VisualizarRecursoComponent implements OnInit {
   mostrarColorPicker: boolean = false;
   selectedColor: string | null = '#ef7d16';
   selectedColorClass: string = '#ef7d16';
+  categoria: Categoria | undefined;
 
   constructor(
     private router: Router,
-    private RecursoColorPickerService: RecursoColorPickerService
+    private RecursoColorPickerService: RecursoColorPickerService,
+    private RecursoService: RecursoService,
+    private _snackBar: MatSnackBar
   ) {
     this.RecursoColorPickerService.getSelectedColor().subscribe((color) => {
       this.selectedColor = color;
       this.selectedColorClass = this.getColorClass(color);
     });
     this.recurso = this.router.getCurrentNavigation()?.extras.state?.['recurso'];
+    this.RecursoService.getCategoriaByRecurso(this.recurso.id).subscribe(
+      (data: Categoria) => {
+        this.categoria = data;
+      }
+    );
+    this.descripcion = this.recurso.descripcion;
+    this.RecursoService
+    .obtenerMensajeGuardadoExitoso()
+    .subscribe(() => this.mostrarMensajeGuardadoExitoso());
   }
 
   ngOnInit() {
-
-    this.selectedObjectType = 'Bebida';
-    console.log(this.selectedObjectType);
-    this.RecursoColorPickerService.getSelectedColor().subscribe((color) => {
-      this.selectedColor = color || '#ef7d16';
-    });
+    console.log(this.recurso);
+    this.selectedColor = this.recurso.colorTarjeta;
+    this.selectedColorClass = this.getColorClass(this.recurso.colorTarjeta);
 
     this.responsables = [
       { id: 1, nombre: 'Juan', cantidad: 2 },
@@ -45,22 +56,16 @@ export class VisualizarRecursoComponent implements OnInit {
       { id: 3, nombre: 'Pedro', cantidad: 1 },
       { id: 4, nombre: 'Daniel', cantidad: 2 }
     ];
-
-    /*this.recurso = {
-      id: 1,
-      cantidadActual: this.responsables.reduce((total, responsable) => total + responsable.cantidad, 0),
-      cantidadNecesaria: 6,
-      descripcion: 'Esta es la coca para el fernet. No compren light ni cero.',
-      nombre: 'Coca Cola'
-    };*/
   }
 
   getCantidadTotal(): number {
-    let cantidadTotal = 0;
+   /*  let cantidadTotal = 0;
     for (const responsable of this.responsables) {
       cantidadTotal += responsable.cantidad;
     }
-    return cantidadTotal;
+    return cantidadTotal; */
+
+    return this.recurso.cantidad;
   }
 
   flipCard() {
@@ -81,6 +86,8 @@ export class VisualizarRecursoComponent implements OnInit {
   selectObjectType(type: string) {
     this.selectedObjectType = type;
     console.log(this.selectedObjectType);
+    //Agregar metodo post
+    this.mostrarMensajeGuardadoExitoso();
   }
 
   abrirPanel(panel: string) {
@@ -120,6 +127,14 @@ export class VisualizarRecursoComponent implements OnInit {
 
     return 'color-naranja';
   }
+
+  mostrarMensajeGuardadoExitoso()  {
+    this._snackBar.openFromComponent(NotificacionGuardadoComponent, {
+      duration: 2000,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+    });
+  }
 }
 
 interface Responsable {
@@ -130,8 +145,20 @@ interface Responsable {
 
 interface Recurso {
   id: number;
+  nombre: string;
+  descripcion: string;
   cantidadActual: number;
   cantidadNecesaria: number;
-  descripcion: string;
+  cantidad: number;
+  proveedor: string;
+  recursoCategoriaId: number;
+  colorTarjeta: string;
+  eventoId: number;
+  categoria: Categoria;
+}
+
+interface Categoria {
+  id: number;
   nombre: string;
+  icono: string;
 }

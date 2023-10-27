@@ -16,4 +16,8 @@ export class ListaEventosService {
       params: {usuario_id: 1},
     });
   }
+
+  getRecursosByEventoId(idEvento: number): Observable<any> {
+    return  this.http.get(`${ environment.url }/eventos/${idEvento}/recursos`, )
+  }
 }
