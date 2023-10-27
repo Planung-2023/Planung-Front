@@ -105,9 +105,14 @@
                         <div class="col-4">
                             <p id="nombreEvento">Objetos</p>
                         </div>
-                        <div class="col-7">
-                            <p id="placeholder">[Lista de elementos]</p>
+                        <div class="col-7"*ngIf="datos.paso4.length">
+                            <ul id="placeholder">
+                              <li *ngFor="let recurso of datos.paso4"  class="text-start">
+                                {{ recurso.nombre }}
+                              </li>
+                            </ul>
                         </div>
+
                         <div class="col-1" style="margin-top: 7px;">
                             <button id="editar" (click)="volverAPaso4()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>

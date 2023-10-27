@@ -12,7 +12,7 @@ export class Paso5Component {
   @Output() aPaso2 = new EventEmitter<void>();
   @Output() aPaso3 = new EventEmitter<void>();
   @Output() aPaso4 = new EventEmitter<void>();
-  
+
   volverAPaso1() {
     this.aPaso1.emit();
   }

@@ -123,6 +123,7 @@ p{
     padding: 12px;
     border-radius: 5px;
     display: flex;
+    flex-direction: column;
     background: #919191;
     justify-content: center;
     align-items: end;
