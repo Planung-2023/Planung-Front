@@ -194,7 +194,7 @@
   height: 38px;
   align-items: center;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .cantidad-label,
@@ -202,7 +202,7 @@
   border-radius: 10px;
   font-size: 15px;
   color: #ffffff;
-  padding: 10px 47px;
+  padding: 10px 28px;
   text-align: center;
 }
 
@@ -243,12 +243,11 @@
 }
 
 .selected {
-  background-color: #4e5fa8;
-  color: white;
-  border: 2px solid #4e5fa8;
+  border: 2px solid #000;
   font-weight: bold;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   transform: translateY(2px);
+  filter: brightness(0.9);
 }
 
 .selected-naranja {
@@ -486,25 +485,7 @@
   background-color: #f3f2f2;
 }
 
-.color-naranja-td:hover {
-  background-color: #f9b668;
-}
 
-.color-verde-td:hover {
-  background-color: #b6cc85;
-}
-
-.color-azul-td:hover {
-  background-color: #a7acce;
-}
-
-.color-rosa-td:hover {
-  background-color: #e6a5b6;
-}
-
-.color-gris-td:hover {
-  background-color: #cccccc;
-}
 
 ::ng-deep .color-naranja .texto-descripcion {
   background-color: #f9c78d;

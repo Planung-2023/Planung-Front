@@ -48,16 +48,35 @@ export class ListaEventosComponent implements OnInit {
   private recuperarEventos() {
     this.listaEventosService.getEventos().subscribe(data => {
       this.eventos = data;
+      this.eventos.forEach(evento => this.listaEventosService.getRecursosByEventoId(evento.id).subscribe(
+        (data: Recurso[]) => {
+          evento.recursos = data;
+        }
+      ))
     }, error => {
       this.mockearEventos();
     });
   }
 
   private mockearEventos() {
+    const creador1: Creador = {
+      id: 1,
+      nombreUsuario: 'Claudio Gomez'
+    }
+
+    const ubicacion1: ubicacion = {
+      id: 2,
+      calle: "Av. Nazca",
+      altura: 2500,
+      localidad: "C.A.B.A.",
+      latitud: 30,
+      longitud: 30
+    }
+
     this.eventos = [
-      { id: 1, nombre: 'Reunión Bayer', fechaHora: new Date(2023, 8, 18), hora: {hours: 10, minutes: 30}, ubicacion: 'Malvinas Argentinas 568, Caballito', tipoEvento: 'Formal', creador: 'German Sánchez', calle: 'Malvinas Argentinas', altura: 568 },
-      { id: 2, nombre: 'Charla Siemens', fechaHora: new Date(2023, 10, 4), hora: {hours: 15, minutes: 0}, ubicacion: 'Aviador Matienzo 2026, Ciudad jardin', tipoEvento: 'Formal', creador: 'Andrea Fernandez', calle: 'Av. Rivadavia', altura: 656 },
-      { id: 3, nombre: 'Cumpleaños Lucas', fechaHora: new Date(2023, 6, 25), hora: {hours: 22, minutes: 0}, ubicacion: 'Padre Vanini 1490, El Palomar', tipoEvento: 'Informal', creador: 'Lucas Espinoza', calle: 'Av. Rivadavia', altura: 656 }
+      { id: 1, nombre: 'Reunión Bayer', fechaHora: new Date(2023, 8, 18), hora: {hours: 10, minutes: 30}, ubicacion: ubicacion1, tipoEvento: 'Formal', creador: creador1, calle: 'Malvinas Argentinas', altura: 568 , recursos:[]},
+      { id: 2, nombre: 'Charla Siemens', fechaHora: new Date(2023, 10, 4), hora: {hours: 15, minutes: 0}, ubicacion: ubicacion1, tipoEvento: 'Formal', creador: creador1, calle: 'Av. Rivadavia', altura: 656 , recursos:[] },
+      { id: 3, nombre: 'Cumpleaños Lucas', fechaHora: new Date(2023, 6, 25), hora: {hours: 22, minutes: 0}, ubicacion: ubicacion1, tipoEvento: 'Informal', creador: creador1, calle: 'Av. Rivadavia', altura: 656 , recursos:[] }
     ];
 
     /*this.recursos = [
@@ -92,13 +111,14 @@ export class ListaEventosComponent implements OnInit {
 interface Evento {
   id: number;
   nombre: string;
-  creador: string;
+  creador: Creador;
   fechaHora: Date;
   hora: Time;
-  ubicacion: string;
+  ubicacion: ubicacion;
   calle: string;
   altura: number;
   tipoEvento: string;
+  recursos: Recurso[];
 }
 
 interface Recurso {
@@ -118,4 +138,18 @@ interface Categoria {
   id: number;
   nombre: string;
   icono: string;
+}
+
+interface Creador{
+  id: number;
+  nombreUsuario: string;
+}
+
+interface ubicacion{
+  "id": 2,
+  "calle": "Av. Nazca",
+  "altura": 2500,
+  "localidad": "C.A.B.A.",
+  "latitud": 30,
+  "longitud": 30
 }

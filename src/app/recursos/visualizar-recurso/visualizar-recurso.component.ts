@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecursoColorPickerService } from '../recurso-color-picker/recurso-color-picker.service';
 import { RecursoService } from '../recurso.service';
@@ -12,8 +12,8 @@ import { NotificacionGuardadoComponent } from './notificacion-guardado/notificac
   styleUrls: ['./visualizar-recurso.component.css']
 })
 export class VisualizarRecursoComponent implements OnInit {
-  public selectedObjectType: string | undefined;
-  public objectTypes: string[] = ['Bebida', 'Mobiliario', 'Comida', 'Juego', 'Tecnología', 'Otro'];
+  public selectedObjectType: Categoria | undefined;
+  public objectTypes: Categoria[] = [];
   recurso: Recurso;
   responsables: Responsable[] = [];
   isFlipped: boolean = false;
@@ -28,18 +28,9 @@ export class VisualizarRecursoComponent implements OnInit {
     private router: Router,
     private RecursoColorPickerService: RecursoColorPickerService,
     private RecursoService: RecursoService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar, 
   ) {
-    this.RecursoColorPickerService.getSelectedColor().subscribe((color) => {
-      this.selectedColor = color;
-      this.selectedColorClass = this.getColorClass(color);
-    });
     this.recurso = this.router.getCurrentNavigation()?.extras.state?.['recurso'];
-    this.RecursoService.getCategoriaByRecurso(this.recurso.id).subscribe(
-      (data: Categoria) => {
-        this.categoria = data;
-      }
-    );
     this.descripcion = this.recurso.descripcion;
     this.RecursoService
     .obtenerMensajeGuardadoExitoso()
@@ -47,7 +38,32 @@ export class VisualizarRecursoComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.recurso);
+    this.RecursoService.tiposDeRecursos().subscribe({
+      next: (v:Categoria[]|any) => {
+        this.objectTypes = v;
+      },
+      error: e => {
+        console.log(e);
+       // this.mockearTiposDeRecursos();
+      },
+      complete: () => {},
+    });
+
+
+    this.RecursoColorPickerService.getSelectedColor().subscribe((color) => {
+      this.selectedColor = color;
+      this.selectedColorClass = this.getColorClass(color);
+    });
+
+    this.RecursoService.getCategoriaByRecurso(this.recurso.id).subscribe(
+      (data: Categoria) => {
+        this.categoria = data;
+        this.selectObjectType(this.categoria);
+        console.log(this.selectedObjectType);
+        console.log(this.selectedColor);
+      }
+    );
+
     this.selectedColor = this.recurso.colorTarjeta;
     this.selectedColorClass = this.getColorClass(this.recurso.colorTarjeta);
 
@@ -66,7 +82,7 @@ export class VisualizarRecursoComponent implements OnInit {
     }
     return cantidadTotal; */
 
-    return this.recurso.cantidad;
+    return this.recurso.cantidadActual;
   }
 
   flipCard() {
@@ -84,10 +100,9 @@ export class VisualizarRecursoComponent implements OnInit {
     return '';
   }
 
-  selectObjectType(type: string) {
+  selectObjectType(type: Categoria) {
     this.selectedObjectType = type;
-    console.log(this.selectedObjectType);
-    //Agregar metodo post
+    //Agregar metodo put
     this.mostrarMensajeGuardadoExitoso();
   }
 

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { RecursosService } from 'src/app/recursos/recursos.service';
+import { RecursoService } from 'src/app/recursos/recurso.service';
 
 @Component({
   selector: 'app-paso4',
@@ -14,7 +14,7 @@ export class Paso4Component implements OnInit {
 
   constructor(
     private modal: NgbModal,
-    private service: RecursosService
+    private service: RecursoService
     ) {
 
   }

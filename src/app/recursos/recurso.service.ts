@@ -21,6 +21,10 @@ export class RecursoService {
   constructor(private http: HttpClient) { }
 
   getCategoriaByRecurso(idRecurso: number): Observable<any> {
-    return  this.http.get(`${ environment.url }/eventos/${idRecurso}/recursos`, )
+    return  this.http.get(`${ environment.url }/recursos/${idRecurso}/categorias`);
+  }
+
+  public tiposDeRecursos() {
+    return this.http.get(`${ environment.url }/recursos/categorias`);
   }
 }

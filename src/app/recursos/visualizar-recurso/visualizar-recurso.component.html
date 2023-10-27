@@ -25,24 +25,21 @@
             </mat-expansion-panel-header>
             <div class="button-grid">
               <button class="custom-button" (click)="selectObjectType(type)" *ngFor="let type of objectTypes" [ngClass]="{
+                'selected': type.id === selectedObjectType?.id,
                 'color-naranja-td': selectedColor === '#ef7d16',
                 'color-verde-td': selectedColor === '#76b730',
                 'color-azul-td': selectedColor === '#4e5fa8',
                 'color-rosa-td': selectedColor === '#df3c65',
                 'color-gris-td': selectedColor === '#9f9f9e',
-                'custom-icon-bebida': type === 'Bebida',
-                'selected-naranja': type === selectedObjectType && selectedColor=== '#ef7d16',
-                'selected-verde': type === selectedObjectType && selectedColor=== '#76b730',
-                'selected-azul': type === selectedObjectType && selectedColor=== '#4e5fa8',
-                'selected-rosa': type === selectedObjectType && selectedColor=== '#df3c65',
-                'selected-gris': type === selectedObjectType && selectedColor=== '#9f9f9e',
+                'custom-icon-bebida': type.nombre === 'Bebida',
               }">
                 <div class="icon-container">
-                  <img class="custom-icon" [src]="'assets/icono' + type + '.png'" alt="Icono {{ type }}">
+                  <img class="custom-icon" [src]="'assets/icono' + type.icono + '.png'" alt="Icono {{ type.icono }}">
                 </div>
-                {{ type }}
+                {{ type.nombre }}
               </button>
             </div>
+            
           </mat-expansion-panel>
           <mat-expansion-panel class="recurso-panel" *ngIf="panelAbierto === 'descripcion' || panelAbierto === 'todos'" (opened)="abrirPanel('descripcion')" (closed)="cerrarPanel('descripcion')"[ngClass]="selectedColorClass">
             <mat-expansion-panel-header>
@@ -56,10 +53,19 @@
           </mat-expansion-panel>
         <div class="cantidad-container" *ngIf="panelAbierto === 'todos'">
           <div class="cantidad-label" [ngClass]="{ 'color-naranja-cantidad': selectedColor === '#ef7d16', 'color-verde-cantidad': selectedColor === '#76b730', 'color-azul-cantidad': selectedColor === '#4e5fa8', 'color-rosa-cantidad': selectedColor === '#df3c65', 'color-gris-cantidad': selectedColor === '#9f9f9e' }">
-            Cantidad
+            Cantidad Actual
           </div>
           <div class="cantidad-valor" [ngClass]="{ 'color-naranja-cantidad': selectedColor === '#ef7d16', 'color-verde-cantidad': selectedColor === '#76b730', 'color-azul-cantidad': selectedColor === '#4e5fa8', 'color-rosa-cantidad': selectedColor === '#df3c65', 'color-gris-cantidad': selectedColor === '#9f9f9e' }">
-            {{ getCantidadTotal() }}
+            {{ recurso.cantidadActual }}
+          </div>
+        </div>
+
+        <div class="cantidad-container" *ngIf="panelAbierto === 'todos'">
+          <div class="cantidad-label" [ngClass]="{ 'color-naranja-cantidad': selectedColor === '#ef7d16', 'color-verde-cantidad': selectedColor === '#76b730', 'color-azul-cantidad': selectedColor === '#4e5fa8', 'color-rosa-cantidad': selectedColor === '#df3c65', 'color-gris-cantidad': selectedColor === '#9f9f9e' }">
+            Cantidad Necesaria
+          </div>
+          <div class="cantidad-valor" [ngClass]="{ 'color-naranja-cantidad': selectedColor === '#ef7d16', 'color-verde-cantidad': selectedColor === '#76b730', 'color-azul-cantidad': selectedColor === '#4e5fa8', 'color-rosa-cantidad': selectedColor === '#df3c65', 'color-gris-cantidad': selectedColor === '#9f9f9e' }">
+            {{ recurso.cantidadNecesaria }}
           </div>
         </div>
         <mat-expansion-panel class="recurso-panel" *ngIf="panelAbierto === 'responsables' || panelAbierto === 'todos'" (opened)="abrirPanel('responsables')" (closed)="cerrarPanel('responsables')"[ngClass]="selectedColorClass">
