@@ -14,4 +14,9 @@ export class RecursosService {
   public tiposDeRecursos() {
     return this.http.get(`${ environment.url }/recursos/categorias`);
   }
+
+  public crearEvento(datosOrdenados: any){
+   return this.http.post(`${environment.url}/eventos`, datosOrdenados);
+  
+  }
 }

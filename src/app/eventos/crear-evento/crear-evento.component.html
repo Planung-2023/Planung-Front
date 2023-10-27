@@ -16,12 +16,10 @@
       (aPaso1)="irAPaso1()"
       (aPaso2)="irAPaso2()"
       (aPaso3)="irAPaso3()"
-      (aPaso4)="irAPaso4()">
+      (aPaso4)="irAPaso4()"
+      (crearEvento)="crearEvento()">
     </app-paso5>
 
-    <div>
-      <button class="btn btn-seconday" (click)="crearEvento()">Guardar</button>
-    </div>
 </div>
 <div [ngClass]="{'justify-content-center' : pasoActual === 0, 'justify-content-around' : pasoActual != 0 }"class="footer d-flex align-items-center">
 

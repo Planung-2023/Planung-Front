@@ -4,6 +4,7 @@ import { Paso3Component } from './../paso3/paso3.component';
 import { Paso2Component } from './../paso2/paso2.component';
 import { Component, ViewChild } from '@angular/core';
 import { Paso1Component } from '../paso1/paso1.component';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 
 
@@ -12,7 +13,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './crear-evento.component.html',
   styleUrls: ['./crear-evento.component.css']
 })
-export class CrearEventoComponent {
+export class CrearEventoComponent{
   @ViewChild('paso1', { read: Paso1Component }) paso1Component: Paso1Component | undefined;
   @ViewChild('paso2', { read: Paso2Component }) paso2Component: Paso2Component | undefined;
   @ViewChild('paso3', { read: Paso3Component }) paso3Component: Paso3Component | undefined;
@@ -21,7 +22,6 @@ export class CrearEventoComponent {
 
   pasoActual: number = 0;
   ultimoPaso: number = 4;
-
   titulos: string[] = ["Nombre y Fecha","Formalidad y Privacidad","Lugar","Objetos","Confirmación"];
   pasos: any[] = [
     {
@@ -76,17 +76,17 @@ export class CrearEventoComponent {
     if(this.pasoActual==3){
       this.traerDatosPaso4();
     } 
-    
-
-    if(this.pasoActual <= this.ultimoPaso){
-      this.pasoActual++;
-    }
-
     if(this.pasoActual === 4) {
       this.paso5Component?.setDatos(this.pasarDatos());
     }
 
     this.pasos[this.pasoActual].titulo = this.titulos[this.pasoActual];
+    
+    const formularioActual = this.getPasoActual(this.pasoActual)?.formulario; // Implementa la función para obtener el formulario actual
+    if (this.pasoActual <= this.ultimoPaso && formularioActual && formularioActual.valid) {
+      this.pasoActual++; // Solo avanzar si el formulario actual es válido
+    } else {
+    }
   }
 
   pasoAnterior(){
@@ -109,34 +109,61 @@ export class CrearEventoComponent {
     this.pasoActual = 3;
   }
   
-traerDatosPaso1() {
+traerDatosPaso1(): any {
   if (this.paso1Component) {
   return this.paso1Component.getDatosPaso1();
   }
   else return {};
 }
-
-traerDatosPaso2(){
+traerDatosPaso2():any{
   if (this.paso2Component) {
     return this.paso2Component.getDatosPaso2();
     }
     else return {};
 }
-
-
-traerDatosPaso3(){
+traerDatosPaso3():any{
   if (this.paso3Component) {
     return this.paso3Component.getDatosPaso3();
     }
     else return {};
 }
-traerDatosPaso4(){
+traerDatosPaso4():any{
   if (this.paso4Component) {
     return this.paso4Component.getDatosPaso4();
     }
     else return {};
 }
-  crearEvento() {
-    console.log(this.paso1Component?.datos());
-  }
+getPasoActual(pasoActual:number){
+if(pasoActual===0){
+  return this.paso1Component;
+}
+if(pasoActual===1){
+  return this.paso2Component;
+}
+if(pasoActual===2){
+  return this.paso3Component;
+}
+if(pasoActual===3){
+  return this.paso4Component;
+}
+else return this.paso5Component;
+}
+
+crearEvento(){
+  const datosOrdenados: any = {
+    nombre: this.pasarDatos().paso1.nombre,
+    fecha: this.pasarDatos().paso1.fecha,
+    horaInicio: this.pasarDatos().paso1.horaInicio,
+    horaFin: this.pasarDatos().paso1.horaFin,
+    todoElDia: this.pasarDatos().paso1.todoElDia,
+    descripcion: this.pasarDatos().paso1.descripcion,
+    tipoEvento: this.pasarDatos().paso2.tipoEvento,
+    tipoInvitacion: this.pasarDatos().paso2.tipoInvitacion,
+    latitud: this.pasarDatos().paso3.latitud,
+    longitud: this.pasarDatos().paso3.longitud,
+    recursos: this.pasarDatos().paso4.recursos
+  };
+  console.log(datosOrdenados);
+  //El suscribe
+}
 }

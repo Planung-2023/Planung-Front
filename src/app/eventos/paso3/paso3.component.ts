@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {} from 'googlemaps';
 
 @Component({
@@ -28,12 +29,24 @@ export class Paso3Component {
     }
     console.log(this.dataEvento);
 }
-
+  formulario = new FormGroup({
+    nombre: new FormControl('', [Validators.required]),
+    fecha: new FormControl('', [Validators.required]),
+    horaInicio: new FormControl('', [Validators.required]),
+    horaFin: new FormControl('', [Validators.required]),
+    todoElDia: new FormControl('', [Validators.required]),
+    descripcion: new FormControl(''),
+  });
 
   dataEvento = {
     latitud: -34.598613,
     longitud: -58.415632,
   }
+
+  verificarFormularioCompleto(){
+    
+  }
+
   getDatosPaso3(){
     return this.dataEvento
   }

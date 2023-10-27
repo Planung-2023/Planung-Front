@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, Output, EventEmitter } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-paso5',
@@ -12,10 +13,21 @@ export class Paso5Component {
   @Output() aPaso2 = new EventEmitter<void>();
   @Output() aPaso3 = new EventEmitter<void>();
   @Output() aPaso4 = new EventEmitter<void>();
-
+  @Output() crearEvento = new EventEmitter<void>();
+  
+  formulario = new FormGroup({
+    nombre: new FormControl('', [Validators.required]),
+    fecha: new FormControl('', [Validators.required]),
+    horaInicio: new FormControl('', [Validators.required]),
+    horaFin: new FormControl('', [Validators.required]),
+    todoElDia: new FormControl('', [Validators.required]),
+    descripcion: new FormControl(''),
+  });
+  
   volverAPaso1() {
     this.aPaso1.emit();
   }
+
   volverAPaso2() {
     this.aPaso2.emit();
   }
@@ -28,7 +40,12 @@ export class Paso5Component {
   setDatos(datos: any) {
     this.datos = datos;
   }
-  verDatos(){
-    console.log(this.datos);
+
+  verificarFormularioCompleto(){
+    
+  }
+
+  crearNuevoEvento(){
+    this.crearEvento.emit();
   }
 }
