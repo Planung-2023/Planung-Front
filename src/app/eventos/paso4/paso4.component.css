@@ -12,21 +12,42 @@ h2{
     margin-bottom: 0%;
 }
 p{
+    margin: 3%;
     color: white;
     font-weight: bold;
+}
+ul{
+    padding-left: 0;
+    padding-top: 5%;
+    width: 80%;
+    align-self: center;
+}
+.containerRecursos{
+    background-color: chocolate;
+    width: 90%;
+    max-height: 300px;
+    overflow: auto;
+}
+.descripcion{
+    
+    overflow-x: auto;
 }
 .cajaPrincipal{
     padding-bottom: 5%;
     width: 90%;
 }
 
-button{
-    background: none;
-    border: none;
-    padding-top: 48.4%;
-    padding-bottom: 48.3%;
+.boton-central {
+  background: none;
+  border: none;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
+
 img{
     background: none;
     border: none;
+}
+.modal-body{
+    color: blueviolet;
 }

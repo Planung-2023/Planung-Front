@@ -182,7 +182,6 @@ body {
   background-color: #131842;
 }
 
-
 .mat-expansion-panel-header {
   background-color: #262626;
   color: #fff;
@@ -192,6 +191,7 @@ body {
   background-color: #262626;
   color: #fff;
 }
+
 mat-panel-description{
   padding: 10px;
   padding-top: 4%;
@@ -266,4 +266,36 @@ mat-panel-description{
 .ver-recurso-button mat-icon {
   margin-top: 5px;
   font-size: 20px;
+}
+
+.invitarBtn{
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: red;
+  color: white;
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.participante-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ver-participante-button {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  margin-left: 20px;
+}
+
+.ver-participante-button mat-icon {
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.mat-expansion-panel-body{
+  overflow-y: scroll;
 }

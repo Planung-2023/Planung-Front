@@ -4,6 +4,7 @@ import { Paso3Component } from './../paso3/paso3.component';
 import { Paso2Component } from './../paso2/paso2.component';
 import { Component, ViewChild } from '@angular/core';
 import { Paso1Component } from '../paso1/paso1.component';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -106,7 +107,6 @@ export class CrearEventoComponent {
   }
   irAPaso4(){
     this.pasoActual = 3;
-    console.log("Anda Boton");
   }
   
 traerDatosPaso1() {
@@ -131,7 +131,10 @@ traerDatosPaso3(){
     else return {};
 }
 traerDatosPaso4(){
-  
+  if (this.paso4Component) {
+    return this.paso4Component.getDatosPaso4();
+    }
+    else return {};
 }
   crearEvento() {
     console.log(this.paso1Component?.datos());

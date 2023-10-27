@@ -16,7 +16,7 @@ p{
     font-weight: bold;
 }
 .cajaPrincipal{
-    padding-bottom: 5%;
+    padding-bottom: 12%;
     width: 90%;
 }
 
@@ -45,8 +45,9 @@ button{
     background: none;
     border: none;
 }
-#a{
-    height: 376px;
+#containerMap{
+    margin-top: 2%;
+    height: 400px;
 }
 .map {
     width: 100%;

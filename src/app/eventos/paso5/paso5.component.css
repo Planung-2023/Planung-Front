@@ -21,7 +21,11 @@ p{
 #completa{
     width: 90%;
 }
-
+.col-1{
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+}
 .cajaPrincipal{
     padding-bottom: 5%;
     width: 90%;

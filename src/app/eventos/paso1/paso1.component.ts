@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-paso1',
@@ -35,5 +35,14 @@ getDatosPaso1(){
     this.dataEvento.horaFin = null!;
   }
   return this.dataEvento
+}
+verificarFormularioCompleto(formulario: NgForm) {
+  if (formulario.valid) {
+    // El formulario está completamente lleno y válido.
+    console.log('El formulario está completo y válido.');
+  } else {
+    // Algunos campos requeridos no están completos o son inválidos.
+    console.log('El formulario no está completo.');
+  }
 }
 }

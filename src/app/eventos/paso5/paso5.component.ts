@@ -28,4 +28,7 @@ export class Paso5Component {
   setDatos(datos: any) {
     this.datos = datos;
   }
+  verDatos(){
+    console.log(this.datos);
+  }
 }

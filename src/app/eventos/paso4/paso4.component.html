@@ -3,53 +3,64 @@
         <h1 class="tituloAgregarObjetos text-center">Recursos</h1>
         <form class="d-flex justify-content-center">
             <div id="cajaObjetos" class="cajaPrincipal">
-                <h2 id="tituloObjetos" class="text-center">Defina Objetos Necesarios</h2>
-                <div class="d-flex flex-column justify-content-around align-items-center">
-                    <p>Agregar recurso</p>
-                    <!--
-                    <button (click)="createDiv()">Create div</button>
-                    <div id="container">
-                        <div *ngFor="let div of divs">
-                            {{ div.textContent }}
-                          </div>
-                    </div>
-                -->
-                    <button (click)="createDiv()">Create div</button>
-                    <div id="containerToCopy">
-                        <div *ngFor="let container of containers">
-                            <div [innerHTML]="container.innerHTML"></div>
-                          </div>
-                    </div>
-                   
-                    <div #containerToCopy >
-                        <!-- Aquí define el contenido del contenedor que deseas copiar -->
-                        <div>Aaaa</div>
-                        <mat-expansion-panel>
-                            <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                CocaCola:
-                            </mat-panel-title>
-                            </mat-expansion-panel-header>
-                            <mat-panel-description>
-                                <input type="text">
-                            </mat-panel-description>
-                            <mat-panel-description>
-                                Cantidad:
-                                <input type="number">
-                            </mat-panel-description>
-                        </mat-expansion-panel>
-                    </div>
-
-
-                    <button (click)="mostrarCardAgregar(contenidoAgregar)">
+                <h2 id="tituloObjetos" class="text-center">¿Qué vas a necesitar en tu evento?</h2>
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                  <div *ngIf="recursos.length===0" class="d-flex flex-column justify-content-around align-items-center">
+                    <p>Agregá un recurso para tu evento</p>
+                    <button class="boton-central" (click)="mostrarCardAgregar(contenidoAgregar)">
                         <img class="btn btn-secondary" src="assets/iconoMas.png">
                     </button>
+                  </div>
+                  <div *ngIf="recursos.length!=0" class="d-flex flex-row justify-content-center align-items-center">
+                    <p>Recursos</p>
+                    <button class="boton-central" (click)="mostrarCardAgregar(contenidoAgregar)">
+                        <img class="btn btn-secondary" src="assets/iconoMas.png">
+                    </button>
+                  </div>
+                  <div class="containerRecursos rounded-2">
+                    <div *ngFor="let recurso of recursos" class="d-flex align-items-center justify-content-center">
+                      <ul>
+                        <mat-expansion-panel>
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                              <li>{{ recurso.nombre }}</li>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-panel-description>
+                          <li>Tipo recurso: {{ nombreTipoRecursoSegunId(recurso.categoria) }}</li>
+                        </mat-panel-description> 
+                        <mat-panel-description>
+                          <li>Descripción: {{ recurso.descripcion }}</li>
+                        </mat-panel-description>
+                        <mat-panel-description>
+                          <li>Cantidad: {{ recurso.cantidad }}</li>
+                        </mat-panel-description>
+                        </mat-expansion-panel>
+                        
+                      </ul>
+                    </div>
+                  </div>
+
                 </div>
-            </div>
+              </div>
         </form>
     </div>
 </mat-card>
 
 <ng-template #contenidoAgregar let-modal>
-  <app-crear-recurso></app-crear-recurso>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Agregar recurso</h5>
+      <button type="button" class="btn close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-crear-recurso #componenteCrearRecurso [tiposDeRecursos]="tiposDeRecursos"></app-crear-recurso>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary-inverse" (click)='modal.dismiss()'>Cerrar</button>
+      <button class="btn btn-primary" (click)='modal.close(componenteCrearRecurso)'>Agregar recurso</button>
+    </div>
+  </div>
 </ng-template>

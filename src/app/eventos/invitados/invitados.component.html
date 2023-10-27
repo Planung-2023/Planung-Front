@@ -1,0 +1,23 @@
+<div *ngIf="invitadosControlService.isVisible" class="popup-invitado justify-content-center">
+    <div class="popup-content col-10">
+        <div class="col-3" style="padding: 5px; margin-left: 20px">
+            <button (click)="hidePopupInvitado()" class="close-button">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <div>
+            <!-- variable con el nombre del invitado seleccionado -->
+            <h2 class="text-center">[Invitado_nombre]</h2>
+        </div>
+        <div class="text-center">
+            Admin
+            <mat-slide-toggle></mat-slide-toggle>
+        </div>
+        <div class="text-center" style="margin-top: 30px; margin-left: 70%;">
+            <button>
+                <i class="bi bi-person-dash-fill"></i>
+            </button>
+        </div>
+    </div>
+</div>
+  
