@@ -8,21 +8,14 @@
     z-index: 2;
 }
 .body-evento{
-left: 0;
-height: 100%;
-width: 100%;
-z-index: 1;
 background: #3a3a3a;
+
 .body{
     background: #3a3a3a;
-    padding-top: 15%;
-    height: 100%;
-    border-bottom: none;
-   .cajaPrincipal{
-    background: #5a5a5a;
-} 
 }
-
+.cajaPrincipal{
+    background: #5a5a5a;
+}
 }
 
 
