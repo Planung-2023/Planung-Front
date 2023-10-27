@@ -7,17 +7,21 @@
   </div>
 
 </div>
-<div class="body-evento pt-5 h-100">
+<div class="body-evento mt-3 pt-5 h-100">
     <app-paso1 #paso1 [ngStyle]="{'display': pasoActual === 0? 'block' : 'none'}"></app-paso1>
     <app-paso2 #paso2 [ngStyle]="{'display': pasoActual === 1? 'block' : 'none'}"></app-paso2>
     <app-paso3 #paso3 [ngStyle]="{'display': pasoActual === 2? 'block' : 'none'}"></app-paso3>
     <app-paso4 #paso4 [ngStyle]="{'display': pasoActual === 3? 'block' : 'none'}"></app-paso4>
     <app-paso5 #paso5 [ngStyle]="{'display': pasoActual === 4? 'block' : 'none'}" [datos]="pasarDatos()"></app-paso5>
 </div>
-<div [ngClass]="{'justify-content-center' : pasoActual === 0, 'justify-content-around' : pasoActual != 0 }"class="footer d-flex align-items-center">
+<div [ngClass]="{'justify-content-center' : pasoActual === 0, 'justify-content-around' : pasoActual != 0 }"class="footer container-fluid d-flex align-items-center">
 
-  <button *ngIf="pasoActual != 0" (click)="pasoAnterior()" class="btn"><-</button>
-  <button *ngIf="pasoActual != 4" (click)="proximoPaso()" class="btn">-></button>
+  <button *ngIf="pasoActual != 0" (click)="pasoAnterior()" class="btn"><img class="img-fluid" src="../assets/iconoFlechaBlanco.png"></button>
+  <button *ngIf="pasoActual != 4" (click)="proximoPaso()" class="btn">
+      <div>
+        <img class="img-fluid" src="../assets/iconoFlechaBlanco.png">
+      </div>
+    </button>
 </div>
 
   <div  

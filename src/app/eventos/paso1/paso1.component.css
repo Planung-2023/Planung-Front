@@ -1,14 +1,3 @@
-h1{
-    color: white;
-}
-
-h2{
-    color: rgb(22, 22, 22);
-}
-
-p{
-    color: white;
-}
 
 
 input[type="text"], input[type="date"], input[type="time"]{
@@ -33,7 +22,7 @@ input[type="text"]:focus::placeholder{
     transition: 0.1s;
 }
 #inputText input{
-    width: 90%;
+
     background-color: darkgrey;
     text-align: center;
 
@@ -45,10 +34,8 @@ input[type="date"]::-webkit-calendar-picker-indicator::after,
 }
 
 textarea{
-    width: 90%;
-    height: 100px;
     background-color: darkgrey;
-    text-align: center;
+    resize: none;
 }
 textarea::placeholder{
     color: #000000;
@@ -59,11 +46,4 @@ textarea:focus{
 textarea:focus::placeholder{
     color: rgb(78, 78, 78);
     transition: 0.1s;
-}
-
-
-.box{
-    background: darkgrey;
-    padding-left: 3%;
-    padding-right: 3%;
 }
