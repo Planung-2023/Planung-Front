@@ -52,7 +52,14 @@ export class CrearEventoComponent {
 
   }
 
-
+  pasarDatos(){
+    return {
+      paso1: this.traerDatosPaso1(),
+      paso2: this.traerDatosPaso2(),
+      paso3: this.traerDatosPaso3(),
+      paso4: this.traerDatosPaso4(),
+    }
+  }
   proximoPaso(){
     this.pasos[this.pasoActual].titulo = "";
 
@@ -68,10 +75,16 @@ export class CrearEventoComponent {
     if(this.pasoActual==3){
       this.traerDatosPaso4();
     } 
+    
 
-    if(this.pasoActual < this.ultimoPaso){
+    if(this.pasoActual <= this.ultimoPaso){
       this.pasoActual++;
     }
+
+    if(this.pasoActual === 4) {
+      this.paso5Component?.setDatos(this.pasarDatos());
+    }
+
     this.pasos[this.pasoActual].titulo = this.titulos[this.pasoActual];
   }
 
@@ -82,42 +95,31 @@ export class CrearEventoComponent {
     }
     this.pasos[this.pasoActual].titulo = this.titulos[this.pasoActual];
   }
-
-  dataEvento = {
-    paso1: this.traerDatosPaso1(),
-    paso2: this.traerDatosPaso2(),
-    paso3: this.traerDatosPaso3(),
-    paso4: this.traerDatosPaso4(),
+  paso1(){
+    this.pasos[this.pasoActual].titulo= "Nombre y Fecha";
   }
-  traerDatosPaso1() {
-    if (this.paso1Component) {
-    return this.paso1Component.getDatosPaso1();
-    }
-    else return {};
- }
+
+  
+traerDatosPaso1() {
+  if (this.paso1Component) {
+  return this.paso1Component.getDatosPaso1();
+  }
+  else return {};
+}
 
 traerDatosPaso2(){
-
+  if (this.paso2Component) {
+    return this.paso2Component.getDatosPaso2();
+    }
+    else return {};
 }
-/*
-traerDatosPaso2() {
-  const datosPaso2 = {
-    esFormal: false,
-    esPrivado: false,
-    
-  };
 
-  if (this.pasoActual === 0 && this.paso1Component) {
-  datosPaso2.esFormal = this.paso1Component.dataEvento.nombre || false;
-  datosPaso2.esPrivado = this.paso1Component.dataEvento.fecha || false;
-  }
-
-
-return datosPaso2;
-}*/
 
 traerDatosPaso3(){
-  
+  if (this.paso3Component) {
+    return this.paso3Component.getDatosPaso3();
+    }
+    else return {};
 }
 traerDatosPaso4(){
   

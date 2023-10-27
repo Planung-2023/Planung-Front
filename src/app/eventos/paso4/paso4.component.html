@@ -3,12 +3,20 @@
         <h1 class="tituloAgregarObjetos text-center">Recursos</h1>
         <form class="d-flex justify-content-center">
             <div id="cajaObjetos" class="cajaPrincipal">
-                <h2 id="tituloObjetos" class="text-center">Defina Objetos Necesarios</h2>
+                <h2 id="tituloObjetos" class="text-center">¿Qué vas a necesitar en tu evento?</h2>
+                <div>
+                  <div *ngFor="let recurso of recursos">
+                    <ul>
+                      <li>Tipo recurso: {{ nombreTipoRecursoSegunId(recurso.categoria) }}</li>
+                      <li>Nombre: {{ recurso.nombre }}</li>
+                      <li>Descripción: {{ recurso.descripcion }}</li>
+                      <li>Cantidad: {{ recurso.cantidad }}</li>
+                    </ul>
+                  </div>
+                </div>
                 <div class="d-flex flex-column justify-content-around align-items-center">
-                    <p>Agregar recurso</p>
-                    <input type="text">
-                    
-                    <button (click)="mostrarCardAgregar(contenidoAgregar)">
+                    <p>Agregá un recurso para tu evento</p>
+                    <button class="boton-central" (click)="mostrarCardAgregar(contenidoAgregar)">
                         <img class="btn btn-secondary" src="assets/iconoMas.png">
                     </button>
                 </div>
@@ -18,5 +26,19 @@
 </mat-card>
 
 <ng-template #contenidoAgregar let-modal>
-  <app-visualizar-recurso></app-visualizar-recurso>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Agregar recurso</h5>
+      <button type="button" class="btn close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-crear-recurso #componenteCrearRecurso [tiposDeRecursos]="tiposDeRecursos"></app-crear-recurso>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary-inverse" (click)='modal.dismiss()'>Cerrar</button>
+      <button class="btn btn-primary" (click)='modal.close(componenteCrearRecurso)'>Agregar recurso</button>
+    </div>
+  </div>
 </ng-template>

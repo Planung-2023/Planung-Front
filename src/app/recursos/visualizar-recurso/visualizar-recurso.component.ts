@@ -5,6 +5,7 @@ import { RecursoService } from '../recurso.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotificacionGuardadoComponent } from './notificacion-guardado/notificacion-guardado.component';
 
+
 @Component({
   selector: 'app-visualizar-recurso',
   templateUrl: './visualizar-recurso.component.html',

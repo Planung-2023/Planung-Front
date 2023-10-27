@@ -12,7 +12,7 @@
                             <p id="nombreEvento">Nombre</p>
                         </div>
                         <div class="col-6">
-                            <p id="placeholder">[Nombre]</p>
+                            <p id="placeholder"> {{ datos?.paso1?.nombre }}</p>
                         </div>
                         <div class="col-1" style="margin-top: 7px;">
                             <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
@@ -28,23 +28,26 @@
                             <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="calendar_month"></mat-icon>
                         </div>
                         <div class="col-5">
-                            <p id="placeholder">[Fecha]</p>
+                            <p id="placeholder">{{ datos?.paso1?.fecha }}</p>
                         </div>
                         <div class="col-1">
-                            <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                            <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit" routerLink="/eventos"></mat-icon></button>
                         </div>
                     </div>
 
                     <!--Hora-->
                     <div class="row col-md-12">
                         <div class="col-4">
-                            <p id="nombreEvento">Fecha</p>
+                            <p id="nombreEvento">Hora</p>
                         </div>
                         <div class="col-2" id="icon">
                             <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="calendar_month"></mat-icon>
                         </div>
-                        <div class="col-5">
-                            <p id="placeholder">[Hora Ini]</p>
+                        <div class="col-5" *ngIf="!datos?.paso1?.todoElDia">
+                            <p id="placeholder">{{ datos?.paso1?.horaInicio }}</p>
+                        </div>
+                        <div class="col-5" *ngIf="!datos?.paso1?.todoElDia==false">
+                            <p id="placeholder">Todo el Día</p>
                         </div>
                         <div class="col-1">
                             <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
@@ -53,8 +56,8 @@
 
                     <!-- Hora Fin -->
                     <div class="row">
-                        <div class="col-5 offset-6">
-                            <p id="horaFin">[Hora Fin]</p>
+                        <div class="col-5 offset-6" *ngIf="!datos?.paso1?.todoElDia">
+                            <p id="horaFin">{{ datos?.paso1?.horaFin }}</p>
                         </div>
                     </div>
 
@@ -64,7 +67,7 @@
                             <p id="nombreEvento">Tipo de Evento</p>
                         </div>
                         <div class="col-5">
-                            <p id="placeholder">[Tipo Evento]</p>
+                            <p id="placeholder">{{ datos?.paso2?.tipoEvento}}</p>
                         </div>
                         <div class="col-1" style="margin-top: 7px;">
                             <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
@@ -77,7 +80,7 @@
                             <p id="nombreEvento">Tipo de Invitación</p>
                         </div>
                         <div class="col-5">
-                            <p id="placeholder">[Tipo Inv]</p>
+                            <p id="placeholder">{{ datos?.paso2?.tipoInvitacion }}</p>
                         </div>
                         <div class="col-1" style="margin-top: 7px;">
                             <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
@@ -90,7 +93,7 @@
                             <p id="nombreEvento">Ubicacion</p>
                         </div>
                         <div class="col-7">
-                            <p id="placeholder">[Ubicacion]</p>
+                            <p id="placeholder">Mostrar Mapa</p>
                         </div>
                         <div class="col-1" style="margin-top: 7px;">
                             <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
@@ -103,7 +106,7 @@
                             <p id="nombreEvento">Objetos</p>
                         </div>
                         <div class="col-7">
-                            <p id="placeholder">[Desplegable]</p>
+                            <p id="placeholder">[Lista de elementos]</p>
                         </div>
                         <div class="col-1" style="margin-top: 7px;">
                             <button id="editar"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>

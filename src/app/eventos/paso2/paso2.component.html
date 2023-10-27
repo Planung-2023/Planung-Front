@@ -9,14 +9,14 @@
                     <div class="toggle-btn" id="informal">
                         <p class="text-center">Informal</p>
                         <label class="d-flex align-items-center justify-content-around">
-                            <input type="radio" name="formalOInformal" id="informal" value="informal">
+                            <input type="radio" name="formalOInformal" id="informal" value="Informal" (change)="actualizarTipoEvento($event)" checked>
                             <i class="bi bi-balloon-fill text-center"></i>
                         </label>
                     </div>
                     <div class="toggle-btn" id="formal">
                         <p class="text-center">Formal</p>
                         <label class="d-flex align-items-center justify-content-around">
-                            <input type="radio" name="formalOInformal" id="formal" value="formal">
+                            <input type="radio" name="formalOInformal" id="formal" value="Formal" (change)="actualizarTipoEvento($event)">
                             <i class="bi bi-briefcase-fill text-center"></i>
                         </label>
                     </div>
@@ -27,14 +27,14 @@
                     <div class="toggle-btn" id="directa">
                         <p class="text-center">Directa</p>
                         <label class="d-flex align-items-center justify-content-around">
-                            <input type="radio" name="tipoInvitacion" id="directa" value="directa">
+                            <input type="radio" name="tipoInvitacion" id="directa" value="Directa" (change)="actualizarTipoInvitacion($event)" checked>
                             <i class="bi bi-unlock-fill text-center"></i>
                         </label>
                     </div>
                     <div class="toggle-btn" id="porAprobacion">
                         <p class="text-center">Por Aprobacion</p>
                         <label class="d-flex align-items-center justify-content-around">
-                            <input type="radio" name="tipoInvitacion" id="porAprobacion" value="porAprobacion">
+                            <input type="radio" name="tipoInvitacion" id="porAprobacion" value="Por Aprobación" (change)="actualizarTipoInvitacion($event)">
                             <i class="bi bi-lock-fill text-center"></i>
                         </label>
                     </div>

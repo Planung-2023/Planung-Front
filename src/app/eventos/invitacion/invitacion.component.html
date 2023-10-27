@@ -1,0 +1,15 @@
+<div class="popup-invitacion-container" *ngIf="invitacionControlService.isVisible">
+  <div class="col-10 justify-content-center">
+    <div class="popup-content justify-content-center text-center">
+      <h2>Copia y envía el siguiente link a las personas que quieres que se unan al evento</h2>
+      <div class="imagen-cadena justify-content-center text-center" style="margin-left: 30px;">
+        <a>
+          <img #imgElement src="assets/cadena.png" class="img-fluid" data-link="https://boulderbugle.com/linkdeejemplo-kqlwf7fb">
+        </a>
+      </div>
+      <div class="text-center cerrarBtn">
+        <button (click)="closePopup()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -19,6 +19,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InvitacionComponent } from './invitacion/invitacion.component';
+import { InvitadosComponent } from './invitados/invitados.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     Paso3Component,
     Paso4Component,
     Paso5Component,
-    ListaEventosComponent
+    ListaEventosComponent,
+    InvitacionComponent,
+    InvitadosComponent
   ],
   imports: [
     CommonModule,

@@ -8,21 +8,19 @@
     z-index: 2;
 }
 .body-evento{
-left: 0;
-height: 100%;
-width: 100%;
-z-index: 1;
-background: #3a3a3a;
-.body{
+    left: 0;
+    z-index: 1;
     background: #3a3a3a;
-    padding-top: 15%;
-    padding-bottom: 30%;
-    height: 100%;
-    border-bottom: none;
-   .cajaPrincipal{
-    background: #5a5a5a;
-    border-radius: 10px;
-} 
+    white-space: nowrap;
+    .body{
+        background: #3a3a3a;
+        padding-top: 15%;
+        padding-bottom: 30%;
+        border-bottom: none;
+        .cajaPrincipal{
+        background: #5a5a5a;
+        border-radius: 10px;
+    } 
 }
 
 }

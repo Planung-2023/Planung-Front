@@ -70,6 +70,10 @@ ngOnInit() {
 
 }
 getDatosPaso1(){
+  if(this.dataEvento.todoElDia == true){
+    this.dataEvento.horaInicio = '';
+    this.dataEvento.horaFin = null!;
+  }
   return this.dataEvento
 }
 }
