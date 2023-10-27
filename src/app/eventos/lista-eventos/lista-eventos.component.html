@@ -85,10 +85,14 @@
               </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-panel-description>
-              <ul class="col-12 justify-content-evenly">
+              <div class="invitados-container">
+              <ul class="col-12 justify-content-around">
                 <li>
-                  <div class="participante-container">
-                    <span>[Pablo Oscar Martínez de la Cruz]</span>
+                  <div class="participante-container1">
+                    <!-- haha funny name chimichanga            
+                    <span>[Pablo Oscar Martínez López de la Cruz Hernández del Corazón Sagrado de Jesús Tortilla García Flores Nacho Taco Rosas Chimichanga Rodríguez]</span>
+                    -->
+                    <span>[Pablo Martinez de la Rosa de Guadalupe Hernández]</span>
                     <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado()">
                       <mat-icon>visibility</mat-icon>
                     </button>
@@ -118,7 +122,24 @@
                     </button>
                   </div>
                 </li>
+                <li> 
+                  <div class="participante-container">
+                    <span>[Invitado_5]</span>
+                    <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado()">
+                      <mat-icon>visibility</mat-icon>
+                    </button>
+                  </div>
+                </li>
+                <li>
+                  <div class="participante-container">
+                    <span>[Invitado_6]</span>
+                    <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado()">
+                      <mat-icon>visibility</mat-icon>
+                    </button>
+                  </div>
+                </li>
               </ul>
+            </div>
             </mat-panel-description>
             <!-- Solo deberia aparecer en casos especificos -->
             <div class="col-md-12 text-center">

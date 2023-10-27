@@ -193,8 +193,10 @@ body {
 }
 
 mat-panel-description{
-  padding: 10px;
   padding-top: 4%;
+  max-height: 200px;
+  max-width: 400px;
+  overflow: auto;
 }
 
 .mat-expanded .mat-expansion-panel-header {
@@ -271,6 +273,7 @@ mat-panel-description{
 .invitarBtn{
   padding: 12px;
   margin-bottom: 20px;
+  margin-top:20px;
   border-radius: 10px;
   background-color: red;
   color: white;
@@ -279,6 +282,13 @@ mat-panel-description{
 }
 
 .participante-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.participante-container1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -296,6 +306,8 @@ mat-panel-description{
   font-size: 20px;
 }
 
-.mat-expansion-panel-body{
-  overflow-y: scroll;
+.invitados-container{
+  margin-top: 40%;
+  margin-bottom: 10px;
+  overflow: auto;
 }

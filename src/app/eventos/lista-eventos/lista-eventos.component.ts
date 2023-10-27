@@ -4,6 +4,7 @@ import Swiper from 'swiper';
 import { ListaEventosService } from '../lista-eventos.service';
 import { InvitacionControlService } from '../invitacion-control.service';
 import { InvitadosControlService } from '../invitados-control.service';
+import {HttpClient} from '@angular/common/http';
 import { Time } from '@angular/common';
 
 @Component({
@@ -12,12 +13,13 @@ import { Time } from '@angular/common';
   styleUrls: ['./lista-eventos.component.css']
 })
 export class ListaEventosComponent implements OnInit {
-  eventos: Evento[] = [];
+  eventos: any[] = [];
   recursos: Recurso[] = [];
   mostrarPopupInvitados = false;
 
   constructor(
     private router: Router,
+    private http: HttpClient,
     private listaEventosService: ListaEventosService,
     private invitacionControlService: InvitacionControlService,
     private invitadosControlService: InvitadosControlService // Inyecta el servicio de invitados
