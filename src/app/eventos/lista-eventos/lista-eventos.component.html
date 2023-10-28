@@ -37,7 +37,7 @@
           </div>
           <p><strong>Organizador:</strong> {{ evento.creador }}</p>
           <p><strong>Fecha:</strong> {{ evento.fechaHora | date : 'dd MMM yyyy'}}</p>
-          <p><strong>Hora:</strong> {{ evento.hora }}</p>
+          <p><strong>Hora:</strong> {{ evento.hora | date: 'HH:mm:ss' }}</p>
           <p><strong>Tipo de evento:</strong> {{ evento.tipoEvento }}</p>
           <mat-expansion-panel *ngIf="evento.ubicacion != null">
             <mat-expansion-panel-header>
@@ -86,68 +86,26 @@
             </mat-expansion-panel-header>
             <mat-panel-description>
               <div class="invitados-container">
-              <ul class="col-12 justify-content-around">
-                <li>
-                  <div class="participante-container1">
-                    <!-- haha funny name chimichanga            
-                    <span>[Pablo Oscar Martínez López de la Cruz Hernández del Corazón Sagrado de Jesús Tortilla García Flores Nacho Taco Rosas Chimichanga Rodríguez]</span>
-                    -->
-                    <span>[Pablo Martinez de la Rosa de Guadalupe Hernández]</span>
-                    <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado()">
-                      <mat-icon>visibility</mat-icon>
-                    </button>
-                  </div>
-                </li>
-                <li>
-                  <div class="participante-container">
-                    <span>[Invitado_2]</span>
-                    <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado()">
-                      <mat-icon>visibility</mat-icon>
-                    </button>
-                  </div>
-                </li>
-                <li>
-                  <div class="participante-container">
-                    <span>[Invitado_3]</span>
-                    <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado()">
-                      <mat-icon>visibility</mat-icon>
-                    </button>
-                  </div>
-                </li>
-                <li>
-                  <div class="participante-container">
-                    <span>[Invitado_4]</span>
-                    <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado()">
-                      <mat-icon>visibility</mat-icon>
-                    </button>
-                  </div>
-                </li>
-                <li> 
-                  <div class="participante-container">
-                    <span>[Invitado_5]</span>
-                    <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado()">
-                      <mat-icon>visibility</mat-icon>
-                    </button>
-                  </div>
-                </li>
-                <li>
-                  <div class="participante-container">
-                    <span>[Invitado_6]</span>
-                    <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado()">
-                      <mat-icon>visibility</mat-icon>
-                    </button>
-                  </div>
-                </li>
-              </ul>
-            </div>
+                <ul class="col-12 justify-content-around">
+                  <li *ngFor="let invitado of evento.invitados">
+                    <div class="participante-container">
+                      <span>{{ invitado.nombre }}</span>
+                      <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado(invitado.nombre)">
+                        <mat-icon>visibility</mat-icon>
+                      </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </mat-panel-description>
-            <!-- Solo deberia aparecer en casos especificos -->
+            <!-- Solo debería aparecer en casos específicos -->
             <div class="col-md-12 text-center">
               <button (click)="showPopup()" class="invitarBtn">
                 Invitar
               </button>
             </div>
           </mat-expansion-panel>
+          
         </div>
       </div>
     </ng-template>

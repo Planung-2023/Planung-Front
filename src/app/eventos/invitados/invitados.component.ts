@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { InvitadosControlService } from '../invitados-control.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { InvitadosControlService } from '../invitados-control.service';
 })
 export class InvitadosComponent {
   mostrarPopupInvitado = false;
+  @Input() invitadoNombre: string = '';
 
   constructor(public invitadosControlService: InvitadosControlService) {}
 

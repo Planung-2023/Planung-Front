@@ -5,7 +5,6 @@ import { ListaEventosService } from '../lista-eventos.service';
 import { InvitacionControlService } from '../invitacion-control.service';
 import { InvitadosControlService } from '../invitados-control.service';
 import {HttpClient} from '@angular/common/http';
-import { Time } from '@angular/common';
 
 @Component({
   selector: 'app-lista-eventos',
@@ -13,16 +12,18 @@ import { Time } from '@angular/common';
   styleUrls: ['./lista-eventos.component.css']
 })
 export class ListaEventosComponent implements OnInit {
+  invitadoSeleccionado: string = '';
   eventos: any[] = [];
   recursos: Recurso[] = [];
   mostrarPopupInvitados = false;
+  invitadosComponent: any;
 
   constructor(
     private router: Router,
     private http: HttpClient,
     private listaEventosService: ListaEventosService,
     private invitacionControlService: InvitacionControlService,
-    private invitadosControlService: InvitadosControlService // Inyecta el servicio de invitados
+    private invitadosControlService: InvitadosControlService
   ) {}
 
   // Método para mostrar el popup
@@ -30,8 +31,14 @@ export class ListaEventosComponent implements OnInit {
     this.invitacionControlService.showPopup();
   }
 
-  showPopupInvitado() {
+  showPopupInvitado(nombreInvitado: string) {
+    this.invitadoSeleccionado = nombreInvitado;
+    this.invitadosControlService.invitadoNombre = nombreInvitado;
     this.invitadosControlService.showPopupInvitado();
+  }
+
+  mostrarInvitado(nombreInvitado: string) {
+    this.invitadoSeleccionado = nombreInvitado;
   }
 
 
@@ -55,11 +62,12 @@ export class ListaEventosComponent implements OnInit {
     });
   }
 
+  
   private mockearEventos() {
     this.eventos = [
-      { id: 1, nombre: 'Reunión Bayer', fechaHora: new Date(2023, 8, 18), hora: {hours: 10, minutes: 30}, ubicacion: 'Malvinas Argentinas 568, Caballito', tipoEvento: 'Formal', creador: 'German Sánchez', calle: 'Malvinas Argentinas', altura: 568 },
-      { id: 2, nombre: 'Charla Siemens', fechaHora: new Date(2023, 10, 4), hora: {hours: 15, minutes: 0}, ubicacion: 'Aviador Matienzo 2026, Ciudad jardin', tipoEvento: 'Formal', creador: 'Andrea Fernandez', calle: 'Av. Rivadavia', altura: 656 },
-      { id: 3, nombre: 'Cumpleaños Lucas', fechaHora: new Date(2023, 6, 25), hora: {hours: 22, minutes: 0}, ubicacion: 'Padre Vanini 1490, El Palomar', tipoEvento: 'Informal', creador: 'Lucas Espinoza', calle: 'Av. Rivadavia', altura: 656 }
+      { id: 1, nombre: 'Reunión Bayer', fechaHora: new Date(2023, 8, 18), hora: new Date(2023, 8, 18, 10, 22, 0), ubicacion: 'Malvinas Argentinas 568, Caballito', tipoEvento: 'Formal', creador: 'German Sánchez', calle: 'Malvinas Argentinas', altura: 568, invitados: [{ nombre: 'Jorge López' }, { nombre: 'Juancho De Los Bosques' }, { nombre: 'Ramiro Causa' }, { nombre: 'Nelson Mandela' }, { nombre: 'Luciano De Los Pantanos' }, { nombre: 'Juanjo De Berazategui' }, { nombre: 'El_OppenJaime' } ] },
+      { id: 2, nombre: 'Charla Siemens', fechaHora: new Date(2023, 10, 4), hora: new Date(2023, 8, 18, 10, 22, 0), ubicacion: 'Aviador Matienzo 2026, Ciudad jardin', tipoEvento: 'Formal', creador: 'Andrea Fernandez', calle: 'Av. Rivadavia', altura: 656, invitados: [{ nombre: 'Jorge López' }, { nombre: 'Juancho De Los Bosques' }]},
+      { id: 3, nombre: 'Cumpleaños Lucas', fechaHora: new Date(2023, 6, 25), hora: new Date(2023, 8, 18, 10, 22, 0), ubicacion: 'Padre Vanini 1490, El Palomar', tipoEvento: 'Informal', creador: 'Lucas Espinoza', calle: 'Av. Rivadavia', altura: 656, invitados: [{ nombre: 'Jorge López' }, { nombre: 'Juancho De Los Bosques' }] }
     ];
 
     this.recursos = [
@@ -67,7 +75,10 @@ export class ListaEventosComponent implements OnInit {
       {id: 2, cantidadActual: 8, cantidadNecesaria:8, descripcion: 'Silla o banqueta, informar elección.', nombre: 'Silla'},
       {id: 3, cantidadActual: 0, cantidadNecesaria:1, descripcion: 'Parlante grande para exterior, no traer portatil.', nombre: 'Parlantes'},
     ];
+
   }
+
+  
 
   redireccionarCrearEvento(): void {
     this.router.navigate(['/eventos', 'crear']);
@@ -96,11 +107,12 @@ interface Evento {
   nombre: string;
   creador: string;
   fechaHora: Date;
-  hora: Time;
+  hora: Date;
   ubicacion: string;
   calle: string;
   altura: number;
   tipoEvento: string;
+  invitados: { nombre: string }[];
 }
 
 interface Recurso {
@@ -110,5 +122,3 @@ interface Recurso {
   descripcion: string;
   nombre: string;
 }
-
-
