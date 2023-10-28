@@ -15,7 +15,6 @@ export class VisualizarRecursoComponent implements OnInit {
   public selectedObjectType: Categoria | undefined;
   public objectTypes: Categoria[] = [];
   recurso: Recurso;
-  responsables: Responsable[] = [];
   isFlipped: boolean = false;
   descripcion: string = '';
   panelAbierto: string = 'todos';
@@ -23,6 +22,10 @@ export class VisualizarRecursoComponent implements OnInit {
   selectedColor: string | null = '#ef7d16';
   selectedColorClass: string = '#ef7d16';
   categoria: Categoria | undefined;
+  asignaciones: Asignaciones[] = [];
+  asistente: Asistente | undefined;
+  participante: Participante | undefined;
+  rol: Rol |undefined;
 
   constructor(
     private router: Router,
@@ -49,6 +52,12 @@ export class VisualizarRecursoComponent implements OnInit {
       complete: () => {},
     });
 
+    this.RecursoService.getAsignacionesByRecursoId(this.recurso.id).subscribe(
+      (info: Asignaciones[]|any) => {
+        this.asignaciones = info;
+        console.log(this.asignaciones);
+      }
+    );
 
     this.RecursoColorPickerService.getSelectedColor().subscribe((color) => {
       this.selectedColor = color;
@@ -59,20 +68,11 @@ export class VisualizarRecursoComponent implements OnInit {
       (data: Categoria) => {
         this.categoria = data;
         this.selectObjectType(this.categoria);
-        console.log(this.selectedObjectType);
-        console.log(this.selectedColor);
       }
     );
 
     this.selectedColor = this.recurso.colorTarjeta;
     this.selectedColorClass = this.getColorClass(this.recurso.colorTarjeta);
-
-    this.responsables = [
-      { id: 1, nombre: 'Juan', cantidad: 2 },
-      { id: 2, nombre: 'Bruno', cantidad: 1 },
-      { id: 3, nombre: 'Pedro', cantidad: 1 },
-      { id: 4, nombre: 'Daniel', cantidad: 2 }
-    ];
   }
 
   getCantidadTotal(): number {
@@ -102,7 +102,19 @@ export class VisualizarRecursoComponent implements OnInit {
 
   selectObjectType(type: Categoria) {
     this.selectedObjectType = type;
-    //Agregar metodo put
+  
+    const eventoId = this.recurso.eventoId;
+    const categoria = type.id;
+  
+    this.RecursoService.actualizarCategoriaRecurso(eventoId,this.recurso.id, categoria).subscribe(
+      (response) => {
+        console.log('Recursos actualizados con éxito', response);
+      },
+      (error) => {
+        console.error('Error al actualizar los recursos', error);
+      }
+    );
+  
     this.mostrarMensajeGuardadoExitoso();
   }
 
@@ -153,12 +165,6 @@ export class VisualizarRecursoComponent implements OnInit {
   }
 }
 
-interface Responsable {
-  id: number;
-  nombre: string;
-  cantidad: number;
-}
-
 interface Recurso {
   id: number;
   nombre: string;
@@ -177,4 +183,31 @@ interface Categoria {
   id: number;
   nombre: string;
   icono: string;
+}
+
+interface Asignaciones {
+  id: number;
+  asistente: Asistente;
+  cantidad: number;
+  comentarios: string;
+  fechaHora: Date;
+}
+
+interface Asistente {
+  id: number;
+  activo: boolean;
+  participante: Participante;
+  rol: Rol;
+}
+
+interface Participante{
+  id: number;
+  apellido: string
+  mail: string;
+  nombre:string;
+}
+
+interface Rol{
+  id: number;
+  nombre: string;
 }

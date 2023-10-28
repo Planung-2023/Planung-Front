@@ -21,10 +21,31 @@ export class RecursoService {
   constructor(private http: HttpClient) { }
 
   getCategoriaByRecurso(idRecurso: number): Observable<any> {
-    return  this.http.get(`${ environment.url }/recursos/${idRecurso}/categorias`);
+    return this.http.get(`${ environment.url }/recursos/${idRecurso}/categorias`);
   }
 
   public tiposDeRecursos() {
     return this.http.get(`${ environment.url }/recursos/categorias`);
+  }
+
+  public getAsignacionesByRecursoId(idRecurso: number) {
+    return this.http.get(`${ environment.url }/recursos/${idRecurso}/asignaciones`);
+  }
+
+  actualizarRecurso(eventoId: number, data: any) {
+    const url = `${environment.url}/eventos/${eventoId}/recursos`;
+    return this.http.patch(url, data);
+  }
+
+  actualizarCategoriaRecurso(eventoId: number,idRecurso: number, categoria: number) { //cambia todos los recursos, se necesitaría que se cambie el recurso con la id dada
+    const url = `${environment.url}/eventos/${eventoId}/recursos`;
+    const data = {"recursos":[
+      {
+        "id": idRecurso,
+        "categoria": categoria,
+      }
+    ]
+  }
+    return this.http.put(url, data);
   }
 }

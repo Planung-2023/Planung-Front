@@ -49,7 +49,9 @@
 }
 
 .flip-card-front h2 {
-  padding-left: 15px;
+  text-align: center;
+  font-size: 35px;
+  margin-bottom: 32px;
 }
 
 .flip-card-back {
@@ -82,8 +84,16 @@
   padding-left: 15px;
 }
 
-.icono-cocaCola {
-  margin: 50px 95px 25px;
+.icono-Recurso {
+  margin: 50px 105px 25px;
+  width: 90px;
+  height: 90px;
+}
+
+.icono-Recurso-bebida{
+  margin: 50px 125px 25px;
+  width: 60px;
+  height: 90px;
 }
 
 .tipo-recurso {
@@ -98,9 +108,7 @@
 }
 
 .cumpleCantidad {
-  padding-left: 15px;
-  display: flex;
-  align-items: center;
+  text-align: center;
 }
 
 .cumpleCantidad p {
