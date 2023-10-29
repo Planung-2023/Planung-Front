@@ -37,11 +37,10 @@ export class RecursoService {
     return this.http.patch(url, data);
   }
 
-  actualizarCategoriaRecurso(eventoId: number,idRecurso: number, categoria: number) { //cambia todos los recursos, se necesitaría que se cambie el recurso con la id dada
-    const url = `${environment.url}/eventos/${eventoId}/recursos`;
+  actualizarCategoriaRecurso(eventoId: number | undefined,idRecurso: number, categoria: number) { //cambia todos los recursos, se necesitaría que se cambie el recurso con la id dada
+    const url = `${environment.url}/eventos/${eventoId}/recursos/${idRecurso}`;
     const data = {"recursos":[
       {
-        "id": idRecurso,
         "categoria": categoria,
       }
     ]

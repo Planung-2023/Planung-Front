@@ -195,10 +195,10 @@ interface Creador{
 }
 
 interface ubicacion{
-  "id": number,
-  "calle": string,
-  "altura": number,
-  "localidad": string,
-  "latitud": number,
-  "longitud": number
+  id: number,
+  calle: string,
+  altura: number,
+  localidad: string,
+  latitud: number,
+  longitud: number
 }

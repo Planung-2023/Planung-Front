@@ -15,6 +15,7 @@ export class VisualizarRecursoComponent implements OnInit {
   public selectedObjectType: Categoria | undefined;
   public objectTypes: Categoria[] = [];
   recurso: Recurso;
+  evento: Evento | undefined;
   isFlipped: boolean = false;
   descripcion: string = '';
   panelAbierto: string = 'todos';
@@ -102,11 +103,11 @@ export class VisualizarRecursoComponent implements OnInit {
   selectObjectType(type: Categoria) {
     this.selectedObjectType = type;
   
-    const eventoId = this.recurso.eventoId;
+    const eventoId = this.evento?.id;
     const recursoId = this.recurso.id;
     const categoria = type.id;
   
-    this.RecursoService.actualizarCategoriaRecurso(1,recursoId, categoria).subscribe(
+    this.RecursoService.actualizarCategoriaRecurso(eventoId,recursoId, categoria).subscribe(
       (response) => {
         console.log('Recursos actualizados con éxito', response);
       },
@@ -175,8 +176,12 @@ interface Recurso {
   proveedor: string;
   recursoCategoriaId: number;
   colorTarjeta: string;
-  eventoId: number;
+  evento: Evento;
   categoria: Categoria;
+}
+
+interface Evento {
+  id: number;
 }
 
 interface Categoria {
