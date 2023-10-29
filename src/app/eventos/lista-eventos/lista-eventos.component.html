@@ -35,9 +35,9 @@
           <div class="titulo-container">
             <p class="titulo-evento">{{ evento.nombre }}</p>
           </div>
-          <p><strong>Organizador:</strong> {{ evento.creador }}</p>
+          <p><strong>Organizador:</strong> {{ evento.creador.nombreUsuario }}</p>
           <p><strong>Fecha:</strong> {{ evento.fechaHora | date : 'dd MMM yyyy'}}</p>
-          <p><strong>Hora:</strong> {{ evento.hora | date: 'HH:mm:ss' }}</p>
+          <p><strong>Hora:</strong> {{ evento.fechaHora | date : 'h:mm a' }}</p>
           <p><strong>Tipo de evento:</strong> {{ evento.tipoEvento }}</p>
           <mat-expansion-panel *ngIf="evento.ubicacion != null">
             <mat-expansion-panel-header>
@@ -47,9 +47,9 @@
             </mat-expansion-panel-header>
             <mat-panel-description>
               <ul class="col-md-12">
-                <li>Ubicación: {{ evento.ubicacion }}</li>
-                <li>Calle: {{ evento.calle}}</li>
-                <li>Altura: {{evento.altura}}</li>
+                <li>Localidad: {{ evento.ubicacion.localidad }}</li>
+                <li>Calle: {{ evento.ubicacion.calle}}</li>
+                <li>Altura: {{evento.ubicacion.altura}}</li>
               </ul>
               <!--
               {{ evento.ubicacion + ' ' + evento.calle + ' '+ evento.altura}}
