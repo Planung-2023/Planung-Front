@@ -55,7 +55,6 @@ export class VisualizarRecursoComponent implements OnInit {
     this.RecursoService.getAsignacionesByRecursoId(this.recurso.id).subscribe(
       (info: Asignaciones[]|any) => {
         this.asignaciones = info;
-        console.log(this.asignaciones);
       }
     );
 
@@ -67,7 +66,7 @@ export class VisualizarRecursoComponent implements OnInit {
     this.RecursoService.getCategoriaByRecurso(this.recurso.id).subscribe(
       (data: Categoria) => {
         this.categoria = data;
-        this.selectObjectType(this.categoria);
+        this.selectedObjectType = this.categoria;
       }
     );
 
@@ -104,9 +103,10 @@ export class VisualizarRecursoComponent implements OnInit {
     this.selectedObjectType = type;
   
     const eventoId = this.recurso.eventoId;
+    const recursoId = this.recurso.id;
     const categoria = type.id;
   
-    this.RecursoService.actualizarCategoriaRecurso(eventoId,this.recurso.id, categoria).subscribe(
+    this.RecursoService.actualizarCategoriaRecurso(1,recursoId, categoria).subscribe(
       (response) => {
         console.log('Recursos actualizados con éxito', response);
       },

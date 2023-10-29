@@ -195,7 +195,21 @@ body {
 mat-panel-description{
   padding: 10px;
   padding-top: 4%;
+  display: inline;
 }
+
+.map-link {
+  display: flex;
+  align-items: center;
+  text-decoration: underline;
+  cursor: pointer;
+  color: #000;
+}
+
+.mat-icon-map {
+  margin-right: 5px;
+}
+
 
 .mat-expanded .mat-expansion-panel-header {
   background-color: #262626;

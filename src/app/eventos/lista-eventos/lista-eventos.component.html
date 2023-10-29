@@ -30,6 +30,8 @@
     </div>
 
     <ng-template #eventosLista>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvpyvaW8UylnXWof2sdHjfObxsbNuBZIE"></script>
+
       <div class="swiper-wrapper">
         <div class="swiper-slide" *ngFor="let evento of eventos">
           <div class="titulo-container">
@@ -47,15 +49,14 @@
             </mat-expansion-panel-header>
             <mat-panel-description>
               <ul class="col-md-12">
-                <li>Calle: {{ evento.ubicacion.calle}}</li>
-                <li>Altura: {{evento.ubicacion.altura}}</li>
+                <li>Calle: {{ evento.ubicacion.calle }}</li>
+                <li>Altura: {{ evento.ubicacion.altura }}</li>
               </ul>
-              <!--
-              {{ evento.ubicacion + ' ' + evento.calle + ' '+ evento.altura}}
-              -->
+              <a class="map-link" (click)="openMapDialog()">
+                <mat-icon class="mat-icon-map">map</mat-icon> Mostrar ubicación en el mapa
+              </a>
             </mat-panel-description>
           </mat-expansion-panel>
-
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>

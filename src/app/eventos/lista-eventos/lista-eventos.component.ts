@@ -5,6 +5,9 @@ import { ListaEventosService } from '../lista-eventos.service';
 import { InvitacionControlService } from '../invitacion-control.service';
 import { InvitadosControlService } from '../invitados-control.service';
 import { Time } from '@angular/common';
+import {} from 'googlemaps';
+import { MatDialog } from '@angular/material/dialog';
+import { MapDialogComponent } from './map-dialog/map-dialog.component';
 
 @Component({
   selector: 'app-lista-eventos',
@@ -14,13 +17,25 @@ import { Time } from '@angular/common';
 export class ListaEventosComponent implements OnInit {
   eventos: Evento[] = [];
   recursos: Recurso[] = [];
+  mostrarMapa: boolean = false;
   mostrarPopupInvitados = false;
-
+  apiLoaded: boolean = true;
+  display: any;
+  position = {lat: -34.598613, lng: -58.415632}
+  label = {
+    color: "red",
+    text: "marcador",
+  }
+  options: google.maps.MapOptions = {
+    center: this.position,
+    zoom: 15,
+  };
   constructor(
     private router: Router,
     private listaEventosService: ListaEventosService,
     private invitacionControlService: InvitacionControlService,
-    private invitadosControlService: InvitadosControlService // Inyecta el servicio de invitados
+    private invitadosControlService: InvitadosControlService,
+    private dialog: MatDialog,
   ) {}
 
   // Método para mostrar el popup
@@ -105,6 +120,40 @@ export class ListaEventosComponent implements OnInit {
   visualizarRecurso(evento: any, recurso: Recurso): void {
     this.router.navigate(['/eventos', evento.id, 'recursos', recurso.id ], { state: { recurso: recurso } });
   }
+
+  moveMap(event: google.maps.MapMouseEvent) {
+    if (event.latLng != null){
+      this.position = (event.latLng.toJSON()); //Obtenes las coordenadas donde ocurrió el evento del click
+      const coordenadas = event.latLng.toJSON(); // Obtenes las coordenadas en formato JSON
+      this.dataEvento.latitud = coordenadas.lat;
+      this.dataEvento.longitud = coordenadas.lng;
+    }
+    console.log(this.dataEvento);
+}
+
+dataEvento = {
+  latitud: -34.598613,
+  longitud: -58.415632,
+}
+
+verMapa() {
+  this.mostrarMapa = true;
+}
+
+volverAtras() {
+  this.mostrarMapa = false;
+}
+
+openMapDialog() {
+  const dialogRef = this.dialog.open(MapDialogComponent, {
+    width: '80%',
+    height: '40%',
+    data: {
+      position: this.position,
+      options: this.options,
+    },
+  });
+}
 }
 
 //Agregado para pruebas
@@ -146,10 +195,10 @@ interface Creador{
 }
 
 interface ubicacion{
-  "id": 2,
-  "calle": "Av. Nazca",
-  "altura": 2500,
-  "localidad": "C.A.B.A.",
-  "latitud": 30,
-  "longitud": 30
+  "id": number,
+  "calle": string,
+  "altura": number,
+  "localidad": string,
+  "latitud": number,
+  "longitud": number
 }

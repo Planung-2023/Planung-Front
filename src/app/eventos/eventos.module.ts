@@ -21,6 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InvitacionComponent } from './invitacion/invitacion.component';
 import { InvitadosComponent } from './invitados/invitados.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MapDialogComponent } from './lista-eventos/map-dialog/map-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { InvitadosComponent } from './invitados/invitados.component';
     Paso5Component,
     ListaEventosComponent,
     InvitacionComponent,
-    InvitadosComponent
+    InvitadosComponent,
+    MapDialogComponent
   ],
   imports: [
     CommonModule,
@@ -41,6 +44,7 @@ import { InvitadosComponent } from './invitados/invitados.component';
     ReactiveFormsModule,
     EventosRoutingModule,
     NzStepsModule,
+    MatDialogModule,
     MatExpansionModule,
     MatCardModule,
     MatIconModule,
