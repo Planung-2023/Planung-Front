@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Subject } from 'rxjs';
+import { Recurso } from './visualizar-recurso/visualizar-recurso.component';
 
 @Injectable({
   providedIn: 'root'
@@ -32,18 +33,18 @@ export class RecursoService {
     return this.http.get(`${ environment.url }/recursos/${idRecurso}/asignaciones`);
   }
 
-  actualizarRecurso(eventoId: number, data: any) {
-    const url = `${environment.url}/eventos/${eventoId}/recursos`;
-    return this.http.patch(url, data);
-  }
-
-  actualizarCategoriaRecurso(eventoId: number | undefined,idRecurso: number, categoria: number) { //cambia todos los recursos, se necesitaría que se cambie el recurso con la id dada
-    const url = `${environment.url}/eventos/${eventoId}/recursos/${idRecurso}`;
-    const data = {"recursos":[
+  actualizarRecurso(eventoId: number | undefined, recurso: Recurso) {
+    const url = `${environment.url}/eventos/${eventoId}/recursos/${recurso.id}`;
+    const data = {"recurso":
       {
-        "categoria": categoria,
+        "nombre": recurso.nombre,
+        "recurso_categoria_id": recurso.recursoCategoriaId,
+        "descripcion": recurso.descripcion,
+        "cantidad_actual": recurso.cantidadActual,
+        "cantidad_necesaria": recurso.cantidadNecesaria,
+        "proveedor": recurso.proveedor,
+        "color_tarjeta": recurso.colorTarjeta,
       }
-    ]
   }
     return this.http.put(url, data);
   }

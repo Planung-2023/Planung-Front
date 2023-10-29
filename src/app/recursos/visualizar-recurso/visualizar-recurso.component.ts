@@ -68,6 +68,7 @@ export class VisualizarRecursoComponent implements OnInit {
       (data: Categoria) => {
         this.categoria = data;
         this.selectedObjectType = this.categoria;
+        this.recurso.recursoCategoriaId = this.categoria.id;
       }
     );
 
@@ -101,13 +102,11 @@ export class VisualizarRecursoComponent implements OnInit {
   }
 
   selectObjectType(type: Categoria) {
-    this.selectedObjectType = type;
-  
+    this.recurso.categoria = type;
     const eventoId = this.evento?.id;
-    const recursoId = this.recurso.id;
-    const categoria = type.id;
-  
-    this.RecursoService.actualizarCategoriaRecurso(eventoId,recursoId, categoria).subscribe(
+    const recurso = this.recurso
+    console.log(recurso)
+    this.RecursoService.actualizarRecurso(eventoId,recurso).subscribe(
       (response) => {
         console.log('Recursos actualizados con éxito', response);
       },
@@ -115,7 +114,6 @@ export class VisualizarRecursoComponent implements OnInit {
         console.error('Error al actualizar los recursos', error);
       }
     );
-  
     this.mostrarMensajeGuardadoExitoso();
   }
 
@@ -166,13 +164,12 @@ export class VisualizarRecursoComponent implements OnInit {
   }
 }
 
-interface Recurso {
+export interface Recurso {
   id: number;
   nombre: string;
   descripcion: string;
   cantidadActual: number;
   cantidadNecesaria: number;
-  cantidad: number;
   proveedor: string;
   recursoCategoriaId: number;
   colorTarjeta: string;
