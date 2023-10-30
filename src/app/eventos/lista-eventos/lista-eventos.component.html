@@ -83,11 +83,11 @@
             </mat-expansion-panel-header>
             <mat-panel-description>
               <div class="invitados-container">
-                <ul class="col-12 justify-content-around">
+                <ul class="col-12 justify-content-evenly">
                   <li *ngFor="let asistente of asistente">
                     <div class="participante-container">
                       <span>{{asistente.participante.apellido}}, {{ asistente.participante.nombre }}</span>
-                      <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado(asistente.participante.nombre)">
+                      <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado(asistente.participante.nombre, asistente.participante.apellido)">
                         <mat-icon>visibility</mat-icon>
                       </button>
                     </div>

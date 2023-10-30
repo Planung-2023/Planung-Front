@@ -11,7 +11,6 @@ export class PerfilService {
   constructor(private http: HttpClient) { }
 
   getNombreDeUsuario(usuarioId: number): Observable<string> {
-    console.log('hola mundo');
     return this.http.get<string>(`${environment.url}/usuarios/${usuarioId}`);
   }
 

@@ -35,9 +35,10 @@ export class ListaEventosComponent implements OnInit {
     this.invitacionControlService.showPopup();
   }
 
-  showPopupInvitado(nombreInvitado: string) {
+  showPopupInvitado(nombreInvitado: string, apellidoInvitado: string) {
     this.invitadoSeleccionado = nombreInvitado;
     this.invitadosControlService.invitadoNombre = nombreInvitado;
+    this.invitadosControlService.invitadoApellido = apellidoInvitado;
     this.invitadosControlService.showPopupInvitado();
   }
 
@@ -58,7 +59,6 @@ export class ListaEventosComponent implements OnInit {
     });
 
     this.listaEventosService.getAsistentes(1).subscribe((data: any) => {
-      console.log(data);
       this.asistente = data.asistentes; // Asigna los datos al arreglo "asistente".
     });
     

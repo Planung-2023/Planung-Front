@@ -9,6 +9,7 @@ import { InvitadosControlService } from '../invitados-control.service';
 export class InvitadosComponent {
   mostrarPopupInvitado = false;
   @Input() invitadoNombre: string = '';
+  @Input() invitadoApellido: string = '';
 
   constructor(public invitadosControlService: InvitadosControlService) {}
 
