@@ -85,6 +85,8 @@ export class ListaEventosComponent implements OnInit {
     */
   }
 
+  //ejemplo
+
   private recuperarEventos() {
     this.listaEventosService.getEventos().subscribe(data => {
       this.eventos = data;
