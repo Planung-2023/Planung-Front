@@ -49,6 +49,7 @@
             </mat-expansion-panel-header>
             <mat-panel-description>
               <ul class="col-md-12">
+                <li>Localidad: {{ evento.ubicacion.localidad }}</li>
                 <li>Calle: {{ evento.ubicacion.calle }}</li>
                 <li>Altura: {{ evento.ubicacion.altura }}</li>
               </ul>
@@ -84,49 +85,28 @@
                 Invitados
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <mat-panel-description>
-              <ul class="col-12 justify-content-evenly">
-                <li>
-                  <div class="participante-container">
-                    <span>[Pablo Oscar Martínez de la Cruz]</span>
-                    <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado()">
-                      <mat-icon>visibility</mat-icon>
-                    </button>
-                  </div>
-                </li>
-                <li>
-                  <div class="participante-container">
-                    <span>[Invitado_2]</span>
-                    <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado()">
-                      <mat-icon>visibility</mat-icon>
-                    </button>
-                  </div>
-                </li>
-                <li>
-                  <div class="participante-container">
-                    <span>[Invitado_3]</span>
-                    <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado()">
-                      <mat-icon>visibility</mat-icon>
-                    </button>
-                  </div>
-                </li>
-                <li>
-                  <div class="participante-container">
-                    <span>[Invitado_4]</span>
-                    <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado()">
-                      <mat-icon>visibility</mat-icon>
-                    </button>
-                  </div>
-                </li>
-              </ul>
+            <mat-panel-description class="panelInvitados">
+              <div class="invitados-container">
+                <ul class="col-12 justify-content-evenly">
+                  <li *ngFor="let asistente of asistente">
+                    <div class="participante-container">
+                      <span>{{asistente.participante.apellido}}, {{ asistente.participante.nombre }}</span>
+                      <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado(asistente.participante.nombre, asistente.participante.apellido)">
+                        <mat-icon>visibility</mat-icon>
+                      </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </mat-panel-description>
-            <!-- Solo deberia aparecer en casos especificos -->
+            <!-- Solo debería aparecer en casos específicos -->
             <div class="col-md-12 text-center">
               <button (click)="showPopup()" class="invitarBtn">
                 Invitar
               </button>
             </div>
           </mat-expansion-panel>
+          
         </div>
       </div>
     </ng-template>

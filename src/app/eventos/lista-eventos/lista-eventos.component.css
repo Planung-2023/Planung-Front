@@ -193,9 +193,14 @@ body {
 }
 
 mat-panel-description{
-  padding: 10px;
   padding-top: 4%;
   display: inline;
+}
+
+.panelInvitados{
+  max-height: 200px;
+  max-width: 400px;
+  overflow: auto;
 }
 
 .map-link {
@@ -285,6 +290,7 @@ mat-panel-description{
 .invitarBtn{
   padding: 12px;
   margin-bottom: 20px;
+  margin-top:20px;
   border-radius: 10px;
   background-color: red;
   color: white;
@@ -292,11 +298,13 @@ mat-panel-description{
   font-weight: bolder;
 }
 
-.participante-container {
+/*
+.participante-container1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+*/
 
 .ver-participante-button {
   border: none;
@@ -309,7 +317,37 @@ mat-panel-description{
   margin-top: 5px;
   font-size: 20px;
 }
+/*
+.invitados-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 auto;
+  max-height: 200px;
+  overflow: auto;
+}
 
-.mat-expansion-panel-body{
-  overflow-y: scroll;
+.participante-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+*/
+
+.invitados-container {
+  display: flex;
+  flex-wrap: wrap; /* Los invitados se envuelven en líneas nuevas si no caben en una sola línea */
+  max-height: 200px;
+  overflow: auto;
+  justify-content: space-around;
+}
+
+.participante-container {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  margin-top: 15px;
+  max-width: 400px; /* Ancho máximo para cada invitado (ajusta según tus necesidades) */
+  justify-content: space-between;
 }

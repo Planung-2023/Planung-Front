@@ -14,8 +14,10 @@ import { MapDialogComponent } from './map-dialog/map-dialog.component';
   templateUrl: './lista-eventos.component.html',
   styleUrls: ['./lista-eventos.component.css']
 })
+
 export class ListaEventosComponent implements OnInit {
-  eventos: Evento[] = [];
+  invitadoSeleccionado: string = '';
+  eventos: any[] = [];
   recursos: Recurso[] = [];
   mostrarMapa: boolean = false;
   mostrarPopupInvitados = false;
@@ -30,6 +32,11 @@ export class ListaEventosComponent implements OnInit {
     center: this.position,
     zoom: 15,
   };
+  invitadosComponent: any;
+  participante: Participante|undefined;
+  asistente: Asistente[] = [];
+  Rol: Rol|undefined;
+
   constructor(
     private router: Router,
     private listaEventosService: ListaEventosService,
@@ -43,8 +50,15 @@ export class ListaEventosComponent implements OnInit {
     this.invitacionControlService.showPopup();
   }
 
-  showPopupInvitado() {
+  showPopupInvitado(nombreInvitado: string, apellidoInvitado: string) {
+    this.invitadoSeleccionado = nombreInvitado;
+    this.invitadosControlService.invitadoNombre = nombreInvitado;
+    this.invitadosControlService.invitadoApellido = apellidoInvitado;
     this.invitadosControlService.showPopupInvitado();
+  }
+
+  mostrarInvitado(nombreInvitado: string) {
+    this.invitadoSeleccionado = nombreInvitado;
   }
 
 
@@ -58,6 +72,17 @@ export class ListaEventosComponent implements OnInit {
         prevEl: '.swiper-button-prev',
       },
     });
+
+    this.listaEventosService.getAsistentes(1).subscribe((data: any) => {
+      this.asistente = data.asistentes; // Asigna los datos al arreglo "asistente".
+    });
+    
+
+/*
+    this.perfilService.getNombreDeUsuario(usuarioId).subscribe((usuario: any) => {
+      this.nombreUsuario = usuario.nombreUsuario;
+    });
+    */
   }
 
   private recuperarEventos() {
@@ -73,6 +98,7 @@ export class ListaEventosComponent implements OnInit {
     });
   }
 
+  
   private mockearEventos() {
     const creador1: Creador = {
       id: 1,
@@ -89,9 +115,9 @@ export class ListaEventosComponent implements OnInit {
     }
 
     this.eventos = [
-      { id: 1, nombre: 'Reunión Bayer', fechaHora: new Date(2023, 8, 18), hora: {hours: 10, minutes: 30}, ubicacion: ubicacion1, tipoEvento: 'Formal', creador: creador1, calle: 'Malvinas Argentinas', altura: 568 , recursos:[]},
-      { id: 2, nombre: 'Charla Siemens', fechaHora: new Date(2023, 10, 4), hora: {hours: 15, minutes: 0}, ubicacion: ubicacion1, tipoEvento: 'Formal', creador: creador1, calle: 'Av. Rivadavia', altura: 656 , recursos:[] },
-      { id: 3, nombre: 'Cumpleaños Lucas', fechaHora: new Date(2023, 6, 25), hora: {hours: 22, minutes: 0}, ubicacion: ubicacion1, tipoEvento: 'Informal', creador: creador1, calle: 'Av. Rivadavia', altura: 656 , recursos:[] }
+      { id: 1, nombre: 'Reunión Bayer', fechaHora: new Date(2023, 8, 18), hora: new Date(2023, 8, 18, 10, 22, 0), ubicacion: ubicacion1, tipoEvento: 'Formal', creador: 'German Sánchez', calle: 'Malvinas Argentinas', altura: 568, invitados: [{ nombre: 'Jorge López' }, { nombre: 'Juancho De Los Bosques' }, { nombre: 'Ramiro Causa' }, { nombre: 'Nelson Mandela' }, { nombre: 'Luciano De Los Pantanos' }, { nombre: 'Juanjo De Berazategui' }, { nombre: 'El_OppenJaime' } ] },
+      { id: 2, nombre: 'Charla Siemens', fechaHora: new Date(2023, 10, 4), hora: new Date(2023, 8, 18, 10, 22, 0), ubicacion: ubicacion1, tipoEvento: 'Formal', creador: 'Andrea Fernandez', calle: 'Av. Rivadavia', altura: 656, invitados: [{ nombre: 'Jorge López' }, { nombre: 'Juancho De Los Bosques' }]},
+      { id: 3, nombre: 'Cumpleaños Lucas', fechaHora: new Date(2023, 6, 25), hora: new Date(2023, 8, 18, 10, 22, 0), ubicacion: ubicacion1, tipoEvento: 'Informal', creador: 'Lucas Espinoza', calle: 'Av. Rivadavia', altura: 656, invitados: [{ nombre: 'Jorge López' }, { nombre: 'Juancho De Los Bosques' }] }
     ];
 
     /*this.recursos = [
@@ -168,6 +194,7 @@ interface Evento {
   altura: number;
   tipoEvento: string;
   recursos: Recurso[];
+  invitados: { nombre: string }[];
 }
 
 interface Recurso {
@@ -201,4 +228,22 @@ interface ubicacion{
   localidad: string,
   latitud: number,
   longitud: number
+}
+interface Asistente {
+  id: number;
+  activo: boolean;
+  participante: Participante;
+  rol: Rol;
+}
+
+interface Participante {
+  id: number;
+  apellido: string;
+  mail: string;
+  nombre: string;
+}
+
+interface Rol {
+  id: number;
+  nombre: string;
 }

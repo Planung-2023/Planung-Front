@@ -10,6 +10,8 @@ export class ListaEventosService {
 
   constructor(private http: HttpClient) { }
 
+
+
   getEventos(): Observable<any> {
     return  this.http.get(`${ environment.url }/eventos`, 
     {
@@ -20,4 +22,12 @@ export class ListaEventosService {
   getRecursosByEventoId(idEvento: number): Observable<any> {
     return  this.http.get(`${ environment.url }/eventos/${idEvento}/recursos`, )
   }
+
+  getAsistentes(idEvento:number): Observable<any> {
+    return  this.http.get(`${ environment.url }/eventos/${idEvento}/asistentes`, 
+    {
+      params: {idEvento: 1},
+    });
+  }
+  
 }
