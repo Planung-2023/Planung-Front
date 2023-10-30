@@ -51,9 +51,6 @@
                 <li>Calle: {{ evento.ubicacion.calle}}</li>
                 <li>Altura: {{evento.ubicacion.altura}}</li>
               </ul>
-              <!--
-              {{ evento.ubicacion + ' ' + evento.calle + ' '+ evento.altura}}
-              -->
             </mat-panel-description>
           </mat-expansion-panel>
 
@@ -87,10 +84,10 @@
             <mat-panel-description>
               <div class="invitados-container">
                 <ul class="col-12 justify-content-around">
-                  <li *ngFor="let invitado of evento.invitados">
+                  <li *ngFor="let asistente of asistente">
                     <div class="participante-container">
-                      <span>{{ invitado.nombre }}</span>
-                      <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado(invitado.nombre)">
+                      <span>{{asistente.participante.apellido}}, {{ asistente.participante.nombre }}</span>
+                      <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado(asistente.participante.nombre)">
                         <mat-icon>visibility</mat-icon>
                       </button>
                     </div>

@@ -14,4 +14,5 @@ export class PerfilService {
     console.log('hola mundo');
     return this.http.get<string>(`${environment.url}/usuarios/${usuarioId}`);
   }
+
 }

@@ -11,12 +11,16 @@ import {HttpClient} from '@angular/common/http';
   templateUrl: './lista-eventos.component.html',
   styleUrls: ['./lista-eventos.component.css']
 })
+
 export class ListaEventosComponent implements OnInit {
   invitadoSeleccionado: string = '';
   eventos: any[] = [];
   recursos: Recurso[] = [];
   mostrarPopupInvitados = false;
   invitadosComponent: any;
+  participante: Participante|undefined;
+  asistente: Asistente[] = [];
+  Rol: Rol|undefined;
 
   constructor(
     private router: Router,
@@ -52,6 +56,18 @@ export class ListaEventosComponent implements OnInit {
         prevEl: '.swiper-button-prev',
       },
     });
+
+    this.listaEventosService.getAsistentes(1).subscribe((data: any) => {
+      console.log(data);
+      this.asistente = data.asistentes; // Asigna los datos al arreglo "asistente".
+    });
+    
+
+/*
+    this.perfilService.getNombreDeUsuario(usuarioId).subscribe((usuario: any) => {
+      this.nombreUsuario = usuario.nombreUsuario;
+    });
+    */
   }
 
   private recuperarEventos() {
@@ -120,5 +136,24 @@ interface Recurso {
   cantidadActual: number;
   cantidadNecesaria: number;
   descripcion: string;
+  nombre: string;
+}
+
+interface Asistente {
+  id: number;
+  activo: boolean;
+  participante: Participante;
+  rol: Rol;
+}
+
+interface Participante {
+  id: number;
+  apellido: string;
+  mail: string;
+  nombre: string;
+}
+
+interface Rol {
+  id: number;
   nombre: string;
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { PerfilService } from '../perfil.service';
+import { ListaEventosService } from 'src/app/eventos/lista-eventos.service';
 
 @Component({
   selector: 'app-perfil',
@@ -10,7 +11,8 @@ import { PerfilService } from '../perfil.service';
 
 export class PerfilComponent implements OnInit {
   nombreUsuario: string = '';
-  usuario: any; 
+  usuario: any;
+
 
   constructor(private perfilService: PerfilService) {}
 
@@ -21,6 +23,7 @@ export class PerfilComponent implements OnInit {
     this.perfilService.getNombreDeUsuario(usuarioId).subscribe((usuario: any) => {
       this.nombreUsuario = usuario.nombreUsuario;
     });
+
     
   }
 }
