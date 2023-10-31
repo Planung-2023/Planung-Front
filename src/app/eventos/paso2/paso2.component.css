@@ -1,108 +1,19 @@
-/*
-#cajaTipoEvento{
-    background-color: blueviolet;
+
+label {
+    background-color: rgb(77, 77, 77);
+    cursor: pointer;
+
+}
+
+label img {
+    color: black;
+    opacity: 0,5;
+}
+label input[type=radio]:checked + img{
+    background-color: darkgrey;
+    transition: 0.3s;
 }
 
 input[type=radio]{
-    color: chartreuse;
-}
-label{
-    border: 2px solid #fff;
-    border-radius: 2px;
-    color: black;
-    display: flex;
-}
-input[type=radio]:checked + label{
-    background-color: aqua;
-    color: red;
-}
-
-label {  
-    display: inline-block;  
-    cursor: pointer;  
-    position: relative;  
-    padding-left: 25px;  
-    margin-right: 15px;  
-    font-size: 13px;  
-} 
-
-
-
-label::before {  
-    content: "";  
-    display: inline-block;  
-
-    width: 16px;  
-    height: 16px;  
-
-    margin-right: 10px;  
-    position: absolute;  
-    left: 0;  
-    background-color: #aaa;  
-    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);  
-} 
-
-.radio label::before {  
-    border-radius: 8px;  
-} 
-
-input[type=radio]:checked + label::before {  
-    content: "\2022";  
-    color: #f3f3f3;  
-    font-size: 30px;  
-    text-align: center;  
-    line-height: 18px;  
-}  
-*/
-h1{
-    color: white;
-    font-weight: bold;
-    margin-top: 8%;
-    margin-bottom: 6%;
-}
-
-h2{
-    color: rgb(22, 22, 22);
-    padding-top: 10%;
-    padding-bottom: 4%;
-    margin-bottom: 0%;
-}
-p{
-    color: white;
-    font-weight: bold;
-}
-.cajaPrincipal{
-    padding-bottom: 5%;
-    width: 90%;
-}
-.toggle-btn{
-padding: 2%;
-width: 40%;
-}
-
-label {
-    float: left;
-    width: 100%;
-    position: relative;
-    cursor: pointer;
-    background-color: rgb(77, 77, 77);
-    border-radius: 15px;
-}
-
-label input[type=radio] {
-    display: none;
-}
-
-label i {
-    font-size: 400%;
-    padding-top: 20%;
-    padding-bottom: 20%;
-    width: 100%;
-    color: black;
-    opacity: 0,5;
-    border-radius: 15px;
-}
-label input[type=radio]:checked + i{
-    background-color: darkgrey;
-    transition: 0.3s;
+    display: hidden;
 }

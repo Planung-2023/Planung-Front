@@ -7,24 +7,6 @@
     background-color: #2c2c2c;
     z-index: 2;
 }
-.body-evento{
-    left: 0;
-    z-index: 1;
-    background: #3a3a3a;
-    white-space: nowrap;
-    .body{
-        background: #3a3a3a;
-        padding-top: 15%;
-        padding-bottom: 30%;
-        border-bottom: none;
-        .cajaPrincipal{
-        background: #5a5a5a;
-        border-radius: 10px;
-    } 
-}
-
-}
-
 
 .footer{
     height: 7%;
@@ -33,15 +15,4 @@
     position: fixed;
     bottom: 7%;
     left: 0;
-    width: 100%;
-    .btn{
-        background-color: #555555;
-        width: 30%;
-        height: 65%;
-        color: #ffffff;
-        font-weight: bold;
-        border: none;
-        border-radius: 5%;
-        cursor: pointer;
-    }
 }
