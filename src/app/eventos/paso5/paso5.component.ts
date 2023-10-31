@@ -16,12 +16,7 @@ export class Paso5Component {
   @Output() crearEvento = new EventEmitter<void>();
   
   formulario = new FormGroup({
-    nombre: new FormControl('', [Validators.required]),
-    fecha: new FormControl('', [Validators.required]),
-    horaInicio: new FormControl('', [Validators.required]),
-    horaFin: new FormControl('', [Validators.required]),
-    todoElDia: new FormControl('', [Validators.required]),
-    descripcion: new FormControl(''),
+    
   });
   
   volverAPaso1() {

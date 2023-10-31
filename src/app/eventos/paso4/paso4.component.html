@@ -2,7 +2,7 @@
     <div id="paso4" class="body">
         <h1 class="tituloAgregarObjetos text-center">Recursos</h1>
         <form class="d-flex justify-content-center">
-            <div id="cajaObjetos" class="cajaPrincipal">
+            <div [formGroup]="formulario" id="cajaObjetos" class="cajaPrincipal">
                 <h2 id="tituloObjetos" class="text-center">¿Qué vas a necesitar en tu evento?</h2>
                 <div class="d-flex flex-column justify-content-center align-items-center">
                   <div *ngIf="recursos.length===0" class="d-flex flex-column justify-content-around align-items-center">
@@ -12,13 +12,14 @@
                     </button>
                   </div>
                   <div *ngIf="recursos.length!=0" class="d-flex flex-row justify-content-center align-items-center">
-                    <p>Recursos</p>
+                    <p>Recursos: {{ recursos.length }}</p>
                     <button class="boton-central" (click)="mostrarCardAgregar(contenidoAgregar)">
                         <img class="btn btn-secondary" src="assets/iconoMas.png">
                     </button>
                   </div>
                   <div class="containerRecursos rounded-2">
                     <div *ngFor="let recurso of recursos" class="d-flex align-items-center justify-content-center">
+                      <button id="botonEliminar" *ngIf="modoBorrado===true" (click)="eliminarRecurso(recurso)"><i class="bi bi-trash"></i></button>
                       <ul>
                         <mat-expansion-panel>
                           <mat-expansion-panel-header>
@@ -30,18 +31,21 @@
                           <li>Tipo recurso: {{ nombreTipoRecursoSegunId(recurso.categoria) }}</li>
                         </mat-panel-description> 
                         <mat-panel-description>
-                          <li>Descripción: {{ recurso.descripcion }}</li>
+                          <li>Descripción: <div class="descripcion">{{ recurso.descripcion }}</div></li>
                         </mat-panel-description>
                         <mat-panel-description>
                           <li>Cantidad: {{ recurso.cantidad }}</li>
                         </mat-panel-description>
                         </mat-expansion-panel>
-                        
                       </ul>
                     </div>
                   </div>
-
+                  <div *ngIf="recursos.length!=0">
+                    <mat-slide-toggle (change)="cambiarAModoBorrado($event)" class="mi-slide-toggle">
+                    <h2>Eliminar Recursos</h2>
+                    </mat-slide-toggle>
                 </div>
+               </div>
               </div>
         </form>
     </div>

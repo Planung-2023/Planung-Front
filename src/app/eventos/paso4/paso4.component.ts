@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, ViewChild, Component, ElementRef, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, NgModel } from '@angular/forms';
 import { RecursosService } from 'src/app/recursos/recursos.service';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-paso4',
@@ -14,16 +15,9 @@ export class Paso4Component implements OnInit {
   recursos: any = [];
   tiposDeRecursos: any = [];
   formulario = new FormGroup({
-    nombre: new FormControl('', [Validators.required]),
-    fecha: new FormControl('', [Validators.required]),
-    horaInicio: new FormControl('', [Validators.required]),
-    horaFin: new FormControl('', [Validators.required]),
-    todoElDia: new FormControl('', [Validators.required]),
-    descripcion: new FormControl(''),
+    recursos: new FormControl([]),
   });
-  dataEvento={
-    recursos: this.recursos
-  } 
+  modoBorrado: boolean = false;
   constructor(
     private modal: NgbModal,
     private service: RecursosService
@@ -63,18 +57,34 @@ export class Paso4Component implements OnInit {
     this.modal.open(modal, { centered: true, size: 'sm'}).result.then(
       (result: any) => {
         this.recursos.push(result.obtenerDatos());
+        this.formulario.get('recursos')?.setValue(this.recursos);
+       
       },
       (reason: any) => {}
     );
 }
-
-verificarFormularioCompleto(){
+/*validarYCerrarModal(componenteCrearRecurso: any) {
+  if ( componenteCrearRecurso.obtenerDatos().valid) {
     
+    return true;
+  } else {
+    console.log('El formulario del recurso no está completo o es inválido');
+    return false;
+    
+  }
+}*/
+cambiarAModoBorrado(event:MatSlideToggleChange){
+  this.modoBorrado=event.checked;
+}
+eliminarRecurso(recurso: any) {
+  const index = this.recursos.indexOf(recurso);
+  if (index !== -1) {
+    this.recursos.splice(index, 1); // Elimina el recurso de la lista
+    this.formulario.get('recursos')?.setValue(this.recursos); // Actualiza el valor del formulario
+  }
 }
 
   getDatosPaso4(){
-    return this.recursos;
-    console.log(this.dataEvento);
+    return this.formulario.value;
   }
-  
 }

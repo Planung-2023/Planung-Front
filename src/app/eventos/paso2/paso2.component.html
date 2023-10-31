@@ -1,15 +1,14 @@
 <mat-card>
     <div id="paso2" class="body">
         <h1 class="tituloTipoEvento text-center">Tipo de Evento y Modalidad</h1>
-        
-        <form class="d-flex justify-content-center">
+        <form [formGroup]="formulario" class="d-flex justify-content-center">
             <div id="cajaTipoEvento" class="cajaPrincipal">
                 <h2 id="tituloTipoEvento" class="text-center">Defina el Tipo de Evento</h2>
                 <div id="formalOInformal" class="button-box d-flex justify-content-center">
                     <div class="toggle-btn" id="informal">
                         <p class="text-center">Informal</p>
                         <label class="d-flex align-items-center justify-content-around">
-                            <input type="radio" name="formalOInformal" id="informal" value="Informal" (change)="actualizarTipoEvento($event)" checked>
+                            <input type="radio" name="formalOInformal" id="informal" value="Informal" (change)="actualizarTipoEvento($event)">
                             <i class="bi bi-balloon-fill text-center"></i>
                         </label>
                     </div>
@@ -27,7 +26,7 @@
                     <div class="toggle-btn" id="directa">
                         <p class="text-center">Directa</p>
                         <label class="d-flex align-items-center justify-content-around">
-                            <input type="radio" name="tipoInvitacion" id="directa" value="Directa" (change)="actualizarTipoInvitacion($event)" checked>
+                            <input type="radio" name="tipoInvitacion" id="directa" value="Directa" (change)="actualizarTipoInvitacion($event)">
                             <i class="bi bi-unlock-fill text-center"></i>
                         </label>
                     </div>
@@ -39,7 +38,6 @@
                         </label>
                     </div>
                 </div>
-                
             </div>
         </form>
         

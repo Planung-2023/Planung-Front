@@ -12,38 +12,30 @@ import { NgForm } from '@angular/forms';
 
 
 export class Paso1Component{
-  dataEvento = {
-    nombre: '',
-    fecha: null,
-    horaInicio:'00:00',
-    horaFin:'23:00',
-    todoElDia: false,
-    descripcion: '',
-  }
-  formulario = new FormGroup({
-    nombre: new FormControl(this.dataEvento.nombre, [Validators.required]),
-    fecha: new FormControl(this.dataEvento.fecha, [Validators.required]),
-    horaInicio: new FormControl(this.dataEvento.horaInicio, [Validators.required]),
-    horaFin: new FormControl(this.dataEvento.horaFin, [Validators.required]),
-    todoElDia: new FormControl(this.dataEvento.todoElDia, [Validators.required]),
-    descripcion: new FormControl(this.dataEvento.descripcion),
+    formulario = new FormGroup({
+    nombre: new FormControl('', [Validators.required]),
+    fecha: new FormControl("", [Validators.required]),
+    horaInicio: new FormControl('00:00', [Validators.required]),
+    horaFin: new FormControl('23:00'),
+    todoElDia: new FormControl(false, [Validators.required]),
+    descripcion: new FormControl(""),
   });
   
   cambiarTodoElDia(event: MatSlideToggleChange) {
-    this.dataEvento.todoElDia = event.checked;
-    console.log(this.formulario);
+    this.formulario.get('todoElDia')?.setValue(event.checked);
+    console.log(this.formulario.value);
   }
   public datos() {
-    return this.dataEvento;
+    return this.formulario;
   }
 
 
 getDatosPaso1(){
-  if(this.dataEvento.todoElDia == true){
-    this.dataEvento.horaInicio = '00:00';
-    this.dataEvento.horaFin = null!;
+  if(this.formulario.get('todoElDia')?.value === true){
+    this.formulario.get('horaInicio')?.setValue('00:00');
+    this.formulario.get('horaFin')?.setValue(null);
   }
-  return this.dataEvento
+  return this.formulario.value
 }
 
 }

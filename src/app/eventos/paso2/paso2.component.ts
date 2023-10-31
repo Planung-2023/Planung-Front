@@ -9,32 +9,22 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class Paso2Component {
   formulario = new FormGroup({
-    nombre: new FormControl('', [Validators.required]),
-    fecha: new FormControl('', [Validators.required]),
-    horaInicio: new FormControl('', [Validators.required]),
-    horaFin: new FormControl('', [Validators.required]),
-    todoElDia: new FormControl('', [Validators.required]),
-    descripcion: new FormControl(''),
+    tipoEvento: new FormControl('', [Validators.required]),
+    tipoInvitacion: new FormControl('', [Validators.required]),
   });
-  dataEvento={
-    tipoEvento: 'Informal',
-    tipoInvitacion: 'Directa',
-  }
+  
 
   actualizarTipoEvento(event: Event) {
     const target = event.target as HTMLInputElement;
-    this.dataEvento.tipoEvento = target.value;
-    console.log(this.dataEvento);
+    this.formulario.get('tipoEvento')?.setValue(target.value);
+    console.log(this.formulario.value);
   }
   actualizarTipoInvitacion(event: Event){
     const target = event.target as HTMLInputElement;
-    this.dataEvento.tipoInvitacion = target.value;
-    console.log(this.dataEvento);
-  }
-  verificarFormularioCompleto(){
-
+    this.formulario.get('tipoInvitacion')?.setValue(target.value);
+    console.log(this.formulario.value);
   }
   getDatosPaso2(){
-    return this.dataEvento
+    return this.formulario.value
   }
 }

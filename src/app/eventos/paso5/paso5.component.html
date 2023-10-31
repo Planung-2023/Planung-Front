@@ -41,7 +41,7 @@
                             <p id="nombreEvento">Hora</p>
                         </div>
                         <div class="col-2" id="icon">
-                            <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="calendar_month"></mat-icon>
+                            <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="calendar_month" ></mat-icon>
                         </div>
                         <div class="col-5" *ngIf="!datos?.paso1?.todoElDia">
                             <p id="placeholder">{{ datos?.paso1?.horaInicio }}</p>
@@ -105,9 +105,11 @@
                         <div class="col-4">
                             <p id="nombreEvento">Objetos</p>
                         </div>
-                        <div class="col-7"*ngIf="datos.paso4.length">
+                        <div class="col-7">
+                            
                             <ul id="placeholder">
-                              <li *ngFor="let recurso of datos.paso4"  class="text-start">
+                              <p *ngIf="datos?.paso4?.recursos?.length == 0">No hay Recursos</p>
+                              <li *ngFor="let recurso of datos.paso4.recursos" class="text-start">
                                 {{ recurso.nombre }}
                               </li>
                             </ul>

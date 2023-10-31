@@ -1,4 +1,4 @@
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -8,10 +8,10 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CrearRecursoComponent implements OnInit {
   formulario = new FormGroup({
-    nombre: new FormControl(''),
+    nombre: new FormControl('', [Validators.required]),
     descripcion: new FormControl(''),
-    categoria: new FormControl(''),
-    cantidad: new FormControl(''),
+    categoria: new FormControl('', [Validators.required]),
+    cantidad: new FormControl('', [Validators.required]),
   });
   @Input() tiposDeRecursos: any = [];
 

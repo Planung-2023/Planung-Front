@@ -1,0 +1,6 @@
+<div class="snackbar-container">
+  <div *ngIf="showSnackbar" class="custom-snackbar">
+      <div>{{ message }}</div>
+      <button (click)="closeSnackbar()">Cerrar</button>
+  </div>
+</div>

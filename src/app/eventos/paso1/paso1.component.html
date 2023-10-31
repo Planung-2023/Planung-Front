@@ -1,11 +1,11 @@
 <mat-card>
     <div class="body">
         <h1 class="tituloTipoEvento text-center">Nombre y Fecha</h1>
-      <form #paso1Form="ngForm" class="d-flex justify-content-center">
+      <form [formGroup]="formulario" class="d-flex justify-content-center">
         <div id="cajaTipoEvento" class="cajaPrincipal">
             <h2 id="tituloTipoEvento" class="text-center">Defina el Nombre del Evento</h2>
             <div id="inputText" class="d-flex align-items-center justify-content-center">
-                <input class="titulo" formControlName="nombre" type="text" placeholder="Escriba Aquí">
+                <input class="titulo" [formControlName]="'nombre'" type="text" placeholder="Escriba Aquí">
             </div>
 
             <h2 id="tituloTipoEvento" class="text-center">Defina la Fecha para el Evento</h2>
@@ -15,14 +15,14 @@
                         <h3>Día</h3>
                         <input class="d-flex flex-row-reverse" type="date" [formControlName]="'fecha'" min="2023-12-01" required>
                     </div>
-                    <div class=" box">
+                    <div *ngIf="!formulario.get('todoElDia')?.value === true" class="box">
                         <div class="d-flex justify-content-between">
-                            <h3 *ngIf="!dataEvento.todoElDia">Hora Inicio</h3>
-                            <input class="d-flex flex-row-reverse" type="time" [formControlName]="'horaInicio'" *ngIf="!dataEvento.todoElDia">
+                            <h3>Hora Inicio</h3>
+                            <input class="d-flex flex-row-reverse" type="time" [formControlName]="'horaInicio'">
                         </div>
                         <div class="d-flex justify-content-between">
-                            <h3 *ngIf="!dataEvento.todoElDia">Hora Fin</h3>
-                            <input class="d-flex flex-row-reverse" type="time" [formControlName]="'horaFin'" *ngIf="!dataEvento.todoElDia">
+                            <h3>Hora Fin</h3>
+                            <input class="d-flex flex-row-reverse" type="time" [formControlName]="'horaFin'">
                         </div>
 
                     </div>

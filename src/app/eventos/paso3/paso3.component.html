@@ -2,11 +2,27 @@
     <div id="paso3" class="body">
         <h1 class="tituloTipoEvento text-center">Ubicacion</h1>
 
-        <form class="d-flex justify-content-center">
+        <form [formGroup]="formulario" class="d-flex justify-content-center">
             <div id="cajaLugarEvento" class="cajaPrincipal d-flex flex-column justify-content-center">
                 <h2 id="tituloUbicacion" class="text-center">Defina la Ubicacion para el Evento</h2>
+                <div id="mapaOUbicacion" class="d-flex justify-content-around align-items-center">
+                  <div class="toggle-btn" id="informal">
+                    <p class="text-center">Mapa</p>
+                    <label class="d-flex align-items-center justify-content-around">
+                        <input type="radio" name="mapaOUbicacion" id="opcionMapa" value="mapa" (change)="actualizarTipoBusqueda($event)" checked>
+                        <i class="bi bi-geo-alt"></i>
+                    </label>
+                </div>
+                <div class="toggle-btn" id="formal">
+                    <p class="text-center">Ubicacion</p>
+                    <label class="d-flex align-items-center justify-content-around">
+                        <input type="radio" name="mapaOUbicacion" id="opcionTexto" value="ubicacion" (change)="actualizarTipoBusqueda($event)">
+                        <i class="bi bi-input-cursor-text"></i>
+                    </label>
+                </div>
+                </div>
                 
-                <div id="containerMap" class="map d-flex align-items-center justify-content-center">
+                <div id="containerMap" class="map d-flex align-items-center justify-content-center" *ngIf="opcion==='mapa'">
                   <div *ngIf="apiLoaded">
                     <google-map class="map" [options]="options" width="350px" height="400px" 
                     (mapClick)="moveMap($event)"><map-marker
@@ -15,7 +31,12 @@
                   </google-map>
                   </div>
                 </div>
-
+                <div id="containerUbicacion" class="d-flex flex-column align-items-center justify-content-center" *ngIf="opcion==='ubicacion'">
+                  <p>Ciudad</p><input [formControlName]="'ciudad'" type="text">
+                  <p>Barrio</p><input [formControlName]="'barrio'" type="text">
+                  <p>Calle</p><input [formControlName]="'calle'" type="text">
+                  <p>Número</p><input [formControlName]="'numero'" type="text">
+              </div>
             </div>
         </form>
 

@@ -9,8 +9,17 @@ import {} from 'googlemaps';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Paso3Component {
+  formulario = new FormGroup({
+    latitud: new FormControl(0, [Validators.required]),
+    longitud: new FormControl(0, [Validators.required]),
+    ciudad: new FormControl(''),
+    barrio: new FormControl(''),
+    calle: new FormControl(''),
+    numero: new FormControl(''),
+  })
   apiLoaded: boolean = true;
   display: any;
+  opcion: string = 'mapa';
   position = {lat: -34.598613, lng: -58.415632}
   label = {
     color: "red",
@@ -20,34 +29,50 @@ export class Paso3Component {
     center: this.position,
     zoom: 15,
   };
-  moveMap(event: google.maps.MapMouseEvent) {
-    if (event.latLng != null){
-      this.position = (event.latLng.toJSON()); //Obtenes las coordenadas donde ocurrió el evento del click
-      const coordenadas = event.latLng.toJSON(); // Obtenes las coordenadas en formato JSON
-      this.dataEvento.latitud = coordenadas.lat;
-      this.dataEvento.longitud = coordenadas.lng;
-    }
-    console.log(this.dataEvento);
+moveMap(event: google.maps.MapMouseEvent) {
+  if (event.latLng != null){
+    this.position = (event.latLng.toJSON()); //Obtenes las coordenadas donde ocurrió el evento del click
+    const coordenadas = event.latLng.toJSON(); // Obtenes las coordenadas en formato JSON
+    this.formulario.get('latitud')?.setValue(coordenadas.lat);
+    this.formulario.get('longitud')?.setValue(coordenadas.lng);
+  }
+  console.log(this.formulario.value);
 }
-  formulario = new FormGroup({
-    nombre: new FormControl('', [Validators.required]),
-    fecha: new FormControl('', [Validators.required]),
-    horaInicio: new FormControl('', [Validators.required]),
-    horaFin: new FormControl('', [Validators.required]),
-    todoElDia: new FormControl('', [Validators.required]),
-    descripcion: new FormControl(''),
-  });
-
-  dataEvento = {
-    latitud: -34.598613,
-    longitud: -58.415632,
-  }
-
-  verificarFormularioCompleto(){
+actualizarTipoBusqueda(event: Event){
+  const target = event.target as HTMLInputElement;
+  this.opcion = target.value;
+  if(this.opcion==='mapa'){
+    this.formulario.get('latitud')?.setValidators([Validators.required]);
+    this.formulario.get('longitud')?.setValidators([Validators.required]);
+    this.formulario.get('ciudad')?.clearValidators();
+    this.formulario.get('barrio')?.clearValidators();
+    this.formulario.get('calle')?.clearValidators();
+    this.formulario.get('numero')?.clearValidators();
     
+    this.formulario.get('ciudad')?.setValue('');
+    this.formulario.get('barrio')?.setValue('');
+    this.formulario.get('calle')?.setValue('');
+    this.formulario.get('numero')?.setValue('');
+  } 
+  else if(this.opcion==='ubicacion'){
+    this.formulario.get('ciudad')?.setValidators([Validators.required]);
+    this.formulario.get('barrio')?.setValidators([Validators.required]);
+    this.formulario.get('calle')?.setValidators([Validators.required]);
+    this.formulario.get('numero')?.setValidators([Validators.required]);
+    this.formulario.get('latitud')?.clearValidators();
+    this.formulario.get('longitud')?.clearValidators();
   }
+  this.formulario.get('latitud')?.updateValueAndValidity();
+  this.formulario.get('longitud')?.updateValueAndValidity();
+  this.formulario.get('ciudad')?.updateValueAndValidity();
+  this.formulario.get('barrio')?.updateValueAndValidity();
+  this.formulario.get('calle')?.updateValueAndValidity();
+  this.formulario.get('numero')?.updateValueAndValidity();
+
+}
+
 
   getDatosPaso3(){
-    return this.dataEvento
+    return this.formulario.value
   }
 }

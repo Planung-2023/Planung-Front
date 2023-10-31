@@ -51,3 +51,8 @@ img{
 .modal-body{
     color: blueviolet;
 }
+#botonEliminar{
+    background: none;
+    border: none;
+    color: black;
+}
