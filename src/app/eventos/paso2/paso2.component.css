@@ -13,7 +13,3 @@ label input[type=radio]:checked + img{
     background-color: darkgrey;
     transition: 0.3s;
 }
-
-input[type=radio]{
-    display: hidden;
-}

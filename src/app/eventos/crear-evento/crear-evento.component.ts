@@ -18,7 +18,7 @@ export class CrearEventoComponent {
   @ViewChild('paso4', { read: Paso4Component }) paso4Component: Paso4Component | undefined;
   @ViewChild('paso5', { read: Paso5Component }) paso5Component: Paso5Component | undefined;
 
-  pasoActual: number = 0;
+  pasoActual: number = 2;
   ultimoPaso: number = 4;
 
   titulos: string[] = ["Nombre y Fecha","Formalidad y Privacidad","Lugar","Objetos","Confirmación"];
