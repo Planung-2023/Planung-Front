@@ -7,7 +7,7 @@
   </div>
 
 </div>
-<div class="body-evento mt-3 pt-5 h-100">
+<div class="body-evento mt-3 pt-5 h-100 overflow-x-hidden">
     <app-paso1 #paso1 [ngStyle]="{'display': pasoActual === 0? 'block' : 'none'}"></app-paso1>
     <app-paso2 #paso2 [ngStyle]="{'display': pasoActual === 1? 'block' : 'none'}"></app-paso2>
     <app-paso3 #paso3 [ngStyle]="{'display': pasoActual === 2? 'block' : 'none'}"></app-paso3>
@@ -22,14 +22,16 @@
 
 </div>
 <!-- Mensaje de error de Formulario Incompleto-->
+
 <ng-template #errorModalContent let-c="close">
-  <div class="modal-body">
+  <div class="modal-body bg-primary">
     Por Favor, complete los campos que quedaron incompletos :)
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="c('Cerrar')">Cerrar</button>
+  <div class="modal-footer bg-secondary">
+    <button type="button" class="btn btn-secondary bg-warning" (click)="c('Cerrar')" (miEvento)="openError()">Cerrar</button>
   </div>
 </ng-template>
+
 <div [ngClass]="{'justify-content-center' : pasoActual === 0, 'justify-content-around' : pasoActual != 0 }"class="footer container-fluid d-flex align-items-center">
 
   <button *ngIf="pasoActual != 0" (click)="pasoAnterior()" class="btn"><img class="img-fluid" src="../assets/iconoFlechaBlanco.png"></button>

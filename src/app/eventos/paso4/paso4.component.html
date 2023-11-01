@@ -1,27 +1,27 @@
-<mat-card>
-    <div id="paso4" class="body">
-        <h1 class="tituloAgregarObjetos text-center">Recursos</h1>
-        <form class="d-flex justify-content-center">
-            <div [formGroup]="formulario" id="cajaObjetos" class="cajaPrincipal">
+<mat-card class="shadow-none body-evento h-100 pt-4 d-flex">
+    <div id="paso4" class="d-flex justify-content-center row">
+        <h1 class="tituloAgregarObjetos text-center fw-bold">Recursos</h1>
+        <form [formGroup]="formulario" class="cajaPrincipal d-flex justify-content-center w-75 py-2 rounded-4 shadow-lg">
+            <div id="cajaObjetos" class="d-flex row justify-content-center w-90">
                 <h2 id="tituloObjetos" class="text-center">¿Qué vas a necesitar en tu evento?</h2>
-                <div class="d-flex flex-column justify-content-center align-items-center">
+                <div class="d-flex flex-column justify-content-center align-items-center m-4">
                   <div *ngIf="recursos.length===0" class="d-flex flex-column justify-content-around align-items-center">
                     <p>Agregá un recurso para tu evento</p>
                     <button class="boton-central" (click)="mostrarCardAgregar(contenidoAgregar)">
                         <img class="btn btn-secondary" src="assets/iconoMas.png">
                     </button>
                   </div>
-                  <div *ngIf="recursos.length!=0" class="d-flex flex-row justify-content-center align-items-center">
+                  <div *ngIf="recursos.length!=0" class="d-flex flex-row justify-content-evenly align-items-center">
                     <p>Recursos: {{ recursos.length }}</p>
                     <button class="boton-central" (click)="mostrarCardAgregar(contenidoAgregar)">
                         <img class="btn btn-secondary" src="assets/iconoMas.png">
                     </button>
                   </div>
-                  <div class="containerRecursos rounded-2">
+                  <div class="containerRecursos rounded-2 bg-danger-subtle w-90">
                     <div *ngFor="let recurso of recursos" class="d-flex align-items-center justify-content-center">
-                      <button id="botonEliminar" *ngIf="modoBorrado===true" (click)="eliminarRecurso(recurso)"><i class="bi bi-trash"></i></button>
-                      <ul>
-                        <mat-expansion-panel>
+                      <button id="botonEliminar" (click)="mostrarCardBorrar(borrarRecurso, recurso)"><i class="bi bi-trash p-3"></i></button>
+                      <ul class="w-90 h-100 m-0 p-3">
+                        <mat-expansion-panel class="rounded-2">
                           <mat-expansion-panel-header>
                             <mat-panel-title>
                               <li>{{ recurso.nombre }}</li>
@@ -40,11 +40,6 @@
                       </ul>
                     </div>
                   </div>
-                  <div *ngIf="recursos.length!=0">
-                    <mat-slide-toggle (change)="cambiarAModoBorrado($event)" class="mi-slide-toggle">
-                    <h2>Eliminar Recursos</h2>
-                    </mat-slide-toggle>
-                </div>
                </div>
               </div>
         </form>
@@ -64,7 +59,17 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-primary-inverse" (click)='modal.dismiss()'>Cerrar</button>
-      <button class="btn btn-primary" (click)='modal.close(componenteCrearRecurso)'>Agregar recurso</button>
+      <button class="btn btn-primary" (click)="validarYCerrarModal(componenteCrearRecurso)? modal.close(componenteCrearRecurso) : null">Agregar recurso</button> <!--modal.validarYCerrarModal(componenteCrearRecurso);-->
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #borrarRecurso let-modal>
+  <div class="d-flex justify-content-around align-items-center row bg-primary rounded-2 p-2">
+    <h2 class="text-center">Deseas borrar el Recurso?</h2>
+    <div class="d-flex justify-content-evenly align-items-center g-0">
+      <button type="button" class="btn btn-primary-inverse text-center fw-bolder bg-warning" (click)='modal.dismiss()'>Cerrar</button>
+      <button type="button" class="btn btn-primary-inverse text-center fw-bolder bg-danger" (click)='modal.close(borrarRecurso)'>Borrar</button>
     </div>
   </div>
 </ng-template>

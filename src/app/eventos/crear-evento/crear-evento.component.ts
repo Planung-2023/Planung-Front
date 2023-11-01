@@ -7,8 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Paso1Component } from '../paso1/paso1.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RecursosService } from 'src/app/recursos/recursos.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { NotificacionGuardadoComponent } from 'src/app/recursos/visualizar-recurso/notificacion-guardado/notificacion-guardado.component';
+import { NotificacionGuardadoComponent } from './../../recursos/visualizar-recurso/notificacion-guardado/notificacion-guardado.component';
 
 @Component({
   selector: 'app-crear-evento',
@@ -23,7 +22,7 @@ export class CrearEventoComponent{
   @ViewChild('paso5', { read: Paso5Component }) paso5Component: Paso5Component | undefined;
   @ViewChild('errorModalContent') errorModalContent: any;
 
-  pasoActual: number = 0;
+  pasoActual: number = 3;
   ultimoPaso: number = 4;
   titulos: string[] = ["Nombre y Fecha","Formalidad y Privacidad","Lugar","Objetos","Confirmación"];
   pasos: any[] = [
@@ -55,11 +54,8 @@ export class CrearEventoComponent{
   constructor(
     private modal: NgbModal,
     private service: RecursosService,
-    /*private _snackBar: MatSnackBar,*/
-  ) {
-    
-  }
-
+  ) {}
+  
   pasoAnterior(){
     this.pasos[this.pasoActual].titulo = "";
     if(this.pasoActual > 0){
@@ -70,94 +66,60 @@ export class CrearEventoComponent{
   proximoPaso(){
     this.pasos[this.pasoActual].titulo = "";
 
-    if(this.pasoActual==0){
-      this.traerDatosPaso1();
-    } 
-    if(this.pasoActual==1){
-      this.traerDatosPaso2();
-    } 
-    if(this.pasoActual==2){
-      this.traerDatosPaso3();
-    } 
-    if(this.pasoActual==3){
-      this.traerDatosPaso4();
-    } 
+    if(this.pasoActual==0){this.traerDatosPaso1();} 
+    if(this.pasoActual==1){this.traerDatosPaso2();} 
+    if(this.pasoActual==2){this.traerDatosPaso3();} 
+    if(this.pasoActual==3){this.traerDatosPaso4();} 
     if(this.pasoActual === 4) {
       this.paso5Component?.setDatos(this.pasarDatos());
     }
 
     this.pasos[this.pasoActual].titulo = this.titulos[this.pasoActual];
     
-    const formularioActual = this.getPasoActual(this.pasoActual)?.formulario; // Implementa la función para obtener el formulario actual
+    const formularioActual = this.getPasoActual(this.pasoActual)?.formulario;
     if (this.pasoActual <= this.ultimoPaso && formularioActual?.valid) {
-      this.pasoActual++; // Solo avanzar si el formulario actual es válido
+      this.pasoActual++;
     } else {
       this.openError(),
       console.log('No está completo el formulario')
     }
   }
   openError() {
-    this.modal.open(this.errorModalContent, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+    this.modal.open(this.errorModalContent, { centered: true, size: 'md' }).result.then(
       (result) => {
-        // Lógica después de cerrar el modal
       },
       (reason) => {
-        // Lógica si el modal se cierra por una razón específica
       }
     )
   }
   getPasoActual(pasoActual:number){
-    if(pasoActual===0){
-      return this.paso1Component;
-    }
-    if(pasoActual===1){
-      return this.paso2Component;
-    }
-    if(pasoActual===2){
-      return this.paso3Component;
-    }
-    if(pasoActual===3){
-      return this.paso4Component;
-    }
+    if(pasoActual===0){return this.paso1Component;}
+    if(pasoActual===1){return this.paso2Component;}
+    if(pasoActual===2){return this.paso3Component;}
+    if(pasoActual===3){return this.paso4Component;}
     else return this.paso5Component;
     }
     
-  irAPaso1(){
-    this.pasoActual = 0;
-  }
-  irAPaso2(){
-    this.pasoActual = 1;
-  }
-  irAPaso3(){
-    this.pasoActual = 2;
-  }
-  irAPaso4(){
-    this.pasoActual = 3;
-  }
+  irAPaso1(){this.pasoActual = 0;}
+  irAPaso2(){this.pasoActual = 1;}
+  irAPaso3(){this.pasoActual = 2;}
+  irAPaso4(){this.pasoActual = 3;}
   
 traerDatosPaso1(): any {
-  if (this.paso1Component) {
-  return this.paso1Component.getDatosPaso1();
-  }
+  if (this.paso1Component) {return this.paso1Component.getDatosPaso1();}
   else return {};
 }
 traerDatosPaso2():any{
-  if (this.paso2Component) {
-    return this.paso2Component.getDatosPaso2();
-    }
-    else return {};
+  if (this.paso2Component) {return this.paso2Component.getDatosPaso2();}
+  else return {};
 }
 traerDatosPaso3():any{
-  if (this.paso3Component) {
-    return this.paso3Component.getDatosPaso3();
-    }
-    else return {};
+  if (this.paso3Component) {return this.paso3Component.getDatosPaso3();}
+  else return {};
 }
 traerDatosPaso4():any{
-  if (this.paso4Component) {
-    return this.paso4Component.getDatosPaso4();
-    }
-    else return {};
+  if (this.paso4Component) {return this.paso4Component.getDatosPaso4();}
+  else return {};
 }
 
 pasarDatos(){
@@ -168,16 +130,8 @@ pasarDatos(){
     paso4: this.traerDatosPaso4(),
   }
 }
-/*
-mostrarMensajeGuardadoExitoso() {
-  this._snackBar.openFromComponent(NotificacionGuardadoComponent, {
-    duration: 2000,
-    verticalPosition: 'top',
-    horizontalPosition: 'center',
-  });
-}*/
+
 crearEvento(){
-  
   const datosOrdenados = new FormGroup({
     nombre: new FormControl(this.pasarDatos().paso1.nombre),
     fecha: new FormControl(this.pasarDatos().paso1.fecha),
@@ -189,7 +143,10 @@ crearEvento(){
     tipoInvitacion: new FormControl(this.pasarDatos().paso2.tipoInvitacion),
     latitud: new FormControl(this.pasarDatos().paso3.latitud),
     longitud: new FormControl(this.pasarDatos().paso3.longitud),
-    ubicacion: new FormControl(this.pasarDatos().paso3.ubicacion),
+    ciudad: new FormControl(this.pasarDatos().paso3.ciudad),
+    barrio: new FormControl(this.pasarDatos().paso3.barrio),
+    calle: new FormControl(this.pasarDatos().paso3.calle),
+    numero: new FormControl(this.pasarDatos().paso3.numero),
     recursos: new FormControl(this.pasarDatos().paso4.recursos),
   });
   console.log(datosOrdenados.value);

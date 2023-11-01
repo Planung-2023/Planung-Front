@@ -24,18 +24,17 @@
                 
                 <div id="containerMap" class="map d-flex align-items-center justify-content-center" *ngIf="opcion==='mapa'">
                   <div *ngIf="apiLoaded">
-                    <google-map class="map" [options]="options" width="350px" height="400px" 
-                    (mapClick)="moveMap($event)"><map-marker
-                      [position]= "position">
-                    </map-marker>
-                  </google-map>
+                    <google-map class="map" [options]="options" [center]="posicionAnterior" width="350px" height="400px" 
+                      (mapClick)="moveMap($event)">
+                      <map-marker [position]= "position"></map-marker>
+                    </google-map>
                   </div>
                 </div>
                 <div id="containerUbicacion" class="d-flex flex-column align-items-center justify-content-center" *ngIf="opcion==='ubicacion'">
                   <p>Ciudad</p><input [formControlName]="'ciudad'" type="text">
                   <p>Barrio</p><input [formControlName]="'barrio'" type="text">
                   <p>Calle</p><input [formControlName]="'calle'" type="text">
-                  <p>Número</p><input [formControlName]="'numero'" type="text">
+                  <p>Número</p><input [formControlName]="'numero'" type="number">
               </div>
             </div>
         </form>

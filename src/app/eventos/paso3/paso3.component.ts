@@ -10,8 +10,8 @@ import {} from 'googlemaps';
 })
 export class Paso3Component {
   formulario = new FormGroup({
-    latitud: new FormControl(0, [Validators.required]),
-    longitud: new FormControl(0, [Validators.required]),
+    latitud: new FormControl(-34.598613, [Validators.required]),
+    longitud: new FormControl(-58.415632, [Validators.required]),
     ciudad: new FormControl(''),
     barrio: new FormControl(''),
     calle: new FormControl(''),
@@ -21,13 +21,10 @@ export class Paso3Component {
   display: any;
   opcion: string = 'mapa';
   position = {lat: -34.598613, lng: -58.415632}
-  label = {
-    color: "red",
-    text: "marcador",
-  }
+  posicionAnterior = {lat: -34.598613 , lng: -58.415632}
   options: google.maps.MapOptions = {
     center: this.position,
-    zoom: 15,
+    zoom: 13,
   };
 moveMap(event: google.maps.MapMouseEvent) {
   if (event.latLng != null){
@@ -38,6 +35,7 @@ moveMap(event: google.maps.MapMouseEvent) {
   }
   console.log(this.formulario.value);
 }
+
 actualizarTipoBusqueda(event: Event){
   const target = event.target as HTMLInputElement;
   this.opcion = target.value;
@@ -49,6 +47,8 @@ actualizarTipoBusqueda(event: Event){
     this.formulario.get('calle')?.clearValidators();
     this.formulario.get('numero')?.clearValidators();
     
+    this.formulario.get('latitud')?.setValue(this.position.lat);
+    this.formulario.get('longitud')?.setValue(this.position.lng);
     this.formulario.get('ciudad')?.setValue('');
     this.formulario.get('barrio')?.setValue('');
     this.formulario.get('calle')?.setValue('');
@@ -59,8 +59,11 @@ actualizarTipoBusqueda(event: Event){
     this.formulario.get('barrio')?.setValidators([Validators.required]);
     this.formulario.get('calle')?.setValidators([Validators.required]);
     this.formulario.get('numero')?.setValidators([Validators.required]);
+    this.formulario.get('latitud')?.setValue(null);
+    this.formulario.get('longitud')?.setValue(null);
     this.formulario.get('latitud')?.clearValidators();
     this.formulario.get('longitud')?.clearValidators();
+    this.posicionAnterior = this.position;
   }
   this.formulario.get('latitud')?.updateValueAndValidity();
   this.formulario.get('longitud')?.updateValueAndValidity();
@@ -68,7 +71,6 @@ actualizarTipoBusqueda(event: Event){
   this.formulario.get('barrio')?.updateValueAndValidity();
   this.formulario.get('calle')?.updateValueAndValidity();
   this.formulario.get('numero')?.updateValueAndValidity();
-
 }
 
 

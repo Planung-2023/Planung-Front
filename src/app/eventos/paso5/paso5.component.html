@@ -92,8 +92,24 @@
                         <div class="col-4">
                             <p id="nombreEvento">Ubicacion</p>
                         </div>
-                        <div class="col-7">
+                        <button class="col-7" (click)="volverAPaso3()" *ngIf="datos?.paso3?.latitud != null && datos?.paso3?.longitud != null">
                             <p id="placeholder">Mostrar Mapa</p>
+                        </button>
+                        <div class="col-7" *ngIf="datos?.paso3?.latitud === null && datos?.paso3?.longitud === null">
+                            <ul id="placeholder">
+                                <li class="text-start">
+                                    Ciudad: {{ datos.paso3.ciudad }}
+                                </li>
+                                <li class="text-start">
+                                    Barrio: {{ datos.paso3.barrio }}
+                                </li>
+                                <li class="text-start">
+                                    Calle: {{ datos.paso3.calle }}
+                                </li>
+                                <li class="text-start">
+                                    Numero: {{ datos.paso3.numero }}
+                                </li>
+                              </ul>
                         </div>
                         <div class="col-1" style="margin-top: 7px;">
                             <button id="editar" (click)="volverAPaso3()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>

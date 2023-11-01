@@ -14,7 +14,7 @@ import { NgForm } from '@angular/forms';
 export class Paso1Component{
     formulario = new FormGroup({
     nombre: new FormControl('', [Validators.required]),
-    fecha: new FormControl("", [Validators.required]),
+    fecha: new FormControl('', [Validators.required]),
     horaInicio: new FormControl('00:00', [Validators.required]),
     horaFin: new FormControl('23:00'),
     todoElDia: new FormControl(false, [Validators.required]),
