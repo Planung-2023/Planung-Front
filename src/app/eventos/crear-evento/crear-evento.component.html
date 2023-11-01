@@ -1,12 +1,10 @@
-<div class="encabezado">
-  <div class="d-flex container justify-content-center align-items-center py-2">
-    <nz-steps [nzCurrent]="pasoActual">
+  <div class=" encabezado w-100 fixed-top d-flex justify-content-center align-items-center p-3">
+    <nz-steps nzSize="small" [nzCurrent]="pasoActual">
         <nz-step *ngFor="let paso of pasos"></nz-step>
     </nz-steps>
 
   </div>
 
-</div>
 <div class="body-evento mt-3 pt-5 h-100 overflow-x-hidden">
     <app-paso1 #paso1 [ngStyle]="{'display': pasoActual === 0? 'block' : 'none'}"></app-paso1>
     <app-paso2 #paso2 [ngStyle]="{'display': pasoActual === 1? 'block' : 'none'}"></app-paso2>
@@ -49,4 +47,11 @@
     <button *ngIf="pasoActual != 0" (click)="pasoAnterior()">atrás</button>
     <button *ngIf="pasoActual != 4" (click)="proximoPaso()">Apretar</button>
   </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Cerrar')">Cerrar</button>
+  </div>
 
+<div [ngClass]="{'justify-content-center' : pasoActual === 0, 'justify-content-around' : pasoActual != 0 }"class="footer d-flex fixed-bottom justify-content-center px-2 pt-2">
+  <button *ngIf="pasoActual != 0" (click)="pasoAnterior()" class="btn box px-5 py-2"><i class="bi bi-arrow-left text-white mx-3 display-5"></i></button>
+  <button *ngIf="pasoActual != 4" (click)="proximoPaso()" class="btn box px-5 py-2"><i class="bi bi-arrow-right text-white mx-3 display-5"></i></button>
+</div>
