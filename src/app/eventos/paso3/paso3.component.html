@@ -1,7 +1,7 @@
-<mat-card class="shadow-none bg-primary h-100 pt-4">
+<mat-card class="shadow-none fondo h-100 pt-4">
     <div class="d-flex justify-content-center row">
       <h1 class="text-center fw-bold">Ubicación</h1>
-      <form [formGroup]="formulario" class="cajaPrincipal d-flex justify-content-center w-75 pt-2 pb-4  rounded-4 shadow-lg">
+      <form [formGroup]="formulario" class="bg-primary d-flex justify-content-center w-75 pt-2 pb-4 rounded-5 shadow-lg">
         <div class="d-flex row w-90">
           <h2 class="text-center fw-bolder">Defina ubicación<br>del evento</h2>
           <div class="d-flex mb-4">
@@ -9,14 +9,14 @@
               <div class="row">
                 <div class="col">
                   <p class="text-center">Por Mapa</p>
-                  <label class="container-fluid rounded-4 g-0">
+                  <label class="bg-secondary container-fluid rounded-4 g-0">
                     <input type="radio" name="mapaOUbicacion" id="opcionMapa" value="mapa" (change)="actualizarTipoBusqueda($event)" checked>
                     <i class="bi bi-geo-alt display-1 text-center justify-content-center d-flex w-100 rounded-4 py-2"></i>
                   </label>
                 </div>
                 <div class="col">
                   <p class="text-center">Por Ubicación</p>
-                  <label class="container-fluid rounded-4 g-0">
+                  <label class="bg-secondary container-fluid rounded-4 g-0">
                     <input type="radio" name="mapaOUbicacion" id="opcionTexto" value="ubicacion" (change)="actualizarTipoBusqueda($event)">
                     <i class="bi bi-input-cursor-text display-1 d-flex justify-content-center w-100 rounded-4 py-2"></i>
                   </label>
@@ -37,7 +37,7 @@
                 <p class="text-start m-0">Ciudad</p>
               </div>
               <div class="col">
-                <input class="w-100 rounded-2 text-center box p-2" [formControlName]="'ciudad'" type="text">
+                <input class="shadow w-100 rounded-2 text-center bg-secondary p-2" [formControlName]="'ciudad'" type="text">
               </div>
             </div>
             <div class="row justify-content-between py-2">
@@ -45,7 +45,7 @@
                 <p class="text-start m-0">Barrio</p>
               </div>
               <div class="col">
-                <input class="w-100 rounded-2 text-center box p-2" [formControlName]="'barrio'" type="text">
+                <input class="shadow w-100 rounded-2 text-center bg-secondary p-2" [formControlName]="'barrio'" type="text">
               </div>
             </div>
             <div class="row justify-content-between py-2">
@@ -53,7 +53,7 @@
                 <p class="text-start m-0">Calle</p>
               </div>
               <div class="col">
-                <input class="w-100 rounded-2 text-center box p-2" [formControlName]="'calle'" type="text">
+                <input class="shadow w-100 rounded-2 text-center bg-secondary p-2" [formControlName]="'calle'" type="text">
               </div>
             </div>
             <div class="row justify-content-between pt-2 pb-3">
@@ -61,7 +61,7 @@
                 <p class="text-start m-0">Número</p>
               </div>
               <div class="col">
-                <input class="w-100 rounded-2 text-center box p-2" [formControlName]="'numero'" type="text">
+                <input class="shadow w-100 rounded-2 text-center bg-secondary p-2" [formControlName]="'numero'" type="text">
               </div>
             </div>
           </div>

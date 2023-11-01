@@ -1,20 +1,20 @@
-<mat-card class="shadow-none body-evento h-100 pt-4 d-flex">
+<mat-card class="shadow-none fondo h-100 pt-4 d-flex">
     <div class="d-flex justify-content-center row">
     <h1 class="tituloTipoEvento text-center fw-bold">Nombre y Fecha</h1>
-    <form [formGroup]="formulario" class="cajaPrincipal d-flex justify-content-center w-75 py-2 rounded-4 shadow-lg">
+    <form [formGroup]="formulario" class="bg-primary d-flex justify-content-center w-75 py-2 rounded-5 shadow-lg">
         <div class="d-flex row justify-content-center w-90">    
             <div id="inputText" class="d-flex row justify-content-center py-2">
                 <h2 class="fw-bolder text-center">Defina el Nombre del Evento</h2>
-                <input class="rounded-2 text-center box shadow" [formControlName]="'nombre'" type="text" placeholder="Escriba Aquí">
+                <input class="rounded-2 text-center bg-secondary shadow py-2" [formControlName]="'nombre'" type="text" placeholder="Escriba Aquí">
             </div>
             <div class="d-flex justify-content-center row">
                 <h2 class="text-center fw-bolder">Defina la Fecha para el Evento</h2>
                 <div class="d-flex justify-content-center row g-0">
-                    <div class="p-2 box d-flex justify-content-between align-items-center mb-2 rounded-2 shadow">
+                    <div class="p-2 bg-secondary d-flex justify-content-between align-items-center mb-2 rounded-2 shadow">
                         <h3 class="text-center m-0 fw-bold">Día</h3>
                         <input type="date" [formControlName]="'fecha'" min="2023-12-01" required>
                     </div>
-                    <div *ngIf="!formulario.get('todoElDia')?.value === true" class="box p-2 mb-2 rounded-2 shadow">
+                    <div *ngIf="!formulario.get('todoElDia')?.value === true" class="bg-secondary p-2 mb-2 rounded-2 shadow">
                         <h3 class="fw-bold m-0">Hora</h3>
                         <div class="d-flex justify-content-between py-1">
                             <h3 class="text-center fw-bold m-0">Hora Inicio</h3>
@@ -26,15 +26,15 @@
                         </div>
                     </div>
                     <div class="d-flex p-0 justify-content-between align-items-center">
-                        <h3 class="rounded-2 fw-bold box fs-6 p-2 shadow">¿Todo el Día?</h3>
+                        <h3 class="rounded-2 fw-bold bg-secondary fs-6 p-2 shadow">¿Todo el Día?</h3>
                         <h3><mat-slide-toggle (change)="cambiarTodoElDia($event)"></mat-slide-toggle></h3>
                     </div>
                 </div>
             </div>
 
-            <div class="d-flex justify-content-center row">
+            <div class="d-flex justify-content-center row pb-2">
                 <h2 class="text-center fw-bolder">¿Quiere agregar una Descripción?</h2>
-                <textarea class="box text-center rounded-2 shadow" type="text" [formControlName]="'descripcion'" placeholder="Agrega una Descripción" ></textarea>
+                <textarea class="bg-secondary text-center rounded-2 border-0 shadow" type="text" [formControlName]="'descripcion'" placeholder="Agrega una Descripción" ></textarea>
             </div>
         </div>
       </form>

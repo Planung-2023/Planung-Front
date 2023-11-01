@@ -1,10 +1,79 @@
-$primary: #494949;
-$secondary: #7C7A7A;
 $success: #70C1B3;
 $danger: #F5817F;
 $warning: #FFE066;
+$primary: #D45113;
+$secondary: #F8DDA4;
 
 @import "/node_modules/bootstrap/scss/bootstrap";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
-$pepe: #FFE066;
+$fondo: #3a3a3a;
+$tarjeta: #5a5a5a;
+$boton: #a9a9a9;
+
+html, body, .fondo{
+    height: 100%;
+    background-color: $fondo !important;
+}
+
+
+.tarjeta{
+    background-color: $tarjeta !important;
+}
+
+.boton{
+    background-color: $boton;
+}
+
+label input[type=radio]:checked + i, label input[type=radio]:checked + img{
+    background-color: darken($secondary, 20%) !important;
+    transition: 0.3s;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    touch-action: none;
+}
+
+h1, p{
+    color: white !important;
+}
+
+h2, h3, .anticon{
+    color: black !important;
+}
+
+.w-90{
+    width: 90%;
+}
+
+.ant-steps-item-icon {
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0% !important;
+}
+/*Customización del stepper. La pongo acá porque en el css de crearEvento no se importaban las propiedades*/
+
+.ant-steps-item-finish .ant-steps-item-icon {
+    border-color: var(--bs-success) !important;
+    background-color: var(--bs-success) !important;
+}
+
+.ant-steps-item-wait .ant-steps-item-icon{
+    border-color: white !important;
+}
+
+.ant-steps-item-wait .ant-steps-item-title::after, .ant-steps-item-process .ant-steps-item-title::after{
+    background-color: white !important;
+}
+
+.ant-steps-item-process .ant-steps-item-icon{
+    background-color: $primary !important;
+    border-color: $primary !important;
+}
+
+.ant-steps-item-finish .ant-steps-item-title::after{
+    background-color: $success !important;
+}
