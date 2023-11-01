@@ -16,44 +16,9 @@ p{
     margin: 0;
     padding-top: 3%;
     padding-bottom: 3%;
-    font-size: 1.2em;
-}
-#completa{
-    width: 90%;
-}
-.col-1{
-    margin-top: 0;
-    display: flex;
-    align-items: center;
-}
-.cajaPrincipal{
-    padding-bottom: 5%;
-    width: 90%;
-}
-#nombreTitulo{
-    padding: 0%;
-    margin: 0%;
-    /* display: flex; */
-    justify-content: end;
-    align-items: center;
-    color: black;
-
-    border-radius: 5px;
-}
-#nombreTitulo p{
-    padding: 7%;
-    border-radius: 5px;
-    background: #919191;
-    justify-content: start;
+    font-size: 1em;
 }
 
-#icon{
-    padding: 0%;
-    margin: 0%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 #icon mat-icon{
     background-color: #919191;
     padding: 20px;
@@ -62,47 +27,7 @@ p{
     justify-content: center;
     align-items: center;
 }
-#informacion{
-    padding-top: 15px;
-    padding-bottom: 15px;
-    margin: 0%;
-    justify-content: end;
-    align-items: end;
-}
-#informacionA{
-    padding: 0%;
-    margin: 0%;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-}
-#informacion p{
-    padding-left: 5%;
-    padding-right: 5%;
-    background: #919191;
-    color: white;
-    border-radius: 5px;
-    padding-left: 10%;
-}
-#informacionA p{
-    padding-left: 5%;
-    padding-right: 5%;
-    background: #919191;
-    color: white;
-    border-radius: 5px;
-    padding-left: 10%;
-}
-#editar{
-    padding: 0%;
-    margin: 0%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: none;
-    border: none;
-}
+
 
 .row{
     margin-top: 3%;
@@ -110,25 +35,7 @@ p{
 }
 
 
-#nombreEvento{
-    padding: 12px;
-    border-radius: 5px;
-    display: flex;
-    background: #919191;
-    justify-content: center;
-}
-
-#placeholder{
-    padding: 12px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    background: #919191;
-    justify-content: center;
-}
-
 #horaFin {
-    padding: 12px;
     border-radius: 5px;
     display: flex;
     background: #919191;

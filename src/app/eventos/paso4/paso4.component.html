@@ -2,9 +2,9 @@
     <div id="paso4" class="d-flex justify-content-center row">
         <h1 class="tituloAgregarObjetos text-center fw-bold">Recursos</h1>
         <form [formGroup]="formulario" class="cajaPrincipal d-flex justify-content-center w-75 py-2 rounded-4 shadow-lg">
-            <div id="cajaObjetos" class="d-flex row justify-content-center w-90">
+            <div id="cajaObjetos" class="d-flex row justify-content-center w-100">
                 <h2 id="tituloObjetos" class="text-center">¿Qué vas a necesitar en tu evento?</h2>
-                <div class="d-flex flex-column justify-content-center align-items-center m-4">
+                <div class="d-flex flex-column justify-content-center align-items-center m-3">
                   <div *ngIf="recursos.length===0" class="d-flex flex-column justify-content-around align-items-center">
                     <p>Agregá un recurso para tu evento</p>
                     <button class="boton-central" (click)="mostrarCardAgregar(contenidoAgregar)">
@@ -17,8 +17,8 @@
                         <img class="btn btn-secondary" src="assets/iconoMas.png">
                     </button>
                   </div>
-                  <div class="containerRecursos rounded-2 bg-danger-subtle w-90">
-                    <div *ngFor="let recurso of recursos" class="d-flex align-items-center justify-content-center">
+                  <div class="containerRecursos rounded-2 bg-danger-subtle">
+                    <div *ngFor="let recurso of recursos" class="d-flex align-items-center justify-content-center w-100">
                       <button id="botonEliminar" (click)="mostrarCardBorrar(borrarRecurso, recurso)"><i class="bi bi-trash p-3"></i></button>
                       <ul class="w-90 h-100 m-0 p-3">
                         <mat-expansion-panel class="rounded-2">
@@ -49,17 +49,14 @@
 <ng-template #contenidoAgregar let-modal>
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title">Agregar recurso</h5>
-      <button type="button" class="btn close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss()">
-        <span aria-hidden="true">&times;</span>
-      </button>
+      <h5 class="modal-title m-0">Agregar recurso</h5>
     </div>
-    <div class="modal-body">
+    <div class="modal-body text-danger">
       <app-crear-recurso #componenteCrearRecurso [tiposDeRecursos]="tiposDeRecursos"></app-crear-recurso>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-primary-inverse" (click)='modal.dismiss()'>Cerrar</button>
-      <button class="btn btn-primary" (click)="validarYCerrarModal(componenteCrearRecurso)? modal.close(componenteCrearRecurso) : null">Agregar recurso</button> <!--modal.validarYCerrarModal(componenteCrearRecurso);-->
+      <button type="button" class="btn btn-outline-primary" (click)='modal.dismiss()'>Cerrar</button>
+      <button class="btn btn-danger" (click)="validarYCerrarModal(componenteCrearRecurso)? modal.close(componenteCrearRecurso) : null">Agregar recurso</button> <!--modal.validarYCerrarModal(componenteCrearRecurso);-->
     </div>
   </div>
 </ng-template>

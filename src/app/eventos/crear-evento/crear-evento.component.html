@@ -30,6 +30,6 @@
 </ng-template>
 
 <div [ngClass]="{'justify-content-center' : pasoActual === 0, 'justify-content-around' : pasoActual != 0 }"class="footer d-flex fixed-bottom justify-content-center px-2 pt-2">
-  <button *ngIf="pasoActual != 0" (click)="pasoAnterior()" class="btn boton px-5 py-2"><i class="bi bi-arrow-left text-white mx-3 display-5"></i></button>
-  <button *ngIf="pasoActual != 4" (click)="proximoPaso()" class="btn boton px-5 py-2"><i class="bi bi-arrow-right text-white mx-3 display-5"></i></button>
+  <button *ngIf="pasoActual != 0" (click)="pasoAnterior()" class="boton px-5 py-2"><i class="bi bi-arrow-left text-white mx-3 display-5"></i></button>
+  <button *ngIf="pasoActual != 4" (click)="proximoPaso()" class="boton px-5 py-2"><i class="bi bi-arrow-right text-white mx-3 display-5"></i></button>
 </div>
