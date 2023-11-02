@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecursoColorPickerService } from '../recurso-color-picker/recurso-color-picker.service';
 import { RecursoService } from '../recurso.service';
@@ -12,17 +12,18 @@ import { NotificacionGuardadoComponent } from './notificacion-guardado/notificac
   styleUrls: ['./visualizar-recurso.component.css']
 })
 export class VisualizarRecursoComponent implements OnInit {
+  @ViewChild('descripcionTextarea') descripcionTextarea: ElementRef | undefined;
   public selectedObjectType: Categoria | undefined;
   public objectTypes: Categoria[] = [];
   recurso: Recurso;
-  evento: Evento | undefined;
+  evento: Evento;
   isFlipped: boolean = false;
   descripcion: string = '';
   panelAbierto: string = 'todos';
   mostrarColorPicker: boolean = false;
-  selectedColor: string | null = '#ef7d16';
+  selectedColor: string;
   selectedColorClass: string = '#ef7d16';
-  categoria: Categoria | undefined;
+  categoria: Categoria;
   asignaciones: Asignaciones[] = [];
   asistente: Asistente | undefined;
   participante: Participante | undefined;
@@ -35,11 +36,20 @@ export class VisualizarRecursoComponent implements OnInit {
     private _snackBar: MatSnackBar, 
   ) {
     this.recurso = this.router.getCurrentNavigation()?.extras.state?.['recurso'];
+    this.evento = this.recurso.evento;
+    this.categoria = this.recurso.categoria;
     this.descripcion = this.recurso.descripcion;
+    this.selectedColor = this.recurso.colorTarjeta;
     this.RecursoService
     .obtenerMensajeGuardadoExitoso()
     .subscribe(() => this.mostrarMensajeGuardadoExitoso());
+    this.RecursoService.getColorSeleccionado().subscribe((color) => {
+      if(color!=null)
+      this.selectedColor = color;
+      this.selectedColorClass = this.getColorClass(color);
+    });
   }
+  
 
   ngOnInit() {
     this.RecursoService.tiposDeRecursos().subscribe({
@@ -60,6 +70,7 @@ export class VisualizarRecursoComponent implements OnInit {
     );
 
     this.RecursoColorPickerService.getSelectedColor().subscribe((color) => {
+      if(color!=null)
       this.selectedColor = color;
       this.selectedColorClass = this.getColorClass(color);
     });
@@ -74,6 +85,10 @@ export class VisualizarRecursoComponent implements OnInit {
 
     this.selectedColor = this.recurso.colorTarjeta;
     this.selectedColorClass = this.getColorClass(this.recurso.colorTarjeta);
+
+    this.descripcionTextarea?.nativeElement.addEventListener('blur', () => {
+      this.guardarDescripcion();
+    });
   }
 
   getCantidadTotal(): number {
@@ -102,11 +117,14 @@ export class VisualizarRecursoComponent implements OnInit {
   }
 
   selectObjectType(type: Categoria) {
+    this.recurso.recursoCategoriaId = type.id;
+    this.selectedObjectType = type;
     this.recurso.categoria = type;
-    const eventoId = this.evento?.id;
-    const recurso = this.recurso
-    console.log(recurso)
-    this.RecursoService.actualizarRecurso(eventoId,recurso).subscribe(
+    this.guardarRecurso(this.recurso);
+  }
+
+  guardarRecurso(recurso: Recurso) {
+    this.RecursoService.actualizarRecurso(recurso).subscribe(
       (response) => {
         console.log('Recursos actualizados con éxito', response);
       },
@@ -162,9 +180,26 @@ export class VisualizarRecursoComponent implements OnInit {
       horizontalPosition: 'center',
     });
   }
+
+  eliminarDescripcion() {
+    this.descripcion = '';
+    this.recurso.descripcion = this.descripcion;
+    this.guardarRecurso(this.recurso);
+  }
+
+  editarDescripcion() {
+    this.descripcionTextarea?.nativeElement.focus();
+  }
+
+  guardarDescripcion() {
+    const nuevaDescripcion = this.descripcionTextarea?.nativeElement.value;
+    this.descripcion = nuevaDescripcion;
+    this.recurso.descripcion = nuevaDescripcion;
+    this.guardarRecurso(this.recurso);
+  }
 }
 
-export interface Recurso {
+ export interface Recurso {
   id: number;
   nombre: string;
   descripcion: string;

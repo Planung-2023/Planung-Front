@@ -229,6 +229,31 @@
   border: none !important;
 }
 
+.descripcion-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  background: none;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.descripcion-buttons button {
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.descripcion-buttons button i {
+  font-size: 20px;
+  color: #fff;
+}
+
 .button-grid {
   display: grid;
   grid-template-rows: repeat(3, 1fr);

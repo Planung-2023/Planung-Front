@@ -51,9 +51,17 @@
               </mat-panel-title>
             </mat-expansion-panel-header>
             <div>
-              <textarea [(ngModel)]="descripcion" type="text" class="texto-descripcion" placeholder="Agregue una descripción"></textarea>
+              <textarea #descripcionTextarea [(ngModel)]="descripcion" class="texto-descripcion" placeholder="Agregue una descripción"></textarea>
             </div>
           </mat-expansion-panel>
+          <div class="descripcion-buttons" *ngIf="panelAbierto === 'descripcion'">
+            <button class="boton-tacho" [ngStyle]="{ 'background-color': selectedColor }" (click)="eliminarDescripcion()">
+              <i class="material-icons">delete</i>
+            </button>
+            <button class="boton-lapiz" [ngStyle]="{ 'background-color': selectedColor }" (click)="editarDescripcion()">
+              <i class="material-icons">create</i>
+            </button>
+          </div>
         <div class="cantidad-container" *ngIf="panelAbierto === 'todos'">
           <div class="cantidad-label" [ngClass]="{ 'color-naranja-cantidad': selectedColor === '#ef7d16', 'color-verde-cantidad': selectedColor === '#76b730', 'color-azul-cantidad': selectedColor === '#4e5fa8', 'color-rosa-cantidad': selectedColor === '#df3c65', 'color-gris-cantidad': selectedColor === '#9f9f9e' }">
             Cantidad Actual
@@ -97,7 +105,7 @@
       </div>
       <ng-template #colorPicker>
         <button (click)="ocultarComponenteColorPicker()" class="boton-flecha"></button>
-        <app-recurso-color-picker *ngIf="mostrarColorPicker"></app-recurso-color-picker>
+        <app-recurso-color-picker [recurso]="recurso" *ngIf="mostrarColorPicker"></app-recurso-color-picker>
       </ng-template>
       <button (click)="flipCard()" class="boton-menos"></button>
     </div>
