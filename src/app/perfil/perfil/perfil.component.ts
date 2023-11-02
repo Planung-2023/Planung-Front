@@ -29,7 +29,7 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit() {
-    const usuarioId = 5;
+    const usuarioId = 1;
     const participanteId = usuarioId;
     
     // Utiliza el servicio de perfil para obtener el nombre del usuario

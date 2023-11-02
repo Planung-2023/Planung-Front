@@ -24,9 +24,9 @@ export class VerPerfilComponent implements OnInit {
   getFotoPerfil(): string {
     return this.perfilService.getFotoPerfil();
   }
-  
+
   ngOnInit() {
-    const usuarioId = 5;
+    const usuarioId = 1;
     const participanteId = usuarioId;
     
     // Utiliza el servicio de perfil para obtener el nombre del usuario

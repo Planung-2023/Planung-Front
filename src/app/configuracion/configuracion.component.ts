@@ -41,7 +41,7 @@ export class ConfiguracionComponent implements OnInit {
   }
 
   ngOnInit() {
-    const usuarioId = 5;
+    const usuarioId = 1;
     const participanteId = usuarioId;
 
     // Utiliza el servicio de configuración para obtener el nombre del usuario
