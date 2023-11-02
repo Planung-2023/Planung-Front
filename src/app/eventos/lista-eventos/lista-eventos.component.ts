@@ -73,7 +73,7 @@ export class ListaEventosComponent implements OnInit {
       },
     });
 
-    this.listaEventosService.getAsistentes(3).subscribe((data: any) => {
+    this.listaEventosService.getAsistentes(1).subscribe((data: any) => {
       this.asistente = data.asistentes; // Asigna los datos al arreglo "asistente".
     });
     
