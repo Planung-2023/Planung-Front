@@ -2,41 +2,55 @@
     <div class="d-flex justify-content-center row">
         <h1 class="text-center fw-bold">Tipo de Evento y Modalidad</h1>
         <form [formGroup]="formulario" class="bg-primary d-flex justify-content-center w-75 pt-2 pb-4 mb-2 rounded-4 shadow-lg row">
-            <div class="d-flex justify-content-center row"> <!--Tipo de evento-->
-                <h2 class="text-center fw-bolder">Defina el Tipo de Evento</h2>
-                <div class="d-flex justify-content-between align-items-center w-75 g-0"> <!--Si es formal o informal-->
-                    <div class="me-2">
-                        <h3 class="text-center">Informal</h3>
-                        <label class="rounded-4">
-                            <input type="radio" class="d-none bg-secondary" name="formalOInformal" value="Informal" (change)="actualizarTipoEvento($event)">
-                            <img class="bg-secondary img-fluid rounded-4 p-3" src="assets/zapatilla.png">
-                        </label>
+            <div class="d-flex justify-content-center w-90">
+                <div class="container-fluid">
+                    <h2 class="text-center fw-bolder">Tipo de Evento</h2>
+                    <div class="row justify-content-center align-items-center">
+                        <div class="row">
+                            <div class="col">
+                                <h3 class="text-center">Informal</h3>
+                            </div>
+                            <div class="col">
+                                <h3 class="text-center">Formal</h3>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col d-flex justify-content-center ps-0">
+                                <label class="rounded-4">
+                                    <input type="radio" class="d-none bg-secondary" name="formalOInformal" value="Informal" (change)="actualizarTipoEvento($event)">
+                                    <img class="bg-secondary img-fluid rounded-4 p-3" src="assets/zapatilla.png">
+                                </label>
+                            </div>
+                            <div class="col d-flex justify-content-center pe-0">
+                                <label class="rounded-4">
+                                    <input type="radio" class="d-none bg-secondary" name="formalOInformal" value="Formal" (change)="actualizarTipoEvento($event)">
+                                    <img src="assets/zapato.png" class="bg-secondary img-fluid rounded-4 p-3">
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="ms-2">
-                        <h3 class="text-center">Formal</h3>
-                        <label class="rounded-4">
-                            <input type="radio" class="d-none bg-secondary" name="formalOInformal" value="Formal" (change)="actualizarTipoEvento($event)">
-                            <img src="assets/zapato.png" class="bg-secondary img-fluid rounded-4 p-3">
-                        </label>
+                    <h2 class="text-center fw-bolder">Tipo de invitación</h2>
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="text-center">Directo</h3>
+                        </div>
+                        <div class="col">
+                            <h3 class="text-center">Invitación</h3>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center row"> <!--Tipo de privacidad de evento-->
-                <h2 class="text-center fw-bolder">Defina el Tipo de Invitación</h2>
-                <div class="d-flex justify-content-between align-items-baseline w-75 g-0">
-                    <div class="me-2">
-                        <h3 class="text-center">Directo</h3>
-                        <label class="rounded-4">
-                            <input type="radio" class="d-none bg-secondary" name="tipoInvitacion" id="directa" value="Directa" (change)="actualizarTipoInvitacion($event)">
-                            <img src="assets/publico.png" class="bg-secondary img-fluid rounded-4 p-3">
-                        </label>
-                    </div>
-                    <div class="ms-2">
-                        <h3 class="text-center">Invitación</h3>
-                        <label class="rounded-4">
-                            <input type="radio" class="d-none bg-secondary" name="tipoInvitacion" id="porAprobacion" value="Por Aprobación" (change)="actualizarTipoInvitacion($event)">
-                            <img src="assets/privado.png" class="bg-secondary img-fluid rounded-4 p-3">
-                        </label>
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col d-flex justify-content-center">
+                            <label class="rounded-4">
+                                <input type="radio" class="d-none bg-secondary" name="tipoInvitacion" id="directa" value="Directa" (change)="actualizarTipoInvitacion($event)">
+                                <img src="assets/publico.png" class="bg-secondary img-fluid rounded-4 p-3">
+                            </label>
+                        </div>
+                        <div class="col d-flex justify-content-center">
+                            <label class="rounded-4">
+                                <input type="radio" class="d-none bg-secondary" name="tipoInvitacion" id="porAprobacion" value="Por Aprobación" (change)="actualizarTipoInvitacion($event)">
+                                <img src="assets/privado.png" class="bg-secondary img-fluid rounded-4 p-3">
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
