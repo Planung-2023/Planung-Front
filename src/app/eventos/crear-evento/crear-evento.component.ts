@@ -2,7 +2,7 @@ import { Paso5Component } from './../paso5/paso5.component';
 import { Paso4Component } from './../paso4/paso4.component';
 import { Paso3Component } from './../paso3/paso3.component';
 import { Paso2Component } from './../paso2/paso2.component';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Paso1Component } from '../paso1/paso1.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -14,7 +14,7 @@ import { NotificacionGuardadoComponent } from './../../recursos/visualizar-recur
   templateUrl: './crear-evento.component.html',
   styleUrls: ['./crear-evento.component.css']
 })
-export class CrearEventoComponent{
+export class CrearEventoComponent implements OnInit{
   @ViewChild('paso1', { read: Paso1Component }) paso1Component: Paso1Component | undefined;
   @ViewChild('paso2', { read: Paso2Component }) paso2Component: Paso2Component | undefined;
   @ViewChild('paso3', { read: Paso3Component }) paso3Component: Paso3Component | undefined;
@@ -91,6 +91,11 @@ export class CrearEventoComponent{
       (reason) => {
       }
     )
+  }
+  ngOnInit() {
+    this.paso4Component?.eventoCerrar.subscribe(() => {
+      this.openError();
+    });
   }
   getPasoActual(pasoActual:number){
     if(pasoActual===0){return this.paso1Component;}

@@ -12,7 +12,7 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 })
 
 export class Paso4Component implements OnInit {
-  @Output() miEvento = new EventEmitter<void>();
+  @Output() eventoCerrar = new EventEmitter<void>();
   recursos: any = [];
   tiposDeRecursos: any = [];
   formulario = new FormGroup({
@@ -22,10 +22,8 @@ export class Paso4Component implements OnInit {
   constructor(
     private modal: NgbModal,
     private service: RecursosService
-    ) {
-    }
+    ) {}
   
-
   ngOnInit() {
     this.service.tiposDeRecursos().subscribe({
       next: v => {
@@ -72,12 +70,14 @@ export class Paso4Component implements OnInit {
       this.activarError();
       console.log("ERROR");
       return false;
-      
     }
   }
+
   activarError() {
-    this.miEvento.emit();
+    this.eventoCerrar.emit();
   }
+
+
   mostrarCardBorrar(borrarRecurso: any, recurso:any) {
     const index = this.recursos.indexOf(recurso);
     this.modal.open(borrarRecurso, { centered: true, size: 'sm' }).result.then(

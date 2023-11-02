@@ -15,8 +15,8 @@ export class Paso1Component{
     formulario = new FormGroup({
     nombre: new FormControl('', [Validators.required]),
     fecha: new FormControl('', [Validators.required]),
-    horaInicio: new FormControl('00:00', [Validators.required]),
-    horaFin: new FormControl('23:00'),
+    horaInicio: new FormControl('', [Validators.required]),
+    horaFin: new FormControl('', [Validators.required]),
     todoElDia: new FormControl(false, [Validators.required]),
     descripcion: new FormControl(""),
   });
@@ -24,6 +24,14 @@ export class Paso1Component{
   cambiarTodoElDia(event: MatSlideToggleChange) {
     this.formulario.get('todoElDia')?.setValue(event.checked);
     console.log(this.formulario.value);
+    if(event.checked){
+      this.formulario.get('horaInicio')?.clearValidators();
+      this.formulario.get('horaFin')?.clearValidators();
+    }
+    else {
+      this.formulario.get('horaFin')?.setValidators([Validators.required]),
+      this.formulario.get('horaFin')?.setValidators([Validators.required])
+  };
   }
   public datos() {
     return this.formulario;
@@ -32,7 +40,7 @@ export class Paso1Component{
 
 getDatosPaso1(){
   if(this.formulario.get('todoElDia')?.value === true){
-    this.formulario.get('horaInicio')?.setValue('00:00');
+    this.formulario.get('horaInicio')?.setValue(null);
     this.formulario.get('horaFin')?.setValue(null);
   }
   return this.formulario.value
