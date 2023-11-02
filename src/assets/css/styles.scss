@@ -30,6 +30,14 @@ label input[type=radio]:checked + i, label input[type=radio]:checked + img{
     transition: 0.3s;
 }
 
+.bg-secondary-darken{
+    background-color: darken($secondary, 10%);
+}
+
+.bg-primary-darken{
+    background-color: darken($primary, 15%);
+}
+
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;

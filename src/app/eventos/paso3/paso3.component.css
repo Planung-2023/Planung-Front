@@ -11,10 +11,7 @@ label i{
     color: black;
     opacity: 0,5;
 }
-label input[type=radio]:checked + i{
-    background-color: darkgrey;
-    transition: 0.3s;
-}
+
 input[type="text"], input[type="date"], input[type="time"]{
     background: none;
     border: none;

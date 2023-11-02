@@ -20,16 +20,16 @@
 
 </div>
 <!-- Mensaje de error de Formulario Incompleto-->
-<ng-template #errorModalContent let-c="close">
+<ng-template #errorModalContent let-modal>
   <div class="modal-body bg-primary">
     Por Favor, complete los campos que quedaron incompletos :)
   </div>
   <div class="modal-footer bg-secondary">
-    <button type="button" class="btn btn-secondary bg-warning" (click)="c('Cerrar')" (miEvento)="openError()">Cerrar</button>
+    <button type="button" class="btn btn-secondary bg-warning" (click)="modal.close(errorModalContent)" (miEvento)="openError()">Cerrar</button>
   </div>
 </ng-template>
 
 <div [ngClass]="{'justify-content-center' : pasoActual === 0, 'justify-content-around' : pasoActual != 0 }"class="footer d-flex fixed-bottom justify-content-center px-2 pt-2">
-  <button *ngIf="pasoActual != 0" (click)="pasoAnterior()" class="boton px-5 py-2"><i class="bi bi-arrow-left text-white mx-3 display-5"></i></button>
-  <button *ngIf="pasoActual != 4" (click)="proximoPaso()" class="boton px-5 py-2"><i class="bi bi-arrow-right text-white mx-3 display-5"></i></button>
+  <button *ngIf="pasoActual != 0" (click)="pasoAnterior()" class="rounded-2 border-0 boton px-5 py-2"><i class="bi bi-arrow-left text-white mx-3 display-5"></i></button>
+  <button *ngIf="pasoActual != 4" (click)="proximoPaso()" class="rounded-2 border-0 boton px-5 py-2"><i class="bi bi-arrow-right text-white mx-3 display-5"></i></button>
 </div>

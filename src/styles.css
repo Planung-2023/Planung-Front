@@ -1,0 +1,9 @@
+mat-expansion-panel-header:not(.mat-expanded){
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    height: 100% !important;
+}
+
+i{
+    display:flex;
+}

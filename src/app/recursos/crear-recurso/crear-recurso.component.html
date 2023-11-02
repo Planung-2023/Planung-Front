@@ -1,22 +1,30 @@
 <div>
-  <form [formGroup]="formulario" class="form">
+  <form [formGroup]="formulario" class="form py-2">
     <div class="form-group">
-      <label>Nombre</label>
-      <input class="form-control" type="text" formControlName="nombre" maxlength="15">
+      <label class="container-fluid">
+        <p class="fw-bold text-black m-0">Nombre</p>
+        <input class="form-control border-0 bg-secondary text-black py-2" type="text" formControlName="nombre" maxlength="15">
+      </label>
     </div>
     <div class="form-group">
-      <label>Tipo de recurso</label>
-      <select class="form-control" formControlName="categoria">
-        <option *ngFor="let tipo of tiposDeRecursos" value="{{ tipo.id }}">{{ tipo.nombre }}</option>
-      </select>
+      <label class="container-fluid">
+        <p class="fw-bold text-black m-0">Tipo de recurso</p>
+        <select class="form-control border-0 bg-secondary text-black py-2" formControlName="categoria">
+          <option *ngFor="let tipo of tiposDeRecursos" value="{{ tipo.id }}">{{ tipo.nombre }}</option>
+        </select>
+      </label>
     </div>
     <div class="form-group">
-      <label>Descripción</label>
-      <input class="form-control" type="text" formControlName="descripcion" maxlength="50">
+      <label class="container-fluid">
+        <p class="fw-bold text-black m-0">Descripción</p>
+        <input class="form-control border-0 bg-secondary text-black py-2" type="text" formControlName="descripcion" maxlength="50">
+      </label>
     </div>
     <div class="form-group">
-      <label>Cantidad</label>
-      <input class="form-control" type="number" formControlName="cantidad">
+      <label class="container-fluid">
+        <p class="fw-bold text-black m-0">Cantidad</p>
+        <input class="form-control border-0 bg-secondary text-black py-2" type="number" formControlName="cantidad">
+      </label>
     </div>
   </form>
 </div>

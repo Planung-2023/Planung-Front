@@ -1,72 +1,68 @@
-<mat-card class="shadow-none body-evento h-100 pt-4 d-flex">
+<mat-card class="shadow-none fondo h-100 pt-4 d-flex">
     <div id="paso4" class="d-flex justify-content-center row">
         <h1 class="tituloAgregarObjetos text-center fw-bold">Recursos</h1>
-        <form [formGroup]="formulario" class="cajaPrincipal d-flex justify-content-center w-75 py-2 rounded-4 shadow-lg">
-            <div id="cajaObjetos" class="d-flex row justify-content-center w-100">
-                <h2 id="tituloObjetos" class="text-center">¿Qué vas a necesitar en tu evento?</h2>
+        <form [formGroup]="formulario" class="bg-primary d-flex justify-content-center w-75 pt-2 pb-3 rounded-5 shadow-lg">
+            <div class="d-flex row justify-content-center w-90">
+                <h2 class="text-center fw-bolder mb-0">Agregá un recurso</h2>
                 <div class="d-flex flex-column justify-content-center align-items-center m-3">
-                  <div *ngIf="recursos.length===0" class="d-flex flex-column justify-content-around align-items-center">
-                    <p>Agregá un recurso para tu evento</p>
-                    <button class="boton-central" (click)="mostrarCardAgregar(contenidoAgregar)">
-                        <img class="btn btn-secondary" src="assets/iconoMas.png">
-                    </button>
-                  </div>
                   <div *ngIf="recursos.length!=0" class="d-flex flex-row justify-content-evenly align-items-center">
-                    <p>Recursos: {{ recursos.length }}</p>
-                    <button class="boton-central" (click)="mostrarCardAgregar(contenidoAgregar)">
-                        <img class="btn btn-secondary" src="assets/iconoMas.png">
-                    </button>
+                    <h3 class="text-center text-white fw-bold">Cantidad: {{ recursos.length }}</h3>
                   </div>
-                  <div class="containerRecursos rounded-2 bg-danger-subtle">
-                    <div *ngFor="let recurso of recursos" class="d-flex align-items-center justify-content-center w-100">
-                      <button id="botonEliminar" (click)="mostrarCardBorrar(borrarRecurso, recurso)"><i class="bi bi-trash p-3"></i></button>
-                      <ul class="w-90 h-100 m-0 p-3">
-                        <mat-expansion-panel class="rounded-2">
-                          <mat-expansion-panel-header>
-                            <mat-panel-title>
-                              <li>{{ recurso.nombre }}</li>
-                            </mat-panel-title>
+                  <button class="p-2 border-0 bg-primary" (click)="mostrarCardAgregar(contenidoAgregar)">
+                    <i class="bi bg-secondary bi-plus-circle-fill display-1 p-2 rounded-circle"></i>
+                  </button>
+                  <div class="container-fluid">
+                    <div *ngFor="let recurso of recursos" class="py-1 row align-items-center justify-content-between">
+                      <div class="col-2 justify-content-center">
+                        <button class="btn bg-secondary-darken p-2 shadow h-100" (click)="mostrarCardBorrar(borrarRecurso, recurso)"><i class="display-6 text-black bi bi-trash"></i></button>
+                      </div>
+                      <mat-expansion-panel class="col-9 rounded-4 align-items-center bg-secondary shadow px-0">
+                        <mat-expansion-panel-header class="bg-secondary rounded-5">
+                          <mat-panel-title>
+                            <h2 class="m-0 fw-bolder">{{ recurso.nombre }}</h2>
+                          </mat-panel-title>
                         </mat-expansion-panel-header>
                         <mat-panel-description>
-                          <li>Tipo recurso: {{ nombreTipoRecursoSegunId(recurso.categoria) }}</li>
-                        </mat-panel-description> 
-                        <mat-panel-description>
-                          <li>Descripción: <div class="descripcion">{{ recurso.descripcion }}</div></li>
+                          <div>
+                            <h3 class="m-0 text-black"><b>Tipo</b> <br>{{ nombreTipoRecursoSegunId(recurso.categoria) }}</h3>
+                            <h3 class="m-0 text-black"><b>Cant.</b> <br>{{ recurso.cantidad }}</h3>
+                            <h3 class="m-0 text-black"><b>Descripción</b> <br>{{ recurso.descripcion }}</h3>
+                          </div>
                         </mat-panel-description>
-                        <mat-panel-description>
-                          <li>Cantidad: {{ recurso.cantidad }}</li>
-                        </mat-panel-description>
-                        </mat-expansion-panel>
-                      </ul>
+                      </mat-expansion-panel>
                     </div>
                   </div>
-               </div>
+                </div>
               </div>
         </form>
     </div>
 </mat-card>
 
 <ng-template #contenidoAgregar let-modal>
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title m-0">Agregar recurso</h5>
+  <div class="modal-content border-0">
+    <div class="modal-header bg-dark-subtle">
+      <h2 class="modal-title m-0 text-white fw-bolder">Agregar recurso</h2>
     </div>
-    <div class="modal-body text-danger">
+    <div class="modal-body bg-primary">
       <app-crear-recurso #componenteCrearRecurso [tiposDeRecursos]="tiposDeRecursos"></app-crear-recurso>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-primary" (click)='modal.dismiss()'>Cerrar</button>
-      <button class="btn btn-danger" (click)="validarYCerrarModal(componenteCrearRecurso)? modal.close(componenteCrearRecurso) : null">Agregar recurso</button> <!--modal.validarYCerrarModal(componenteCrearRecurso);-->
+    <div class="modal-footer bg-dark-subtle">
+      <button type="button" class="btn btn-outline-danger" (click)='modal.dismiss()'>Cerrar</button>
+      <button class="btn btn-success" (click)="validarYCerrarModal(componenteCrearRecurso)? modal.close(componenteCrearRecurso) : null">Agregar recurso</button> <!--modal.validarYCerrarModal(componenteCrearRecurso);-->
     </div>
   </div>
 </ng-template>
 
 <ng-template #borrarRecurso let-modal>
-  <div class="d-flex justify-content-around align-items-center row bg-primary rounded-2 p-2">
-    <h2 class="text-center">Deseas borrar el Recurso?</h2>
-    <div class="d-flex justify-content-evenly align-items-center g-0">
-      <button type="button" class="btn btn-primary-inverse text-center fw-bolder bg-warning" (click)='modal.dismiss()'>Cerrar</button>
-      <button type="button" class="btn btn-primary-inverse text-center fw-bolder bg-danger" (click)='modal.close(borrarRecurso)'>Borrar</button>
+  <div class="container rounded-2 border-warning border bg-dark-subtle px-2 py-3">  
+    <h2 class="text-center text-warning">El recurso se borrará</h2>
+    <div class="row align-items-center">
+      <div class="col">
+        <button type="button" class="w-100 btn text-center btn-outline-secondary" (click)='modal.dismiss()'>Cerrar</button>
+      </div>
+      <div class="col">
+        <button type="button" class="w-100 btn text-center btn-danger" (click)='modal.close(borrarRecurso)'>Borrar</button>
+      </div>
     </div>
   </div>
 </ng-template>

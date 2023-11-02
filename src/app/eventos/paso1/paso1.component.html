@@ -4,11 +4,11 @@
     <form [formGroup]="formulario" class="bg-primary d-flex justify-content-center w-75 py-2 rounded-5 shadow-lg">
         <div class="d-flex row justify-content-center w-90">    
             <div id="inputText" class="d-flex row justify-content-center py-2">
-                <h2 class="fw-bolder text-center">Defina el Nombre del Evento</h2>
+                <h2 class="fw-bolder text-center">Nombre del Evento</h2>
                 <input class="rounded-2 text-center bg-secondary shadow py-2" [formControlName]="'nombre'" type="text" placeholder="Escriba Aquí">
             </div>
             <div class="d-flex justify-content-center row">
-                <h2 class="text-center fw-bolder">Defina la Fecha para el Evento</h2>
+                <h2 class="text-center fw-bolder">Fecha del Evento</h2>
                 <div class="d-flex justify-content-center row g-0">
                     <div class="p-2 bg-secondary d-flex justify-content-between align-items-center mb-2 rounded-2 shadow">
                         <h3 class="text-center m-0 fw-bold">Día</h3>
@@ -33,7 +33,7 @@
             </div>
 
             <div class="d-flex justify-content-center row pb-2">
-                <h2 class="text-center fw-bolder">¿Quiere agregar una Descripción?</h2>
+                <h2 class="text-center fw-bolder">Descripción</h2>
                 <textarea class="bg-secondary text-center rounded-2 border-0 shadow" type="text" [formControlName]="'descripcion'" placeholder="Agrega una Descripción" ></textarea>
             </div>
         </div>
