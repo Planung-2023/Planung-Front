@@ -90,6 +90,7 @@ export class ListaEventosComponent implements OnInit {
   private recuperarEventos() {
     this.listaEventosService.getEventos().subscribe(data => {
       this.eventos = data;
+      console.log(data);
       this.eventos.forEach(evento => this.listaEventosService.getRecursosByEventoId(evento.id).subscribe(
         (data: Recurso[]) => {
           evento.recursos = data;
@@ -189,8 +190,9 @@ interface Evento {
   id: number;
   nombre: string;
   creador: Creador;
-  fechaHora: Date;
-  hora: Time;
+  fecha: Date;
+  horaInicio: Date;
+  horaFin: Date;
   ubicacion: ubicacion;
   calle: string;
   altura: number;

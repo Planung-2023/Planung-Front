@@ -39,8 +39,8 @@ export class PerfilComponent implements OnInit {
     
   
     // Utiliza el servicio de perfil para obtener el nombre del usuario
-    this.perfilService.getDatosParticipante(participanteId).subscribe((participante: any) => {
-      this.participante = participante; // Asigna los datos del participante
+    this.perfilService.getDatosParticipante(participanteId).subscribe((res: any) => {
+      this.participante = res.participante; // Asigna los datos del participante
 
       // Asigna los valores del participante a las variables
       this.nombreParticipante = this.participante.nombre;
