@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Subject } from 'rxjs';
 import { Recurso } from './visualizar-recurso/visualizar-recurso.component';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecursoService {
   private mensajeGuardadoExitoso = new Subject<void>();
+  private colorSeleccionadoSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
+
+  private colorSeleccionado$: Observable<string | null> = this.colorSeleccionadoSubject.asObservable();
 
   enviarMensajeGuardadoExitoso() {
     this.mensajeGuardadoExitoso.next();
@@ -20,6 +24,14 @@ export class RecursoService {
   }
 
   constructor(private http: HttpClient) { }
+
+  getColorSeleccionado(): Observable<string | null> {
+    return this.colorSeleccionado$;
+  }
+
+  enviarColorSeleccionado(color: string) {
+    this.colorSeleccionadoSubject.next(color);
+  }
 
   getCategoriaByRecurso(idRecurso: number): Observable<any> {
     return this.http.get(`${ environment.url }/recursos/${idRecurso}/categorias`);
@@ -33,19 +45,28 @@ export class RecursoService {
     return this.http.get(`${ environment.url }/recursos/${idRecurso}/asignaciones`);
   }
 
-  actualizarRecurso(eventoId: number | undefined, recurso: Recurso) {
-    const url = `${environment.url}/eventos/${eventoId}/recursos/${recurso.id}`;
-    const data = {"recurso":
-      {
-        "nombre": recurso.nombre,
-        "recurso_categoria_id": recurso.recursoCategoriaId,
-        "descripcion": recurso.descripcion,
-        "cantidad_actual": recurso.cantidadActual,
-        "cantidad_necesaria": recurso.cantidadNecesaria,
-        "proveedor": recurso.proveedor,
-        "color_tarjeta": recurso.colorTarjeta,
+  actualizarRecurso(recurso: Recurso) {
+    const url = `${environment.url}/recursos/${recurso.id}`;
+    const data: RecursoApi = {
+      recurso:{
+        ...recurso,
+        evento: recurso.evento.id,
       }
-  }
+    };
+    console.log(data);
     return this.http.put(url, data);
+  }
+}
+
+interface RecursoApi {
+  recurso: {
+    id: number;
+    nombre: string;
+    descripcion: string;
+    cantidadActual: number;
+    cantidadNecesaria: number;
+    proveedor: string;
+    colorTarjeta: string;
+    evento: number;
   }
 }

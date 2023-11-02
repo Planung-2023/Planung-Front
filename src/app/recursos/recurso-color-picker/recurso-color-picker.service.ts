@@ -21,5 +21,4 @@ export class RecursoColorPickerService {
   getSelectedColor(): Observable<string | null> {
     return this.selectedColorSubject.asObservable();
   }
-
 }
