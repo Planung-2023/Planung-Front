@@ -13,12 +13,12 @@
     <div class="col-md-5 row justify-content-evenly row-perfil">
       <div class="foto-perfil col-2">
         <!--Aca deberia haber una variable que determine la ruta de la foto => (src="{ruta_foto}")-->
-        <img src="assets/foto-perfil-3.png" alt="Foto de perfil">
+        <img [src]="getFotoPerfil()" alt="Foto de perfil">
       </div>
       <div class="col-7 info-perfil">
-        <p class="username" style="margin-bottom: 20px;">[Nombre de usuario]</p>
+        <p class="username" style="margin-bottom: 20px;">{{ nombreUsuario }}</p>
         <a class="ver-perfil-link" routerLink="/perfil/ver-perfil">Editar perfil</a>
-     </div>
+      </div>
      <div class="col-1 mx-auto arrow-perfil">
       <a>
         <mat-icon style="font-size: 33px;">chevron_right</mat-icon>
@@ -27,10 +27,10 @@
     </div>
     <div class="info-de-perfil mx-auto text-center" style="margin-top: 20%;">
       <div class="col-10 mx-auto elemento-perfil text-center" style="margin-bottom: 20px; margin-top: 5px;">
-        <p>[nombre_cuenta]</p>
+        <p>{{ nombreParticipante }} {{ apellidoParticipante }}</p>
       </div>
       <div class="col-10 mx-auto elemento-perfil text-center" style="margin-bottom: 20px; margin-top: 5px;">
-        <p>[correo_cuenta]</p>
+        <p>{{ correoParticipante }}</p>
       </div>
       <div class="col-10 mx-auto elemento-perfil text-center" style="margin-bottom: 20px;">
         <p>[historial_eventos_creados_cuenta]</p>

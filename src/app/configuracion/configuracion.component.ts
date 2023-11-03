@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ConfiguracionService } from './configuracion.service';
 
 @Component({
   selector: 'app-configuracion',
@@ -6,9 +7,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./configuracion.component.css']
 })
 
-export class ConfiguracionComponent {
+export class ConfiguracionComponent implements OnInit {
   lightMode: boolean = true;
   darkMode: boolean = false;
+  usuario: any;
+  participante: Participante = {
+    id: 1,
+    apellido: '',
+    mail: '',
+    nombre: ''
+  };
+  correoParticipante: string = '';
+  nombreUsuario: string = ''; // Agrega esta propiedad
+
+  constructor(private configuracionService: ConfiguracionService) {} // Inyecta el servicio
 
   cambiarModoLight() {
     this.lightMode = true;
@@ -27,4 +39,27 @@ export class ConfiguracionComponent {
       this.lightMode = true;
     }
   }
+
+  ngOnInit() {
+    const usuarioId = 1;
+    const participanteId = usuarioId;
+
+    // Utiliza el servicio de configuración para obtener el nombre del usuario
+    this.configuracionService.getNombreDeUsuario(usuarioId).subscribe((usuario: any) => {
+      this.nombreUsuario = usuario.nombreUsuario;
+    });
+
+    // Utiliza el servicio de perfil para obtener el nombre del usuario
+    this.configuracionService.getDatosParticipante(participanteId).subscribe((res: any) => {
+      this.participante = res.participante;
+      this.correoParticipante = res.participante.mail;
+    });
+  }
+}
+
+interface Participante {
+  id: number;
+  apellido: string;
+  mail: string;
+  nombre: string;
 }

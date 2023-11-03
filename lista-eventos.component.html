@@ -39,9 +39,10 @@
           </div>
           <p><strong>Organizador:</strong> {{ evento.creador.nombreUsuario }}</p>
           <p><strong>Fecha:</strong> {{ evento.fecha }}</p>
-          <p><strong>Hora:</strong> {{ evento.horaInicio }}</p>
+          <p><strong>Hora Inicio:</strong> {{ evento.horaInicio }}</p>
+          <p><strong>Hora Fin:</strong> {{ evento.horaFin }}</p>
           <p><strong>Tipo de evento:</strong> {{ evento.tipoEvento }}</p>
-          <mat-expansion-panel *ngIf="evento.ubicacion != null && (panelAbierto === 'direccion' || panelAbierto === 'todos')" (opened)="abrirPanel('direccion')" (closed)="cerrarPanel('direccion')">
+          <mat-expansion-panel *ngIf="evento.ubicacion != null">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Dirección
@@ -58,7 +59,7 @@
               </a>
             </mat-panel-description>
           </mat-expansion-panel>
-          <mat-expansion-panel *ngIf="evento.descripcion != null && (panelAbierto === 'descripcion' || panelAbierto === 'todos')"(opened)="abrirPanel('descripcion')" (closed)="cerrarPanel('descripcion')">
+          <mat-expansion-panel *ngIf="evento.descripcion != null">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Descripción
@@ -68,7 +69,7 @@
               <p>{{ evento.descripcion }}</p>
             </mat-panel-description>
           </mat-expansion-panel>
-          <mat-expansion-panel *ngIf="panelAbierto === 'recursos' || panelAbierto === 'todos'" (opened)="abrirPanel('recursos')" (closed)="cerrarPanel('recursos')">
+          <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Recursos
@@ -89,7 +90,7 @@
             </mat-panel-description>
           </mat-expansion-panel>
 
-          <mat-expansion-panel *ngIf="panelAbierto === 'invitados' || panelAbierto === 'todos'" (opened)="abrirPanel('invitados')" (closed)="cerrarPanel('invitados')">
+          <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Invitados
@@ -109,13 +110,14 @@
                 </ul>
               </div>
             </mat-panel-description>
+            <!-- Solo debería aparecer en casos específicos -->
+            <div class="col-md-12 text-center">
+              <button (click)="showPopup()" class="invitarBtn">
+                Invitar
+              </button>
+            </div>
           </mat-expansion-panel>
-          <!-- Solo debería aparecer en casos específicos -->
-          <div class="col-md-12 text-center">
-            <button (click)="showPopup()" class="invitarBtn">
-              Invitar
-            </button>
-          </div>
+          
         </div>
       </div>
     </ng-template>
