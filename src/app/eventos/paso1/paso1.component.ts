@@ -40,7 +40,7 @@ export class Paso1Component{
 
 getDatosPaso1(){
   if(this.formulario.get('todoElDia')?.value === true){
-    this.formulario.get('horaInicio')?.setValue(null);
+    this.formulario.get('horaInicio')?.setValue("00:00");
     this.formulario.get('horaFin')?.setValue(null);
   }
   return this.formulario.value

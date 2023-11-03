@@ -24,10 +24,10 @@
                         <div class="col-3 p-1">
                             <p id="nombreEvento" class="text-start text-black rounded-2 p-2 text-white fw-bold bg-primary-darken">Fecha</p>
                         </div>
-                        <div class="col-2 d-flex align-items-center justify-content-center m-0 p-1" id="icon">
+                        <div class="col-1 d-flex align-items-center justify-content-center m-0 p-1" id="icon">
                             <i class="bi bi-calendar-week d-flex justify-content-center align-items-center rounded-2 p-2 bg-secondary h-100"></i>
                         </div>
-                        <div class="col-6 p-1">
+                        <div class="col-7 p-1">
                             <p id="placeholder" class="text-center text-black text-wrap d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2">{{ datos?.paso1?.fecha }}</p>
                         </div>
                         <div class="col-1 d-flex align-items-center m-0 p-1">
@@ -40,13 +40,13 @@
                         <div class="col-3 p-1">
                             <p id="nombreEvento" class="text-start d-flex justi p-2 bg-text-white rounded-2 fw-bold bg-primary-darken">Hora</p>
                         </div>
-                        <div class="col-2 d-flex align-items-center justify-content-center m-0 p-1" id="icon">
+                        <div class="col-1 d-flex align-items-center justify-content-center m-0 p-1" id="icon">
                             <i class="bi bi-alarm d-flex justify-content-center align-items-center rounded-2 p-2 bg-secondary h-100"></i>
                         </div>
-                        <div class="col-6 p-1" *ngIf="!datos?.paso1?.todoElDia">
+                        <div class="col-7 p-1" *ngIf="!datos?.paso1?.todoElDia">
                             <p id="placeholder" class="text-center text-black d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2">{{ datos?.paso1?.horaInicio }}</p>
                         </div>
-                        <div class="col-6 p-1" *ngIf="!datos?.paso1?.todoElDia==false">
+                        <div class="col-7 p-1" *ngIf="!datos?.paso1?.todoElDia==false">
                             <p id="placeholder" class="text-center text-black d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2">Todo el Día</p>
                         </div>
                         <div class="col-1 d-flex align-items-center m-0 p-1">
@@ -55,8 +55,8 @@
                     </div>
 
                     <!-- Hora Fin -->
-                    <div class="row">
-                        <div class="col-6 offset-5 p-1" *ngIf="!datos?.paso1?.todoElDia">
+                    <div class="row" *ngIf="!datos?.paso1?.todoElDia">
+                        <div class="col-7 offset-4 p-1">
                             <p id="horaFin" class="text-center text-black d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2">{{ datos?.paso1?.horaFin }}</p>
                         </div>
                     </div>
@@ -95,8 +95,8 @@
                         <button class="col-7 bg-transparent border-0 p-1" (click)="volverAPaso3()" *ngIf="datos?.paso3?.latitud != null && datos?.paso3?.longitud != null">
                             <p id="placeholder" class="text-center text-black rounded-2 bg-secondary p-2">Mostrar Mapa</p>
                         </button>
-                        <div class="col-7 rounded-2 bg-secondary p-1" *ngIf="datos?.paso3?.latitud === null && datos?.paso3?.longitud === null">
-                            
+                        <div class="col-7 rounded-2 p-1" *ngIf="datos?.paso3?.latitud === null && datos?.paso3?.longitud === null">
+                            <div class="rounded-2 bg-secondary p-2">
                                 <p class="d-flex text-start text-black">
                                     - Ciudad: {{ datos.paso3.ciudad }}
                                 </p>
@@ -107,11 +107,13 @@
                                     - Calle: {{ datos.paso3.calle }}
                                 </p>
                                 <p class="d-flex text-start text-black">
-                                    - Numero: {{ datos.paso3.numero }}
+                                    - Altura: {{ datos.paso3.numero }}
                                 </p>
+                            </div>
+                                
                         </div>
                         <div class="col-1 d-flex align-items-center m-0 p-1">
-                            <button id="editar" class="d-flex justify-content-center rounded-2 bg-secondary m-0 p-2 border-0" (click)="volverAPaso3()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                            <button id="editar" class="d-flex justify-content-center bg-transparent m-0 p-0 border-0" (click)="volverAPaso3()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
 
@@ -137,7 +139,7 @@
 
                     <!--Boton Crear-->
                     <div class="row">
-                        <button id="btnCrear" class="col-md-12 border-0 btn btn-success" (click)="crearNuevoEvento()">
+                        <button id="btnCrear" class="col-11 border-0 btn btn-success" (click)="crearNuevoEvento()">
                             Crear Evento
                         </button>
                     </div>

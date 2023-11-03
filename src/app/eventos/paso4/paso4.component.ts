@@ -67,6 +67,7 @@ export class Paso4Component implements OnInit {
     if ( componenteCrearRecurso.formulario.valid) {
       return true;
     } else {
+      //alert('Completar los Campos');
       this.activarError();
       console.log("ERROR");
       return false;

@@ -5,7 +5,7 @@ import { Paso2Component } from './../paso2/paso2.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Paso1Component } from '../paso1/paso1.component';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RecursosService } from 'src/app/recursos/recursos.service';
 import { NotificacionGuardadoComponent } from './../../recursos/visualizar-recurso/notificacion-guardado/notificacion-guardado.component';
 
@@ -22,7 +22,7 @@ export class CrearEventoComponent implements OnInit{
   @ViewChild('paso5', { read: Paso5Component }) paso5Component: Paso5Component | undefined;
   @ViewChild('errorModalContent') errorModalContent: any;
 
-  pasoActual: number = 3;
+  pasoActual: number = 0;
   ultimoPaso: number = 4;
   titulos: string[] = ["Nombre y Fecha","Formalidad y Privacidad","Lugar","Objetos","Confirmación"];
   pasos: any[] = [
@@ -54,6 +54,7 @@ export class CrearEventoComponent implements OnInit{
   constructor(
     private modal: NgbModal,
     private service: RecursosService,
+    private sb: FormBuilder,
   ) {}
   
   pasoAnterior(){
@@ -93,9 +94,7 @@ export class CrearEventoComponent implements OnInit{
     )
   }
   ngOnInit() {
-    this.paso4Component?.eventoCerrar.subscribe(() => {
-      this.openError();
-    });
+    
   }
   getPasoActual(pasoActual:number){
     if(pasoActual===0){return this.paso1Component;}
@@ -103,7 +102,7 @@ export class CrearEventoComponent implements OnInit{
     if(pasoActual===2){return this.paso3Component;}
     if(pasoActual===3){return this.paso4Component;}
     else return this.paso5Component;
-    }
+  }
     
   irAPaso1(){this.pasoActual = 0;}
   irAPaso2(){this.pasoActual = 1;}
@@ -142,18 +141,20 @@ crearEvento(){
     fecha: new FormControl(this.pasarDatos().paso1.fecha),
     horaInicio: new FormControl(this.pasarDatos().paso1.horaInicio),
     horaFin: new FormControl(this.pasarDatos().paso1.horaFin),
-    todoElDia: new FormControl(this.pasarDatos().paso1.todoElDia),
     descripcion: new FormControl(this.pasarDatos().paso1.descripcion),
     tipoEvento: new FormControl(this.pasarDatos().paso2.tipoEvento),
     tipoInvitacion: new FormControl(this.pasarDatos().paso2.tipoInvitacion),
-    latitud: new FormControl(this.pasarDatos().paso3.latitud),
-    longitud: new FormControl(this.pasarDatos().paso3.longitud),
-    ciudad: new FormControl(this.pasarDatos().paso3.ciudad),
-    barrio: new FormControl(this.pasarDatos().paso3.barrio),
-    calle: new FormControl(this.pasarDatos().paso3.calle),
-    numero: new FormControl(this.pasarDatos().paso3.numero),
+    ubicacion: this.sb.group({
+      latitud: new FormControl(this.pasarDatos().paso3.latitud),
+      longitud: new FormControl(this.pasarDatos().paso3.longitud),
+      ciudad: new FormControl(this.pasarDatos().paso3.ciudad),
+      localidad: new FormControl(this.pasarDatos().paso3.barrio),
+      calle: new FormControl(this.pasarDatos().paso3.calle),
+      altura: new FormControl(this.pasarDatos().paso3.numero)
+    }),
     recursos: new FormControl(this.pasarDatos().paso4.recursos),
   });
+  
   console.log(datosOrdenados.value);
   this.service.crearEvento(datosOrdenados.value).subscribe({
     next: v => {
