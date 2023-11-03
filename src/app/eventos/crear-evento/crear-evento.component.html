@@ -5,7 +5,7 @@
 
   </div>
 
-<div class="fondo mt-3 pt-5 h-90 pb-5 overflow-x-hidden">
+<div class="fondo pt-5 h-90 padding-creacion-evento overflow-x-hidden">
     <app-paso1 #paso1 [ngStyle]="{'display': pasoActual === 0? 'block' : 'none'}"></app-paso1>
     <app-paso2 #paso2 [ngStyle]="{'display': pasoActual === 1? 'block' : 'none'}"></app-paso2>
     <app-paso3 #paso3 [ngStyle]="{'display': pasoActual === 2? 'block' : 'none'}"></app-paso3>
@@ -21,14 +21,17 @@
 
 </div>
 <!-- Mensaje de error de Formulario Incompleto-->
-<ng-template #errorModalContent let-modal>
-  <div class="modal-body bg-primary">
-    Por Favor, complete los campos que quedaron incompletos :)
-  </div>
-  <div class="modal-footer bg-secondary">
-    <button type="button" class="btn btn-secondary bg-warning" (click)="modal.close(errorModalContent)">Cerrar</button>
-  </div>
-</ng-template>
+  <ng-template #errorModalContent let-modal >
+    <div class="modal-body bg-dark-subtle">
+      <h2 class="m-0 text-warning">¡Atención!</h2>
+    </div>
+    <div class="container-fluid modal-footer bg-primary rounded-bottom">
+      <div class="row">
+        <h3 class="text-black text-center px-0">Por favor, complete los campos que quedaron incompletos 🙂</h3>
+        <button type="button" class="btn btn-outline-warning" (click)="modal.close(errorModalContent)">Cerrar</button>
+      </div>
+    </div>
+  </ng-template>
 
 <div [ngClass]="{'justify-content-center' : pasoActual === 0, 'justify-content-around' : pasoActual != 0 }"class="footer d-flex fixed-bottom justify-content-center px-2 pt-2">
   <button *ngIf="pasoActual != 0" (click)="pasoAnterior()" class="rounded-2 border-0 boton px-5 py-2"><i class="bi bi-arrow-left text-white mx-3 display-5"></i></button>
