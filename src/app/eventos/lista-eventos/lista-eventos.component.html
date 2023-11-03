@@ -58,6 +58,16 @@
               </a>
             </mat-panel-description>
           </mat-expansion-panel>
+          <mat-expansion-panel *ngIf="evento.descripcion != null && (panelAbierto === 'descripcion' || panelAbierto === 'todos')"(opened)="abrirPanel('descripcion')" (closed)="cerrarPanel('descripcion')">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Descripción
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-panel-description>
+              <p>{{ evento.descripcion }}</p>
+            </mat-panel-description>
+          </mat-expansion-panel>
           <mat-expansion-panel *ngIf="panelAbierto === 'recursos' || panelAbierto === 'todos'" (opened)="abrirPanel('recursos')" (closed)="cerrarPanel('recursos')">
             <mat-expansion-panel-header>
               <mat-panel-title>
