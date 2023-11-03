@@ -55,11 +55,14 @@
             </div>
           </mat-expansion-panel>
           <div class="descripcion-buttons" *ngIf="panelAbierto === 'descripcion'">
-            <button class="boton-tacho" [ngStyle]="{ 'background-color': selectedColor }" (click)="eliminarDescripcion()">
-              <i class="material-icons">delete</i>
+            <button class="boton-guardar" [ngStyle]="{ 'background-color': selectedColor }" (click)="guardarDescripcion()">
+              <i class="material-icons">save</i>
             </button>
             <button class="boton-lapiz" [ngStyle]="{ 'background-color': selectedColor }" (click)="editarDescripcion()">
               <i class="material-icons">create</i>
+            </button>
+            <button class="boton-tacho" [ngStyle]="{ 'background-color': selectedColor }" (click)="eliminarDescripcion()">
+              <i class="material-icons">delete</i>
             </button>
           </div>
         <div class="cantidad-container" *ngIf="panelAbierto === 'todos'">
