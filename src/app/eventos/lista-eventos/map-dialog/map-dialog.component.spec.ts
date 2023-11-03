@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PerfilComponent } from './perfil.component';
+import { MapDialogComponent } from './map-dialog.component';
 
-describe('PerfilComponent', () => {
-  let component: PerfilComponent;
-  let fixture: ComponentFixture<PerfilComponent>;
+describe('MapDialogComponent', () => {
+  let component: MapDialogComponent;
+  let fixture: ComponentFixture<MapDialogComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PerfilComponent]
+      declarations: [MapDialogComponent]
     });
-    fixture = TestBed.createComponent(PerfilComponent);
+    fixture = TestBed.createComponent(MapDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,6 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecursoColorPickerService } from '../recurso-color-picker/recurso-color-picker.service';
+import { RecursoService } from '../recurso.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificacionGuardadoComponent } from './notificacion-guardado/notificacion-guardado.component';
 
 
 @Component({
@@ -9,58 +12,93 @@ import { RecursoColorPickerService } from '../recurso-color-picker/recurso-color
   styleUrls: ['./visualizar-recurso.component.css']
 })
 export class VisualizarRecursoComponent implements OnInit {
-  public selectedObjectType: string | null = null;
-  public objectTypes: string[] = ['Bebida', 'Mobiliario', 'Comida', 'Juego', 'Tecnología', 'Otro'];
-  recurso: Recurso | undefined;
-  responsables: Responsable[] = [];
+  @ViewChild('descripcionTextarea') descripcionTextarea: ElementRef | undefined;
+  public selectedObjectType: Categoria | undefined;
+  public objectTypes: Categoria[] = [];
+  recurso: Recurso;
+  evento: Evento;
   isFlipped: boolean = false;
   descripcion: string = '';
   panelAbierto: string = 'todos';
   mostrarColorPicker: boolean = false;
-  selectedColor: string | null = '#ef7d16';
+  selectedColor: string;
   selectedColorClass: string = '#ef7d16';
+  categoria: Categoria;
+  asignaciones: Asignaciones[] = [];
+  asistente: Asistente | undefined;
+  participante: Participante | undefined;
+  rol: Rol |undefined;
 
   constructor(
     private router: Router,
-    private RecursoColorPickerService: RecursoColorPickerService
+    private RecursoColorPickerService: RecursoColorPickerService,
+    private RecursoService: RecursoService,
+    private _snackBar: MatSnackBar, 
   ) {
-    this.RecursoColorPickerService.getSelectedColor().subscribe((color) => {
+    this.recurso = this.router.getCurrentNavigation()?.extras.state?.['recurso'];
+    this.evento = this.recurso.evento;
+    this.categoria = this.recurso.categoria;
+    this.descripcion = this.recurso.descripcion;
+    this.selectedColor = this.recurso.colorTarjeta;
+    this.RecursoService
+    .obtenerMensajeGuardadoExitoso()
+    .subscribe(() => this.mostrarMensajeGuardadoExitoso());
+    this.RecursoService.getColorSeleccionado().subscribe((color) => {
+      if(color!=null)
       this.selectedColor = color;
       this.selectedColorClass = this.getColorClass(color);
     });
-    this.recurso = this.router.getCurrentNavigation()?.extras.state?.['recurso'];
   }
+  
 
   ngOnInit() {
-
-    this.selectedObjectType = 'Bebida';
-    console.log(this.selectedObjectType);
-    this.RecursoColorPickerService.getSelectedColor().subscribe((color) => {
-      this.selectedColor = color || '#ef7d16';
+    this.RecursoService.tiposDeRecursos().subscribe({
+      next: (v:Categoria[]|any) => {
+        this.objectTypes = v;
+      },
+      error: e => {
+        console.log(e);
+       // this.mockearTiposDeRecursos();
+      },
+      complete: () => {},
     });
 
-    this.responsables = [
-      { id: 1, nombre: 'Juan', cantidad: 2 },
-      { id: 2, nombre: 'Bruno', cantidad: 1 },
-      { id: 3, nombre: 'Pedro', cantidad: 1 },
-      { id: 4, nombre: 'Daniel', cantidad: 2 }
-    ];
+    this.RecursoService.getAsignacionesByRecursoId(this.recurso.id).subscribe(
+      (info: Asignaciones[]|any) => {
+        this.asignaciones = info;
+      }
+    );
 
-    /*this.recurso = {
-      id: 1,
-      cantidadActual: this.responsables.reduce((total, responsable) => total + responsable.cantidad, 0),
-      cantidadNecesaria: 6,
-      descripcion: 'Esta es la coca para el fernet. No compren light ni cero.',
-      nombre: 'Coca Cola'
-    };*/
+    this.RecursoColorPickerService.getSelectedColor().subscribe((color) => {
+      if(color!=null)
+      this.selectedColor = color;
+      this.selectedColorClass = this.getColorClass(color);
+    });
+
+    this.RecursoService.getCategoriaByRecurso(this.recurso.id).subscribe(
+      (data: Categoria) => {
+        this.categoria = data;
+        this.selectedObjectType = this.categoria;
+        this.recurso.recursoCategoriaId = this.categoria.id;
+      }
+    );
+
+    this.selectedColor = this.recurso.colorTarjeta;
+    this.selectedColorClass = this.getColorClass(this.recurso.colorTarjeta);
+
+    this.descripcionTextarea?.nativeElement.addEventListener('blur', () => {
+      this.guardarDescripcion();
+    });
   }
 
   getCantidadTotal(): number {
-    let cantidadTotal = 0;
+   /*  let cantidadTotal = 0;
     for (const responsable of this.responsables) {
       cantidadTotal += responsable.cantidad;
     }
-    return cantidadTotal;
+    return cantidadTotal; */
+
+    return this.recurso.cantidadActual;
   }
 
   flipCard() {
@@ -78,9 +116,23 @@ export class VisualizarRecursoComponent implements OnInit {
     return '';
   }
 
-  selectObjectType(type: string) {
+  selectObjectType(type: Categoria) {
+    this.recurso.recursoCategoriaId = type.id;
     this.selectedObjectType = type;
-    console.log(this.selectedObjectType);
+    this.recurso.categoria = type;
+    this.guardarRecurso(this.recurso);
+  }
+
+  guardarRecurso(recurso: Recurso) {
+    this.RecursoService.actualizarRecurso(recurso).subscribe(
+      (response) => {
+        console.log('Recursos actualizados con éxito', response);
+      },
+      (error) => {
+        console.error('Error al actualizar los recursos', error);
+      }
+    );
+    this.mostrarMensajeGuardadoExitoso();
   }
 
   abrirPanel(panel: string) {
@@ -120,18 +172,79 @@ export class VisualizarRecursoComponent implements OnInit {
 
     return 'color-naranja';
   }
+
+  mostrarMensajeGuardadoExitoso()  {
+    this._snackBar.openFromComponent(NotificacionGuardadoComponent, {
+      duration: 2000,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+    });
+  }
+
+  eliminarDescripcion() {
+    this.descripcion = '';
+    this.recurso.descripcion = this.descripcion;
+    this.guardarRecurso(this.recurso);
+  }
+
+  editarDescripcion() {
+    this.descripcionTextarea?.nativeElement.focus();
+  }
+
+  guardarDescripcion() {
+    const nuevaDescripcion = this.descripcionTextarea?.nativeElement.value;
+    this.descripcion = nuevaDescripcion;
+    this.recurso.descripcion = nuevaDescripcion;
+    this.guardarRecurso(this.recurso);
+  }
 }
 
-interface Responsable {
+ export interface Recurso {
   id: number;
   nombre: string;
-  cantidad: number;
-}
-
-interface Recurso {
-  id: number;
+  descripcion: string;
   cantidadActual: number;
   cantidadNecesaria: number;
-  descripcion: string;
+  proveedor: string;
+  recursoCategoriaId: number;
+  colorTarjeta: string;
+  evento: Evento;
+  categoria: Categoria;
+}
+
+interface Evento {
+  id: number;
+}
+
+interface Categoria {
+  id: number;
+  nombre: string;
+  icono: string;
+}
+
+interface Asignaciones {
+  id: number;
+  asistente: Asistente;
+  cantidad: number;
+  comentarios: string;
+  fechaHora: Date;
+}
+
+interface Asistente {
+  id: number;
+  activo: boolean;
+  participante: Participante;
+  rol: Rol;
+}
+
+interface Participante{
+  id: number;
+  apellido: string
+  mail: string;
+  nombre:string;
+}
+
+interface Rol{
+  id: number;
   nombre: string;
 }

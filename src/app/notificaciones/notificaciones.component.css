@@ -4,14 +4,10 @@
     align-items: center;
     justify-content: flex-start;
     text-align: center;
-    height: 80%;
+    height: 100%;
     padding-top: 50px;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
     margin-bottom: -16px;
-    background-color: #3f4244;
+    background-color: #3a3a3a;
   }
 
   .icon-home {

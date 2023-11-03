@@ -49,7 +49,9 @@
 }
 
 .flip-card-front h2 {
-  padding-left: 15px;
+  text-align: center;
+  font-size: 35px;
+  margin-bottom: 32px;
 }
 
 .flip-card-back {
@@ -82,8 +84,16 @@
   padding-left: 15px;
 }
 
-.icono-cocaCola {
-  margin: 50px 95px 25px;
+.icono-Recurso {
+  margin: 50px 105px 25px;
+  width: 90px;
+  height: 90px;
+}
+
+.icono-Recurso-bebida{
+  margin: 50px 125px 25px;
+  width: 60px;
+  height: 90px;
 }
 
 .tipo-recurso {
@@ -98,9 +108,7 @@
 }
 
 .cumpleCantidad {
-  padding-left: 15px;
-  display: flex;
-  align-items: center;
+  text-align: center;
 }
 
 .cumpleCantidad p {
@@ -194,7 +202,7 @@
   height: 38px;
   align-items: center;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .cantidad-label,
@@ -202,14 +210,48 @@
   border-radius: 10px;
   font-size: 15px;
   color: #ffffff;
-  padding: 10px 47px;
+  padding: 10px 28px;
   text-align: center;
 }
 
 .texto-descripcion{
   padding: 30px 0px;
   font-size: 17px;
+  border: none !important;
+  width: 240px;
+  resize: none;
+  outline: none;
+}
+
+::ng-deep .texto-descripcion:focus{
+  padding: 30px 0px;
+  font-size: 17px;
+  border: none !important;
+}
+
+.descripcion-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  background: none;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.descripcion-buttons button {
+  background-color: transparent;
   border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.descripcion-buttons button i {
+  font-size: 20px;
+  color: #fff;
 }
 
 .button-grid {
@@ -234,12 +276,31 @@
 }
 
 .selected {
-  background-color: #4e5fa8;
-  color: white;
-  border: 2px solid #4e5fa8;
+  border: 2px solid #000;
   font-weight: bold;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   transform: translateY(2px);
+  filter: brightness(0.9);
+}
+
+.selected-naranja {
+  background-color: #f9b668;
+}
+
+.selected-verde {
+  background-color: #b6cc85;
+}
+
+.selected-azul {
+  background-color: #a7acce;
+}
+
+.selected-rosa {
+  background-color: #e6a5b6;
+}
+
+.selected-gris-td {
+  background-color: #cccccc;
 }
 
 .icon-container {
@@ -378,23 +439,23 @@
 }
 
 .color-naranja .mat-expansion-panel-header:hover {
-  background-color: #ef923e;
+  background-color: #ef923e !important;
 }
 
 .color-verde .mat-expansion-panel-header:hover {
-  background-color: #8ccf43;
+  background-color: #8ccf43 !important;
 }
 
 .color-azul .mat-expansion-panel-header:hover {
-  background-color: #7985ce;
+  background-color: #7985ce !important;
 }
 
 .color-rosa .mat-expansion-panel-header:hover {
-  background-color: #df5e7e;
+  background-color: #df5e7e !important;
 }
 
 .color-gris .mat-expansion-panel-header:hover {
-  background-color: #696c70;
+  background-color: #696c70 !important;
 }
 
 ::ng-deep .color-naranja .mat-expansion-panel-body {
@@ -457,25 +518,7 @@
   background-color: #f3f2f2;
 }
 
-.color-naranja-td:hover {
-  background-color: #f9b668;
-}
 
-.color-verde-td:hover {
-  background-color: #b6cc85;
-}
-
-.color-azul-td:hover {
-  background-color: #a7acce;
-}
-
-.color-rosa-td:hover {
-  background-color: #e6a5b6;
-}
-
-.color-gris-td:hover {
-  background-color: #cccccc;
-}
 
 ::ng-deep .color-naranja .texto-descripcion {
   background-color: #f9c78d;

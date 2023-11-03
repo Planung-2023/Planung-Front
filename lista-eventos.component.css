@@ -198,7 +198,7 @@ mat-panel-description{
 }
 
 .panelInvitados{
-  max-height: 200px;
+  max-height: 80px;
   max-width: 400px;
   overflow: auto;
 }
@@ -290,7 +290,7 @@ mat-panel-description{
 .invitarBtn{
   padding: 12px;
   margin-bottom: 20px;
-  margin-top:20px;
+  margin-top:0px;
   border-radius: 10px;
   background-color: red;
   color: white;

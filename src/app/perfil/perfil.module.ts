@@ -5,7 +5,7 @@ import { VerPerfilComponent } from './ver-perfil/ver-perfil.component';
 import { CambiarImagenComponent } from './cambiar-imagen/cambiar-imagen.component';
 import { MatIconModule } from '@angular/material/icon';
 import { PerfilRoutingModule } from './perfil-routing.module';
-
+import { PerfilService } from './perfil.service';
 
 
 @NgModule({
@@ -18,6 +18,7 @@ import { PerfilRoutingModule } from './perfil-routing.module';
     CommonModule,
     PerfilRoutingModule,
     MatIconModule,
-  ]
+  ],
+  providers: [PerfilService]
 })
 export class PerfilModule { }

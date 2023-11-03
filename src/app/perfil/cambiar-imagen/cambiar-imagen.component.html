@@ -14,43 +14,60 @@
         <h3 class="text-center col-12 subtitulo-perfil">Foto de Perfil</h3>
         <div class="row justify-content-around align-items-center">
             <div class="foto-perfil col-5">
-                <img src="assets/foto-perfil-3.png" alt="Foto de perfil" class="img-fluid">
+                <img [src]="fotoPerfilPrincipal" alt="Foto de perfil" class="img-fluid">
             </div>
         </div>
         <div class="col-12 text-center">
             <h3 class="subtitulo"> Seleccione una foto </h3>
         </div>
         <div class="row justify-content-around align-items-center">
-            <div class="foto-perfil-seleccion col-4 btn">
+            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto('assets/gigachad1.jpg')">
                 <a>
                     <img src="assets/gigachad1.jpg" alt="Foto de perfil" class="img-fluid">
                 </a>
             </div>
-            <div class="foto-perfil-seleccion col-4 btn">
+            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto('assets/gigachad2.jpg')">
                 <a>
                     <img src="assets/gigachad2.jpg" alt="Foto de perfil" class="img-fluid">
                 </a>
             </div>
-            <div class="foto-perfil-seleccion col-4 btn">
+            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto('assets/chad1.jpeg')">
                 <a>
                     <img src="assets/chad1.jpeg" alt="Foto de perfil" class="img-fluid">
                 </a>
             </div>
         </div>
         <div class="row justify-content-around align-items-center">
-            <div class="foto-perfil-seleccion col-4 btn">
+            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto('assets/girl-chad.jpg')">
                 <a>
                     <img src="assets/girl-chad.jpg" alt="Foto de perfil" class="img-fluid">
                 </a>
             </div>
-            <div class="foto-perfil-seleccion col-4 btn">
+            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto('assets/foto-perfil-2.png')">
                 <a>
                     <img src="assets/foto-perfil-2.png" alt="Foto de perfil" class="img-fluid">
                 </a>
             </div>
-            <div class="foto-perfil-seleccion col-4 btn">
+            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto('assets/chad3.jpg')">
                 <a>
                     <img src="assets/chad3.jpg" alt="Foto de perfil" class="img-fluid">
+                </a>
+            </div>
+        </div>
+        <div class="row justify-content-around align-items-center">
+            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto('assets/foto-perfil-3.png')">
+                <a>
+                    <img src="assets/foto-perfil-3.png" alt="Foto de perfil" class="img-fluid">
+                </a>
+            </div>
+            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto('assets/foto-perfil-5.jpg')">
+                <a>
+                    <img src="assets/foto-perfil-5.jpg" alt="Foto de perfil" class="img-fluid">
+                </a>
+            </div>
+            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto('assets/foto-perfil-6.jpg')">
+                <a>
+                    <img src="assets/foto-perfil-6.jpg" alt="Foto de perfil" class="img-fluid">
                 </a>
             </div>
         </div>
