@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { VisualizarRecursoComponent } from '../visualizar-recurso/visualizar-recurso.component';
-import { RecursoService } from '../recurso.service';
+import { RecursosService } from '../recursos.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecursoColorPickerService {
 
-  constructor(private RecursoService: RecursoService) {}
+  constructor(private RecursoService: RecursosService) {}
   private selectedColorSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
   setSelectedColor(color: string) {

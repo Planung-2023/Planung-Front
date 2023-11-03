@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecursoColorPickerService } from '../recurso-color-picker/recurso-color-picker.service';
-import { RecursoService } from '../recurso.service';
+import { RecursosService } from '../recursos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotificacionGuardadoComponent } from './notificacion-guardado/notificacion-guardado.component';
 
@@ -32,7 +32,7 @@ export class VisualizarRecursoComponent implements OnInit {
   constructor(
     private router: Router,
     private RecursoColorPickerService: RecursoColorPickerService,
-    private RecursoService: RecursoService,
+    private RecursoService: RecursosService,
     private _snackBar: MatSnackBar, 
   ) {
     this.recurso = this.router.getCurrentNavigation()?.extras.state?.['recurso'];

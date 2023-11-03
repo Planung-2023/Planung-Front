@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { RecursoColorPickerService } from './recurso-color-picker.service';
 import { Recurso } from '../visualizar-recurso/visualizar-recurso.component';
 import { Router } from '@angular/router'
-import { RecursoService } from '../recurso.service';
+import { RecursosService } from '../recursos.service';
 
 @Component({
   selector: 'app-recurso-color-picker',
@@ -14,7 +14,7 @@ export class RecursoColorPickerComponent {
 
   @Input() recurso: Recurso;
 
-  constructor(private RecursoColorPickerService: RecursoColorPickerService, private Router: Router, private RecursoService: RecursoService) {
+  constructor(private RecursoColorPickerService: RecursoColorPickerService, private Router: Router, private RecursoService: RecursosService) {
     this.recurso = this.Router.getCurrentNavigation()?.extras.state?.['recurso'];
   }
   
