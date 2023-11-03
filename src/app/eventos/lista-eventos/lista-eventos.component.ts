@@ -21,6 +21,7 @@ export class ListaEventosComponent implements OnInit {
   recursos: Recurso[] = [];
   mostrarMapa: boolean = false;
   mostrarPopupInvitados = false;
+  panelAbierto: string = 'todos';
   apiLoaded: boolean = true;
   display: any;
   position = {lat: 34.598613, lng: 58.415632}
@@ -171,6 +172,16 @@ openMapDialog() {
       options: this.options,
     },
   });
+}
+
+abrirPanel(panel: string) {
+  this.panelAbierto = panel;
+}
+
+cerrarPanel(panel: string) {
+  if (this.panelAbierto === panel) {
+    this.panelAbierto = 'todos';
+  }
 }
 }
 
