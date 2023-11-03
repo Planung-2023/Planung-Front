@@ -1,0 +1,353 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #3f4244;
+}
+
+body {
+  font-family: 'Segoe UI';
+  font-size: 14px;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.top-bar {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 60px;
+  background-color: #262626;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1000;
+}
+
+.icon-configuracion {
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  color: white;
+  font-size: 24px;
+}
+
+.img-configuracion {
+  width: 30px;
+  padding: 5%;
+}
+
+
+.icon-notificaciones {
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  color: white; 
+  font-size: 24px;
+}
+
+.img-notificaciones {
+  width: 30px;
+  padding: 5%;
+}
+
+.boton-crear-evento {
+  width: 30px;
+  height: 30px;
+}
+
+.swiper-container {
+  margin: 100px auto;
+  width: 320px;
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+  text-align: left;
+  border-radius: 20px;
+  margin-left: 8%;
+  width: 80%;
+  margin-top: 60px;
+  background-color: #6a6d71;
+}
+
+.swiper-slide p {
+  font-size: 16px;
+  color: #000;
+  margin-left: 12px;
+}
+
+.swiper-slide p strong {
+  color: #fff;
+}
+
+.swiper-slide .titulo-container {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.swiper-slide .titulo-evento {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+
+.lista-eventos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  height: 90%;
+  padding-top: 50px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  margin-bottom: -16px; 
+}
+
+
+.lista-eventos-container::-webkit-scrollbar {
+  display: none; 
+}
+
+
+
+.lista-eventos-container .swiper-wrapper {
+  display: flex;
+  align-items: flex-start;
+  padding-bottom: 16px;
+  height: 90%;
+}
+
+.lista-eventos-container h1 {
+  position: fixed;
+  top: 55px;
+  z-index: 999;
+  margin: 0;
+  padding: 10px;
+  color: #fff;
+}
+
+.sin-eventos-container {
+  margin-top: 50px;
+}
+
+.sin-eventos-container h2 {
+  font-size: 30px;
+  margin-bottom: 45px;
+}
+
+
+.sin-eventos-container h3 {
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+.imagen-calendario {
+  width: 120px;
+  height: 102px;
+  margin-bottom: 80px;
+}
+
+.crear-evento-container p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.custom-button {
+  background-color: #262626;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+.custom-button:hover {
+  background-color: #131842;
+}
+
+.mat-expansion-panel-header {
+  background-color: #262626;
+  color: #fff;
+}
+
+.mat-expansion-panel-content {
+  background-color: #262626;
+  color: #fff;
+}
+
+mat-panel-description{
+  padding-top: 4%;
+  display: inline;
+}
+
+.panelInvitados{
+  max-height: 80px;
+  max-width: 400px;
+  overflow: auto;
+}
+
+.map-link {
+  display: flex;
+  align-items: center;
+  text-decoration: underline;
+  cursor: pointer;
+  color: #000;
+}
+
+.mat-icon-map {
+  margin-right: 5px;
+}
+
+
+.mat-expanded .mat-expansion-panel-header {
+  background-color: #262626;
+}
+
+.mat-expansion-indicator {
+  color: #fff;
+}
+
+.mat-expansion-indicator {
+  color: #fff;
+}
+
+@media (hover: none){}
+.mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+    background: #262626;
+}
+
+.mat-expansion-panel-header-description, .mat-expansion-indicator::after {
+  color: #fff;
+}
+
+
+
+.mat-expanded .mat-expansion-indicator {
+  transform: rotate(180deg);
+}
+
+.mat-expansion-panel {
+  margin-bottom: 16px;
+  background: #9a9fa5;
+  border-radius: 30px;
+  overflow: hidden;
+  margin-left: 12px;
+}
+
+.mat-expansion-panel-header-title {
+  color: rgb(255 255 255);
+}
+
+.agregar-recurso-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  color: #fff;
+}
+
+.recurso-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.recurso-container span {
+  margin-right: 10px;
+}
+
+.ver-recurso-button {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  margin-left: 20px;
+}
+
+.ver-recurso-button mat-icon {
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.invitarBtn{
+  padding: 12px;
+  margin-bottom: 20px;
+  margin-top:0px;
+  border-radius: 10px;
+  background-color: red;
+  color: white;
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+/*
+.participante-container1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+*/
+
+.ver-participante-button {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  margin-left: 20px;
+}
+
+.ver-participante-button mat-icon {
+  margin-top: 5px;
+  font-size: 20px;
+}
+/*
+.invitados-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 auto;
+  max-height: 200px;
+  overflow: auto;
+}
+
+.participante-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+*/
+
+.invitados-container {
+  display: flex;
+  flex-wrap: wrap; /* Los invitados se envuelven en líneas nuevas si no caben en una sola línea */
+  max-height: 200px;
+  overflow: auto;
+  justify-content: space-around;
+}
+
+.participante-container {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  margin-top: 15px;
+  max-width: 400px; /* Ancho máximo para cada invitado (ajusta según tus necesidades) */
+  justify-content: space-between;
+}
