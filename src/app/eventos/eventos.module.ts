@@ -23,6 +23,7 @@ import { InvitacionComponent } from './invitacion/invitacion.component';
 import { InvitadosComponent } from './invitados/invitados.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MapDialogComponent } from './lista-eventos/map-dialog/map-dialog.component';
+import { UnirseEventoComponent } from './unirse-evento/unirse-evento.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MapDialogComponent } from './lista-eventos/map-dialog/map-dialog.compon
     ListaEventosComponent,
     InvitacionComponent,
     InvitadosComponent,
-    MapDialogComponent
+    MapDialogComponent,
+    UnirseEventoComponent
   ],
   imports: [
     CommonModule,

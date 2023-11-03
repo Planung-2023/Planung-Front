@@ -1,0 +1,41 @@
+  .lista-eventos-container {
+    padding: 35px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid #ddd;
+    margin: 30% 35px;
+    background-color: gray;
+    border-radius: 8%;
+}
+
+.row .H2{
+    color:#fff
+}
+.evento-nombre, .evento-creador, .evento-descripcion {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.evento-botones {
+    flex: 0 0 40px; /* Ancho fijo para los botones */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+button.boton-usuario {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 170px;
+    height: 40px;
+    margin-top: 25px;
+}
+
+button.boton-usuario:hover {
+    background-color: #0056b3;
+}

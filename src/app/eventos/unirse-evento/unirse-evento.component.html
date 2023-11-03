@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg col-md-12" style="background-color: #262626">
+    <div class="container-fluid">
+        <button mat-icon-button style="background-color: #5a5a5a; color: white;" class="" type="button" routerLink="">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+  </nav>
+
+<div class="lista-eventos-container text-center">
+    <div class="row">
+        <div class="evento-nombre">
+            <h2>Nombe del evento</h2>
+            <h2 style="color: white">{{evento?.nombre}}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="evento-creador">
+            <h2>Creador del evento</h2>
+            <h2 style="color: white">{{evento?.creador}}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="evento-descripcion">
+            <h2>Descripción del evento</h2>
+            <h2 style="color: white">{{evento?.descripcion}}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div *ngIf="evento?.tipoEvento === 'directa'; else aprobacion" class="evento-botones mx-auto">
+            <button class="boton-usuario" (click)="unirseEvento(evento.id)">Unirse al Evento</button>
+        </div>
+        <ng-template #aprobacion>
+            <div #aprobacion class="evento-botones mx-auto">
+                <button class="boton-usuario" (click)="unirseEvento(evento.id)">Solicitar Unirse al Evento</button>
+            </div>
+        </ng-template>
+    </div>
+</div>
