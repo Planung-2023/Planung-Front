@@ -23,7 +23,7 @@ export class ListaEventosComponent implements OnInit {
   mostrarPopupInvitados = false;
   apiLoaded: boolean = true;
   display: any;
-  position = {lat: -34.598613, lng: -58.415632}
+  position = {lat: 34.598613, lng: 58.415632}
   label = {
     color: "red",
     text: "marcador",
@@ -61,7 +61,6 @@ export class ListaEventosComponent implements OnInit {
     this.invitadoSeleccionado = nombreInvitado;
   }
 
-
   ngOnInit() {
     this.recuperarEventos();
     const swiper = new Swiper('.swiper-container', {
@@ -76,21 +75,12 @@ export class ListaEventosComponent implements OnInit {
     this.listaEventosService.getAsistentes(1).subscribe((data: any) => {
       this.asistente = data.asistentes; // Asigna los datos al arreglo "asistente".
     });
-    
-
-/*
-    this.perfilService.getNombreDeUsuario(usuarioId).subscribe((usuario: any) => {
-      this.nombreUsuario = usuario.nombreUsuario;
-    });
-    */
   }
 
   //ejemplo
-
   private recuperarEventos() {
     this.listaEventosService.getEventos().subscribe(data => {
       this.eventos = data;
-      console.log(data);
       this.eventos.forEach(evento => this.listaEventosService.getRecursosByEventoId(evento.id).subscribe(
         (data: Recurso[]) => {
           evento.recursos = data;
@@ -101,7 +91,6 @@ export class ListaEventosComponent implements OnInit {
     });
   }
 
-  
   private mockearEventos() {
     const creador1: Creador = {
       id: 1,

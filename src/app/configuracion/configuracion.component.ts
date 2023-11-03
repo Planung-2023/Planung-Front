@@ -50,9 +50,9 @@ export class ConfiguracionComponent implements OnInit {
     });
 
     // Utiliza el servicio de perfil para obtener el nombre del usuario
-    this.configuracionService.getDatosParticipante(participanteId).subscribe((participante: any) => {
-      this.participante = participante;
-      this.correoParticipante = this.participante.mail;
+    this.configuracionService.getDatosParticipante(participanteId).subscribe((res: any) => {
+      this.participante = res.participante;
+      this.correoParticipante = res.participante.mail;
     });
   }
 }
