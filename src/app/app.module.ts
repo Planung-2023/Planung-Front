@@ -51,8 +51,8 @@ import {} from 'googlemaps';
     MatSelectModule,
     MatIconModule,
     MatRadioModule,
-    MatFormFieldModule,
     EventosModule,
+    MatFormFieldModule,
     GoogleMapsModule,
     HttpClientModule,
     AuthModule.forRoot({

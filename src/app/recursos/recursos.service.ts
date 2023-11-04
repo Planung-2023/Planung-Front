@@ -9,7 +9,7 @@ import { Recurso } from './visualizar-recurso/visualizar-recurso.component';
 @Injectable({
   providedIn: 'root'
 })
-export class RecursoService {
+export class RecursosService {
   private mensajeGuardadoExitoso = new Subject<void>();
   private colorSeleccionadoSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
