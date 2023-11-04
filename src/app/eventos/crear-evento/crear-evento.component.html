@@ -9,8 +9,7 @@
     <app-paso1 #paso1 [ngStyle]="{'display': pasoActual === 0? 'block' : 'none'}"></app-paso1>
     <app-paso2 #paso2 [ngStyle]="{'display': pasoActual === 1? 'block' : 'none'}"></app-paso2>
     <app-paso3 #paso3 [ngStyle]="{'display': pasoActual === 2? 'block' : 'none'}"></app-paso3>
-    <app-paso4 #paso4 [ngStyle]="{'display': pasoActual === 3? 'block' : 'none'}"
-    (eventoCerrar)="openError()"></app-paso4>
+    <app-paso4 #paso4 [ngStyle]="{'display': pasoActual === 3? 'block' : 'none'}" (eventoCerrar)="openError()"></app-paso4>
     <app-paso5 #paso5 [ngStyle]="{'display': pasoActual === 4? 'block' : 'none'}" [datos]="pasarDatos()"
       (aPaso1)="irAPaso1()"
       (aPaso2)="irAPaso2()"

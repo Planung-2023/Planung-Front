@@ -1,145 +1,130 @@
 <mat-card class="shadow-none fondo h-100 pt-4 d-flex">
-    <div id="paso5" class="d-flex justify-content-center m-0 row">
+    <div class="d-flex justify-content-center m-0 row">
         <h1 class="tituloRevisionFinal text-center fw-bold">Revision Final</h1>
 
         <form [formGroup]="formulario" class="cajaPrincipal d-flex justify-content-center w-90 py-2 rounded-4 shadow-lg bg-primary">
-            <div id="cajaRevisionFinal" class="d-flex row justify-content-center w-100">
-                <h2 id="tituloRevision" class="d-flex justify-content-center align-items-center">Revise los Campos</h2>
-                <div id="camposRevision" class="row col-md-12 d-flex justify-content-evenly flex-wrap text-center m-0 p-0">
+            <div class="d-flex row justify-content-center w-100">
+                <h2 class="d-flex justify-content-center align-items-center">Revise los Campos</h2>
+                <div class="row col-md-12 d-flex justify-content-evenly flex-wrap text-center m-0 p-0">
                     <!--Nombre-->
                     <div class="row">
                         <div class="col-4 p-1">
-                            <p id="nombreEvento" class="text-start d-flex justi p-2 text-white rounded-2 fw-bold bg-primary-darken">Nombre</p>
+                            <p class="text-start d-flex justi p-2 text-white rounded-2 fw-bold bg-primary-darken">Nombre</p>
                         </div>
                         <div class="col-7 p-1">
-                            <p id="placeholder" class="text-center text-black d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2"> {{ datos?.paso1?.nombre }}</p>
+                            <p class="text-center text-black d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2"> {{ datos?.paso1?.nombre }}</p>
                         </div>
                         <div class="col-1 d-flex align-items-center m-0 p-1">
-                            <button id="editar" class="d-flex justify-content-center bg-transparent m-0 p-0 border-0" (click)="volverAPaso1()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                            <button class="d-flex rounded-2 bg-secondary px-0 py-1 m-0 border-0" (click)="volverAPaso1()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
 
                     <!--Fecha-->
-                    <div class="row col-md-12">
+                    <div class="row align-items-stretch">
                         <div class="col-3 p-1">
-                            <p id="nombreEvento" class="text-start text-black rounded-2 p-2 text-white fw-bold bg-primary-darken">Fecha</p>
+                            <p class="text-start text-black rounded-2 p-2 text-white fw-bold bg-primary-darken">Fecha</p>
                         </div>
                         <div class="col-1 d-flex align-items-center justify-content-center m-0 p-1" id="icon">
                             <i class="bi bi-calendar-week d-flex justify-content-center align-items-center rounded-2 p-2 bg-secondary h-100"></i>
                         </div>
                         <div class="col-7 p-1">
-                            <p id="placeholder" class="text-center text-black text-wrap d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2">{{ datos?.paso1?.fecha }}</p>
+                            <p class="text-center text-black text-wrap d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2">{{ datos?.paso1?.fecha }}</p>
                         </div>
                         <div class="col-1 d-flex align-items-center m-0 p-1">
-                            <button id="editar" class="d-flex justify-content-center bg-transparent m-0 p-0 border-0" (click)="volverAPaso1()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                            <button class="d-flex rounded-2 bg-secondary px-0 py-1 m-0 border-0" (click)="volverAPaso1()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
 
                     <!--Hora-->
-                    <div class="row col-md-12">
+                    <div class="row align-items-stretch">
                         <div class="col-3 p-1">
-                            <p id="nombreEvento" class="text-start d-flex justi p-2 bg-text-white rounded-2 fw-bold bg-primary-darken">Hora</p>
+                            <p class="text-start d-flex justi p-2 bg-text-white rounded-2 fw-bold bg-primary-darken">Hora</p>
                         </div>
                         <div class="col-1 d-flex align-items-center justify-content-center m-0 p-1" id="icon">
                             <i class="bi bi-alarm d-flex justify-content-center align-items-center rounded-2 p-2 bg-secondary h-100"></i>
                         </div>
                         <div class="col-7 p-1" *ngIf="!datos?.paso1?.todoElDia">
-                            <p id="placeholder" class="text-center text-black d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2">{{ datos?.paso1?.horaInicio }}</p>
+                            <p class="text-center text-black d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2">{{ datos?.paso1?.horaInicio }} - {{ datos?.paso1?.horaFin }}</p>
                         </div>
                         <div class="col-7 p-1" *ngIf="!datos?.paso1?.todoElDia==false">
-                            <p id="placeholder" class="text-center text-black d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2">Todo el Día</p>
+                            <p class="text-center text-black d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2">Todo el Día</p>
                         </div>
                         <div class="col-1 d-flex align-items-center m-0 p-1">
-                            <button id="editar" class="d-flex justify-content-center bg-transparent m-0 p-0 border-0" (click)="volverAPaso1()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                            <button class="d-flex rounded-2 bg-secondary px-0 py-1 m-0 border-0" (click)="volverAPaso1()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
-
-                    <!-- Hora Fin -->
-                    <div class="row" *ngIf="!datos?.paso1?.todoElDia">
-                        <div class="col-7 offset-4 p-1">
-                            <p id="horaFin" class="text-center text-black d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2">{{ datos?.paso1?.horaFin }}</p>
-                        </div>
-                    </div>
-
                     <!--Tipo evento-->
-                    <div class="row">
+                    <div class="row align-items-stretch">
                         <div class="col-4 p-1">
-                            <p id="nombreEvento" class="text-start text-black rounded-2 p-2 text-white fw-bold bg-primary-darken">Tipo de Evento</p>
+                                <p class="d-flex h-100 w-100 align-items-center text-start rounded-2 p-2 text-white fw-bold bg-primary-darken">Tipo de Evento</p>
                         </div>
                         <div class="col-7 p-1">
-                            <p id="placeholder" class="text-center text-black d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2">{{ datos?.paso2?.tipoEvento}}</p>
+                            <div class="container-fluid rounded-2 bg-secondary p-1 m-0">
+                                <img name="tamanio-fuente" *ngIf="datos?.paso2?.tipoEvento == 'Informal'" src="assets\zapatilla.png">
+                                <img name="tamanio-fuente" *ngIf="datos?.paso2?.tipoEvento == 'Formal'" src="assets/zapato.png">
+                            </div>
                         </div>
                         <div class="col-1 d-flex align-items-center m-0 p-1">
-                            <button id="editar" class="d-flex justify-content-center bg-transparent m-0 p-0 border-0" (click)="volverAPaso2()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                            <button class="d-flex rounded-2 bg-secondary px-0 py-1 m-0 border-0" (click)="volverAPaso2()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
 
                     <!--Tipo Invitacion-->
-                    <div class="row">
+                    <div class="row align-items-stretch">
                         <div class="col-4 p-1">
-                            <p id="nombreEvento" class="text-start text-black rounded-2 p-2 text-white fw-bold bg-primary-darken">Tipo de Invitación</p>
+                            <p class="d-flex h-100 w-100 align-items-center text-start rounded-2 p-2 text-white fw-bold bg-primary-darken">Tipo de Invitación</p>
                         </div>
                         <div class="col-7 p-1">
-                            <p id="placeholder" class="text-center text-black d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2">{{ datos?.paso2?.tipoInvitacion }}</p>
+                            <div class="container-fluid rounded-2 bg-secondary p-1 m-0">
+                                <img name="tamanio-fuente" class="width-auto" *ngIf="datos?.paso2?.tipoInvitacion == 'Directa'" src="assets\publico.png">
+                                <img name="tamanio-fuente" class="width-auto" *ngIf="datos?.paso2?.tipoInvitacion == 'Por Aprobacion'" src="assets/privado.png">
+                            </div>
                         </div>
                         <div class="col-1 d-flex align-items-center m-0 p-1">
-                            <button id="editar" class="d-flex justify-content-center bg-transparent m-0 p-0 border-0" (click)="volverAPaso2()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                            <button id="editar" class="d-flex rounded-2 bg-secondary px-0 py-1 m-0 border-0" (click)="volverAPaso2()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
 
                     <!--Ubicacion-->
-                    <div class="row align-items-center">
+                    <div class="row align-items-stretch">
                         <div class="col-4 p-1">
-                            <p id="nombreEvento" class="text-start text-black rounded-2 p-2 text-white fw-bold bg-primary-darken">Ubicacion</p>
+                            <p class="d-flex h-100 w-100 align-items-center text-start rounded-2 p-2 text-white fw-bold bg-primary-darken">Ubicacion</p>
                         </div>
                         <button class="col-7 bg-transparent border-0 p-1" (click)="volverAPaso3()" *ngIf="datos?.paso3?.latitud != null && datos?.paso3?.longitud != null">
-                            <p id="placeholder" class="text-center text-black rounded-2 bg-secondary p-2">Mostrar Mapa</p>
+                            <p class="text-center text-black rounded-2 bg-secondary p-2">Mostrar Mapa</p>
                         </button>
                         <div class="col-7 rounded-2 p-1" *ngIf="datos?.paso3?.latitud === null && datos?.paso3?.longitud === null">
                             <div class="rounded-2 bg-secondary p-2">
-                                <p class="d-flex text-start text-black">
-                                    - Ciudad: {{ datos.paso3.ciudad }}
-                                </p>
-                                <p class="d-flex text-start text-black">
-                                    - Barrio: {{ datos.paso3.barrio }}
-                                </p>
-                                <p class="d-flex text-start text-black">
-                                    - Calle: {{ datos.paso3.calle }}
-                                </p>
-                                <p class="d-flex text-start text-black">
-                                    - Altura: {{ datos.paso3.numero }}
-                                </p>
+                                <p class="d-flex text-start ps-2 text-black"><b>Ciudad</b>: {{ datos.paso3.ciudad }}</p>
+                                <p class="d-flex text-start ps-2 text-black"><b>Barrio</b>: {{ datos.paso3.barrio }}</p>
+                                <p class="d-flex text-start ps-2 text-black"><b>Calle</b>: {{ datos.paso3.calle }}</p>
+                                <p class="d-flex text-start ps-2 text-black"><b>Altura</b>: {{ datos.paso3.numero }}</p>
                             </div>
                                 
                         </div>
                         <div class="col-1 d-flex align-items-center m-0 p-1">
-                            <button id="editar" class="d-flex justify-content-center bg-transparent m-0 p-0 border-0" (click)="volverAPaso3()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                            <button class="d-flex rounded-2 bg-secondary px-0 py-1 m-0 border-0" (click)="volverAPaso3()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
 
                     <!--Objetos-->
                     <div class="row">
                         <div class="col-4 p-1">
-                            <p id="nombreEvento" class="text-start text-black rounded-2 w-100 p-2 text-white fw-bold bg-primary-darken">Objetos</p>
+                            <p class="d-flex h-100 w-100 align-items-center text-start rounded-2 p-2 text-white fw-bold bg-primary-darken">Objetos</p>
                         </div>
                         <div class="col-7 p-1">
-                            
-                            <ul id="placeholder" class="rounded-2 bg-secondary p-2 m-0">
-                              <p *ngIf="datos?.paso4?.recursos?.length == 0" class="text-center text-black d-flex flex-column align-items-center justify-content-center m-0 p-0">No hay Recursos</p>
-                              <li *ngFor="let recurso of datos.paso4.recursos" class="text-start text-black d-flex flex-column">
-                                - {{ recurso.nombre }}
-                              </li>
-                            </ul>
+                              <p *ngIf="datos?.paso4?.recursos?.length == 0" class="bg-secondary rounded-2 text-center text-black d-flex h-100 flex-column align-items-center justify-content-center m-0 p-0">No hay Recursos</p>
+                              <p *ngFor="let recurso of datos.paso4.recursos" class="bg-secondary rounded-2 ps-2 text-start text-black d-flex h-100 flex-column">{{ recurso.nombre }}: {{ recurso.cantidad }}</p>
                         </div>
 
                         <div class="col-1 d-flex align-items-center m-0 p-1">
-                            <button id="editar" class="d-flex justify-content-center bg-transparent border-0 m-0 p-0" (click)="volverAPaso4()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
+                            <button class="d-flex rounded-2 bg-secondary px-0 py-1 m-0 border-0" (click)="volverAPaso4()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
 
                     <!--Boton Crear-->
                     <div class="row">
-                        <button id="btnCrear" class="col-11 border-0 btn btn-success" (click)="crearNuevoEvento()" routerLink="/eventos">
+                        <button class="col border-0 btn btn-success" (click)="crearNuevoEvento()" routerLink="/eventos">
                             Crear Evento
                         </button>
                     </div>

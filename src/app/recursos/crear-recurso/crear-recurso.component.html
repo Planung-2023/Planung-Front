@@ -1,12 +1,12 @@
 <div>
   <form [formGroup]="formulario" class="form py-2">
-    <div class="form-group">
+    <div class="form-group py-1 pt-0">
       <label class="container-fluid">
         <p class="fw-bold text-black m-0">Nombre</p>
         <input class="form-control border-0 bg-secondary text-black py-2" type="text" formControlName="nombre" maxlength="15">
       </label>
     </div>
-    <div class="form-group">
+    <div class="form-group py-2">
       <label class="container-fluid">
         <p class="fw-bold text-black m-0">Tipo de recurso</p>
         <select class="form-control border-0 bg-secondary text-black py-2" formControlName="categoria">
@@ -14,13 +14,13 @@
         </select>
       </label>
     </div>
-    <div class="form-group">
+    <div class="form-group py-1">
       <label class="container-fluid">
         <p class="fw-bold text-black m-0">Descripción</p>
         <input class="form-control border-0 bg-secondary text-black py-2" type="text" formControlName="descripcion" maxlength="50">
       </label>
     </div>
-    <div class="form-group">
+    <div class="form-group py-2 pb-0">
       <label class="container-fluid">
         <p class="fw-bold text-black m-0">Cantidad</p>
         <input class="form-control border-0 bg-secondary text-black py-2" type="number" formControlName="cantidad">

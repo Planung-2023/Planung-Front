@@ -9,3 +9,8 @@ p{
     margin-top: 1%;
     margin-bottom: 2%;
 }
+
+img[name="tamanio-fuente"]{
+    height: 4em !important;
+    width: auto !important;
+}
