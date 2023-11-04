@@ -12,10 +12,10 @@ export class UnirseEventoComponent implements OnInit {
   constructor (private listaEventoService: ListaEventosService){
     this.evento = {
       id: 1,
-      nombre: 'eventazo',
-      creador: 'Juan',
-      descripcion: 'Evento solo para Juan',
-      tipoEvento: 'directa'
+      nombre: 'Parrillada de tacos con Juan',
+      creador: 'Juan López Nacho Taco de la Cruz Mancilla',
+      descripcion: 'Evento solo para Juan López Nacho Taco de la Cruz Mancilla Guacamole Chimichanga',
+      tipoEvento: 'aprobacion'
     }
   }
   

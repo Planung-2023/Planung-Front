@@ -6,32 +6,41 @@
     </div>
   </nav>
 
+<div *ngIf="evento?.tipoEvento === 'aprobacion'; else directa">
+    <h2 class="col-8 mx-auto text-center tituloUnionEvento"><strong>¿Desea solicitar unirse al siguiente evento?</strong></h2>
+</div>
+<ng-template #directa>
+    <div #directa>
+        <h2 class="text-center tituloUnionEvento"><strong>¿Desea unirse al siguiente evento?</strong></h2>
+    </div>
+</ng-template>
+
 <div class="lista-eventos-container text-center">
-    <div class="row">
-        <div class="evento-nombre">
-            <h2>Nombe del evento</h2>
-            <h2 style="color: white">{{evento?.nombre}}</h2>
+    <div class="row info-container">
+        <div>
+            <h2 style="color: white;">Nombre del evento</h2>
+            <h2 class="evento-nombre">{{evento.nombre}}</h2>
         </div>
     </div>
-    <div class="row">
-        <div class="evento-creador">
-            <h2>Creador del evento</h2>
-            <h2 style="color: white">{{evento?.creador}}</h2>
+    <div class="row info-container">
+        <div>
+            <h2 style="color: white">Creador del evento</h2>
+            <h2 class="evento-creador">{{evento.creador}}</h2>
         </div>
     </div>
-    <div class="row">
-        <div class="evento-descripcion">
-            <h2>Descripción del evento</h2>
-            <h2 style="color: white">{{evento?.descripcion}}</h2>
+    <div class="row info-container">
+        <div>
+            <h2 style="color: white">Descripción del evento</h2>
+            <p class="evento-descripcion">{{evento.descripcion}}</p>
         </div>
     </div>
     <div class="row">
         <div *ngIf="evento?.tipoEvento === 'directa'; else aprobacion" class="evento-botones mx-auto">
-            <button class="boton-usuario" (click)="unirseEvento(evento.id)">Unirse al Evento</button>
+            <button class="boton-usuario col-12" (click)="unirseEvento(evento.id)">Unirse al Evento</button>
         </div>
         <ng-template #aprobacion>
             <div #aprobacion class="evento-botones mx-auto">
-                <button class="boton-usuario" (click)="unirseEvento(evento.id)">Solicitar Unirse al Evento</button>
+                <button class="boton-usuario col-12 mx-auto" (click)="unirseEvento(evento.id)">Solicitar Unirse al Evento</button>
             </div>
         </ng-template>
     </div>
