@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, EventEmitter, Component, ElementRef, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, NgModel } from '@angular/forms';
-import { RecursoService } from 'src/app/recursos/recurso.service';
+import { RecursosService } from 'src/app/recursos/recursos.service';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
@@ -21,7 +21,7 @@ export class Paso4Component implements OnInit {
   modoBorrado: boolean = false;
   constructor(
     private modal: NgbModal,
-    private service: RecursoService
+    private service: RecursosService
     ) {}
   
   ngOnInit() {
