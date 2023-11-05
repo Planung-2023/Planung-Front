@@ -22,20 +22,24 @@
             </div>
         </div>
         <div>
+            <!-- Prueba para editar usuario -->
             <div class="col-md-12" style="margin-top: 20px;">
                 <h3 class="text-center col-3 subtitulo-perfil">Usuario</h3>
                 <div class="row justify-content-evenly">
                     <div class="col-7 text-center">
-                        <p class="container-variable" style="text-decoration: none;">{{ nombreUsuario }}</p>
+                        <div class="container-variable" 
+                             [attr.contentEditable]="editandoUsuario ? 'true' : 'false'"
+                             (blur)="guardarUsuarioEditado()">{{ nombreUsuario }}</div>
                     </div>
                     <div class="col-5 text-center">
-                        <div class="editar-container btn btn-secondary">
+                        <div class="editar-container btn btn-secondary" (click)="editarUsuario()">
                             <a style="margin-right: 10px;">Editar</a>
                             <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <div class="col-md-12" style="margin-top: 20px;">
                 <h3 class="text-center col-3 subtitulo-perfil">Nombre</h3>
                 <div class="row justify-content-evenly">

@@ -11,7 +11,7 @@ export class InvitacionComponent {
   constructor(public invitacionControlService: InvitacionControlService) {}
 
   getLinkEvento(): string {
-    return 'https://boulderbugle.com/linkdeejemplo-kqlwf7fb';
+    return 'http://localhost:4200/unirse-evento';
   }
 
   closePopup() {

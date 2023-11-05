@@ -20,4 +20,8 @@ export class InvitadosComponent {
   hidePopupInvitado() {
     this.invitadosControlService.closePopupInvitado();
   }
+
+  getFotoPerfil(){
+    return 'assets/foto-perfil-3.png';
+  }
 }

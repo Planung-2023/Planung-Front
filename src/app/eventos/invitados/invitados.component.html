@@ -5,6 +5,10 @@
                 <mat-icon>close</mat-icon>
             </button>
         </div>
+        <div class="foto-perfil col-2 mx-auto">
+            <!--Aca deberia haber una variable que determine la ruta de la foto => (src="{ruta_foto}")-->
+            <img [src]="getFotoPerfil()" alt="Foto de perfil">
+        </div>
         <div>
             <h2 style="margin-top: 10px; margin-bottom: 30px;" class="font-weight-bold text-center">{{ invitadosControlService.invitadoNombre }} {{invitadosControlService.invitadoApellido}}</h2>
         </div>

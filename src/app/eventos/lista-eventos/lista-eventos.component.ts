@@ -188,7 +188,7 @@ cerrarPanel(panel: string) {
 }
 
 //Agregado para pruebas
-interface Evento {
+export interface Evento {
   id: number;
   nombre: string;
   creador: Creador;

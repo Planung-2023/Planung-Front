@@ -7,6 +7,8 @@ import { PerfilService } from '../perfil.service';
   styleUrls: ['./ver-perfil.component.css']
 })
 export class VerPerfilComponent implements OnInit {
+  editandoUsuario = false;
+  usuarioEditado: string = '';
   nombreUsuario: string = '';
   usuario: any;
   participante: Participante = {
@@ -46,6 +48,19 @@ export class VerPerfilComponent implements OnInit {
     });
 
   }
+
+  /* Prueba editar nombre de usuario */
+  editarUsuario() {
+    this.editandoUsuario = true;
+    this.usuarioEditado = this.nombreUsuario;
+  }
+
+  guardarUsuarioEditado() {
+    this.editandoUsuario = false;
+    this.nombreUsuario = this.usuarioEditado;
+  }
+  /* --------------------------------- */
+
 
 }
 
