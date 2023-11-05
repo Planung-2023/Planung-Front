@@ -48,17 +48,17 @@
               </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-panel-description>
-              <ul class="col-md-12">
+              <ul class="col-md-12" *ngIf="evento.ubicacion.latitud===null && evento.ubicacion.longitud===null">
                 <li>Localidad: {{ evento.ubicacion.localidad }}</li>
                 <li>Calle: {{ evento.ubicacion.calle }}</li>
                 <li>Altura: {{ evento.ubicacion.altura }}</li>
               </ul>
-              <a class="map-link" (click)="openMapDialog()">
+              <a class="map-link" (click)="openMapDialog(evento)" *ngIf="evento.ubicacion.latitud!=null && evento.ubicacion.longitud!=null">
                 <mat-icon class="mat-icon-map">map</mat-icon> Mostrar ubicación en el mapa
               </a>
             </mat-panel-description>
           </mat-expansion-panel>
-          <mat-expansion-panel *ngIf="evento.descripcion != null && (panelAbierto === 'descripcion' || panelAbierto === 'todos')"(opened)="abrirPanel('descripcion')" (closed)="cerrarPanel('descripcion')">
+          <mat-expansion-panel *ngIf="evento.descripcion != '' && (panelAbierto === 'descripcion' || panelAbierto === 'todos')"(opened)="abrirPanel('descripcion')" (closed)="cerrarPanel('descripcion')">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Descripción

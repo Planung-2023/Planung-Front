@@ -10,10 +10,10 @@ export class ListaEventosService {
 
   constructor(private http: HttpClient) { }
 
-  getEventos(): Observable<any> {
+  getEventos(usuarioId:number): Observable<any> {
     return  this.http.get(`${ environment.url }/eventos`, 
     {
-      params: {usuario_id: 1},
+      params: {usuario_id: usuarioId},
     });
   }
 

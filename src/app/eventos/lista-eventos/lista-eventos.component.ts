@@ -80,7 +80,7 @@ export class ListaEventosComponent implements OnInit {
 
   //ejemplo
   private recuperarEventos() {
-    this.listaEventosService.getEventos().subscribe(data => {
+    this.listaEventosService.getEventos(1).subscribe(data => {
       this.eventos = data;
       this.eventos.forEach(evento => this.listaEventosService.getRecursosByEventoId(evento.id).subscribe(
         (data: Recurso[]) => {
@@ -163,7 +163,7 @@ volverAtras() {
   this.mostrarMapa = false;
 }
 
-openMapDialog() {
+openMapDialog(evento:Evento) {
   const dialogRef = this.dialog.open(MapDialogComponent, {
     width: '80%',
     height: '40%',
@@ -172,6 +172,8 @@ openMapDialog() {
       options: this.options,
     },
   });
+  this.position.lat=evento.ubicacion.latitud;
+  this.position.lng=evento.ubicacion.longitud;
 }
 
 abrirPanel(panel: string) {
