@@ -17,37 +17,36 @@ export class PerfilComponent implements OnInit {
     apellido: '',
     mail: '',
     nombre: ''
-  }; 
+  };
   nombreParticipante: string = '';
   apellidoParticipante: string = '';
   correoParticipante: string = '';
+  fotoPerfilUsuario: string = '';
+
 
   constructor(private perfilService: PerfilService) {}
 
-  getFotoPerfil(): string {
-    return this.perfilService.getFotoPerfil();
-  }
 
   ngOnInit() {
-    const usuarioId = 1;
+    const usuarioId = 5;
     const participanteId = usuarioId;
     
     // Utiliza el servicio de perfil para obtener el nombre del usuario
-    this.perfilService.getNombreDeUsuario(usuarioId).subscribe((usuario: any) => {
+    this.perfilService.getDatosUsuario(usuarioId).subscribe((usuario: any) => {
+      this.usuario = usuario;
       this.nombreUsuario = usuario.nombreUsuario;
+      console.log(usuario.fotoPerfil.nombre);
+      this.fotoPerfilUsuario = usuario.fotoPerfil.nombre;
     });
     
-  
     // Utiliza el servicio de perfil para obtener el nombre del usuario
     this.perfilService.getDatosParticipante(participanteId).subscribe((res: any) => {
-      this.participante = res.participante; // Asigna los datos del participante
-
-      // Asigna los valores del participante a las variables
+      this.participante = res.participante; 
       this.nombreParticipante = this.participante.nombre;
       this.apellidoParticipante = this.participante.apellido;
       this.correoParticipante = this.participante.mail;
     });
-
+    
   }
 
 }

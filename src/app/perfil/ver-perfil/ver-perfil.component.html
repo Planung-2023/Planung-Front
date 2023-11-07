@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg col-md-12" style="background-color: #262626">
+<nav class="bg-dark-subtle navbar navbar-expand-lg col-md-12">
     <div class="container-fluid">
         <button mat-icon-button type="button" class="icon-home" routerLink="../">
           <mat-icon>arrow_back</mat-icon>
@@ -14,7 +14,7 @@
         <h3 class="text-center col-7 subtitulo-perfil">Foto de Perfil</h3>
         <div class="row justify-content-around align-items-center">
             <div class="foto-perfil col-5">
-                <img [src]="getFotoPerfil()" alt="Foto de perfil" class="img-fluid">
+                <img [src]="'assets/'+ fotoPerfilUsuario" alt="Foto de perfil" class="img-fluid">
             </div>
             <div class="editar-container col-4 text-center btn btn-secondary" routerLink="../cambiar-imagen">
                 <a style="margin-right: 10px;">Editar</a>

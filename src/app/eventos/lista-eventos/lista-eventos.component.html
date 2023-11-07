@@ -1,4 +1,4 @@
-  <div class="top-bar">
+  <div class="bg-dark-subtle top-bar">
     <button mat-icon-button class="icon-notificaciones d-flex justify-content-center align-items-center" (click)="irANotificaciones()">
       <img class="img-notificaciones" src="assets/iconoNotificacion.png" alt="Notificaciones">
     </button>
@@ -37,7 +37,7 @@
           <div class="titulo-container">
             <p class="titulo-evento">{{ evento.nombre }}</p>
           </div>
-          <p><strong>Organizador:</strong> {{ evento.creador.nombreUsuario }}</p>
+          <p><strong>Organizador:</strong> {{ evento.creador?.nombreUsuario }}</p>
           <p><strong>Fecha:</strong> {{ evento.fecha }}</p>
           <p><strong>Hora Inicio:</strong> {{ evento.horaInicio }}</p>
           <p><strong>Hora Fin:</strong> {{ evento.horaFin }}</p>

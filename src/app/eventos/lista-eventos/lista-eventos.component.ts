@@ -80,7 +80,7 @@ export class ListaEventosComponent implements OnInit {
 
   //ejemplo
   private recuperarEventos() {
-    this.listaEventosService.getEventos(1).subscribe(data => {
+    this.listaEventosService.getEventos(5).subscribe(data => {
       this.eventos = data;
       this.eventos.forEach(evento => this.listaEventosService.getRecursosByEventoId(evento.id).subscribe(
         (data: Recurso[]) => {
@@ -106,13 +106,13 @@ export class ListaEventosComponent implements OnInit {
       latitud: 30,
       longitud: 30
     }
-
+/*
     this.eventos = [
       { id: 1, nombre: 'Reunión Bayer', fechaHora: new Date(2023, 8, 18), hora: new Date(2023, 8, 18, 10, 22, 0), ubicacion: ubicacion1, tipoEvento: 'Formal', creador: 'German Sánchez', calle: 'Malvinas Argentinas', altura: 568, invitados: [{ nombre: 'Jorge López' }, { nombre: 'Juancho De Los Bosques' }, { nombre: 'Ramiro Causa' }, { nombre: 'Nelson Mandela' }, { nombre: 'Luciano De Los Pantanos' }, { nombre: 'Juanjo De Berazategui' }, { nombre: 'El_OppenJaime' } ] },
       { id: 2, nombre: 'Charla Siemens', fechaHora: new Date(2023, 10, 4), hora: new Date(2023, 8, 18, 10, 22, 0), ubicacion: ubicacion1, tipoEvento: 'Formal', creador: 'Andrea Fernandez', calle: 'Av. Rivadavia', altura: 656, invitados: [{ nombre: 'Jorge López' }, { nombre: 'Juancho De Los Bosques' }]},
       { id: 3, nombre: 'Cumpleaños Lucas', fechaHora: new Date(2023, 6, 25), hora: new Date(2023, 8, 18, 10, 22, 0), ubicacion: ubicacion1, tipoEvento: 'Informal', creador: 'Lucas Espinoza', calle: 'Av. Rivadavia', altura: 656, invitados: [{ nombre: 'Jorge López' }, { nombre: 'Juancho De Los Bosques' }] }
     ];
-
+*/
     /*this.recursos = [
       {id: 1, cantidadActual: 3, cantidadNecesaria:6, descripcion: 'Esta es la coca para el fernet. No compren light ni cero.', nombre: 'Coca Cola'},
       {id: 2, cantidadActual: 8, cantidadNecesaria:8, descripcion: 'Silla o banqueta, informar elección.', nombre: 'Silla'},

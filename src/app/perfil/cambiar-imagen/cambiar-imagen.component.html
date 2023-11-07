@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg col-md-12" style="background-color: #262626">
+<nav class=" bg-dark-subtle navbar navbar-expand-lg col-md-12">
     <div class="container-fluid">
         <button mat-icon-button class="icon-home" type="button" routerLink="../">
           <mat-icon>arrow_back</mat-icon>
@@ -14,58 +14,58 @@
         <h3 class="text-center col-12 subtitulo-perfil">Foto de Perfil</h3>
         <div class="row justify-content-around align-items-center">
             <div class="foto-perfil col-5">
-                <img [src]="fotoPerfilPrincipal" alt="Foto de perfil" class="img-fluid">
+                <img [src]="'assets/'+ fotoPerfilUsuario" alt="Foto de perfil" class="img-fluid">
             </div>
         </div>
         <div class="col-12 text-center">
             <h3 class="subtitulo"> Seleccione una foto </h3>
         </div>
         <div class="row justify-content-around align-items-center">
-            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto('assets/gigachad1.jpg')">
+            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto(2)">
                 <a>
                     <img src="assets/gigachad1.jpg" alt="Foto de perfil" class="img-fluid">
                 </a>
             </div>
-            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto('assets/gigachad2.jpg')">
+            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto(3)">
                 <a>
                     <img src="assets/gigachad2.jpg" alt="Foto de perfil" class="img-fluid">
                 </a>
             </div>
-            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto('assets/chad1.jpeg')">
+            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto(4)">
                 <a>
                     <img src="assets/chad1.jpeg" alt="Foto de perfil" class="img-fluid">
                 </a>
             </div>
         </div>
         <div class="row justify-content-around align-items-center">
-            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto('assets/girl-chad.jpg')">
+            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto(5)">
                 <a>
                     <img src="assets/girl-chad.jpg" alt="Foto de perfil" class="img-fluid">
                 </a>
             </div>
-            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto('assets/foto-perfil-2.png')">
+            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto(9)">
                 <a>
                     <img src="assets/foto-perfil-2.png" alt="Foto de perfil" class="img-fluid">
                 </a>
             </div>
-            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto('assets/chad3.jpg')">
+            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto(8)">
                 <a>
                     <img src="assets/chad3.jpg" alt="Foto de perfil" class="img-fluid">
                 </a>
             </div>
         </div>
         <div class="row justify-content-around align-items-center">
-            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto('assets/foto-perfil-3.png')">
+            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto(1)">
                 <a>
                     <img src="assets/foto-perfil-3.png" alt="Foto de perfil" class="img-fluid">
                 </a>
             </div>
-            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto('assets/foto-perfil-5.jpg')">
+            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto(7)">
                 <a>
                     <img src="assets/foto-perfil-5.jpg" alt="Foto de perfil" class="img-fluid">
                 </a>
             </div>
-            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto('assets/foto-perfil-6.jpg')">
+            <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto(6)">
                 <a>
                     <img src="assets/foto-perfil-6.jpg" alt="Foto de perfil" class="img-fluid">
                 </a>
@@ -73,7 +73,7 @@
         </div>
         <div class="row justify-content-center align-items-center">
             <div class="col-12 text-center">
-                <button class="btn btn-guardar">Guardar</button>
+                <button class="btn btn-guardar" (click)="guardarCambios()">Guardar</button>
             </div>
         </div>
     </div>

@@ -10,23 +10,18 @@ export class PerfilService {
 
   constructor(private http: HttpClient) { }
 
-  getNombreDeUsuario(usuarioId: number): Observable<string> {
-    return this.http.get<string>(`${environment.url}/usuarios/${usuarioId}`);
+  getDatosUsuario(usuarioId: number): Observable<any> {
+    return this.http.get<any>(`${environment.url}/usuarios/${usuarioId}`);
   }
+ 
+  updateFotoPerfilIdUsuario(usuarioId: number, nuevoIdFotoPerfil: number): Observable<any> {
+    const url = `${environment.url}/usuarios/${usuarioId}`;
+    const body = { foto_perfil_id: nuevoIdFotoPerfil };
+    return this.http.put(url, body);
+  }  
 
   getDatosParticipante(participanteId:number): Observable<any> {
-    return  this.http.get(`${ environment.url }/participantes/${participanteId}`, );
-  }
-
-  // Foto de perfil
-  private fotoPerfil: string = 'assets/foto-perfil-3.png';
-
-  getFotoPerfil(): string {
-    return this.fotoPerfil;
-  }
-
-  setFotoPerfil(nuevaFoto: string): void {
-    this.fotoPerfil = nuevaFoto;
+    return  this.http.get(`${ environment.url }/participantes/${participanteId}`);
   }
 
 }

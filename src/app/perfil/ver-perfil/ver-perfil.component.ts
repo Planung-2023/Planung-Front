@@ -20,20 +20,19 @@ export class VerPerfilComponent implements OnInit {
   nombreParticipante: string = '';
   apellidoParticipante: string = '';
   correoParticipante: string = '';
+  fotoPerfilUsuario: string = '';
 
   constructor(private perfilService: PerfilService) {}
   
-  getFotoPerfil(): string {
-    return this.perfilService.getFotoPerfil();
-  }
 
   ngOnInit() {
-    const usuarioId = 1;
+    const usuarioId = 5;
     const participanteId = usuarioId;
     
     // Utiliza el servicio de perfil para obtener el nombre del usuario
-    this.perfilService.getNombreDeUsuario(usuarioId).subscribe((usuario: any) => {
+    this.perfilService.getDatosUsuario(usuarioId).subscribe((usuario: any) => {
       this.nombreUsuario = usuario.nombreUsuario;
+      this.fotoPerfilUsuario = usuario.fotoPerfil.nombre;
     });
     
   
