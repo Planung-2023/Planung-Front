@@ -46,21 +46,6 @@ export class ListaEventosComponent implements OnInit {
     private dialog: MatDialog,
   ) {}
 
-  // Método para mostrar el popup
-  showPopup() {
-    this.invitacionControlService.showPopup();
-  }
-
-  showPopupInvitado(nombreInvitado: string, apellidoInvitado: string) {
-    this.invitadoSeleccionado = nombreInvitado;
-    this.invitadosControlService.invitadoNombre = nombreInvitado;
-    this.invitadosControlService.invitadoApellido = apellidoInvitado;
-    this.invitadosControlService.showPopupInvitado();
-  }
-
-  mostrarInvitado(nombreInvitado: string) {
-    this.invitadoSeleccionado = nombreInvitado;
-  }
 
   ngOnInit() {
     this.recuperarEventos();
@@ -78,9 +63,25 @@ export class ListaEventosComponent implements OnInit {
     });
   }
 
+  // Método para mostrar el popup
+  showPopup() {
+    this.invitacionControlService.showPopup();
+  }
+
+  showPopupInvitado(nombreInvitado: string, apellidoInvitado: string) {
+    this.invitadoSeleccionado = nombreInvitado;
+    this.invitadosControlService.invitadoNombre = nombreInvitado;
+    this.invitadosControlService.invitadoApellido = apellidoInvitado;
+    this.invitadosControlService.showPopupInvitado();
+  }
+
+  mostrarInvitado(nombreInvitado: string) {
+    this.invitadoSeleccionado = nombreInvitado;
+  }
+
   //ejemplo
   private recuperarEventos() {
-    this.listaEventosService.getEventos(5).subscribe(data => {
+    this.listaEventosService.getEventos().subscribe(data => {
       this.eventos = data;
       this.eventos.forEach(evento => this.listaEventosService.getRecursosByEventoId(evento.id).subscribe(
         (data: Recurso[]) => {
@@ -180,7 +181,7 @@ abrirPanel(panel: string) {
   this.panelAbierto = panel;
 }
 
-cerrarPanel(panel: string) {
+cerrarPanel(panel: string)       {
   if (this.panelAbierto === panel) {
     this.panelAbierto = 'todos';
   }

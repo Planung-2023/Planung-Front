@@ -13,7 +13,7 @@
     <div class="col-md-5 row justify-content-evenly row-perfil">
       <div class="foto-perfil col-2">
         <!--Aca deberia haber una variable que determine la ruta de la foto => (src="{ruta_foto}")-->
-        <img [src]="'assets/'+ fotoPerfilUsuario" alt="Foto de perfil">
+        <img *ngIf="fotoPerfilUsuario !== ''" [src]="'assets/'+ fotoPerfilUsuario" alt="Foto de perfil">
       </div>
       <div class="col-7 info-perfil">
         <p class="username" style="margin-bottom: 20px;">{{ nombreUsuario }}</p>
