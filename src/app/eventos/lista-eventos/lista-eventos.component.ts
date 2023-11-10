@@ -8,6 +8,7 @@ import { Time } from '@angular/common';
 import {} from 'googlemaps';
 import { MatDialog } from '@angular/material/dialog';
 import { MapDialogComponent } from './map-dialog/map-dialog.component';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-lista-eventos',
@@ -17,8 +18,10 @@ import { MapDialogComponent } from './map-dialog/map-dialog.component';
 
 export class ListaEventosComponent implements OnInit {
   invitadoSeleccionado: string = '';
+  idUsuario:number | undefined;
   eventos: any[] = [];
   recursos: Recurso[] = [];
+  asistentes: Asistente[] = [];
   mostrarMapa: boolean = false;
   mostrarPopupInvitados = false;
   panelAbierto: string = 'todos';
@@ -35,7 +38,7 @@ export class ListaEventosComponent implements OnInit {
   };
   invitadosComponent: any;
   participante: Participante|undefined;
-  asistente: Asistente[] = [];
+  
   Rol: Rol|undefined;
 
   constructor(
@@ -44,11 +47,16 @@ export class ListaEventosComponent implements OnInit {
     private invitacionControlService: InvitacionControlService,
     private invitadosControlService: InvitadosControlService,
     private dialog: MatDialog,
+    public auth0: AuthService,
   ) {}
-
-
+  
   ngOnInit() {
+    this.auth0.user$.subscribe((user?)=> {
+      console.log(user)
+      this.idUsuario = 5;
+    })
     this.recuperarEventos();
+    console.log(this.recuperarEventos())
     const swiper = new Swiper('.swiper-container', {
       slidesPerView: 1,
       spaceBetween: 10,
@@ -57,12 +65,7 @@ export class ListaEventosComponent implements OnInit {
         prevEl: '.swiper-button-prev',
       },
     });
-
-    this.listaEventosService.getAsistentes(1).subscribe((data: any) => {
-      this.asistente = data.asistentes; // Asigna los datos al arreglo "asistente".
-    });
   }
-
   // Método para mostrar el popup
   showPopup() {
     this.invitacionControlService.showPopup();
@@ -79,19 +82,28 @@ export class ListaEventosComponent implements OnInit {
     this.invitadoSeleccionado = nombreInvitado;
   }
 
-  //ejemplo
+    //ejemplo
   private recuperarEventos() {
-    this.listaEventosService.getEventos().subscribe(data => {
+    this.listaEventosService.getEventos(this.idUsuario).subscribe(data => {
       this.eventos = data;
       this.eventos.forEach(evento => this.listaEventosService.getRecursosByEventoId(evento.id).subscribe(
         (data: Recurso[]) => {
           evento.recursos = data;
+          console.log(data);
         }
       ))
+  
+      /*this.eventos.forEach(evento => this.listaEventosService.getAsistentes(evento.id).subscribe(
+        (data: Asistente[]) => {
+          
+          evento.asistentes = data;
+          console.log(data);
+      }))*/
     }, error => {
       this.mockearEventos();
     });
   }
+
 
   private mockearEventos() {
     const creador1: Creador = {
@@ -99,7 +111,7 @@ export class ListaEventosComponent implements OnInit {
       nombreUsuario: 'Claudio Gomez'
     }
 
-    const ubicacion1: ubicacion = {
+    /*const ubicacion1: ubicacion = {
       id: 2,
       calle: "Av. Nazca",
       altura: 2500,
@@ -107,14 +119,14 @@ export class ListaEventosComponent implements OnInit {
       latitud: 30,
       longitud: 30
     }
-/*
+
     this.eventos = [
       { id: 1, nombre: 'Reunión Bayer', fechaHora: new Date(2023, 8, 18), hora: new Date(2023, 8, 18, 10, 22, 0), ubicacion: ubicacion1, tipoEvento: 'Formal', creador: 'German Sánchez', calle: 'Malvinas Argentinas', altura: 568, invitados: [{ nombre: 'Jorge López' }, { nombre: 'Juancho De Los Bosques' }, { nombre: 'Ramiro Causa' }, { nombre: 'Nelson Mandela' }, { nombre: 'Luciano De Los Pantanos' }, { nombre: 'Juanjo De Berazategui' }, { nombre: 'El_OppenJaime' } ] },
       { id: 2, nombre: 'Charla Siemens', fechaHora: new Date(2023, 10, 4), hora: new Date(2023, 8, 18, 10, 22, 0), ubicacion: ubicacion1, tipoEvento: 'Formal', creador: 'Andrea Fernandez', calle: 'Av. Rivadavia', altura: 656, invitados: [{ nombre: 'Jorge López' }, { nombre: 'Juancho De Los Bosques' }]},
       { id: 3, nombre: 'Cumpleaños Lucas', fechaHora: new Date(2023, 6, 25), hora: new Date(2023, 8, 18, 10, 22, 0), ubicacion: ubicacion1, tipoEvento: 'Informal', creador: 'Lucas Espinoza', calle: 'Av. Rivadavia', altura: 656, invitados: [{ nombre: 'Jorge López' }, { nombre: 'Juancho De Los Bosques' }] }
     ];
-*/
-    /*this.recursos = [
+
+    this.recursos = [
       {id: 1, cantidadActual: 3, cantidadNecesaria:6, descripcion: 'Esta es la coca para el fernet. No compren light ni cero.', nombre: 'Coca Cola'},
       {id: 2, cantidadActual: 8, cantidadNecesaria:8, descripcion: 'Silla o banqueta, informar elección.', nombre: 'Silla'},
       {id: 3, cantidadActual: 0, cantidadNecesaria:1, descripcion: 'Parlante grande para exterior, no traer portatil.', nombre: 'Parlantes'},
@@ -124,6 +136,7 @@ export class ListaEventosComponent implements OnInit {
   redireccionarCrearEvento(): void {
     this.router.navigate(['/eventos', 'crear']);
   }
+
 
   agregarRecurso(evento: any): void {
     this.router.navigate(['/eventos', evento.id, 'recursos', 'crear']);
@@ -145,16 +158,9 @@ export class ListaEventosComponent implements OnInit {
     if (event.latLng != null){
       this.position = (event.latLng.toJSON()); //Obtenes las coordenadas donde ocurrió el evento del click
       const coordenadas = event.latLng.toJSON(); // Obtenes las coordenadas en formato JSON
-      this.dataEvento.latitud = coordenadas.lat;
-      this.dataEvento.longitud = coordenadas.lng;
     }
-    console.log(this.dataEvento);
 }
 
-dataEvento = {
-  latitud: -34.598613,
-  longitud: -58.415632,
-}
 
 verMapa() {
   this.mostrarMapa = true;
@@ -181,7 +187,7 @@ abrirPanel(panel: string) {
   this.panelAbierto = panel;
 }
 
-cerrarPanel(panel: string)       {
+cerrarPanel(panel: string) {
   if (this.panelAbierto === panel) {
     this.panelAbierto = 'todos';
   }
@@ -189,7 +195,7 @@ cerrarPanel(panel: string)       {
 }
 
 //Agregado para pruebas
-export interface Evento {
+interface Evento {
   id: number;
   nombre: string;
   creador: Creador;
@@ -201,7 +207,7 @@ export interface Evento {
   altura: number;
   tipoEvento: string;
   recursos: Recurso[];
-  invitados: { nombre: string }[];
+  asistentes: Asistente[];
 }
 
 interface Recurso {

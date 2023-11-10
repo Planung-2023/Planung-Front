@@ -12,7 +12,7 @@
                 <div class="d-flex justify-content-center row g-0">
                     <div class="p-2 bg-secondary d-flex justify-content-between align-items-center mb-2 rounded-2 shadow">
                         <h3 class="text-center m-0 fw-bold">Día</h3>
-                        <input type="date" [formControlName]="'fecha'" min="2023-12-01" required>
+                        <input type="date" [formControlName]="'fecha'" [min]="minDate">
                     </div>
                     <div *ngIf="!formulario.get('todoElDia')?.value === true" class="bg-secondary p-2 mb-2 rounded-2 shadow">
                         <div class="d-flex justify-content-between py-1">

@@ -21,6 +21,14 @@ export class Paso1Component{
     descripcion: new FormControl(""),
   });
   
+  get minDate() {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1; // Meses se cuentan desde 0 a 11
+    const day = currentDate.getDate();
+    return `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+  }
+  
   cambiarTodoElDia(event: MatSlideToggleChange) {
     this.formulario.get('todoElDia')?.setValue(event.checked);
     console.log(this.formulario.value);

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { AuthService } from '@auth0/auth0-angular';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'eventos';
+  constructor(public auth: AuthService) {}
+
+  async iniciarSesion() {
+    await this.auth.loginWithRedirect();
+  }
+  
 }
