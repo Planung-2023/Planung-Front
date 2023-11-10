@@ -12,11 +12,11 @@
         <div>
             <h2 style="margin-top: 10px; margin-bottom: 30px;" class="font-weight-bold text-center">{{ invitadosControlService.invitadoNombre }} {{invitadosControlService.invitadoApellido}}</h2>
         </div>
-        <div class="text-center">
+        <div class="text-center" *ngIf="invitadosControlService.soyAdmin">
             Admin
             <mat-slide-toggle></mat-slide-toggle>
         </div>
-        <div class="text-center" style="margin-top: 30px; margin-left: 70%">
+        <div *ngIf="invitadosControlService.soyAdmin" class="text-center" style="margin-top: 30px; margin-left: 70%">
             <button style="background-color: #3f4244; color: white; padding: 10px;">
                 <i class="bi bi-person-dash-fill"></i>
             </button>

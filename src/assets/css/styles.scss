@@ -47,7 +47,9 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     touch-action: none;
 }
-
+.body-bg{
+    
+}
 h1, p{
     color: white !important;
 }
@@ -58,6 +60,10 @@ h1, p{
 
 .w-90{
     width: 90%;
+}
+
+.h-5{
+    height: 5%;
 }
 
 .ant-steps-item-icon {

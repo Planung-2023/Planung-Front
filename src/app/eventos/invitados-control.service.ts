@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class InvitadosControlService {
   isVisible = false;
+  soyAdmin: boolean | undefined = false;
   invitadoNombre: string = '';
   invitadoApellido: string ='';
 

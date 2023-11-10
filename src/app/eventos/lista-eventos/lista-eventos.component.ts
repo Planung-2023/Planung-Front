@@ -34,7 +34,7 @@ export class ListaEventosComponent implements OnInit {
   }
   options: google.maps.MapOptions = {
     center: this.position,
-    zoom: 15,
+    zoom: 17,
   };
   invitadosComponent: any;
   participante: Participante|undefined;
@@ -71,8 +71,10 @@ export class ListaEventosComponent implements OnInit {
     this.invitacionControlService.showPopup();
   }
 
-  showPopupInvitado(nombreInvitado: string, apellidoInvitado: string) {
+  showPopupInvitado(nombreInvitado: string, apellidoInvitado: string, evento: Evento) {
     this.invitadoSeleccionado = nombreInvitado;
+    this.invitadosControlService.soyAdmin = this.esAdministrador(evento);
+    console.log(this.invitadosControlService.soyAdmin);
     this.invitadosControlService.invitadoNombre = nombreInvitado;
     this.invitadosControlService.invitadoApellido = apellidoInvitado;
     this.invitadosControlService.showPopupInvitado();
@@ -93,15 +95,23 @@ export class ListaEventosComponent implements OnInit {
         }
       ))
   
-      /*this.eventos.forEach(evento => this.listaEventosService.getAsistentes(evento.id).subscribe(
+      this.eventos.forEach(evento => this.listaEventosService.getAsistentes(evento.id).subscribe(
         (data: Asistente[]) => {
           
           evento.asistentes = data;
           console.log(data);
-      }))*/
+      }))
     }, error => {
       this.mockearEventos();
     });
+  }
+
+  formatearHora(hora: string): string {
+    return hora.slice(0, 5);
+  }
+
+  esAdministrador(evento:Evento){
+    return evento.asistentes?.find(a => a.participante.usuario.id === this.idUsuario)?.esAdministrador;
   }
 
 
@@ -156,11 +166,10 @@ export class ListaEventosComponent implements OnInit {
 
   moveMap(event: google.maps.MapMouseEvent) {
     if (event.latLng != null){
-      this.position = (event.latLng.toJSON()); //Obtenes las coordenadas donde ocurrió el evento del click
-      const coordenadas = event.latLng.toJSON(); // Obtenes las coordenadas en formato JSON
+      this.position = (event.latLng.toJSON());
+      const coordenadas = event.latLng.toJSON();
     }
 }
-
 
 verMapa() {
   this.mostrarMapa = true;
@@ -210,6 +219,13 @@ interface Evento {
   asistentes: Asistente[];
 }
 
+interface Usuario {
+  id: number;
+  nombre: string;
+  apellido: string;
+  fotoPerfilId: number;
+}
+
 interface Recurso {
   id: number;
   nombre: string;
@@ -247,6 +263,7 @@ interface Asistente {
   activo: boolean;
   participante: Participante;
   rol: Rol;
+  esAdministrador: boolean;
 }
 
 interface Participante {
@@ -254,6 +271,7 @@ interface Participante {
   apellido: string;
   mail: string;
   nombre: string;
+  usuario: any;
 }
 
 interface Rol {

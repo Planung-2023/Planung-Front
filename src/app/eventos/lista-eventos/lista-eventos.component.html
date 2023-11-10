@@ -1,9 +1,9 @@
-  <div class="bg-dark-subtle top-bar">
-    <button mat-icon-button class="icon-notificaciones d-flex justify-content-center align-items-center" (click)="irANotificaciones()">
-      <img class="img-notificaciones" src="assets/iconoNotificacion.png" alt="Notificaciones">
+  <div class="bg-dark-subtle top-bar d-flex justify-content-end h-auto">
+    <button mat-icon-button class="border-0 bg-transparent" (click)="irANotificaciones()">
+      <i class="bi bi-bell-fill text-white w-auto h-100 m-2 fs-2"></i>
     </button>
-    <button mat-icon-button class="icon-configuracion" (click)="irAConfiguracion()">
-      <img class="img-configuracion" src="assets/iconoConfiguracion.png" alt="Configuracion">
+    <button mat-icon-button class="border-0 bg-transparent" (click)="irAConfiguracion()">
+      <i class="bi bi-gear-fill text-white w-auto h-100 m-2 fs-2"></i>
     </button>
   </div>
 
@@ -38,9 +38,10 @@
             <p class="titulo-evento">{{ evento.nombre }}</p>
           </div>
           <p><strong>Organizador:</strong> {{ evento.creador?.nombreUsuario }}</p>
-          <p><strong>Fecha:</strong> {{ evento.fecha }}</p>
-          <p><strong>Hora Inicio:</strong> {{ evento.horaInicio }}</p>
-          <p><strong>Hora Fin:</strong> {{ evento.horaFin }}</p>
+          <p><strong>Fecha:</strong> {{ evento.fecha |date:"dd/MM/yyyy" }}</p>
+          <p *ngIf="evento.horaFin===null"><strong>Horario:</strong> Todo el día</p>
+          <p *ngIf="evento.horaFin!=null"><strong>Hora Inicio:</strong> {{ formatearHora(evento.horaInicio) }}hs</p>
+          <p *ngIf="evento.horaFin!=null"><strong>Hora Fin:</strong> {{ formatearHora(evento.horaFin) }}hs</p>
           <p><strong>Tipo de evento:</strong> {{ evento.tipoEvento }}</p>
           <mat-expansion-panel *ngIf="evento.ubicacion != null && (panelAbierto === 'direccion' || panelAbierto === 'todos')" (opened)="abrirPanel('direccion')" (closed)="cerrarPanel('direccion')">
             <mat-expansion-panel-header>
@@ -86,7 +87,7 @@
                   </div>
                 </li>
               </ul>
-              <button mat-raised-button class="agregar-recurso-button" (click)="agregarRecurso(evento)">Agregar</button>
+              <button mat-raised-button class="agregar-recurso-button" (click)="agregarRecurso(evento)"  *ngIf="esAdministrador(evento)">Agregar</button>
             </mat-panel-description>
           </mat-expansion-panel>
 
@@ -102,7 +103,7 @@
                   <li *ngFor="let asistente of evento?.asistentes">
                     <div class="participante-container">
                       <span>{{asistente.participante.apellido}}, {{ asistente.participante?.nombre }}</span>
-                      <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado(asistente.participante?.nombre, asistente.participante?.apellido)">
+                      <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado(asistente.participante?.nombre, asistente.participante?.apellido, evento)">
                         <mat-icon>visibility</mat-icon>
                       </button>
                     </div>
@@ -112,7 +113,7 @@
             </mat-panel-description>
           </mat-expansion-panel>
           <!-- Solo debería aparecer en casos específicos -->
-          <div class="col-md-12 text-center">
+          <div class="col-md-12 text-center" *ngIf="esAdministrador(evento)">
             <button (click)="showPopup()" class="invitarBtn">
               Invitar
             </button>

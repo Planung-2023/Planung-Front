@@ -102,7 +102,7 @@
                   <li *ngFor="let asistente of asistente">
                     <div class="participante-container">
                       <span>{{asistente.participante.apellido}}, {{ asistente.participante.nombre }}</span>
-                      <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado(asistente.participante.nombre, asistente.participante.apellido)">
+                      <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado(asistente.participante.nombre, asistente.participante.apellido, evento)">
                         <mat-icon>visibility</mat-icon>
                       </button>
                     </div>
