@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { PerfilService } from '../perfil.service';
 import { ListaEventosService } from 'src/app/eventos/lista-eventos.service';
+import { PerfilStorageService } from '../perfil-storage.service';
 
 @Component({
   selector: 'app-perfil',
@@ -12,26 +13,61 @@ import { ListaEventosService } from 'src/app/eventos/lista-eventos.service';
 export class PerfilComponent implements OnInit {
   nombreUsuario: string = '';
   usuario: any;
-  participante: Participante = {
-    id: 1,
-    apellido: '',
-    mail: '',
-    nombre: ''
-  };
   nombreParticipante: string = '';
   apellidoParticipante: string = '';
   correoParticipante: string = '';
   fotoPerfilUsuario: string = '';
+  nombrePersona: any;
+  apellidoPersona: any;
+  correoUsuario: any;
 
-
-  constructor(private perfilService: PerfilService) {}
-
+  constructor(private perfilService: PerfilService, private perfilStorageService: PerfilStorageService, public auth: AuthService) {}
 
   ngOnInit() {
-    const usuarioId = 5;
-    const participanteId = usuarioId;
-    
-    // Utiliza el servicio de perfil para obtener el nombre del usuario
+    this.auth.user$.subscribe((user) => {
+        const authIdentifier = user?.sub;
+        console.log(user?.sub);
+        console.log(user);
+        console.log(authIdentifier);
+        this.getUsuarioPorAuthIdentifier(authIdentifier);
+    });
+  }
+
+  getUsuarioPorAuthIdentifier(authIdentifier: any) {
+    this.perfilService.getDatosUsuarioPorAuth(authIdentifier).subscribe(({usuario}: any) => {
+      this.perfilStorageService.usuario = usuario;
+      this.usuario = usuario;
+      this.nombreUsuario = usuario.nombreUsuario;
+      this.nombrePersona = usuario.nombre;
+      this.apellidoPersona = usuario.apellido;
+      this.correoUsuario = usuario.email;
+      this.fotoPerfilUsuario = usuario.fotoPerfil.nombre;
+    });
+  }
+
+}
+
+//test
+interface Participante {
+  id: number;
+  apellido: string;
+  mail: string;
+  nombre: string;
+}
+
+
+ /*
+  constructor(public auth: AuthService) {}
+
+  verToken(){
+    this.auth.idTokenClaims$.subscribe((claims) => {
+      console.log(claims);
+    });
+  }
+  /*/
+
+  /*
+  // Utiliza el servicio de perfil para obtener el nombre del usuario
     this.perfilService.getDatosUsuario(usuarioId).subscribe((usuario: any) => {
       this.usuario = usuario;
       this.nombreUsuario = usuario.nombreUsuario;
@@ -46,26 +82,4 @@ export class PerfilComponent implements OnInit {
       this.apellidoParticipante = this.participante.apellido;
       this.correoParticipante = this.participante.mail;
     });
-    
-  }
-
-}
-
-//test
-interface Participante {
-  id: number;
-  apellido: string;
-  mail: string;
-  nombre: string;
-}
-
- /*
-  constructor(public auth: AuthService) {}
-
-  verToken(){
-    this.auth.idTokenClaims$.subscribe((claims) => {
-      console.log(claims);
-    });
-  }
-  /*/
-
+  */

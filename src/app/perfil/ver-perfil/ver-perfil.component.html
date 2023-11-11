@@ -14,7 +14,7 @@
         <h3 class="text-center col-7 subtitulo-perfil">Foto de Perfil</h3>
         <div class="row justify-content-around align-items-center">
             <div class="foto-perfil col-5">
-                <img [src]="'assets/'+ fotoPerfilUsuario" alt="Foto de perfil" class="img-fluid">
+                <img *ngIf="fotoPerfilUsuario !== ''" [src]="'assets/'+ fotoPerfilUsuario" alt="Foto de perfil" class="img-fluid">
             </div>
             <div class="editar-container col-4 text-center btn btn-secondary" routerLink="../cambiar-imagen">
                 <a style="margin-right: 10px;">Editar</a>
@@ -44,7 +44,7 @@
                 <h3 class="text-center col-3 subtitulo-perfil">Nombre</h3>
                 <div class="row justify-content-evenly">
                     <div class="col-7 text-center">
-                        <p class="container-variable" style="text-decoration: none;">{{ nombreParticipante }} {{ apellidoParticipante }}</p>
+                        <p class="container-variable" style="text-decoration: none;">{{ nombrePersona }} {{ apellidoPersona }}</p>
                     </div>
                     <div class="col-5 text-center">
                         <div class="editar-container btn btn-secondary">
@@ -58,7 +58,7 @@
                 <h3 class="text-center col-3 subtitulo-perfil">Correo</h3>
                 <div class="row justify-content-evenly">
                     <div class="col-7 text-center">
-                            <p class="container-variable" style="text-decoration: none; margin: -3%; flex-wrap: wrap;">{{ correoParticipante }}</p>
+                            <p class="container-variable" style="text-decoration: none; margin: -3%; flex-wrap: wrap;">{{ correoUsuario }}</p>
                     </div>
                     <div class="col-5 text-center">
                         <div class="editar-container btn btn-secondary">

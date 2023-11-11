@@ -1,51 +1,46 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from "@auth0/auth0-angular";
 import { PerfilService } from '../perfil.service';
 
 @Component({
-  selector: 'app-ver-perfil',
-  templateUrl: './ver-perfil.component.html',
-  styleUrls: ['./ver-perfil.component.css']
+  selector: "app-ver-perfil",
+  templateUrl: "./ver-perfil.component.html",
+  styleUrls: ["./ver-perfil.component.css"],
 })
 export class VerPerfilComponent implements OnInit {
   editandoUsuario = false;
-  usuarioEditado: string = '';
-  nombreUsuario: string = '';
+  usuarioEditado: string = "";
+  nombreUsuario: string = "";
   usuario: any;
   participante: Participante = {
     id: 1,
-    apellido: '',
-    mail: '',
-    nombre: ''
-  }; 
-  nombreParticipante: string = '';
-  apellidoParticipante: string = '';
-  correoParticipante: string = '';
-  fotoPerfilUsuario: string = '';
+    apellido: "",
+    mail: "",
+    nombre: "",
+  };
+  nombrePersona: any;
+  apellidoPersona: any;
+  correoUsuario: any;
+  fotoPerfilUsuario: any;
 
-  constructor(private perfilService: PerfilService) {}
-  
+  constructor(private perfilService: PerfilService, public auth: AuthService) {}
 
   ngOnInit() {
-    const usuarioId = 5;
-    const participanteId = usuarioId;
-    
-    // Utiliza el servicio de perfil para obtener el nombre del usuario
-    this.perfilService.getDatosUsuario(usuarioId).subscribe((usuario: any) => {
-      this.nombreUsuario = usuario.nombreUsuario;
-      this.fotoPerfilUsuario = usuario.fotoPerfil.nombre;
+    this.auth.user$.subscribe((user) => {
+      const authIdentifier = user?.sub;
+      this.getUsuarioPorAuthIdentifier(authIdentifier);
     });
-    
-  
-    // Utiliza el servicio de perfil para obtener el nombre del usuario
-    this.perfilService.getDatosParticipante(participanteId).subscribe((res: any) => {
-      this.participante = res.participante; // Asigna los datos del participante
+  }
 
-      // Asigna los valores del participante a las variables
-      this.nombreParticipante = this.participante.nombre;
-      this.apellidoParticipante = this.participante.apellido;
-      this.correoParticipante = this.participante.mail;
-    });
-
+  getUsuarioPorAuthIdentifier(authIdentifier: any) {
+    this.perfilService.getDatosUsuarioPorAuth(authIdentifier).subscribe(({ usuario }: any) => {
+        this.usuario = usuario;
+        this.nombreUsuario = usuario.nombreUsuario;
+        this.nombrePersona = usuario.nombre;
+        this.apellidoPersona = usuario.apellido;
+        this.correoUsuario = usuario.email;
+        this.fotoPerfilUsuario = usuario.fotoPerfil.nombre;
+      });
   }
 
   /* Prueba editar nombre de usuario */
@@ -59,8 +54,6 @@ export class VerPerfilComponent implements OnInit {
     this.nombreUsuario = this.usuarioEditado;
   }
   /* --------------------------------- */
-
-
 }
 
 //test
