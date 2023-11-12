@@ -25,7 +25,7 @@
       
       <p class="text-center m-0">Crea un evento</p>
       <button class="btn p-2 border-0 bg-transparent" type="button" routerLink="/crear-evento">
-        <i class="bi bi-plus display-1 bg-dark-subtle rounded-circle m-2" alt="Crear Evento"></i>
+        <i class="bi bi-plus display-1 bg-dark-subtle rounded-circle m-2" alt="Crear Evento" routerLink="/eventos/crear"></i>
       </button>
       
     </div>
@@ -34,15 +34,15 @@
     <ng-template #eventosLista>
       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvpyvaW8UylnXWof2sdHjfObxsbNuBZIE"></script>
 
-      <div class="swiper-wrapper">
+      <div class="swiper-wrapper d-flex align-items-center">
         <div class="swiper-slide w-80 rounded-4 px-2" *ngFor="let evento of eventos">
-          <div class="container-texto">
+          <div class="container-texto container-fluid">
             <p class="text-center m-3 fs-5 fw-bold">{{ evento.nombre }}</p>
-            <p class="p-1"><strong>Fecha:</strong> {{ evento.fecha |date:"dd/MM/yyyy" }}</p>
-            <p class="p-1" *ngIf="evento.horaFin===null"><strong>Horario:</strong> Todo el día</p>
-            <p class="p-1" *ngIf="evento.horaFin!=null"><strong>Hora Inicio:</strong> {{ formatearHora(evento.horaInicio) }}hs</p>
-            <p class="p-1" *ngIf="evento.horaFin!=null"><strong>Hora Fin:</strong> {{ formatearHora(evento.horaFin) }}hs</p>
-            <p class="p-1"><strong>Tipo de evento:</strong> {{ evento.tipoEvento }}</p>
+            <p class="p-1 my-0 mx-1"><strong>Fecha:</strong> {{ evento.fecha |date:"dd/MM/yyyy" }}</p>
+            <p class="p-1 my-0 mx-1" *ngIf="evento.horaFin===null"><strong>Horario:</strong> Todo el día</p>
+            <p class="p-1 my-0 mx-1" *ngIf="evento.horaFin!=null"><strong>Hora Inicio:</strong> {{ formatearHora(evento.horaInicio) }}hs</p>
+            <p class="p-1 my-0 mx-1" *ngIf="evento.horaFin!=null"><strong>Hora Fin:</strong> {{ formatearHora(evento.horaFin) }}hs</p>
+            <p class="p-1 my-0 mx-1"><strong>Tipo de evento:</strong> {{ evento.tipoEvento }}</p>
           </div>
           <div class="container-panels">
             <mat-expansion-panel class="bg-primary-darken" *ngIf="evento.ubicacion != null && (panelAbierto === 'direccion' || panelAbierto === 'todos')" (opened)="abrirPanel('direccion')" (closed)="cerrarPanel('direccion')">
@@ -62,16 +62,7 @@
                 </a>
               </mat-panel-description>
             </mat-expansion-panel>
-            <mat-expansion-panel *ngIf="evento.descripcion != '' && (panelAbierto === 'descripcion' || panelAbierto === 'todos')"(opened)="abrirPanel('descripcion')" (closed)="cerrarPanel('descripcion')">
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Descripción
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <mat-panel-description>
-                <p>{{ evento.descripcion }}</p>
-              </mat-panel-description>
-            </mat-expansion-panel>
+            
             <mat-expansion-panel *ngIf="panelAbierto === 'recursos' || panelAbierto === 'todos'" (opened)="abrirPanel('recursos')" (closed)="cerrarPanel('recursos')">
               <mat-expansion-panel-header>
                 <mat-panel-title>
@@ -114,10 +105,21 @@
                 </div>
               </mat-panel-description>
             </mat-expansion-panel>
+
+            <mat-expansion-panel *ngIf="evento.descripcion != '' && (panelAbierto === 'descripcion' || panelAbierto === 'todos')"(opened)="abrirPanel('descripcion')" (closed)="cerrarPanel('descripcion')">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Descripción
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-panel-description>
+                <p>{{ evento.descripcion }}</p>
+              </mat-panel-description>
+            </mat-expansion-panel>
           </div>
           <!-- Solo debería aparecer en casos específicos -->
           <div class="col-md-12 text-center" *ngIf="esAdministrador(evento)">
-            <button (click)="showPopup()" class="invitarBtn btn btn-danger m-2 py-2 px-3 text-white rounded-4 fw-bold">
+            <button (click)="showPopup()" class="btn btn-danger m-2 py-2 px-3 text-white rounded-4 fw-bold">
               Invitar
             </button>
           </div>

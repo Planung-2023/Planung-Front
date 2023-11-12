@@ -152,7 +152,7 @@ volverAtras() {
 openMapDialog(evento:Evento) {
   const dialogRef = this.dialog.open(MapDialogComponent, {
     width: '80%',
-    height: '40%',
+    height: '50%',
     data: {
       position: this.position,
       options: this.options,

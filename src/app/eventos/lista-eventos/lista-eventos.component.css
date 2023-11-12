@@ -5,26 +5,24 @@
 }
 
 .swiper-wrapper{
-  width: 90%;
+  width: 100%;
+  height: 90vh;
 }
 
 .swiper-slide {
   display: flex;
   flex-direction: column;
   text-align: left;
-  margin: 10% 5% 0 5%;
+  margin: 0 5% 0 5%;
   background-color: #6a6d71;
-  width: 80%;
+  width: 90%;
   height: 75vh;
 }
 
-p {
-  font-size: 16px;
-  margin-left: 12px;
-}
+
 
 .container-texto{
-  height: 25vh;
+  height: 35%;
 }
 
 
@@ -83,10 +81,6 @@ mat-panel-description{
   text-decoration: underline;
   cursor: pointer;
   color: #000;
-}
-
-.mat-icon-map {
-  margin-right: 5px;
 }
 
 
