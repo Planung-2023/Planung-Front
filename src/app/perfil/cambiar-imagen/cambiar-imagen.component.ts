@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PerfilService } from '../perfil.service';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-cambiar-imagen',
@@ -12,17 +13,21 @@ export class CambiarImagenComponent implements OnInit {
   usuario: any;
   usuarioId: number = 5;
 
-  constructor(private perfilService: PerfilService) {
+  constructor(private perfilService: PerfilService, public auth: AuthService) {
   }
 
   ngOnInit() {
-    const usuarioId = 5;
-    
-    this.perfilService.getDatosUsuario(usuarioId).subscribe((usuario: any) => {
-      this.usuario = usuario;
-      console.log(usuario.fotoPerfil.nombre);
-      this.fotoPerfilUsuario = usuario.fotoPerfil.nombre;
+    this.auth.user$.subscribe((user) => {
+      const authIdentifier = user?.sub;
+      this.getFotoPorAuth(authIdentifier);
     });
+  }
+
+  getFotoPorAuth(authIdentifier: any) {
+    this.perfilService.getDatosUsuarioPorAuth(authIdentifier).subscribe(({ usuario }: any) => {
+        this.usuario = usuario;
+        this.fotoPerfilUsuario = usuario.fotoPerfil.nombre;
+      });
   }
 
 
