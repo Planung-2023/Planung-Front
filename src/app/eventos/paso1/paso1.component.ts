@@ -26,7 +26,7 @@ export class Paso1Component{
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth() + 1; // Meses se cuentan desde 0 a 11
     const day = currentDate.getDate();
-    return `${day.toString().padStart(2, '0')}-${month.toString().padStart(2, '0')}-${year}`;
+    return `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
   }
   
   cambiarTodoElDia(event: MatSlideToggleChange) {

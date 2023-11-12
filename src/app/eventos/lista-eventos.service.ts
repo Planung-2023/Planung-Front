@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { AuthService } from '@auth0/auth0-angular';
 
 
 @Injectable({
@@ -24,6 +25,10 @@ export class ListaEventosService {
   }
   getRecursosByEventoId(idEvento: number): Observable<any> {
     return  this.http.get(`${ environment.url }/eventos/${idEvento}/recursos`)
+  }
+
+  getUsuarioId(auth: any){
+    return this.http.get(`${ environment.url }/usuarios/token/usuario`)
   }
 
   getUsuarioMail(mail: string){

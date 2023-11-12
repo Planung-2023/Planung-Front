@@ -18,7 +18,7 @@ import { AuthService } from '@auth0/auth0-angular';
 
 export class ListaEventosComponent implements OnInit {
   invitadoSeleccionado: string = '';
-  idUsuario:number | undefined;
+  usuario: Usuario|undefined;
   eventos: any[] = [];
   recursos: Recurso[] = [];
   asistentes: Asistente[] = [];
@@ -51,10 +51,12 @@ export class ListaEventosComponent implements OnInit {
   ) {}
   
   ngOnInit() {
-    this.auth0.user$.subscribe((user?)=> {
-      console.log(user)
-      this.idUsuario = 5;
-    })
+      this.auth0.user$.subscribe((user) => {
+      const authIdentifier = user?.sub;
+      this.listaEventosService.getUsuarioId(authIdentifier).subscribe(({usuario}: any) => {
+        this.usuario = usuario;
+  });
+})
     this.recuperarEventos();
     console.log(this.recuperarEventos())
     const swiper = new Swiper('.swiper-container', {
@@ -74,7 +76,6 @@ export class ListaEventosComponent implements OnInit {
   showPopupInvitado(nombreInvitado: string, apellidoInvitado: string, evento: Evento) {
     this.invitadoSeleccionado = nombreInvitado;
     this.invitadosControlService.soyAdmin = this.esAdministrador(evento);
-    console.log(this.invitadosControlService.soyAdmin);
     this.invitadosControlService.invitadoNombre = nombreInvitado;
     this.invitadosControlService.invitadoApellido = apellidoInvitado;
     this.invitadosControlService.showPopupInvitado();
@@ -86,12 +87,11 @@ export class ListaEventosComponent implements OnInit {
 
     //ejemplo
   private recuperarEventos() {
-    this.listaEventosService.getEventos(this.idUsuario).subscribe(data => {
+    this.listaEventosService.getEventos(this.usuario?.id).subscribe(data => {
       this.eventos = data;
       this.eventos.forEach(evento => this.listaEventosService.getRecursosByEventoId(evento.id).subscribe(
         (data: Recurso[]) => {
           evento.recursos = data;
-          console.log(data);
         }
       ))
   
@@ -99,11 +99,9 @@ export class ListaEventosComponent implements OnInit {
         (data: Asistente[]) => {
           
           evento.asistentes = data;
-          console.log(data);
       }))
-    }, error => {
-      this.mockearEventos();
-    });
+    }
+    );
   }
 
   formatearHora(hora: string): string {
@@ -111,37 +109,9 @@ export class ListaEventosComponent implements OnInit {
   }
 
   esAdministrador(evento:Evento){
-    return evento.asistentes?.find(a => a.participante.usuario.id === this.idUsuario)?.esAdministrador;
+    return evento.asistentes?.find(a => a.participante.usuario.id === this.usuario?.id)?.esAdministrador; 
   }
 
-
-  private mockearEventos() {
-    const creador1: Creador = {
-      id: 1,
-      nombreUsuario: 'Claudio Gomez'
-    }
-
-    /*const ubicacion1: ubicacion = {
-      id: 2,
-      calle: "Av. Nazca",
-      altura: 2500,
-      localidad: "C.A.B.A.",
-      latitud: 30,
-      longitud: 30
-    }
-
-    this.eventos = [
-      { id: 1, nombre: 'Reunión Bayer', fechaHora: new Date(2023, 8, 18), hora: new Date(2023, 8, 18, 10, 22, 0), ubicacion: ubicacion1, tipoEvento: 'Formal', creador: 'German Sánchez', calle: 'Malvinas Argentinas', altura: 568, invitados: [{ nombre: 'Jorge López' }, { nombre: 'Juancho De Los Bosques' }, { nombre: 'Ramiro Causa' }, { nombre: 'Nelson Mandela' }, { nombre: 'Luciano De Los Pantanos' }, { nombre: 'Juanjo De Berazategui' }, { nombre: 'El_OppenJaime' } ] },
-      { id: 2, nombre: 'Charla Siemens', fechaHora: new Date(2023, 10, 4), hora: new Date(2023, 8, 18, 10, 22, 0), ubicacion: ubicacion1, tipoEvento: 'Formal', creador: 'Andrea Fernandez', calle: 'Av. Rivadavia', altura: 656, invitados: [{ nombre: 'Jorge López' }, { nombre: 'Juancho De Los Bosques' }]},
-      { id: 3, nombre: 'Cumpleaños Lucas', fechaHora: new Date(2023, 6, 25), hora: new Date(2023, 8, 18, 10, 22, 0), ubicacion: ubicacion1, tipoEvento: 'Informal', creador: 'Lucas Espinoza', calle: 'Av. Rivadavia', altura: 656, invitados: [{ nombre: 'Jorge López' }, { nombre: 'Juancho De Los Bosques' }] }
-    ];
-
-    this.recursos = [
-      {id: 1, cantidadActual: 3, cantidadNecesaria:6, descripcion: 'Esta es la coca para el fernet. No compren light ni cero.', nombre: 'Coca Cola'},
-      {id: 2, cantidadActual: 8, cantidadNecesaria:8, descripcion: 'Silla o banqueta, informar elección.', nombre: 'Silla'},
-      {id: 3, cantidadActual: 0, cantidadNecesaria:1, descripcion: 'Parlante grande para exterior, no traer portatil.', nombre: 'Parlantes'},
-    ];*/
-  }
 
   redireccionarCrearEvento(): void {
     this.router.navigate(['/eventos', 'crear']);
@@ -207,7 +177,7 @@ cerrarPanel(panel: string) {
 interface Evento {
   id: number;
   nombre: string;
-  creador: Creador;
+  creador: Participante;
   fecha: Date;
   horaInicio: Date;
   horaFin: Date;
@@ -221,9 +191,12 @@ interface Evento {
 
 interface Usuario {
   id: number;
+  idAuth0: string;
+  nombreUsuario: string;
+  email: string;
   nombre: string;
   apellido: string;
-  fotoPerfilId: number;
+  fotoPerfilId: any;
 }
 
 interface Recurso {

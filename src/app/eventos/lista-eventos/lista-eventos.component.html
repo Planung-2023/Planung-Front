@@ -13,108 +13,111 @@
   <!-- Popup de invitados -->
   <app-invitados></app-invitados>
 
-  <div class="lista-eventos-container">
+  <div class="lista-eventos-container text-white p-0">
 
-    <div *ngIf="eventos.length === 0; else eventosLista">
-      <div class="sin-eventos-container">
-        <h2>Tu lista de eventos</h2>
-        <h3>No tienes eventos :(</h3>
+    
+    <div class="d-flex flex-column justify-content-center align-items-center m-5" *ngIf="eventos.length === 0; else eventosLista">
+      <h2 class="text-center">Tu lista de eventos</h2>
+      <h3 class="text-center">No tienes eventos :(</h3>
+      <div class="d-flex justify-content-center">
         <img class="imagen-calendario" src="assets/calendarioNegro.png" alt="Icono de calendario">
-        <div class="crear-evento-container">
-          <p>Crea un evento</p>
-          <button mat-button class="custom-button" routerLink="/crear-evento">
-            <img class="boton-crear-evento" src="assets/crearEvento2.png" alt="Crear Evento">
-          </button>
-        </div>
       </div>
+      
+      <p class="text-center">Crea un evento</p>
+      <button class="btn p-2 border-0 bg-transparent" type="button" routerLink="/crear-evento">
+        <i class="bi bi-plus display-1 bg-dark-subtle rounded-circle m-2" alt="Crear Evento"></i>
+      </button>
+      
     </div>
-
+    
+    
     <ng-template #eventosLista>
       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvpyvaW8UylnXWof2sdHjfObxsbNuBZIE"></script>
 
       <div class="swiper-wrapper">
-        <div class="swiper-slide" *ngFor="let evento of eventos">
-          <div class="titulo-container">
-            <p class="titulo-evento">{{ evento.nombre }}</p>
+        <div class="swiper-slide w-80 rounded-4 px-2" *ngFor="let evento of eventos">
+          <div class="container-texto">
+            <p class="text-center m-3 fs-5 fw-bold">{{ evento.nombre }}</p>
+            <p class="p-1"><strong>Fecha:</strong> {{ evento.fecha |date:"dd/MM/yyyy" }}</p>
+            <p class="p-1" *ngIf="evento.horaFin===null"><strong>Horario:</strong> Todo el día</p>
+            <p class="p-1" *ngIf="evento.horaFin!=null"><strong>Hora Inicio:</strong> {{ formatearHora(evento.horaInicio) }}hs</p>
+            <p class="p-1" *ngIf="evento.horaFin!=null"><strong>Hora Fin:</strong> {{ formatearHora(evento.horaFin) }}hs</p>
+            <p class="p-1"><strong>Tipo de evento:</strong> {{ evento.tipoEvento }}</p>
           </div>
-          <p><strong>Organizador:</strong> {{ evento.creador?.nombreUsuario }}</p>
-          <p><strong>Fecha:</strong> {{ evento.fecha |date:"dd/MM/yyyy" }}</p>
-          <p *ngIf="evento.horaFin===null"><strong>Horario:</strong> Todo el día</p>
-          <p *ngIf="evento.horaFin!=null"><strong>Hora Inicio:</strong> {{ formatearHora(evento.horaInicio) }}hs</p>
-          <p *ngIf="evento.horaFin!=null"><strong>Hora Fin:</strong> {{ formatearHora(evento.horaFin) }}hs</p>
-          <p><strong>Tipo de evento:</strong> {{ evento.tipoEvento }}</p>
-          <mat-expansion-panel *ngIf="evento.ubicacion != null && (panelAbierto === 'direccion' || panelAbierto === 'todos')" (opened)="abrirPanel('direccion')" (closed)="cerrarPanel('direccion')">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Dirección
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-panel-description>
-              <ul class="col-md-12" *ngIf="evento.ubicacion.latitud===null && evento.ubicacion.longitud===null">
-                <li>Localidad: {{ evento.ubicacion.localidad }}</li>
-                <li>Calle: {{ evento.ubicacion.calle }}</li>
-                <li>Altura: {{ evento.ubicacion.altura }}</li>
-              </ul>
-              <a class="map-link" (click)="openMapDialog(evento)" *ngIf="evento.ubicacion.latitud!=null && evento.ubicacion.longitud!=null">
-                <mat-icon class="mat-icon-map">map</mat-icon> Mostrar ubicación en el mapa
-              </a>
-            </mat-panel-description>
-          </mat-expansion-panel>
-          <mat-expansion-panel *ngIf="evento.descripcion != '' && (panelAbierto === 'descripcion' || panelAbierto === 'todos')"(opened)="abrirPanel('descripcion')" (closed)="cerrarPanel('descripcion')">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Descripción
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-panel-description>
-              <p>{{ evento.descripcion }}</p>
-            </mat-panel-description>
-          </mat-expansion-panel>
-          <mat-expansion-panel *ngIf="panelAbierto === 'recursos' || panelAbierto === 'todos'" (opened)="abrirPanel('recursos')" (closed)="cerrarPanel('recursos')">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Recursos
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-panel-description>
-              <ul>
-                <li *ngFor="let recurso of evento.recursos">
-                  <div class="recurso-container">
-                    <span>{{ recurso.nombre }}</span>
-                    <button mat-icon-button class="ver-recurso-button" (click)="visualizarRecurso(evento, recurso)">
-                      <mat-icon>visibility</mat-icon>
-                    </button>
-                  </div>
-                </li>
-              </ul>
-              <button mat-raised-button class="agregar-recurso-button" (click)="agregarRecurso(evento)"  *ngIf="esAdministrador(evento)">Agregar</button>
-            </mat-panel-description>
-          </mat-expansion-panel>
-
-          <mat-expansion-panel *ngIf="panelAbierto === 'invitados' || panelAbierto === 'todos'" (opened)="abrirPanel('invitados')" (closed)="cerrarPanel('invitados')">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Invitados
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-panel-description class="panelInvitados">
-              <div class="invitados-container">
-                <ul class="col-12 justify-content-evenly">
-                  <li *ngFor="let asistente of evento?.asistentes">
-                    <div class="participante-container">
-                      <span>{{asistente.participante.apellido}}, {{ asistente.participante?.nombre }}</span>
-                      <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado(asistente.participante?.nombre, asistente.participante?.apellido, evento)">
+          <div class="container-panels">
+            <mat-expansion-panel class="bg-primary-darken" *ngIf="evento.ubicacion != null && (panelAbierto === 'direccion' || panelAbierto === 'todos')" (opened)="abrirPanel('direccion')" (closed)="cerrarPanel('direccion')">
+              <mat-expansion-panel-header class="bg-primary-darken">
+                <mat-panel-title>
+                  Dirección
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-panel-description class="bg-secondary">
+                <ul class="col-md-12 m-2" *ngIf="evento.ubicacion.latitud===null && evento.ubicacion.longitud===null">
+                  <li>Localidad: {{ evento.ubicacion.localidad }}</li>
+                  <li>Calle: {{ evento.ubicacion.calle }}</li>
+                  <li>Altura: {{ evento.ubicacion.altura }}</li>
+                </ul>
+                <a class="map-link m-2 text-decoration-none fw-bold d-flex align-items-center" (click)="openMapDialog(evento)" *ngIf="evento.ubicacion.latitud!=null && evento.ubicacion.longitud!=null">
+                  <i class="bi bi-compass-fill mx-1"></i> Mostrar ubicación en el mapa
+                </a>
+              </mat-panel-description>
+            </mat-expansion-panel>
+            <mat-expansion-panel *ngIf="evento.descripcion != '' && (panelAbierto === 'descripcion' || panelAbierto === 'todos')"(opened)="abrirPanel('descripcion')" (closed)="cerrarPanel('descripcion')">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Descripción
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-panel-description>
+                <p>{{ evento.descripcion }}</p>
+              </mat-panel-description>
+            </mat-expansion-panel>
+            <mat-expansion-panel *ngIf="panelAbierto === 'recursos' || panelAbierto === 'todos'" (opened)="abrirPanel('recursos')" (closed)="cerrarPanel('recursos')">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Recursos
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-panel-description>
+                <ul>
+                  <li *ngFor="let recurso of evento.recursos">
+                    <div class="recurso-container">
+                      <span>{{ recurso.nombre }}</span>
+                      <button mat-icon-button class="ver-recurso-button" (click)="visualizarRecurso(evento, recurso)">
                         <mat-icon>visibility</mat-icon>
                       </button>
                     </div>
                   </li>
                 </ul>
-              </div>
-            </mat-panel-description>
-          </mat-expansion-panel>
+                <button mat-raised-button class="agregar-recurso-button" (click)="agregarRecurso(evento)"  *ngIf="esAdministrador(evento)">Agregar</button>
+              </mat-panel-description>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel *ngIf="panelAbierto === 'invitados' || panelAbierto === 'todos'" (opened)="abrirPanel('invitados')" (closed)="cerrarPanel('invitados')">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Invitados
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-panel-description class="panelInvitados">
+                <div class="invitados-container">
+                  <ul class="col-12 justify-content-evenly">
+                    <li *ngFor="let asistente of evento?.asistentes">
+                      <div class="participante-container">
+                        <span>{{asistente.participante.apellido}}, {{ asistente.participante?.nombre }}</span>
+                        <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado(asistente.participante?.nombre, asistente.participante?.apellido, evento)">
+                          <mat-icon>visibility</mat-icon>
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </mat-panel-description>
+            </mat-expansion-panel>
+          </div>
           <!-- Solo debería aparecer en casos específicos -->
           <div class="col-md-12 text-center" *ngIf="esAdministrador(evento)">
-            <button (click)="showPopup()" class="invitarBtn">
+            <button (click)="showPopup()" class="invitarBtn btn btn-danger m-2 py-2 px-3 text-white rounded-4 fw-bold">
               Invitar
             </button>
           </div>
