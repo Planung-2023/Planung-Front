@@ -14,7 +14,7 @@
                         <div class="col-7 p-1">
                             <p class="text-center text-black d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2"> {{ datos?.paso1?.nombre }}</p>
                         </div>
-                        <div class="col-1 d-flex align-items-center m-0 p-1">
+                        <div class="col-1 d-flex align-items-center justify-content-end m-0 p-1">
                             <button class="d-flex rounded-2 bg-secondary px-0 py-1 m-0 border-0" (click)="volverAPaso1()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                         <div class="col-7 p-1">
                             <p class="text-center text-black text-wrap d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2">{{ datos?.paso1?.fecha }}</p>
                         </div>
-                        <div class="col-1 d-flex align-items-center m-0 p-1">
+                        <div class="col-1 d-flex align-items-center justify-content-end m-0 p-1">
                             <button class="d-flex rounded-2 bg-secondary px-0 py-1 m-0 border-0" (click)="volverAPaso1()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                         <div class="col-7 p-1" *ngIf="!datos?.paso1?.todoElDia==false">
                             <p class="text-center text-black d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2">Todo el Día</p>
                         </div>
-                        <div class="col-1 d-flex align-items-center m-0 p-1">
+                        <div class="col-1 d-flex align-items-center justify-content-end m-0 p-1">
                             <button class="d-flex rounded-2 bg-secondary px-0 py-1 m-0 border-0" (click)="volverAPaso1()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                                 <img name="tamanio-fuente" *ngIf="datos?.paso2?.tipoEvento == 'Formal'" src="assets/zapato.png">
                             </div>
                         </div>
-                        <div class="col-1 d-flex align-items-center m-0 p-1">
+                        <div class="col-1 d-flex align-items-center justify-content-end m-0 p-1">
                             <button class="d-flex rounded-2 bg-secondary px-0 py-1 m-0 border-0" (click)="volverAPaso2()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                                 <img name="tamanio-fuente" class="width-auto" *ngIf="datos?.paso2?.tipoInvitacion == 'Por Aprobacion'" src="assets/privado.png">
                             </div>
                         </div>
-                        <div class="col-1 d-flex align-items-center m-0 p-1">
+                        <div class="col-1 d-flex align-items-center justify-content-end m-0 p-1">
                             <button id="editar" class="d-flex rounded-2 bg-secondary px-0 py-1 m-0 border-0" (click)="volverAPaso2()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                             </div>
                                 
                         </div>
-                        <div class="col-1 d-flex align-items-center m-0 p-1">
+                        <div class="col-1 d-flex align-items-center justify-content-end m-0 p-1">
                             <button class="d-flex rounded-2 bg-secondary px-0 py-1 m-0 border-0" (click)="volverAPaso3()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
@@ -113,11 +113,11 @@
                             <p class="d-flex h-100 w-100 align-items-center text-start rounded-2 p-2 text-white fw-bold bg-primary-darken">Objetos</p>
                         </div>
                         <div class="col-7 p-1">
-                              <p *ngIf="datos?.paso4?.recursos?.length == 0" class="bg-secondary rounded-2 text-center text-black d-flex h-100 flex-column align-items-center justify-content-center m-0 p-0">No hay Recursos</p>
-                              <p *ngFor="let recurso of datos.paso4.recursos" class="bg-secondary rounded-2 ps-2 text-start text-black d-flex h-100 flex-column">{{ recurso.nombre }}: {{ recurso.cantidad }}</p>
+                              <p *ngIf="datos?.paso4?.recursos?.length == 0" class="bg-secondary rounded-2 text-center text-black h-100 d-flex align-items-center justify-content-center m-0 p-0">No hay Recursos</p>
+                              <p *ngFor="let recurso of datos.paso4.recursos" class="mb-1 bg-secondary rounded-2 ps-2 text-start text-black d-flex">{{ recurso.nombre }}: {{ recurso.cantidad }}</p>
                         </div>
 
-                        <div class="col-1 d-flex align-items-center m-0 p-1">
+                        <div class="col-1 d-flex align-items-center justify-content-end m-0 p-1">
                             <button class="d-flex rounded-2 bg-secondary px-0 py-1 m-0 border-0" (click)="volverAPaso4()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
                         </div>
                     </div>
