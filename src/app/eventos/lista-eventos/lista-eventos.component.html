@@ -36,8 +36,9 @@
 
       <div class="swiper-wrapper d-flex align-items-center">
         <div class="swiper-slide w-80 rounded-4 px-2" *ngFor="let evento of eventos">
+          <p class="text-center m-3 fs-5 fw-bold">{{ evento.nombre }}</p>
           <div class="container-texto container-fluid">
-            <p class="text-center m-3 fs-5 fw-bold">{{ evento.nombre }}</p>
+            
             <p class="p-1 my-0 mx-1"><strong>Fecha:</strong> {{ evento.fecha |date:"dd/MM/yyyy" }}</p>
             <p class="p-1 my-0 mx-1" *ngIf="evento.horaFin===null"><strong>Horario:</strong> Todo el día</p>
             <p class="p-1 my-0 mx-1" *ngIf="evento.horaFin!=null"><strong>Hora Inicio:</strong> {{ formatearHora(evento.horaInicio) }}hs</p>
@@ -57,9 +58,13 @@
                   <li>Calle: {{ evento.ubicacion.calle }}</li>
                   <li>Altura: {{ evento.ubicacion.altura }}</li>
                 </ul>
-                <a class="map-link m-2 text-decoration-none fw-bold d-flex align-items-center" (click)="openMapDialog(evento)" *ngIf="evento.ubicacion.latitud!=null && evento.ubicacion.longitud!=null">
-                  <i class="bi bi-compass-fill mx-1"></i> Mostrar ubicación en el mapa
-                </a>
+                <div class="d-flex align-items-center" *ngIf="evento.ubicacion.latitud!=null && evento.ubicacion.longitud!=null">
+                  <i class="bi bi-geo-alt-fill mx-1 text-black" ></i>
+                  <a class="map-link m-2 d-flex align-items-center" (click)="openMapDialog(evento)">
+                    Mostrar ubicación en el mapa
+                  </a>
+                </div>
+                
               </mat-panel-description>
             </mat-expansion-panel>
             

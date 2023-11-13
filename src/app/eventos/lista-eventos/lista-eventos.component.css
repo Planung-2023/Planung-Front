@@ -22,7 +22,8 @@
 
 
 .container-texto{
-  height: 35%;
+  min-height: 25%;
+  overflow-y: auto;
 }
 
 
@@ -106,7 +107,8 @@ mat-panel-description{
 }
 
 .container-panels{
-  height: 35vh;
+  min-height: 35vh;
+  overflow-y: auto;
 }
 
 .mat-expanded .mat-expansion-indicator {

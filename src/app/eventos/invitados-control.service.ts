@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class InvitadosControlService {
   isVisible = false;
   soyAdmin: boolean | undefined = false;
+  usuarioId: number |undefined = 0;
   invitadoNombre: string = '';
   invitadoApellido: string ='';
 

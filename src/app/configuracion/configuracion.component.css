@@ -6,10 +6,9 @@ body, html {
   }
 
   .configuracion-container {
-    margin-top: 50px;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow-x: hidden;
     position: relative;
     background-color: #3a3a3a;
   }
