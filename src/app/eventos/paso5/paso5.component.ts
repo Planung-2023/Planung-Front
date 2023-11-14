@@ -14,6 +14,7 @@ export class Paso5Component {
   @Output() aPaso3 = new EventEmitter<void>();
   @Output() aPaso4 = new EventEmitter<void>();
   @Output() crearEvento = new EventEmitter<void>();
+  @Output() terminarEvento = new EventEmitter<void>();
   
   formulario = new FormGroup({
     
@@ -36,11 +37,10 @@ export class Paso5Component {
     this.datos = datos;
   }
 
-  verificarFormularioCompleto(){
-    
-  }
-
   crearNuevoEvento(){
     this.crearEvento.emit();
+  }
+  irAListaEventos(){
+    this.terminarEvento.emit();
   }
 }

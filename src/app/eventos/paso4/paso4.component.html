@@ -8,7 +8,7 @@
                   <div *ngIf="recursos.length!=0" class="d-flex flex-row justify-content-evenly align-items-center">
                     <h3 class="text-center text-white fw-bold">Cantidad: {{ recursos.length }}</h3>
                   </div>
-                  <button class="p-2 border-0 bg-primary" (click)="mostrarCardAgregar(contenidoAgregar)">
+                  <button class="p-2 border-0 bg-primary" (click)="resetRecursoActual(); mostrarCardAgregar(contenidoAgregar)">
                     <i class="bi bg-secondary bi-plus-circle-fill display-1 p-2 rounded-circle"></i>
                   </button>
                   <div class="container-fluid">
@@ -16,7 +16,10 @@
                       <div class="col-2 justify-content-center">
                         <button class="btn bg-secondary-darken p-2 shadow h-100" (click)="mostrarCardBorrar(borrarRecurso, recurso)"><i class="display-6 text-black bi bi-trash"></i></button>
                       </div>
-                      <mat-expansion-panel class="col-9 rounded-4 align-items-center bg-secondary shadow px-0">
+                      <div class="col-2 justify-content-center">
+                        <button class="btn bg-secondary-darken p-2 shadow h-100" (click)="mostrarCardAgregar(contenidoAgregar, recurso)"><i class="display-6 text-black bi bi-pencil-fill"></i></button>
+                      </div>
+                      <mat-expansion-panel class="col-7 rounded-4 align-items-center bg-secondary shadow px-0">
                         <mat-expansion-panel-header class="bg-secondary rounded-5">
                           <mat-panel-title>
                             <h2 class="m-0 fw-bolder">{{ recurso.nombre }}</h2>
@@ -44,11 +47,12 @@
       <h2 class="modal-title m-0 text-white fw-bolder">Agregar recurso</h2>
     </div>
     <div class="modal-body bg-primary">
-      <app-crear-recurso #componenteCrearRecurso [tiposDeRecursos]="tiposDeRecursos"></app-crear-recurso>
+      <app-crear-recurso #componenteCrearRecurso [tiposDeRecursos]="tiposDeRecursos" [editarRecurso]="recursoAEditar"></app-crear-recurso>
     </div>
     <div class="modal-footer bg-dark-subtle">
       <button type="button" class="btn btn-outline-danger" (click)='modal.dismiss()'>Cerrar</button>
-      <button class="btn btn-success" (click)="validarYCerrarModal(componenteCrearRecurso)? modal.close(componenteCrearRecurso) : null">Agregar recurso</button> <!--modal.validarYCerrarModal(componenteCrearRecurso);-->
+      <button *ngIf="this.recursoAEditar===null" class="btn btn-success" (click)="validarYCerrarModal(componenteCrearRecurso)? modal.close(componenteCrearRecurso) : null">Agregar recurso</button> <!--modal.validarYCerrarModal(componenteCrearRecurso);-->
+      <button *ngIf="this.recursoAEditar!=null" class="btn btn-warning" (click)="validarYCerrarModal(componenteCrearRecurso)? modal.close(componenteCrearRecurso) : null">Editar recurso</button> <!--modal.validarYCerrarModal(componenteCrearRecurso);-->
     </div>
   </div>
 </ng-template>

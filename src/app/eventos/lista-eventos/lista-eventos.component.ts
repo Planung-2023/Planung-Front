@@ -76,6 +76,7 @@ export class ListaEventosComponent implements OnInit {
   showPopupInvitado(nombreInvitado: string, apellidoInvitado: string, evento: Evento) {
     this.invitadoSeleccionado = nombreInvitado;
     this.invitadosControlService.soyAdmin = this.esAdministrador(evento);
+    this.invitadosControlService.usuarioId = this.usuario?.id;
     this.invitadosControlService.invitadoNombre = nombreInvitado;
     this.invitadosControlService.invitadoApellido = apellidoInvitado;
     this.invitadosControlService.showPopupInvitado();

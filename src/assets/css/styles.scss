@@ -13,7 +13,7 @@ $boton: #a9a9a9;
 
 .padding-creacion-evento{
     padding-top: ($spacer * 3.4) !important;
-    padding-bottom: ($spacer * 8.5) !important;
+    padding-bottom: ($spacer * 6.9) !important;
 }
 
 html, body, .fondo{
@@ -47,23 +47,26 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     touch-action: none;
 }
-.body-bg{
-    
-}
-h1, p{
-    color: white !important;
-}
 
-.anticon{
-    color: black !important;
-}
 
 .w-90{
     width: 90%;
 }
 
+.w-80{
+    width: 80%;
+}
+
 .h-5{
     height: 5%;
+}
+
+.h-20{
+    height: 20%;
+}
+
+.h-90{
+    height: 90%;
 }
 
 .ant-steps-item-icon {
@@ -75,16 +78,8 @@ h1, p{
 /*Customización del stepper. La pongo acá porque en el css de crearEvento no se importaban las propiedades*/
 
 .ant-steps-item-finish .ant-steps-item-icon {
-    border-color: var(--bs-success) !important;
-    background-color: var(--bs-success) !important;
-}
-
-.ant-steps-item-wait .ant-steps-item-icon{
-    border-color: white !important;
-}
-
-.ant-steps-item-wait .ant-steps-item-title::after, .ant-steps-item-process .ant-steps-item-title::after{
-    background-color: white !important;
+    border-color: $success !important;
+    background-color: $success !important;
 }
 
 .ant-steps-item-process .ant-steps-item-icon{

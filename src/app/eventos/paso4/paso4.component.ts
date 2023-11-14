@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, NgModel } from '@angular/forms';
 import { RecursosService } from 'src/app/recursos/recursos.service';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { Modal } from 'ng-bootstrap-modal';
 
 @Component({
   selector: 'app-paso4',
@@ -14,6 +15,7 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 export class Paso4Component implements OnInit {
   @Output() eventoCerrar = new EventEmitter<void>();
   recursos: any = [];
+  recursoAEditar: any|undefined = null;
   tiposDeRecursos: any = [];
   formulario = new FormGroup({
     recursos: new FormControl([]),
@@ -52,12 +54,27 @@ export class Paso4Component implements OnInit {
     return this.tiposDeRecursos.find((t: any ) => t.id == id)?.nombre;
   }
 
-  mostrarCardAgregar(modal: any) {
-    this.modal.open(modal, { centered: true, size: 'sm'}).result.then(
+  mostrarCardAgregar(modal: any, recurso?: any) {
+    const modalRef = this.modal.open(modal, { centered: true, size: 'sm'});
+    const index = this.recursos.indexOf(recurso);
+    if (recurso) {
+      this.recursoAEditar = this.recursos[index]
+      
+    }
+    modalRef.result.then(
       (result: any) => {
-        this.recursos.push(result.obtenerDatos());
+        if (recurso!=null) {
+          // Si es una edición, reemplazar el recurso existente con los nuevos datos
+          this.recursos[index] = result.obtenerDatos();
+          console.log('Editar')
+        } else {
+          // Si es una adición normal, agregar el nuevo recurso
+          this.recursos.push(result.obtenerDatos());
+          console.log('Agregar')
+          this.recursoAEditar = null
+        }
         this.formulario.get('recursos')?.setValue(this.recursos);
-       
+        
       },
       (reason: any) => {}
     );
@@ -73,7 +90,9 @@ export class Paso4Component implements OnInit {
       return false;
     }
   }
-
+  resetRecursoActual(){
+    this.recursoAEditar = null
+  }
   activarError() {
     this.eventoCerrar.emit();
   }
@@ -90,6 +109,7 @@ export class Paso4Component implements OnInit {
       }
     )
   }
+
   getDatosPaso4(){
     return this.formulario.value;
   }

@@ -3,13 +3,13 @@
     <div class="form-group py-1 pt-0">
       <label class="container-fluid">
         <p class="fw-bold text-black m-0">Nombre</p>
-        <input class="form-control border-0 bg-secondary text-black py-2" type="text" formControlName="nombre" maxlength="15">
+        <input class="form-control border-0 bg-secondary text-black py-2" type="text" [value]="formulario.get('nombre')?.value" formControlName="nombre" maxlength="15">
       </label>
     </div>
     <div class="form-group py-2">
       <label class="container-fluid">
         <p class="fw-bold text-black m-0">Tipo de recurso</p>
-        <select class="form-control border-0 bg-secondary text-black py-2" formControlName="categoria">
+        <select class="form-control border-0 bg-secondary text-black py-2" [value]="formulario.get('categoria')?.value" formControlName="categoria">
           <option *ngFor="let tipo of tiposDeRecursos" value="{{ tipo.id }}">{{ tipo.nombre }}</option>
         </select>
       </label>
@@ -17,13 +17,13 @@
     <div class="form-group py-1">
       <label class="container-fluid">
         <p class="fw-bold text-black m-0">Descripción</p>
-        <input class="form-control border-0 bg-secondary text-black py-2" type="text" formControlName="descripcion" maxlength="50">
+        <input class="form-control border-0 bg-secondary text-black py-2" type="text" [value]="formulario.get('descripcion')?.value" formControlName="descripcion" maxlength="50">
       </label>
     </div>
     <div class="form-group py-2 pb-0">
       <label class="container-fluid">
         <p class="fw-bold text-black m-0">Cantidad</p>
-        <input class="form-control border-0 bg-secondary text-black py-2" type="number" formControlName="cantidad">
+        <input class="form-control border-0 bg-secondary text-black py-2" type="number" [value]="formulario.get('cantidad')?.value" formControlName="cantidad">
       </label>
     </div>
   </form>

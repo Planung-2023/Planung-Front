@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Paso1Component } from '../paso1/paso1.component';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CrearEventoService } from '../crear-evento.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-evento',
@@ -54,6 +55,7 @@ export class CrearEventoComponent implements OnInit{
     private modal: NgbModal,
     private service: CrearEventoService,
     private sb: FormBuilder,
+    private router: Router
   ) {}
   
   pasoAnterior(){
@@ -168,5 +170,8 @@ crearEvento(){
     },
   });
   
+}
+navegarAEventos() {
+  this.router.navigate(['/eventos']);
 }
 }
