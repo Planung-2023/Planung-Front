@@ -28,7 +28,7 @@
                             <i class="bi bi-calendar-week d-flex justify-content-center align-items-center rounded-2 p-2 bg-secondary h-100"></i>
                         </div>
                         <div class="col-7 p-1">
-                            <p class="text-center text-black text-wrap d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2">{{ datos?.paso1?.fecha }}</p>
+                            <p class="text-center text-black text-wrap d-flex flex-column align-items-center justify-content-center rounded-2 bg-secondary p-2">{{ datos?.paso1?.fecha|date:"dd/MM/yyyy" }}</p>
                         </div>
                         <div class="col-1 d-flex align-items-center m-0 p-1">
                             <button class="d-flex rounded-2 bg-secondary px-0 py-1 m-0 border-0" (click)="volverAPaso1()"><mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon></button>
@@ -38,7 +38,7 @@
                     <!--Hora-->
                     <div class="row align-items-stretch">
                         <div class="col-3 p-1">
-                            <p class="text-start d-flex justi p-2 bg-text-white rounded-2 fw-bold bg-primary-darken">Hora</p>
+                            <p class="text-start text-black rounded-2 p-2 text-white fw-bold bg-primary-darken">Hora</p>
                         </div>
                         <div class="col-1 d-flex align-items-center justify-content-center m-0 p-1" id="icon">
                             <i class="bi bi-alarm d-flex justify-content-center align-items-center rounded-2 p-2 bg-secondary h-100"></i>

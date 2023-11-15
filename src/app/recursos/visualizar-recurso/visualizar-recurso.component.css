@@ -168,15 +168,17 @@
   padding-top: 10px;
 }
 
-.recurso-panel table tbody td {
-  padding: 10px 45px;
+table tbody td {
+  padding: 8px 45px;
   font-weight: bold;
   text-align: center;
 }
 
-.recurso-panel table {
+.tabla {
   border-collapse: separate;
   width: 100%;
+  max-height: 90px !important;
+  overflow-y: auto;
 }
 
 .agregar-responsable {
@@ -184,13 +186,9 @@
   color: white;
   border: none;
   margin: 0 auto;
-  display: block;
-  width: 100px;
-  height: 30px;
-  font-size: 16px;
+  height: 50px;
   border-radius: 10px;
   cursor: pointer;
-  text-align: center;
   margin-top: 8px;
 }
 
@@ -250,6 +248,30 @@
 }
 
 .descripcion-buttons button i {
+  font-size: 20px;
+  color: #fff;
+}
+
+.responsables-buttons{
+  display: flex;
+  justify-content: space-evenly;
+  background: none;
+  border-radius: 10px;
+}
+
+.responsables-buttons button {
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.responsables-buttons button i {
   font-size: 20px;
   color: #fff;
 }
