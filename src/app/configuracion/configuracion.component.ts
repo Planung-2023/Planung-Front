@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConfiguracionService } from './configuracion.service';
 import { AuthService } from '@auth0/auth0-angular';
 import { PerfilService } from '../perfil/perfil.service';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-configuracion',
@@ -10,8 +11,7 @@ import { PerfilService } from '../perfil/perfil.service';
 })
 
 export class ConfiguracionComponent implements OnInit {
-  lightMode: boolean = true;
-  darkMode: boolean = false;
+
   usuario: any;
   user: any;
   correoParticipante: string = '';
@@ -20,21 +20,11 @@ export class ConfiguracionComponent implements OnInit {
 
   constructor(private configuracionService: ConfiguracionService, private perfilService: PerfilService, public auth: AuthService) {} // Inyecta el servicio
 
-  cambiarModoLight() {
-    this.lightMode = true;
-    this.darkMode = false;
-    this.verificarModos();
-  }
-
-  cambiarModoDark() {
-    this.darkMode = true;
-    this.lightMode = false;
-    this.verificarModos();
-  }
-
-  verificarModos() {
-    if (!this.lightMode && !this.darkMode) {
-      this.lightMode = true;
+  cambiarModo(event: MatSlideToggleChange) {
+    if (event.checked) {
+      this.configuracionService.temaClaro = true;
+    } else { 
+      this.configuracionService.temaClaro = false;
     }
   }
 
