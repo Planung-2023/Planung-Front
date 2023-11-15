@@ -7,7 +7,6 @@ $secondary: #F8DDA4;
 @import "/node_modules/bootstrap/scss/bootstrap";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
-$fondo: #3a3a3a;
 $tarjeta: #5a5a5a;
 $boton: #a9a9a9;
 
@@ -16,9 +15,13 @@ $boton: #a9a9a9;
     padding-bottom: ($spacer * 6.9) !important;
 }
 
+.color-opuesto{
+    color: var(--bs-body-color)
+}
+
 html, body, .fondo{
     height: 100%;
-    background-color: $fondo !important;
+    background-color: var(--bs-body-bg) !important;
 }
 
 .tarjeta{

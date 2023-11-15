@@ -17,10 +17,10 @@
 
     
     <div class="d-flex flex-column justify-content-center align-items-center m-5" *ngIf="eventos.length === 0; else eventosLista">
-      <h2 class="text-center">Tu lista de eventos</h2>
-      <h3 class="text-center">No tienes eventos :(</h3>
-      <div class="d-flex justify-content-center">
-        <img class="imagen-calendario" src="assets/calendarioNegro.png" alt="Icono de calendario">
+      <h2 class="color-opuesto text-center">Tu lista de eventos</h2>
+      <h3 class="color-opuesto text-center">No tienes eventos :(</h3>
+      <div class="d-flex w-100 justify-content-center align-items-center">
+        <i class="bi bi-calendar-x display-1 mb-5 color-opuesto"></i>
       </div>
       
       <p class="text-center m-0">Crea un evento</p>
