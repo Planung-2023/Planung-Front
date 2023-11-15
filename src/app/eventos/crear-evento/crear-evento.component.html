@@ -22,8 +22,8 @@
 </div>
 <!-- Mensaje de error de Formulario Incompleto-->
   <ng-template #errorModalContent let-modal >
-    <div class="modal-body bg-dark-subtle">
-      <h2 class="m-0 text-warning">¡Atención!</h2>
+    <div class="modal-body bg-warning">
+      <h2 class="m-0 text-dark">¡Atención!</h2>
     </div>
     <div class="container-fluid modal-footer bg-primary rounded-bottom">
       <div class="row">
@@ -33,7 +33,7 @@
     </div>
   </ng-template>
 
-<div [ngClass]="{'justify-content-center' : pasoActual === 0, 'justify-content-around' : pasoActual != 0 }"class="footer d-flex fixed-bottom justify-content-center px-2 pt-2">
+<div [ngClass]="{'justify-content-center' : pasoActual === 0, 'justify-content-around' : pasoActual != 0 }"class="footer bg-light-subtle d-flex fixed-bottom justify-content-center px-2 pt-2">
   <button *ngIf="pasoActual != 0" (click)="pasoAnterior()" class="rounded-2 border-0 boton px-5 py-2"><i class="bi bi-arrow-left text-white mx-3 display-5"></i></button>
   <button *ngIf="pasoActual != 4" (click)="proximoPaso()" class="rounded-2 border-0 boton px-5 py-2"><i class="bi bi-arrow-right text-white mx-3 display-5"></i></button>
 </div>

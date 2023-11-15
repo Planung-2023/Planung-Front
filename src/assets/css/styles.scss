@@ -9,6 +9,8 @@ $secondary: #F8DDA4;
 
 $tarjeta: #5a5a5a;
 $boton: #a9a9a9;
+$fondo: var(--bs-body-bg);
+$contraste: var(--bs-body-color);
 
 .padding-creacion-evento{
     padding-top: ($spacer * 3.4) !important;
@@ -16,12 +18,12 @@ $boton: #a9a9a9;
 }
 
 .color-opuesto{
-    color: var(--bs-body-color)
+    color: $contraste;
 }
 
 html, body, .fondo{
     height: 100%;
-    background-color: var(--bs-body-bg) !important;
+    background-color: $fondo !important;
 }
 
 .tarjeta{
