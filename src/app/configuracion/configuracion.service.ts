@@ -7,9 +7,11 @@ import { Observable } from 'rxjs';
   providedIn: "root",
 })
 export class ConfiguracionService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
+  temaClaro: boolean = false //en false, el tema predeterminado es oscuro
 
   getDatosUsuarioPorAuth(authIdentifier: string): Observable<any> {
     return this.http.get(`${environment.url}/usuarios/token/usuario`, {});
   }
+  
 }

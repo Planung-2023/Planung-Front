@@ -24,13 +24,9 @@
       <mat-slide-toggle></mat-slide-toggle>
     </div>
 
-    <div class="seccion-tema">
+    <div class="">
       <h3>Tema</h3>
-      <div style="color: #ffffff">
-        <mat-slide-toggle [(ngModel)]="lightMode" (click)="cambiarModoLight()"><p style="color: #ffffff; padding-top: 10px;">Light mode</p></mat-slide-toggle>
-        <br>
-        <mat-slide-toggle [(ngModel)]="darkMode" (click)="cambiarModoDark()"><p style="color: #ffffff; padding-top: 10px;">Dark mode</p></mat-slide-toggle>
-      </div>
+      <mat-slide-toggle (change)="cambiarModo($event)"></mat-slide-toggle>
     </div>
 
     <div class="seccion-acerca">
