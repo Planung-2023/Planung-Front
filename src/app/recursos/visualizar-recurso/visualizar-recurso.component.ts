@@ -4,6 +4,7 @@ import { RecursoColorPickerService } from '../recurso-color-picker/recurso-color
 import { RecursosService } from '../recursos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotificacionGuardadoComponent } from './notificacion-guardado/notificacion-guardado.component';
+import { AuthService } from '@auth0/auth0-angular';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class VisualizarRecursoComponent implements OnInit {
   public objectTypes: Categoria[] = [];
   recurso: Recurso;
   evento: Evento;
+  usuario: Usuario | undefined;
   isFlipped: boolean = false;
   descripcion: string = '';
   panelAbierto: string = 'todos';
@@ -25,15 +27,16 @@ export class VisualizarRecursoComponent implements OnInit {
   selectedColorClass: string = '#ef7d16';
   categoria: Categoria;
   asignaciones: Asignaciones[] = [];
-  asistente: Asistente | undefined;
+  asistente: Asistente|undefined;
   participante: Participante | undefined;
   rol: Rol |undefined;
-
+  index: number = -1;
   constructor(
     private router: Router,
     private RecursoColorPickerService: RecursoColorPickerService,
     private RecursoService: RecursosService,
     private _snackBar: MatSnackBar, 
+    public auth0: AuthService,
   ) {
     this.recurso = this.router.getCurrentNavigation()?.extras.state?.['recurso'];
     this.evento = this.recurso.evento;
@@ -62,13 +65,27 @@ export class VisualizarRecursoComponent implements OnInit {
       },
       complete: () => {},
     });
-
+  
+    this.auth0.user$.subscribe((user) => {
+      const authIdentifier = user?.sub;
+      this.RecursoService.getUsuarioId(authIdentifier).subscribe(({usuario}: any) => {
+        this.usuario = usuario;
+        this.RecursoService.getAsistentes(this.evento.id).subscribe(
+      (data: Asistente[]) => {
+        this.evento.asistentes = data;
+        console.log('asistentes:',data);
+        this.asistente = this.evento.asistentes.find(a => a.participante.usuario.id === this.usuario?.id);
+        });
+      })  
+      
+    });
+    
     this.RecursoService.getAsignacionesByRecursoId(this.recurso.id).subscribe(
       (info: Asignaciones[]|any) => {
         this.asignaciones = info;
       }
     );
-
+    
     this.RecursoColorPickerService.getSelectedColor().subscribe((color) => {
       if(color!=null)
       this.selectedColor = color;
@@ -90,7 +107,7 @@ export class VisualizarRecursoComponent implements OnInit {
       this.guardarDescripcion();
     });
   }
-
+  
   getCantidadTotal(): number {
    /*  let cantidadTotal = 0;
     for (const responsable of this.responsables) {
@@ -197,6 +214,65 @@ export class VisualizarRecursoComponent implements OnInit {
     this.recurso.descripcion = nuevaDescripcion;
     this.guardarRecurso(this.recurso);
   }
+  
+  agregarRecurso(){
+    this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);
+    if(this.recurso.cantidadActual<this.recurso.cantidadNecesaria){
+      if (this.index !== -1) {
+        
+          this.recurso.cantidadActual ++;
+          this.asignaciones[this.index].cantidad ++;
+          console.log(this.asignaciones[this.index].cantidad)
+        }
+        
+      if (this.index===-1){
+        
+        const nuevaAsignacion: Asignaciones = {
+          asistente: this.asistente ,
+          cantidad: 1, // You may adjust this as needed
+          fechaHora: new Date(),
+        };
+        this.asignaciones.push(nuevaAsignacion);
+        this.recurso.cantidadActual ++;
+        console.log(this.evento);
+      }
+    }
+    else console.log('error')
+    
+    this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);;
+    //this.recurso.cantidadActual ++;
+    //this.asignaciones
+  }
+  agregarTodosLosRecursos(){
+    if(this.recurso.cantidadActual<this.recurso.cantidadNecesaria){
+      this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);
+      if(this.recurso.cantidadNecesaria-this.recurso.cantidadActual > this.recurso.cantidadNecesaria/4){
+        this.asignaciones[this.index].cantidad += Math.ceil(this.recurso.cantidadNecesaria/4);
+        this.recurso.cantidadActual += Math.ceil(this.recurso.cantidadNecesaria/4);
+      }
+      else {
+        this.asignaciones[this.index].cantidad += (this.recurso.cantidadNecesaria-this.recurso.cantidadActual);
+      this.recurso.cantidadActual += (this.recurso.cantidadNecesaria-this.recurso.cantidadActual);
+      }
+      
+    }
+  }
+  quitarUnRecurso(){
+    if(this.asignaciones[this.index].cantidad>1){
+     this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);
+      this.recurso.cantidadActual --;
+      this.asignaciones[this.index].cantidad --; 
+    }
+    else this.quitarRecurso();
+  }
+  
+
+  quitarRecurso(){
+    this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);
+    this.recurso.cantidadActual -= this.asignaciones[this.index].cantidad;
+    this.asignaciones.splice(this.index);
+    this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);
+  }
 }
 
  export interface Recurso {
@@ -214,6 +290,16 @@ export class VisualizarRecursoComponent implements OnInit {
 
 interface Evento {
   id: number;
+  nombre: string;
+  creador: Participante;
+  fecha: Date;
+  horaInicio: Date;
+  horaFin: Date;
+  calle: string;
+  altura: number;
+  tipoEvento: string;
+  recursos: Recurso[];
+  asistentes: Asistente[];
 }
 
 interface Categoria {
@@ -223,10 +309,8 @@ interface Categoria {
 }
 
 interface Asignaciones {
-  id: number;
-  asistente: Asistente;
+  asistente: Asistente|undefined;
   cantidad: number;
-  comentarios: string;
   fechaHora: Date;
 }
 
@@ -235,16 +319,28 @@ interface Asistente {
   activo: boolean;
   participante: Participante;
   rol: Rol;
+  esAdministrador: boolean;
 }
 
-interface Participante{
+interface Participante {
   id: number;
-  apellido: string
+  apellido: string;
   mail: string;
-  nombre:string;
+  nombre: string;
+  usuario: any;
 }
 
 interface Rol{
   id: number;
   nombre: string;
+}
+
+interface Usuario {
+  id: number;
+  idAuth0: string;
+  nombreUsuario: string;
+  email: string;
+  nombre: string;
+  apellido: string;
+  fotoPerfilId: any;
 }

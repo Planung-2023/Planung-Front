@@ -44,7 +44,12 @@ export class RecursosService {
   public getAsignacionesByRecursoId(idRecurso: number) {
     return this.http.get(`${ environment.url }/recursos/${idRecurso}/asignaciones`);
   }
-
+  getUsuarioId(auth: any){
+    return this.http.get(`${ environment.url }/usuarios/token/usuario`)
+  }
+  getAsistentes(idEvento:number): Observable<any> {
+    return  this.http.get(`${ environment.url }/eventos/${idEvento}/asistentes`);
+  }
   actualizarRecurso(recurso: Recurso) {
     const url = `${environment.url}/recursos/${recurso.id}`;
     const data: RecursoApi = {
