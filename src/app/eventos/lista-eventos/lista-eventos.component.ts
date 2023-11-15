@@ -4,11 +4,13 @@ import Swiper from 'swiper';
 import { ListaEventosService } from '../lista-eventos.service';
 import { InvitacionControlService } from '../invitacion-control.service';
 import { InvitadosControlService } from '../invitados-control.service';
+import { RecursosService } from 'src/app/recursos/recursos.service';
 import { Time } from '@angular/common';
 import {} from 'googlemaps';
 import { MatDialog } from '@angular/material/dialog';
 import { MapDialogComponent } from './map-dialog/map-dialog.component';
 import { AuthService } from '@auth0/auth0-angular';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-lista-eventos',
@@ -21,6 +23,7 @@ export class ListaEventosComponent implements OnInit {
   usuario: Usuario|undefined;
   eventos: any[] = [];
   recursos: Recurso[] = [];
+  tiposDeRecursos: any = [];
   asistentes: Asistente[] = [];
   mostrarMapa: boolean = false;
   mostrarPopupInvitados = false;
@@ -42,10 +45,12 @@ export class ListaEventosComponent implements OnInit {
   Rol: Rol|undefined;
 
   constructor(
+    private modal: NgbModal,
     private router: Router,
     private listaEventosService: ListaEventosService,
     private invitacionControlService: InvitacionControlService,
     private invitadosControlService: InvitadosControlService,
+    private recursoService: RecursosService,
     private dialog: MatDialog,
     public auth0: AuthService,
   ) {}
@@ -57,6 +62,16 @@ export class ListaEventosComponent implements OnInit {
         this.usuario = usuario;
   });
 })
+    this.recursoService.tiposDeRecursos().subscribe({
+      next: v => {
+        this.tiposDeRecursos = v;
+      },
+      error: e => {
+        console.log(e);
+        this.mockearTiposDeRecursos();
+      },
+      complete: () => {},
+    });
     this.recuperarEventos();
     console.log(this.recuperarEventos())
     const swiper = new Swiper('.swiper-container', {
@@ -148,6 +163,43 @@ verMapa() {
 
 volverAtras() {
   this.mostrarMapa = false;
+}
+mostrarCardAgregar(modal: any, evento: Evento) {
+  const modalRef = this.modal.open(modal, { centered: true, size: 'sm'});
+  modalRef.result.then(
+    (result: any) => {
+        // Si es una adición normal, agregar el nuevo recurso
+        this.recursos.push(result.obtenerDatos());
+        console.log('Agregar')
+      },
+      
+    (reason: any) => {}
+  );
+}
+
+private mockearTiposDeRecursos() {
+  this.tiposDeRecursos = [
+    { id: 1, nombre: 'Bebida' },
+    { id: 2, nombre: 'Mobiliario' },
+    { id: 3, nombre: 'Comida' },
+    { id: 4, nombre: 'Juego' },
+    { id: 5, nombre: 'Tecnología' },
+    { id: 6, nombre: 'Otro' },
+  ];
+}
+
+nombreTipoRecursoSegunId(id: string|number) {
+  return this.tiposDeRecursos.find((t: any ) => t.id == id)?.nombre;
+}
+
+validarYCerrarModal(componenteCrearRecurso: any) {
+  if ( componenteCrearRecurso.formulario.valid) {
+    return true;
+  } else {
+    
+    console.log("ERROR");
+    return false;
+  }
 }
 
 openMapDialog(evento:Evento) {

@@ -85,7 +85,7 @@
                     </div>
                   </li>
                 </ul>
-                <button mat-raised-button class="agregar-recurso-button" (click)="agregarRecurso(evento)"  *ngIf="esAdministrador(evento)">Agregar</button>
+                <button mat-raised-button class="agregar-recurso-button" (click)="mostrarCardAgregar(contenidoAgregar,evento)" *ngIf="esAdministrador(evento)">Agregar</button>
               </mat-panel-description>
             </mat-expansion-panel>
 
@@ -132,3 +132,18 @@
       </div>
     </ng-template>
   </div>
+
+  <ng-template #contenidoAgregar let-modal>
+    <div class="modal-content border-0">
+      <div class="modal-header bg-dark-subtle">
+        <h2 class="modal-title m-0 text-white fw-bolder">Agregar recurso</h2>
+      </div>
+      <div class="modal-body bg-primary">
+        <app-crear-recurso #componenteCrearRecurso [tiposDeRecursos]="tiposDeRecursos"></app-crear-recurso>
+      </div>
+      <div class="modal-footer bg-dark-subtle">
+        <button type="button" class="btn btn-outline-danger" (click)='modal.dismiss()'>Cerrar</button>
+        <button class="btn btn-success" (click)="validarYCerrarModal(componenteCrearRecurso)? modal.close(componenteCrearRecurso) : null">Agregar recurso</button> <!--modal.validarYCerrarModal(componenteCrearRecurso);-->
+      </div>
+    </div>
+  </ng-template>
