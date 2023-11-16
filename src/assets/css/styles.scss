@@ -21,8 +21,13 @@ $contraste: var(--bs-body-color);
     color: $contraste;
 }
 
-html, body, .fondo{
-    height: 100%;
+html, body {
+    height: 100vh !important;
+    background-color: $fondo !important;
+}
+
+app-root, .fondo{
+    height: 100% !important;
     background-color: $fondo !important;
 }
 
@@ -45,12 +50,6 @@ label input[type=radio]:checked + i, label input[type=radio]:checked + img{
 
 .bg-primary-darken{
     background-color: darken($primary, 15%);
-}
-
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    touch-action: none;
 }
 
 

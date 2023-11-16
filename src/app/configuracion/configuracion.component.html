@@ -1,29 +1,26 @@
-<div class="configuracion-container">
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-dark-subtle">
-  <div class="container-fluid">
+<nav class="bg-dark-subtle w-100 fixed-top d-flex justify-content-start align-items-center p-3">
       <button class="ms-2 rounded-2 border-0 bg-light-subtle px-5 py-2" type="button" routerLink="">
         <i class="bi bi-arrow-left display-2 color-opuesto"></i>
       </button>
-  </div>
 </nav>
 
 <!-- Configuracion -->
-<div class="container-fluid h-100">
+<div id="parte-principal" class="d-flex row">
   <h1 class="color-opuesto text-center fw-bold pt-3">Configuración</h1>
-  <div class="container-fluid w-90 bg-primary rounded-5 p-4">
-    <div>
-      <h2>Cuenta:</h2>
-      <p class="fs-3">{{ nombreUsuario }} / Email: {{ correoUsuario }}</p>
+  <div class="container w-90 bg-primary rounded-5 p-4">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <h2 class="mb-0">Cuenta:</h2>
+      <p class="fs-3 mb-0">{{ correoUsuario }} ({{ nombreUsuario }})</p>
     </div>
-    <div>
-      <h2 class="mb-1">Notificaciones</h2>
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <h2 class="mb-0">Notificaciones</h2>
       <div class="d-flex">
         <mat-slide-toggle class="bg-secondary p-2 rounded-3"></mat-slide-toggle>
       </div>
     </div>
-    <div>
-      <h2 class="mb-1">Tema</h2>
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <h2 class="mb-0">Tema</h2>
       <div class="d-flex">
         <mat-slide-toggle class="bg-secondary p-2 rounded-3" (change)="cambiarModo($event)"></mat-slide-toggle>
       </div>
@@ -38,5 +35,4 @@
       <h2>Otro</h2>
       <button class="btn rounded-pill bg-black text-center fw-bold">Cerrar Sesión</button>
   </div>
-</div>
 </div>
