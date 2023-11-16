@@ -1,4 +1,8 @@
 #parte-principal{
-  padding-top: 5rem;
+  padding-top: 5.7rem;
   padding-bottom: 4rem;
+}
+
+.altura-nav{
+  height: 60px;
 }
