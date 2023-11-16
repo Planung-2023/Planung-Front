@@ -1,7 +1,10 @@
-<div class="flip-card" [ngClass]="{ 'flipped': isFlipped }">
-  <button mat-icon-button class="icon-home" routerLink="/eventos">
-    <mat-icon>arrow_back</mat-icon>
-  </button>
+<div class="flip-card shadow" [ngClass]="{ 'flipped': isFlipped }">
+
+  <nav class="bg-dark-subtle fixed-top d-flex justify-content-start px-2 py-2 altura-nav">
+    <button class="ms-2 rounded-2 border-0 bg-light-subtle px-5 py-2" type="button" routerLink="/eventos">
+      <i class="bi bi-arrow-left display-5 color-opuesto"></i>
+    </button>
+  </nav>
 
   <div class="flip-card-inner">
     <div class="flip-card-front" [ngClass]="{ 'color-naranja-front': selectedColor === '#ef7d16', 'color-verde-front': selectedColor === '#76b730', 'color-azul-front': selectedColor === '#4e5fa8', 'color-rosa-front': selectedColor === '#df3c65', 'color-gris-front': selectedColor === '#9f9f9e' }">
@@ -21,7 +24,7 @@
       <div *ngIf="!mostrarColorPicker; else colorPicker">
         <h2>{{ recurso.nombre }}</h2>
         <mat-expansion-panel class="recurso-panel" *ngIf="panelAbierto === 'tipoObjeto' || panelAbierto === 'todos'" (opened)="abrirPanel('tipoObjeto')" (closed)="cerrarPanel('tipoObjeto')"[ngClass]="selectedColorClass">
-            <mat-expansion-panel-header>
+            <mat-expansion-panel-header class="w-100">
               <mat-panel-title>
                 <p class="texto-panel-header">Tipo de Objeto</p>
               </mat-panel-title>
@@ -45,7 +48,7 @@
             
           </mat-expansion-panel>
           <mat-expansion-panel class="recurso-panel" *ngIf="panelAbierto === 'descripcion' || panelAbierto === 'todos'" (opened)="abrirPanel('descripcion')" (closed)="cerrarPanel('descripcion')"[ngClass]="selectedColorClass">
-            <mat-expansion-panel-header>
+            <mat-expansion-panel-header class="w-100">
               <mat-panel-title>
                 <p class="texto-panel-header">Descripción</p>
               </mat-panel-title>
@@ -83,16 +86,17 @@
           </div>
         </div>
         <mat-expansion-panel class="recurso-panel" *ngIf="panelAbierto === 'responsables' || panelAbierto === 'todos'" (opened)="abrirPanel('responsables')" (closed)="cerrarPanel('responsables')"[ngClass]="selectedColorClass">
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header class="w-100">
             <mat-panel-title>
               <p class="texto-panel-header">Responsables</p>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <div class="responsables-table">
-            <div class="fs-5 text-center font-weight-bold text-black my-1 py-2 border border-2 border-white border-opacity-75 rounded-2" [ngClass]="{ 'color-naranja-back': selectedColor === '#ef7d16', 'color-verde-back': selectedColor === '#76b730', 'color-azul-back': selectedColor === '#4e5fa8', 'color-rosa-back': selectedColor === '#df3c65', 'color-gris-back': selectedColor === '#9f9f9e' }">
+          <div class="fs-5 text-center font-weight-bold text-black my-1 py-2 border border-2 border-white border-opacity-75 rounded-2" [ngClass]="{ 'color-naranja-back': selectedColor === '#ef7d16', 'color-verde-back': selectedColor === '#76b730', 'color-azul-back': selectedColor === '#4e5fa8', 'color-rosa-back': selectedColor === '#df3c65', 'color-gris-back': selectedColor === '#9f9f9e' }">
             {{ recurso.cantidadActual }}/{{ recurso.cantidadNecesaria }}
-            </div>
+          </div>
+          <div class="responsables-table">
             <div class="tabla">
+              
               <table>
               <tbody>
                 <tr *ngFor="let asignacion of asignaciones">
@@ -104,21 +108,22 @@
               </tbody>
             </table>
             </div> 
+          </div>
             <div class="row mx-1">
-              <button *ngIf="this.index !== -1 && this.recurso.cantidadNecesaria>20" class="col agregar-responsable d-flex justify-content-center align-items-center mt-2 mx-2 fs-3 text-center font-weight-bold" (click)="agregarTodosLosRecursos()" [ngClass]="{ 'color-naranja-back': selectedColor === '#ef7d16', 'color-verde-back': selectedColor === '#76b730', 'color-azul-back': selectedColor === '#4e5fa8', 'color-rosa-back': selectedColor === '#df3c65', 'color-gris-back': selectedColor === '#9f9f9e' }">
+              <button *ngIf="this.index !== -1 && this.recurso.cantidadNecesaria>20" class="col agregar-responsable d-flex justify-content-center align-items-center p-1 mt-2 mx-1 fs-4 text-center font-weight-bold" (click)="agregarTodosLosRecursos()" [ngClass]="{ 'color-naranja-back': selectedColor === '#ef7d16', 'color-verde-back': selectedColor === '#76b730', 'color-azul-back': selectedColor === '#4e5fa8', 'color-rosa-back': selectedColor === '#df3c65', 'color-gris-back': selectedColor === '#9f9f9e' }">
                 <i class="bi bi-sort-up"></i>
               </button>
-              <button class="col agregar-responsable d-flex justify-content-center align-items-center mt-2 mx-2 fs-3 text-center font-weight-bold" (click)="agregarRecurso()" [ngClass]="{ 'color-naranja-back': selectedColor === '#ef7d16', 'color-verde-back': selectedColor === '#76b730', 'color-azul-back': selectedColor === '#4e5fa8', 'color-rosa-back': selectedColor === '#df3c65', 'color-gris-back': selectedColor === '#9f9f9e' }">
+              <button class="col agregar-responsable d-flex justify-content-center align-items-center p-1 mt-2 mx-1 fs-4 text-center font-weight-bold" (click)="agregarRecurso()" [ngClass]="{ 'color-naranja-back': selectedColor === '#ef7d16', 'color-verde-back': selectedColor === '#76b730', 'color-azul-back': selectedColor === '#4e5fa8', 'color-rosa-back': selectedColor === '#df3c65', 'color-gris-back': selectedColor === '#9f9f9e' }">
                 <i class="bi bi-plus"></i>
               </button>
-              <button *ngIf="this.index !== -1" class="col agregar-responsable d-flex justify-content-center align-items-center mt-2 mx-2 fs-3 text-center font-weight-bold" (click)="quitarUnRecurso()" [ngClass]="{ 'color-naranja-back': selectedColor === '#ef7d16', 'color-verde-back': selectedColor === '#76b730', 'color-azul-back': selectedColor === '#4e5fa8', 'color-rosa-back': selectedColor === '#df3c65', 'color-gris-back': selectedColor === '#9f9f9e' }">
+              <button *ngIf="this.index !== -1" class="col agregar-responsable d-flex justify-content-center align-items-center p-1 mt-2 mx-1 fs-4 text-center font-weight-bold" (click)="quitarUnRecurso()" [ngClass]="{ 'color-naranja-back': selectedColor === '#ef7d16', 'color-verde-back': selectedColor === '#76b730', 'color-azul-back': selectedColor === '#4e5fa8', 'color-rosa-back': selectedColor === '#df3c65', 'color-gris-back': selectedColor === '#9f9f9e' }">
                 <i class="bi bi-dash"></i>
               </button>
-              <button *ngIf="this.index !== -1" class="col agregar-responsable d-flex justify-content-center align-items-center mt-2 mx-2 fs-3 text-center font-weight-bold" (click)="quitarRecurso()" [ngClass]="{ 'color-naranja-back': selectedColor === '#ef7d16', 'color-verde-back': selectedColor === '#76b730', 'color-azul-back': selectedColor === '#4e5fa8', 'color-rosa-back': selectedColor === '#df3c65', 'color-gris-back': selectedColor === '#9f9f9e' }">
+              <button *ngIf="this.index !== -1" class="col agregar-responsable d-flex justify-content-center align-items-center p-1 mt-2 mx-1 fs-4 text-center font-weight-bold" (click)="quitarRecurso()" [ngClass]="{ 'color-naranja-back': selectedColor === '#ef7d16', 'color-verde-back': selectedColor === '#76b730', 'color-azul-back': selectedColor === '#4e5fa8', 'color-rosa-back': selectedColor === '#df3c65', 'color-gris-back': selectedColor === '#9f9f9e' }">
                 <i class="bi bi-trash-fill"></i>
               </button>
             </div>
-          </div>
+          
           
         </mat-expansion-panel>
         <div class="responsables-buttons" *ngIf="panelAbierto === 'responsables'">

@@ -61,6 +61,10 @@ export class RecursosService {
     console.log(data);
     return this.http.put(url, data);
   }
+
+  postRecurso(idEvento:any, recurso: any){
+    return  this.http.post(`${ environment.url }/eventos/${idEvento}/recursos`, recurso);
+  }
 }
 
 interface RecursoApi {
