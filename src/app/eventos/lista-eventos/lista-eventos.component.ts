@@ -60,8 +60,8 @@ export class ListaEventosComponent implements OnInit {
       const authIdentifier = user?.sub;
       this.listaEventosService.getUsuarioId(authIdentifier).subscribe(({usuario}: any) => {
         this.usuario = usuario;
-  });
-})
+    });
+    })
     this.recursoService.tiposDeRecursos().subscribe({
       next: v => {
         this.tiposDeRecursos = v;
@@ -155,75 +155,93 @@ export class ListaEventosComponent implements OnInit {
       this.position = (event.latLng.toJSON());
       const coordenadas = event.latLng.toJSON();
     }
-}
+  }
 
-verMapa() {
-  this.mostrarMapa = true;
-}
+  verMapa() {
+    this.mostrarMapa = true;
+  }
 
-volverAtras() {
-  this.mostrarMapa = false;
-}
-mostrarCardAgregar(modal: any, evento: Evento) {
-  const modalRef = this.modal.open(modal, { centered: true, size: 'sm'});
-  modalRef.result.then(
-    (result: any) => {
-        // Si es una adición normal, agregar el nuevo recurso
-        this.recursos.push(result.obtenerDatos());
-        console.log('Agregar')
-      },
-      
-    (reason: any) => {}
-  );
-}
-
-private mockearTiposDeRecursos() {
-  this.tiposDeRecursos = [
-    { id: 1, nombre: 'Bebida' },
-    { id: 2, nombre: 'Mobiliario' },
-    { id: 3, nombre: 'Comida' },
-    { id: 4, nombre: 'Juego' },
-    { id: 5, nombre: 'Tecnología' },
-    { id: 6, nombre: 'Otro' },
-  ];
-}
-
-nombreTipoRecursoSegunId(id: string|number) {
-  return this.tiposDeRecursos.find((t: any ) => t.id == id)?.nombre;
-}
-
-validarYCerrarModal(componenteCrearRecurso: any) {
-  if ( componenteCrearRecurso.formulario.valid) {
-    return true;
-  } else {
+  copyToClipboard(ubicacion: any) {
     
-    console.log("ERROR");
-    return false;
+    const ubicacionString:string = (ubicacion.ciudad + ", " + ubicacion.localidad + ", " + ubicacion.calle + ", " + ubicacion.altura)
+    console.log(ubicacionString);
+    const textArea = document.createElement('textarea');
+    textArea.value = ubicacionString;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+
+    alert('Enlace copiado al portapapeles');
   }
-}
 
-openMapDialog(evento:Evento) {
-  const dialogRef = this.dialog.open(MapDialogComponent, {
-    width: '80%',
-    height: '50%',
-    data: {
-      position: this.position,
-      options: this.options,
-    },
-  });
-  this.position.lat=evento.ubicacion.latitud;
-  this.position.lng=evento.ubicacion.longitud;
-}
-
-abrirPanel(panel: string) {
-  this.panelAbierto = panel;
-}
-
-cerrarPanel(panel: string) {
-  if (this.panelAbierto === panel) {
-    this.panelAbierto = 'todos';
+  volverAtras() {
+    this.mostrarMapa = false;
   }
-}
+  mostrarCardAgregar(modal: any, evento: Evento) {
+    const index = this.eventos.findIndex(i => i===evento)
+    const modalRef = this.modal.open(modal, { centered: true, size: 'sm'});
+    const recursos: Recurso[] = [];
+    modalRef.result.then(
+      (result: any) => {
+          // Si es una adición normal, agregar el nuevo recurso
+          recursos.push(result.obtenerDatos());
+          this.eventos[index].recursos.push(result.obtenerDatos());
+          this.recursoService.postRecurso(evento.id,recursos);
+          console.log(recursos)
+        },
+        
+      (reason: any) => {}
+    );
+  }
+
+  private mockearTiposDeRecursos() {
+    this.tiposDeRecursos = [
+      { id: 1, nombre: 'Bebida' },
+      { id: 2, nombre: 'Mobiliario' },
+      { id: 3, nombre: 'Comida' },
+      { id: 4, nombre: 'Juego' },
+      { id: 5, nombre: 'Tecnología' },
+      { id: 6, nombre: 'Otro' },
+    ];
+  }
+
+  nombreTipoRecursoSegunId(id: string|number) {
+    return this.tiposDeRecursos.find((t: any ) => t.id == id)?.nombre;
+  }
+
+  validarYCerrarModal(componenteCrearRecurso: any) {
+    if ( componenteCrearRecurso.formulario.valid) {
+      return true;
+    } else {
+      
+      console.log("ERROR");
+      return false;
+    }
+  }
+
+  openMapDialog(evento:Evento) {
+    const dialogRef = this.dialog.open(MapDialogComponent, {
+      width: '80%',
+      height: '50%',
+      data: {
+        position: this.position,
+        options: this.options,
+      },
+    });
+    this.position.lat=evento.ubicacion.latitud;
+    this.position.lng=evento.ubicacion.longitud;
+  }
+
+  abrirPanel(panel: string) {
+    this.panelAbierto = panel;
+  }
+
+  cerrarPanel(panel: string) {
+    if (this.panelAbierto === panel) {
+      this.panelAbierto = 'todos';
+    }
+  }
 }
 
 //Agregado para pruebas

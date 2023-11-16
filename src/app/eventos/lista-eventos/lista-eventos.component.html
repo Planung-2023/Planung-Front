@@ -34,7 +34,7 @@
       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvpyvaW8UylnXWof2sdHjfObxsbNuBZIE"></script>
 
       <div class="swiper-wrapper d-flex align-items-center">
-        <div class="swiper-slide w-80 rounded-4 px-2" *ngFor="let evento of eventos">
+        <div class="swiper-slide rounded-4 px-2 bg-primary shadow" *ngFor="let evento of eventos">
           <p class="text-center m-3 fs-5 fw-bold">{{ evento.nombre }}</p>
           <div class="container-texto container-fluid">
             
@@ -45,8 +45,8 @@
             <p class="p-1 my-0 mx-1"><strong>Tipo de evento:</strong> {{ evento.tipoEvento }}</p>
           </div>
           <div class="container-panels">
-            <mat-expansion-panel class="bg-primary-darken" *ngIf="evento.ubicacion != null && (panelAbierto === 'direccion' || panelAbierto === 'todos')" (opened)="abrirPanel('direccion')" (closed)="cerrarPanel('direccion')">
-              <mat-expansion-panel-header class="bg-primary-darken">
+            <mat-expansion-panel class="bg-secondary" *ngIf="evento.ubicacion != null && (panelAbierto === 'direccion' || panelAbierto === 'todos')" (opened)="abrirPanel('direccion')" (closed)="cerrarPanel('direccion')">
+              <mat-expansion-panel-header class="bg-primary-subtle">
                 <mat-panel-title>
                   Dirección
                 </mat-panel-title>
@@ -57,6 +57,7 @@
                   <li>Calle: {{ evento.ubicacion.calle }}</li>
                   <li>Altura: {{ evento.ubicacion.altura }}</li>
                 </ul>
+                <button (click)="copyToClipboard(evento.ubicacion)" *ngIf="evento.ubicacion.latitud===null && evento.ubicacion.longitud===null"></button>
                 <div class="d-flex align-items-center" *ngIf="evento.ubicacion.latitud!=null && evento.ubicacion.longitud!=null">
                   <i class="bi bi-geo-alt-fill mx-1 text-black" ></i>
                   <a class="map-link m-2 d-flex align-items-center" (click)="openMapDialog(evento)">
@@ -67,8 +68,8 @@
               </mat-panel-description>
             </mat-expansion-panel>
             
-            <mat-expansion-panel *ngIf="panelAbierto === 'recursos' || panelAbierto === 'todos'" (opened)="abrirPanel('recursos')" (closed)="cerrarPanel('recursos')">
-              <mat-expansion-panel-header>
+            <mat-expansion-panel class="bg-secondary" *ngIf="panelAbierto === 'recursos' || panelAbierto === 'todos'" (opened)="abrirPanel('recursos')" (closed)="cerrarPanel('recursos')">
+              <mat-expansion-panel-header class="bg-primary-subtle">
                 <mat-panel-title>
                   Recursos
                 </mat-panel-title>
@@ -88,8 +89,8 @@
               </mat-panel-description>
             </mat-expansion-panel>
 
-            <mat-expansion-panel *ngIf="panelAbierto === 'invitados' || panelAbierto === 'todos'" (opened)="abrirPanel('invitados')" (closed)="cerrarPanel('invitados')">
-              <mat-expansion-panel-header>
+            <mat-expansion-panel class="bg-secondary" *ngIf="panelAbierto === 'invitados' || panelAbierto === 'todos'" (opened)="abrirPanel('invitados')" (closed)="cerrarPanel('invitados')">
+              <mat-expansion-panel-header class="bg-primary-subtle">
                 <mat-panel-title>
                   Invitados
                 </mat-panel-title>
@@ -98,7 +99,7 @@
                 <div class="invitados-container">
                   <ul class="col-12 justify-content-evenly">
                     <li *ngFor="let asistente of evento?.asistentes">
-                      <div class="participante-container">
+                      <div class="container-fluid d-flex align-items-center justify-content-between">
                         <span>{{asistente.participante.apellido}}, {{ asistente.participante?.nombre }}</span>
                         <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado(asistente.participante?.nombre, asistente.participante?.apellido, evento)">
                           <mat-icon>visibility</mat-icon>
@@ -110,8 +111,8 @@
               </mat-panel-description>
             </mat-expansion-panel>
 
-            <mat-expansion-panel *ngIf="evento.descripcion != '' && (panelAbierto === 'descripcion' || panelAbierto === 'todos')"(opened)="abrirPanel('descripcion')" (closed)="cerrarPanel('descripcion')">
-              <mat-expansion-panel-header>
+            <mat-expansion-panel class="bg-secondary" *ngIf="evento.descripcion != '' && (panelAbierto === 'descripcion' || panelAbierto === 'todos')"(opened)="abrirPanel('descripcion')" (closed)="cerrarPanel('descripcion')">
+              <mat-expansion-panel-header class="bg-primary-subtle">
                 <mat-panel-title>
                   Descripción
                 </mat-panel-title>

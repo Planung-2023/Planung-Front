@@ -222,7 +222,6 @@ export class VisualizarRecursoComponent implements OnInit {
         
           this.recurso.cantidadActual ++;
           this.asignaciones[this.index].cantidad ++;
-          console.log(this.asignaciones[this.index].cantidad)
         }
         
       if (this.index===-1){
@@ -237,11 +236,9 @@ export class VisualizarRecursoComponent implements OnInit {
         console.log(this.evento);
       }
     }
-    else console.log('error')
+    //else alert('Cantidad máxima alcanzada');
     
     this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);;
-    //this.recurso.cantidadActual ++;
-    //this.asignaciones
   }
   agregarTodosLosRecursos(){
     if(this.recurso.cantidadActual<this.recurso.cantidadNecesaria){
@@ -256,6 +253,7 @@ export class VisualizarRecursoComponent implements OnInit {
       }
       
     }
+    //else alert('Cantidad máxima alcanzada');
   }
   quitarUnRecurso(){
     if(this.asignaciones[this.index].cantidad>1){
