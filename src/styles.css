@@ -1,3 +1,12 @@
 i{
     display:flex;
 }
+
+.altura-nav{
+    height: 60px;
+}
+
+.padding-header-footer{
+    padding-top: 5.7rem;
+    padding-bottom: 4rem;
+  }

@@ -1,15 +1,14 @@
 <!-- Navbar -->
-<nav class="bg-dark-subtle navbar navbar-expand-lg col-md-12">
-  <div class="container-fluid">
-      <button mat-icon-button class="icon-home" type="button" routerLink="../">
-        <mat-icon>arrow_back</mat-icon>
-      </button>
-  </div>
+<nav class="bg-dark-subtle fixed-top d-flex justify-content-start px-2 py-2 altura-nav">
+  <button class="ms-2 rounded-2 border-0 bg-light-subtle px-5 py-2" type="button" routerLink="../">
+    <i class="bi bi-arrow-left fs-2 color-opuesto"></i>
+  </button>
 </nav>
+
 <!-- Perfil -->
-<div class="col-md-12">
-  <h2 class="titulo-perfil text-center">Perfil</h2>
-  <div class="col-11 mx-auto perfil-container">
+<div class="fondo padding-header-footer h-100">
+  <h1 class="color-opuesto text-center fw-bold">Perfil</h1>
+  <div class="col-11 mx-auto bg-primary p-2 rounded-4">
     <div class="col-md-5 row justify-content-evenly row-perfil">
       <div class="foto-perfil col-2">
         <!--Aca deberia haber una variable que determine la ruta de la foto => (src="{ruta_foto}")-->
@@ -17,7 +16,7 @@
       </div>
       <div class="col-7 info-perfil">
         <p class="username" style="margin-bottom: 20px;">{{ nombreUsuario }}</p>
-        <a class="ver-perfil-link" routerLink="/perfil/ver-perfil">Editar perfil</a>
+        <a class="rounded-pill bg-secondary text-black p-3 fw-bold" routerLink="/perfil/ver-perfil">Editar perfil</a>
       </div>
      <div class="col-1 mx-auto arrow-perfil">
       <a>
@@ -25,18 +24,18 @@
       </a>
      </div>
     </div>
-    <div class="info-de-perfil mx-auto text-center" style="margin-top: 20%;">
-      <div class="col-10 mx-auto elemento-perfil text-center" style="margin-bottom: 20px; margin-top: 5px;">
-        <p>{{ nombrePersona }} {{ apellidoPersona }}</p>
+    <div class="info-de-perfil mx-auto text-center mt-5">
+      <div class="col-10 mx-auto">
+        <p class="bg-secondary text-center rounded-4 py-2">Nombre y apellido{{ nombrePersona }} {{ apellidoPersona }}</p>
       </div>
-      <div class="col-10 mx-auto elemento-perfil text-center" style="margin-bottom: 20px; margin-top: 5px;">
-        <p>{{ correoUsuario }}</p>
+      <div class="col-10 mx-auto text-center">
+        <p class="bg-secondary text-center rounded-4 py-2">Correo electrónico{{ correoUsuario }}</p>
       </div>
-      <div class="col-10 mx-auto elemento-perfil text-center" style="margin-bottom: 20px;">
-        <p>[historial_eventos_creados_cuenta]</p>
+      <div class="col-10 mx-auto text-center">
+        <p class="bg-secondary text-center rounded-4 py-2">[historial_eventos_creados_cuenta]</p>
       </div>
-      <div class="col-10 mx-auto elemento-perfil text-center" style="margin-bottom: 20px;">
-        <p>[historial_participacion_eventos_cuenta]</p>
+      <div class="col-10 mx-auto text-center">
+        <p class="bg-secondary text-center rounded-4 py-2">[historial_participacion_eventos_cuenta]</p>
       </div>
     </div>
   </div>
