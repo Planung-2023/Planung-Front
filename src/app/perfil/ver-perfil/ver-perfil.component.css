@@ -31,9 +31,7 @@ h2 {
     padding: 0%;
   }
 
-.foto-perfil img {
-    width: 100%;
-    height: 100%;
+.foto-perfil img{
     object-fit: cover;
 }
 
@@ -55,9 +53,4 @@ h2 {
     margin-bottom: 10px;
     margin-top: 10px;
     font-size: 16px;
-}
-
-.icon-home{
-    background-color: #3f4244;
-    color: white;
 }
