@@ -1,9 +1,9 @@
   <div class="bg-dark-subtle top-bar d-flex justify-content-end h-auto">
     <button mat-icon-button class="border-0 bg-transparent" (click)="irANotificaciones()">
-      <i class="bi bi-bell-fill text-white w-auto h-100 m-2 fs-2"></i>
+      <i class="bi bi-bell-fill color-opuesto w-auto h-100 m-2 fs-2"></i>
     </button>
     <button mat-icon-button class="border-0 bg-transparent" (click)="irAConfiguracion()">
-      <i class="bi bi-gear-fill text-white w-auto h-100 m-2 fs-2"></i>
+      <i class="bi bi-gear-fill color-opuesto w-auto h-100 m-2 fs-2"></i>
     </button>
   </div>
 
@@ -17,13 +17,12 @@
 
     
     <div class="d-flex flex-column justify-content-center align-items-center m-5" *ngIf="eventos.length === 0; else eventosLista">
-      <h2 class="color-opuesto text-center">Tu lista de eventos</h2>
-      <h3 class="color-opuesto text-center">No tienes eventos :(</h3>
+      <h1 class="color-opuesto text-center">Tu lista de eventos</h1>
+      <h2 class="color-opuesto text-center">No tienes eventos 🙁</h2>
       <div class="d-flex w-100 justify-content-center align-items-center">
         <i id="calendario" class="bi bi-calendar-x mb-5 color-opuesto"></i>
       </div>
-      
-      <p class="text-center m-0">Crea un evento</p>
+      <h1 class="text-center m-0 fw-bolder color-opuesto">Crea un evento</h1>
       <button class="btn p-2 border-0 bg-transparent" type="button" routerLink="/crear-evento">
         <i class="bi bi-plus display-1 bg-dark-subtle rounded-circle m-2" alt="Crear Evento" routerLink="/eventos/crear"></i>
       </button>

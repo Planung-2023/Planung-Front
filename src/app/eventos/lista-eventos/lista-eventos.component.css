@@ -213,3 +213,7 @@ mat-panel-description{
   max-width: 400px; /* Ancho máximo para cada invitado (ajusta según tus necesidades) */
   justify-content: space-between;
 }
+
+#calendario{
+  font-size: 30vh;
+}
