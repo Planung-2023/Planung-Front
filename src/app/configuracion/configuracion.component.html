@@ -22,7 +22,7 @@
     <div class="d-flex align-items-center justify-content-between mb-3">
       <h2 class="mb-0">Tema claro</h2>
       <div class="d-flex">
-        <mat-slide-toggle class="bg-secondary p-2 rounded-3" (change)="cambiarModo($event)"></mat-slide-toggle>
+        <mat-slide-toggle class="bg-secondary p-2 rounded-3" (change)="cambiarModo($event)" [(ngModel)]="configuracionService.temaClaro"></mat-slide-toggle>
       </div>
     </div>
     <div>

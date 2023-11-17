@@ -18,7 +18,7 @@ export class ConfiguracionComponent implements OnInit {
   nombreUsuario: string = ''; // Agrega esta propiedad
   correoUsuario: any;
 
-  constructor(private configuracionService: ConfiguracionService, private perfilService: PerfilService, public auth: AuthService) {} // Inyecta el servicio
+  constructor(public configuracionService: ConfiguracionService, private perfilService: PerfilService, public auth: AuthService) {} // Inyecta el servicio
 
   cambiarModo(event: MatSlideToggleChange) {
     if (event.checked) {
