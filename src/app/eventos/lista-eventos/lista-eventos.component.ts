@@ -161,18 +161,29 @@ export class ListaEventosComponent implements OnInit {
     this.mostrarMapa = true;
   }
 
-  copyToClipboard(ubicacion: any) {
-    
-    const ubicacionString:string = (ubicacion.ciudad + ", " + ubicacion.localidad + ", " + ubicacion.calle + ", " + ubicacion.altura)
-    console.log(ubicacionString);
-    const textArea = document.createElement('textarea');
-    textArea.value = ubicacionString;
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textArea);
+  cartelIrAMaps(modal: any, ubicacion: any) {
+    const modalRef = this.modal.open(modal, { centered: true, size: 'sm'});
+    modalRef.result.then(
+      (result: any) => {
+          this.irAMaps(ubicacion)
+        },
+        
+      (reason: any) => {}
+    );
+  }
 
-    alert('Enlace copiado al portapapeles');
+  irAMaps(ubicacion: any) {
+    var googleMapsLink: string = "";
+    if(ubicacion.latitud!=null && ubicacion.longitud!=null){
+      const coordsString: string = ubicacion.latitud + "," + ubicacion.longitud;
+      googleMapsLink = `https://www.google.com/maps?q=${coordsString}`;      
+    }
+    else {
+      const ubicacionString:string = (ubicacion.calle + " " + ubicacion.altura +  ", " + ubicacion.ciudad + ", " + ubicacion.localidad)
+      googleMapsLink = `https://www.google.com/maps?q=${ubicacionString}`;
+    }
+    console.log(googleMapsLink);
+    window.open(googleMapsLink, '_blank');
   }
 
   volverAtras() {
