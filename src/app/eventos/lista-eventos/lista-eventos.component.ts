@@ -201,6 +201,7 @@ export class ListaEventosComponent implements OnInit {
           }
           this.eventos[index].recursos.push(recurso);
           this.recursoService.postRecurso(evento.id,recursoAgregar).subscribe((response:any)=>{console.log(response)});
+          console.log(recursoAgregar)
         },
         
       (reason: any) => {}

@@ -11,7 +11,8 @@ export class CrearRecursoComponent implements OnInit {
     nombre: new FormControl('', [Validators.required]),
     descripcion: new FormControl(''),
     categoria: new FormControl('', [Validators.required]),
-    cantidad: new FormControl('', [Validators.required]),
+    cantidadNecesaria: new FormControl('', [Validators.required]),
+    colorTarjeta: new FormControl("#ef7d16"),
   });
   @Input() tiposDeRecursos: any = [];
   @Input() editarRecurso: any;
@@ -30,7 +31,7 @@ export class CrearRecursoComponent implements OnInit {
       nombre: recurso.nombre,
       descripcion: recurso.descripcion,
       categoria: recurso.categoria,
-      cantidad: recurso.cantidad,
+      cantidadNecesaria: recurso.cantidad,
     });
   }
   public obtenerDatos() {
