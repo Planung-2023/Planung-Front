@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { AuthGuard } from '@auth0/auth0-angular';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SpinnerComponent } from './loader/spinner/spinner.component';
+import { LoadingInterceptor } from './loader/loading.interceptor';
 
 const routes: Routes = [
   { path: '', redirectTo: 'eventos', pathMatch: 'full' },
@@ -16,7 +18,12 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-
-  exports: [RouterModule]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
+    }
+  ],
+  exports: [RouterModule],
+  
 })
 export class AppRoutingModule { }
