@@ -181,14 +181,15 @@ export class ListaEventosComponent implements OnInit {
   mostrarCardAgregar(modal: any, evento: Evento) {
     const index = this.eventos.findIndex(i => i===evento)
     const modalRef = this.modal.open(modal, { centered: true, size: 'sm'});
-    const recursos: Recurso[] = [];
     modalRef.result.then(
       (result: any) => {
           // Si es una adición normal, agregar el nuevo recurso
-          recursos.push(result.obtenerDatos());
-          this.eventos[index].recursos.push(result.obtenerDatos());
-          this.recursoService.postRecurso(evento.id,recursos);
-          console.log(recursos)
+          const recurso = result.obtenerDatos();
+          const recursoAgregar = {
+            recursos: [recurso]
+          }
+          this.eventos[index].recursos.push(recurso);
+          this.recursoService.postRecurso(evento.id,recursoAgregar).subscribe((response:any)=>{console.log(response)});
         },
         
       (reason: any) => {}

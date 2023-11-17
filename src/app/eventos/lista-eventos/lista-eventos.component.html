@@ -51,13 +51,19 @@
                   Dirección
                 </mat-panel-title>
               </mat-expansion-panel-header>
-              <mat-panel-description class="bg-secondary">
-                <ul class="col-md-12 m-2" *ngIf="evento.ubicacion.latitud===null && evento.ubicacion.longitud===null">
+              <mat-panel-description class="text-black d-flex align-items-center justify-content-between w-100">
+                <ul *ngIf="evento.ubicacion.latitud===null && evento.ubicacion.longitud===null">
+                  <li>Ciudad: {{ evento.ubicacion.ciudad }}</li>
                   <li>Localidad: {{ evento.ubicacion.localidad }}</li>
                   <li>Calle: {{ evento.ubicacion.calle }}</li>
                   <li>Altura: {{ evento.ubicacion.altura }}</li>
                 </ul>
-                <button (click)="copyToClipboard(evento.ubicacion)" *ngIf="evento.ubicacion.latitud===null && evento.ubicacion.longitud===null"></button>
+                <div class="d-flex flex-column align-items-center justify-content-center" *ngIf="evento.ubicacion.latitud===null && evento.ubicacion.longitud===null">
+                  <button class="fs-4 bg-transparent border-0" (click)="copyToClipboard(evento.ubicacion)" ><i class="bi bi-clipboard-check-fill"></i>
+                  </button>
+                  <h1 class="text-black fs-6 m-0">Copy</h1>
+                </div>
+                
                 <div class="d-flex align-items-center" *ngIf="evento.ubicacion.latitud!=null && evento.ubicacion.longitud!=null">
                   <i class="bi bi-geo-alt-fill mx-1 text-black" ></i>
                   <a class="map-link m-2 d-flex align-items-center" (click)="openMapDialog(evento)">
@@ -74,10 +80,10 @@
                   Recursos
                 </mat-panel-title>
               </mat-expansion-panel-header>
-              <mat-panel-description>
-                <ul>
+              <mat-panel-description class="text-black d-flex align-items-center justify-content-between w-100">
+                <ul class="w-100">
                   <li *ngFor="let recurso of evento.recursos">
-                    <div class="recurso-container">
+                    <div class="recurso-container d-flex align-items-center justify-content-between">
                       <span>{{ recurso.nombre }}</span>
                       <button mat-icon-button class="ver-recurso-button" (click)="visualizarRecurso(evento, recurso)">
                         <mat-icon>visibility</mat-icon>
@@ -85,7 +91,7 @@
                     </div>
                   </li>
                 </ul>
-                <button mat-raised-button class="agregar-recurso-button" (click)="mostrarCardAgregar(contenidoAgregar,evento)" *ngIf="esAdministrador(evento)">Agregar</button>
+                <button mat-raised-button class="agregar-recurso-button text-black" (click)="mostrarCardAgregar(contenidoAgregar,evento)" *ngIf="esAdministrador(evento)">Agregar</button>
               </mat-panel-description>
             </mat-expansion-panel>
 
@@ -95,8 +101,8 @@
                   Invitados
                 </mat-panel-title>
               </mat-expansion-panel-header>
-              <mat-panel-description class="panelInvitados">
-                <div class="invitados-container">
+              <mat-panel-description class="text-black d-flex align-items-center justify-content-between w-100">
+                <div class="invitados-container w-100">
                   <ul class="col-12 justify-content-evenly">
                     <li *ngFor="let asistente of evento?.asistentes">
                       <div class="container-fluid d-flex align-items-center justify-content-between">
@@ -117,8 +123,8 @@
                   Descripción
                 </mat-panel-title>
               </mat-expansion-panel-header>
-              <mat-panel-description>
-                <p>{{ evento.descripcion }}</p>
+              <mat-panel-description class="text-black d-flex align-items-center justify-content-between w-100">
+                <p class="m-2">{{ evento.descripcion }}</p>
               </mat-panel-description>
             </mat-expansion-panel>
           </div>

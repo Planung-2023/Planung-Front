@@ -65,15 +65,10 @@
 }
 
 mat-panel-description{
-  padding-top: 4%;
+  padding-top: 1%;
   display: inline;
 }
 
-.panelInvitados{
-  max-height: 200px;
-  max-width: 400px;
-  overflow: auto;
-}
 
 .map-link {
   display: flex;
