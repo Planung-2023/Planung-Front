@@ -79,16 +79,23 @@ label input[type=radio]:checked + i, label input[type=radio]:checked + img{
     align-items: center !important;
     margin: 0% !important;
 }
+
 /*Customización del stepper. La pongo acá porque en el css de crearEvento no se importaban las propiedades*/
 
 .ant-steps-item-finish .ant-steps-item-icon {
     border-color: $success !important;
     background-color: $success !important;
+    .ant-steps-icon{
+        color: $contraste !important;
+    }
 }
 
 .ant-steps-item-process .ant-steps-item-icon{
     background-color: $primary !important;
     border-color: $primary !important;
+    .ant-steps-icon{
+        color: $contraste !important;
+    }
 }
 
 .ant-steps-item-finish .ant-steps-item-title::after{
