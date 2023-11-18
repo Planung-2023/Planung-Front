@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MapDialogComponent } from './map-dialog/map-dialog.component';
 import { AuthService } from '@auth0/auth0-angular';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UsuarioService } from 'src/app/usuario/usuario.service';
 
 @Component({
   selector: 'app-lista-eventos',
@@ -37,7 +38,7 @@ export class ListaEventosComponent implements OnInit {
   }
   options: google.maps.MapOptions = {
     center: this.position,
-    zoom: 17,
+    zoom: 15,
   };
   invitadosComponent: any;
   participante: Participante|undefined;
@@ -51,17 +52,16 @@ export class ListaEventosComponent implements OnInit {
     private invitacionControlService: InvitacionControlService,
     private invitadosControlService: InvitadosControlService,
     private recursoService: RecursosService,
+    private usuarioService: UsuarioService,
     private dialog: MatDialog,
     public auth0: AuthService,
   ) {}
   
   ngOnInit() {
-      this.auth0.user$.subscribe((user) => {
-      const authIdentifier = user?.sub;
-      this.listaEventosService.getUsuarioId(authIdentifier).subscribe(({usuario}: any) => {
+      this.listaEventosService.getUsuarioId(this.usuarioService.authIdentifier).subscribe(({usuario}: any) => {
         this.usuario = usuario;
     });
-    })
+    
     this.recursoService.tiposDeRecursos().subscribe({
       next: v => {
         this.tiposDeRecursos = v;
@@ -73,7 +73,6 @@ export class ListaEventosComponent implements OnInit {
       complete: () => {},
     });
     this.recuperarEventos();
-    console.log(this.recuperarEventos())
     const swiper = new Swiper('.swiper-container', {
       slidesPerView: 1,
       spaceBetween: 10,
@@ -83,25 +82,15 @@ export class ListaEventosComponent implements OnInit {
       },
     });
   }
+
+
   // Método para mostrar el popup
   showPopup() {
     this.invitacionControlService.showPopup();
   }
 
-  showPopupInvitado(nombreInvitado: string, apellidoInvitado: string, evento: Evento) {
-    this.invitadoSeleccionado = nombreInvitado;
-    this.invitadosControlService.soyAdmin = this.esAdministrador(evento);
-    this.invitadosControlService.usuarioId = this.usuario?.id;
-    this.invitadosControlService.invitadoNombre = nombreInvitado;
-    this.invitadosControlService.invitadoApellido = apellidoInvitado;
-    this.invitadosControlService.showPopupInvitado();
-  }
 
-  mostrarInvitado(nombreInvitado: string) {
-    this.invitadoSeleccionado = nombreInvitado;
-  }
-
-    //ejemplo
+  //Traer Eventos
   private recuperarEventos() {
     this.listaEventosService.getEventos(this.usuario?.id).subscribe(data => {
       this.eventos = data;
@@ -120,9 +109,23 @@ export class ListaEventosComponent implements OnInit {
     );
   }
 
-  formatearHora(hora: string): string {
-    return hora.slice(0, 5);
+
+  showPopupInvitado(nombreInvitado: string, apellidoInvitado: string, evento: Evento) {
+    this.invitadoSeleccionado = nombreInvitado;
+    this.invitadosControlService.soyAdmin = this.esAdministrador(evento);
+    this.invitadosControlService.usuarioId = this.usuario?.id;
+    this.invitadosControlService.invitadoNombre = nombreInvitado;
+    this.invitadosControlService.invitadoApellido = apellidoInvitado;
+    this.invitadosControlService.showPopupInvitado();
   }
+
+  mostrarInvitado(nombreInvitado: string) {
+    this.invitadoSeleccionado = nombreInvitado;
+  }
+
+  formatearHora(hora: string): string {
+      return hora.slice(0, 5);
+    }
 
   esAdministrador(evento:Evento){
     return evento.asistentes?.find(a => a.participante.usuario.id === this.usuario?.id)?.esAdministrador; 
@@ -132,7 +135,6 @@ export class ListaEventosComponent implements OnInit {
   redireccionarCrearEvento(): void {
     this.router.navigate(['/eventos', 'crear']);
   }
-
 
   agregarRecurso(evento: any): void {
     this.router.navigate(['/eventos', evento.id, 'recursos', 'crear']);
@@ -147,8 +149,9 @@ export class ListaEventosComponent implements OnInit {
   }
 
   visualizarRecurso(evento: any, recurso: Recurso): void {
-    this.router.navigate(['/eventos', evento.id, 'recursos', recurso.id ], { state: { recurso: recurso } });
+    this.router.navigate(['/eventos', evento.id, 'recursos', recurso.id ], { state: { recurso: recurso, evento: evento } });
   }
+
 
   moveMap(event: google.maps.MapMouseEvent) {
     if (event.latLng != null){
@@ -159,6 +162,10 @@ export class ListaEventosComponent implements OnInit {
 
   verMapa() {
     this.mostrarMapa = true;
+  }
+
+  volverAtras() {
+    this.mostrarMapa = false;
   }
 
   cartelIrAMaps(modal: any, ubicacion: any) {
@@ -182,13 +189,10 @@ export class ListaEventosComponent implements OnInit {
       const ubicacionString:string = (ubicacion.calle + " " + ubicacion.altura +  ", " + ubicacion.ciudad + ", " + ubicacion.localidad)
       googleMapsLink = `https://www.google.com/maps?q=${ubicacionString}`;
     }
-    console.log(googleMapsLink);
     window.open(googleMapsLink, '_blank');
   }
 
-  volverAtras() {
-    this.mostrarMapa = false;
-  }
+  
   mostrarCardAgregar(modal: any, evento: Evento) {
     const index = this.eventos.findIndex(i => i===evento)
     const modalRef = this.modal.open(modal, { centered: true, size: 'sm'});
@@ -197,11 +201,13 @@ export class ListaEventosComponent implements OnInit {
           // Si es una adición normal, agregar el nuevo recurso
           const recurso = result.obtenerDatos();
           const recursoAgregar = {
-            recursos: [recurso]
+          recursos: [recurso]
           }
-          this.eventos[index].recursos.push(recurso);
-          this.recursoService.postRecurso(evento.id,recursoAgregar).subscribe((response:any)=>{console.log(response)});
-          console.log(recursoAgregar)
+          //this.eventos[index].recursos.push(recurso);
+          this.recursoService.postRecurso(evento.id,recursoAgregar).subscribe((response:any)=>{
+            console.log(response)
+            this.eventos[index].recursos.push(response.recursos[0]);
+          });
         },
         
       (reason: any) => {}

@@ -3,6 +3,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import { PerfilService } from '../perfil.service';
 import { ListaEventosService } from 'src/app/eventos/lista-eventos.service';
 import { PerfilStorageService } from '../perfil-storage.service';
+import { UsuarioService } from 'src/app/usuario/usuario.service';
 
 @Component({
   selector: 'app-perfil',
@@ -21,16 +22,10 @@ export class PerfilComponent implements OnInit {
   apellidoPersona: any;
   correoUsuario: any;
 
-  constructor(private perfilService: PerfilService, private perfilStorageService: PerfilStorageService, public auth: AuthService) {}
+  constructor(private perfilService: PerfilService, private perfilStorageService: PerfilStorageService, public auth: AuthService, public usuarioService: UsuarioService) {}
 
   ngOnInit() {
-    this.auth.user$.subscribe((user) => {
-        const authIdentifier = user?.sub;
-        console.log(user?.sub);
-        console.log(user);
-        console.log(authIdentifier);
-        this.getUsuarioPorAuthIdentifier(authIdentifier);
-    });
+    this.getUsuarioPorAuthIdentifier(this.usuarioService.authIdentifier);
   }
 
   getUsuarioPorAuthIdentifier(authIdentifier: any) {
