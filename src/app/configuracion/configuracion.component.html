@@ -33,6 +33,19 @@
       <h3>Ayuda / FAQ</h3>
     </div>
       <h2>Otro</h2>
-      <button class="btn rounded-pill bg-black text-white text-center fw-bold">Cerrar Sesión</button>
+      <button class="btn rounded-pill bg-black text-white text-center fw-bold" (click)="cartelCerrarSesion(cerrarSesion)">Cerrar Sesión</button>
   </div>
 </div>
+
+
+<ng-template #cerrarSesion let-modal>
+  <div class="modal-content border-0">
+    <div class="modal-header bg-primary">
+      <h2 class="modal-title m-0 text-black fw-bolder">¿Cerrar Sesion?</h2>
+    </div>
+    <div class="modal-footer bg-secondary">
+      <button type="button" class="btn btn-outline-danger" (click)='modal.dismiss()'>Cerrar</button>
+      <button class="btn btn-warning" (click)="modal.close()">Seguro</button>
+    </div>
+  </div>
+</ng-template>

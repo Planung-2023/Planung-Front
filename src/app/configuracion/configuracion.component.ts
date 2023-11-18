@@ -3,6 +3,7 @@ import { ConfiguracionService } from './configuracion.service';
 import { AuthService } from '@auth0/auth0-angular';
 import { PerfilService } from '../perfil/perfil.service';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-configuracion',
@@ -18,7 +19,12 @@ export class ConfiguracionComponent implements OnInit {
   nombreUsuario: string = ''; // Agrega esta propiedad
   correoUsuario: any;
 
-  constructor(public configuracionService: ConfiguracionService, private perfilService: PerfilService, public auth: AuthService) {} // Inyecta el servicio
+  constructor(
+    private modal: NgbModal,
+    public configuracionService: ConfiguracionService,
+    private perfilService: PerfilService,
+    public auth: AuthService
+    ){} // Inyecta el servicio
 
   cambiarModo(event: MatSlideToggleChange) {
     if (event.checked) {
@@ -29,16 +35,7 @@ export class ConfiguracionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.auth.user$.subscribe((user) => {
-        const authIdentifier = user?.sub;
-        // NO SACAR (joda, anda)
-        console.log(user?.sub);
-        console.log(user);
-        console.log(authIdentifier);
-        //
-        this.getDatosUsuarioPorAuth(authIdentifier);
-    });
-
+    this.getDatosUsuarioPorAuth(localStorage.getItem("evento_usuario_id"));
   }
 
  getDatosUsuarioPorAuth(authIdentifier: any) {
@@ -49,7 +46,21 @@ export class ConfiguracionComponent implements OnInit {
       console.log('Detalles del usuario:', usuario);
     });
   }
-  
+
+  cartelCerrarSesion(modal: any){
+    const modalRef = this.modal.open(modal, { centered: true, size: 'sm'});
+    modalRef.result.then(
+      (result: any) => {
+          this.cerrarSesion()
+        },
+        
+      (reason: any) => {}
+    );
+  }
+
+  cerrarSesion() {
+    this.auth.logout();
+  }
 }
 
 

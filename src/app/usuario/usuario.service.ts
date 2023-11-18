@@ -5,15 +5,16 @@ import { AuthService } from '@auth0/auth0-angular';
   providedIn: 'root'
 })
 export class UsuarioService{
-  authIdentifier:string|undefined = '';
+  authIdentifier:any;
   constructor(
     public auth0: AuthService,
-  ) { }
+  ) { 
+    this.authIdentifier = auth0.user$.subscribe((user) => {
+      this.authIdentifier = user?.sub,
+      console.log(this.authIdentifier),
+      localStorage.setItem('evento_usuario_id', this.authIdentifier)
+    }) 
+  }
   
-setUsuario(){
-  this.auth0.user$.subscribe((user) => {
-    this.authIdentifier = user?.sub,
-    console.log(this.authIdentifier)
-  })
-}
+
 }

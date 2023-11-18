@@ -25,7 +25,7 @@ export class PerfilComponent implements OnInit {
   constructor(private perfilService: PerfilService, private perfilStorageService: PerfilStorageService, public auth: AuthService, public usuarioService: UsuarioService) {}
 
   ngOnInit() {
-    this.getUsuarioPorAuthIdentifier(this.usuarioService.authIdentifier);
+    this.getUsuarioPorAuthIdentifier(localStorage.getItem("evento_usuario_id"));
   }
 
   getUsuarioPorAuthIdentifier(authIdentifier: any) {

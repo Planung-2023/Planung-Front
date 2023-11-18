@@ -17,6 +17,5 @@ export class AppComponent {
 
   async iniciarSesion() {
     await this.auth.loginWithRedirect();
-    this.usuarioService.setUsuario();
   }
 }

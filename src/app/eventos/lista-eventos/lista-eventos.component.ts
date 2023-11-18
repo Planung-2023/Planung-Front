@@ -58,7 +58,7 @@ export class ListaEventosComponent implements OnInit {
   ) {}
   
   ngOnInit() {
-      this.listaEventosService.getUsuarioId(this.usuarioService.authIdentifier).subscribe(({usuario}: any) => {
+      this.listaEventosService.getUsuarioId(localStorage.getItem("evento_usuario_id")).subscribe(({usuario}: any) => {
         this.usuario = usuario;
     });
     
