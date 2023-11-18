@@ -58,11 +58,6 @@
                   <li>Calle: {{ evento.ubicacion.calle }}</li>
                   <li>Altura: {{ evento.ubicacion.altura }}</li>
                 </ul>
-                <div class="d-flex flex-column align-items-center justify-content-center" *ngIf="evento.ubicacion.latitud===null && evento.ubicacion.longitud===null">
-                  <button class="fs-4 bg-transparent border-0" (click)="copyToClipboard(evento.ubicacion)" ><i class="bi bi-clipboard-check-fill"></i>
-                  </button>
-                  <h1 class="text-black fs-6 m-0">Copiar</h1>
-                </div>
                 
                 <div class="d-flex align-items-center" *ngIf="evento.ubicacion.latitud!=null && evento.ubicacion.longitud!=null">
                   <i class="bi bi-geo-alt-fill mx-1 text-black" ></i>
@@ -70,7 +65,15 @@
                     Mostrar ubicación en el mapa
                   </a>
                 </div>
-                
+
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <label class="d-flex flex-column justify-content-center fs-4 bg-transparent border-0 p-1">
+                      <button class="d-none" (click)="cartelIrAMaps(aMaps,evento.ubicacion)"></button>
+                      <i class="bi bi-globe-americas d-flex justify-content-center"></i>
+                      <h1 class="text-black fs-6 m-0">Maps</h1>
+                    </label>
+                  
+                </div>
               </mat-panel-description>
             </mat-expansion-panel>
             
@@ -138,6 +141,20 @@
       </div>
     </ng-template>
   </div>
+  
+
+
+  <ng-template #aMaps let-modal>
+    <div class="modal-content border-0">
+      <div class="modal-header bg-primary">
+        <h2 class="modal-title m-0 text-black fw-bolder">Irás a Google Maps</h2>
+      </div>
+      <div class="modal-footer bg-secondary">
+        <button type="button" class="btn btn-outline-danger" (click)='modal.dismiss()'>Cerrar</button>
+        <button class="btn btn-success" (click)="modal.close()">Seguro</button> <!--modal.validarYCerrarModal(componenteCrearRecurso);-->
+      </div>
+    </div>
+  </ng-template>
 
   <ng-template #contenidoAgregar let-modal>
     <div class="modal-content border-0">
