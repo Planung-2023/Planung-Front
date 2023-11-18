@@ -31,6 +31,7 @@ export class VisualizarRecursoComponent implements OnInit {
   participante: Participante | undefined;
   rol: Rol |undefined;
   index: number = -1;
+
   constructor(
     private router: Router,
     private RecursoColorPickerService: RecursoColorPickerService,
@@ -39,7 +40,8 @@ export class VisualizarRecursoComponent implements OnInit {
     public auth0: AuthService,
   ) {
     this.recurso = this.router.getCurrentNavigation()?.extras.state?.['recurso'];
-    this.evento = this.recurso.evento;
+    this.evento = this.router.getCurrentNavigation()?.extras.state?.['evento'];
+    //this.evento = this.recurso.evento;
     this.categoria = this.recurso.categoria;
     this.descripcion = this.recurso.descripcion;
     this.selectedColor = this.recurso.colorTarjeta;
