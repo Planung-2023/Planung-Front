@@ -63,7 +63,6 @@ export class VisualizarRecursoComponent implements OnInit {
       },
       error: e => {
         console.log(e);
-       // this.mockearTiposDeRecursos();
       },
       complete: () => {},
     });
@@ -108,6 +107,7 @@ export class VisualizarRecursoComponent implements OnInit {
     this.descripcionTextarea?.nativeElement.addEventListener('blur', () => {
       this.guardarDescripcion();
     });
+    this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);
   }
   
   getCantidadTotal(): number {
@@ -143,14 +143,8 @@ export class VisualizarRecursoComponent implements OnInit {
   }
 
   guardarRecurso(recurso: Recurso) {
-    this.RecursoService.actualizarRecurso(recurso).subscribe(
-      (response) => {
-        console.log('Recursos actualizados con éxito', response);
-      },
-      (error) => {
-        console.error('Error al actualizar los recursos', error);
-      }
-    );
+    this.RecursoService.actualizarRecurso(recurso).subscribe();
+      
     this.mostrarMensajeGuardadoExitoso();
   }
 
@@ -243,19 +237,20 @@ export class VisualizarRecursoComponent implements OnInit {
           asistenteId: this.asistente?.id,
           recursoId: this.recurso.id
         };
-        
-        this.recurso.cantidadActual ++;
-        console.log(nuevaAsignacion);
-        this.RecursoService.postAsignaciones(nuevaAsignacion).subscribe();
-        this.asignaciones.push(nuevaAsignacion);
-        this.RecursoService.getAsignacionesByRecursoId(this.recurso.id).subscribe(
-            (asignaciones: Asignaciones[]|any) => {
-            this.asignaciones = asignaciones;
-          }
-        );
+        this.recurso.cantidadActual++;
+        console.log('Nueva asignación', nuevaAsignacion);
+        this.RecursoService.postAsignaciones(nuevaAsignacion).subscribe(() => {
+          this.RecursoService.getAsignacionesByRecursoId(this.recurso.id).subscribe(
+            (asignaciones: Asignaciones[] | any) => {
+              this.asignaciones = asignaciones;
+              console.log('Asignaciones', this.asignaciones);
+            }
+          );
+
+          this.guardarRecurso(this.recurso);
+        });
       }
     }
-    
     this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);;
   }
   agregarTodosLosRecursos(){
@@ -283,9 +278,6 @@ export class VisualizarRecursoComponent implements OnInit {
   
 
   quitarRecurso(){
-    
-    
-    
     this.recurso.cantidadActual -= this.asignaciones[this.index].cantidad;
     this.asignaciones[this.index].id;
     console.log(this.asignaciones[this.index].id)
