@@ -20,9 +20,7 @@ export class ListaEventosService {
       params: queryParams,
     });
   }
-  conseguirMailByToken(){
-    return ''
-  }
+  
   getRecursosByEventoId(idEvento: number): Observable<any> {
     return  this.http.get(`${ environment.url }/eventos/${idEvento}/recursos`)
   }
@@ -32,7 +30,6 @@ export class ListaEventosService {
   }
 
   getUsuarioMail(mail: string){
-    this.mail=this.conseguirMailByToken();
     return this.http.get(`${environment.url}/usuarios/${this.mail}`);
   }
 
