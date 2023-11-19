@@ -9,4 +9,24 @@ i{
 .padding-header-footer{
     padding-top: 5.7rem;
     padding-bottom: 4rem;
-  }
+}
+
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+    --mdc-tab-indicator-active-indicator-color: var(--bs-primary)!important;
+    --mat-tab-header-disabled-ripple-color: rgba(var(--bs-body-color), 1)!important;
+    --mat-tab-header-pagination-icon-color: var(--bs-body-color)!important;
+    --mat-tab-header-inactive-label-text-color: rgba(var(--bs-body-color), 1)!important;
+    --mat-tab-header-active-label-text-color: var(--bs-primary)!important;
+    --mat-tab-header-active-ripple-color: var(--bs-primary)!important;
+    --mat-tab-header-inactive-ripple-color: var(--bs-primary)!important;
+    --mat-tab-header-inactive-focus-label-text-color: rgba(var(--bs-body-color), 1)!important;
+    --mat-tab-header-inactive-hover-label-text-color: rgba(var(--bs-body-color), 1)!important;
+    --mat-tab-header-active-focus-label-text-color: var(--bs-primary)!important;
+    --mat-tab-header-active-hover-label-text-color: var(--bs-primary)!important;
+    --mat-tab-header-active-focus-indicator-color: var(--bs-primary)!important;
+    --mat-tab-header-active-hover-indicator-color: var(--bs-primary)!important;
+}
+
+.mat-mdc-tab[aria-selected="false"]{
+    color:var(--bs-body-color)!important;
+}

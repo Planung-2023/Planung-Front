@@ -1,36 +1,32 @@
 <div *ngIf="invitadosControlService.isVisible" class="popup-invitado">
-    <div class="popup-content w-90">
-       
-        <button (click)="hidePopupInvitado()" style="background-color: #3f4244; color: white;">
-            <mat-icon>close</mat-icon>
-        </button>
-      
-        <div class="foto-perfil col-2 mx-auto">
+    <div class="bg-dark-subtle rounded-4 shadow justify-content-center w-90">
+        <button (click)="hidePopupInvitado()" class="border-0 bg-transparent p-3"><i class="color-opuesto bi bi-x display-1"></i></button>
+        <div class="col-2 mx-auto">
             <!--Aca deberia haber una variable que determine la ruta de la foto => (src="{ruta_foto}")-->
-            <img [src]="getFotoPerfil()" alt="Foto de perfil">
+            <img id="foto-perfil" [src]="getFotoPerfil()" class="border border-3 border-primary rounded-circle img-fluid">
         </div>
-        <div>
-            <h2 style="margin-top: 10px; margin-bottom: 30px;" class="font-weight-bold text-center">{{ invitadosControlService.invitadoNombre }} {{invitadosControlService.invitadoApellido}}</h2>
-        </div>
-        <div class="text-center" *ngIf="invitadosControlService.soyAdmin">
-            Admin
-            <mat-slide-toggle (change)="administrador($event)" [(ngModel)]="invitadosControlService.invitado.soyAdmin"></mat-slide-toggle>
-        </div>
-        <div>
-            <button (click)="guardarInvitado(); hidePopupInvitado()">
-                Guardar
+        <h1 class="fw-bold color-opuesto text-center">{{ invitadosControlService.invitadoNombre }} {{invitadosControlService.invitadoApellido}}</h1>
+        <div class="col-7 mx-auto" *ngIf="invitadosControlService.soyAdmin">
+            <div class="d-flex justify-content-between align-items-center bg-secondary-subtle rounded-2 px-2 py-3">
+                <p class="color-opuesto fw-bold m-0">Administador</p>
+                <mat-slide-toggle (change)="administrador($event)" [(ngModel)]="invitadosControlService.invitado.soyAdmin"></mat-slide-toggle>
+            </div>
+            <button (click)="cartelEliminarUsuario(removerInvitado)" class="btn border-0 bg-danger d-flex w-100 align-items-center justify-content-center py-2 my-3">
+                <i class="bi bi-person-dash-fill text-white"></i>
+                <p class="ms-2 text-white m-0">Eliminar participante</p>
             </button>
-        </div>
-        <div *ngIf="invitadosControlService.soyAdmin" class="text-center" style="margin-top: 30px; margin-left: 70%">
-            <button (click)="cartelEliminarUsuario(removerInvitado)">
-                <i class="bi bi-person-dash-fill">aaaaaaaaaaa</i>
-            </button>
+            <div class="d-flex justify-content-center mb-3">
+                <button (click)="guardarInvitado(); hidePopupInvitado()" class="btn border-0 bg-success d-flex align-items-center py-2">
+                    <i class="text-black material-icons">save</i>
+                    <p class="ms-2 text-black m-0">Guardar</p>
+                </button>
+            </div>
         </div>
     </div>
     <ng-template #removerInvitado let-modal >
         <div class="modal-content border-0">
             <div class="modal-header bg-primary">
-            <h2 class="modal-title m-0 text-black fw-bolder">Se eliminará a <br> {{invitadosControlService.invitadoNombre}} {{invitadosControlService.invitadoApellido}} <br> de este evento</h2>
+            <h2 class="modal-title m-0 text-black fw-bold fs-4">Se eliminará a {{invitadosControlService.invitadoNombre}} {{invitadosControlService.invitadoApellido}} de este evento</h2>
             </div>
             <div class="modal-footer bg-secondary">
             <button type="button" class="btn btn-outline-danger" (click)='modal.dismiss()'>Cerrar</button>

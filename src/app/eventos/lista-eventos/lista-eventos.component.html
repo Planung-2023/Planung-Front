@@ -48,7 +48,7 @@
             <mat-expansion-panel class="bg-secondary" *ngIf="evento.ubicacion != null && (panelAbierto === 'direccion' || panelAbierto === 'todos')" (opened)="abrirPanel('direccion')" (closed)="cerrarPanel('direccion')">
               <mat-expansion-panel-header class="bg-primary-subtle">
                 <mat-panel-title>
-                  Dirección
+                  <p class="color-opuesto m-0 fw-bold">Dirección</p>
                 </mat-panel-title>
               </mat-expansion-panel-header>
               <mat-panel-description class="text-black d-flex align-items-center justify-content-between w-100">
@@ -80,7 +80,7 @@
             <mat-expansion-panel class="bg-secondary" *ngIf="panelAbierto === 'recursos' || panelAbierto === 'todos'" (opened)="abrirPanel('recursos')" (closed)="cerrarPanel('recursos')">
               <mat-expansion-panel-header class="bg-primary-subtle">
                 <mat-panel-title>
-                  Recursos
+                  <p class="color-opuesto m-0 fw-bold">Recursos</p>
                 </mat-panel-title>
               </mat-expansion-panel-header>
               <mat-panel-description class="text-black d-flex align-items-center justify-content-between w-100">
@@ -101,7 +101,7 @@
             <mat-expansion-panel class="bg-secondary" *ngIf="panelAbierto === 'invitados' || panelAbierto === 'todos'" (opened)="abrirPanel('invitados')" (closed)="cerrarPanel('invitados')">
               <mat-expansion-panel-header class="bg-primary-subtle">
                 <mat-panel-title>
-                  Invitados
+                  <p class="color-opuesto m-0 fw-bold">Invitados</p>
                 </mat-panel-title>
               </mat-expansion-panel-header>
               <mat-panel-description class="text-black d-flex align-items-center justify-content-between w-100">
@@ -123,7 +123,7 @@
             <mat-expansion-panel class="bg-secondary" *ngIf="evento.descripcion != '' && (panelAbierto === 'descripcion' || panelAbierto === 'todos')"(opened)="abrirPanel('descripcion')" (closed)="cerrarPanel('descripcion')">
               <mat-expansion-panel-header class="bg-primary-subtle">
                 <mat-panel-title>
-                  Descripción
+                  <p class="color-opuesto m-0 fw-bold">Descripción</p>
                 </mat-panel-title>
               </mat-expansion-panel-header>
               <mat-panel-description class="text-black d-flex align-items-center justify-content-between w-100">
@@ -158,13 +158,13 @@
 
   <ng-template #contenidoAgregar let-modal>
     <div class="modal-content border-0">
-      <div class="modal-header bg-dark-subtle">
-        <h2 class="modal-title m-0 text-white fw-bolder">Agregar recurso</h2>
+      <div class="modal-header bg-primary">
+        <h2 class="modal-title m-0 text-black fw-bolder">Agregar recurso</h2>
       </div>
-      <div class="modal-body bg-primary">
+      <div class="modal-body bg-primary-darken">
         <app-crear-recurso #componenteCrearRecurso [tiposDeRecursos]="tiposDeRecursos"></app-crear-recurso>
       </div>
-      <div class="modal-footer bg-dark-subtle">
+      <div class="modal-footer bg-primary">
         <button type="button" class="btn btn-outline-danger" (click)='modal.dismiss()'>Cerrar</button>
         <button class="btn btn-success" (click)="validarYCerrarModal(componenteCrearRecurso)? modal.close(componenteCrearRecurso) : null">Agregar recurso</button> <!--modal.validarYCerrarModal(componenteCrearRecurso);-->
       </div>
