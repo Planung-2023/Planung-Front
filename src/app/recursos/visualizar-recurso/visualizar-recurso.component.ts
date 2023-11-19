@@ -217,25 +217,32 @@ export class VisualizarRecursoComponent implements OnInit {
     this.guardarRecurso(this.recurso);
   }
   
+  actualizarAsignaciones(){
+    this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);
+    if(this.index !== -1){
+      this.RecursoService.actualizarAsignaciones(this.asignaciones[this.index])
+    }
+    else console.log('No hubo cambios')
+  }
+
   agregarRecurso(){
     this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);
     if(this.recurso.cantidadActual<this.recurso.cantidadNecesaria){
       if (this.index !== -1) {
-        
           this.recurso.cantidadActual ++;
           this.asignaciones[this.index].cantidad ++;
         }
         
       if (this.index===-1){
-        
-        const nuevaAsignacion: Asignaciones = {
-          asistente: this.asistente ,
+          const nuevaAsignacion: Asignaciones = {
           cantidad: 1, // You may adjust this as needed
-          fechaHora: new Date(),
+          asistente: this.asistente ,
+          recurso: this.recurso
         };
         this.asignaciones.push(nuevaAsignacion);
         this.recurso.cantidadActual ++;
-        console.log(this.evento);
+        console.log(nuevaAsignacion);
+        this.RecursoService.postAsignaciones(nuevaAsignacion)
       }
     }
     //else alert('Cantidad máxima alcanzada');
@@ -251,7 +258,7 @@ export class VisualizarRecursoComponent implements OnInit {
       }
       else {
         this.asignaciones[this.index].cantidad += (this.recurso.cantidadNecesaria-this.recurso.cantidadActual);
-      this.recurso.cantidadActual += (this.recurso.cantidadNecesaria-this.recurso.cantidadActual);
+        this.recurso.cantidadActual += (this.recurso.cantidadNecesaria-this.recurso.cantidadActual);
       }
       
     }
@@ -309,9 +316,9 @@ interface Categoria {
 }
 
 interface Asignaciones {
-  asistente: Asistente|undefined;
   cantidad: number;
-  fechaHora: Date;
+  recurso: Recurso;
+  asistente: Asistente|undefined;
 }
 
 interface Asistente {

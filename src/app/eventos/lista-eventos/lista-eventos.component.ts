@@ -11,7 +11,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MapDialogComponent } from './map-dialog/map-dialog.component';
 import { AuthService } from '@auth0/auth0-angular';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { UsuarioService } from 'src/app/usuario/usuario.service';
 
 @Component({
   selector: 'app-lista-eventos',
@@ -31,6 +30,9 @@ export class ListaEventosComponent implements OnInit {
   panelAbierto: string = 'todos';
   apiLoaded: boolean = true;
   display: any;
+  invitadosComponent: any;
+  participante: Participante|undefined;
+  rol: Rol|undefined;
   position = {lat: 34.598613, lng: 58.415632}
   label = {
     color: "red",
@@ -39,11 +41,7 @@ export class ListaEventosComponent implements OnInit {
   options: google.maps.MapOptions = {
     center: this.position,
     zoom: 15,
-  };
-  invitadosComponent: any;
-  participante: Participante|undefined;
-  
-  Rol: Rol|undefined;
+  }
 
   constructor(
     private modal: NgbModal,
@@ -52,14 +50,13 @@ export class ListaEventosComponent implements OnInit {
     private invitacionControlService: InvitacionControlService,
     private invitadosControlService: InvitadosControlService,
     private recursoService: RecursosService,
-    private usuarioService: UsuarioService,
     private dialog: MatDialog,
     public auth0: AuthService,
   ) {}
   
   ngOnInit() {
-      this.listaEventosService.getUsuarioId(localStorage.getItem("evento_usuario_id")).subscribe(({usuario}: any) => {
-        this.usuario = usuario;
+    this.listaEventosService.getUsuarioId(localStorage.getItem("evento_usuario_id")).subscribe(({usuario}: any) => {
+      this.usuario = usuario;
     });
     
     this.recursoService.tiposDeRecursos().subscribe({
@@ -83,14 +80,7 @@ export class ListaEventosComponent implements OnInit {
     });
   }
 
-
-  // Método para mostrar el popup
-  showPopup() {
-    this.invitacionControlService.showPopup();
-  }
-
-
-  //Traer Eventos
+//Traer Eventos
   private recuperarEventos() {
     this.listaEventosService.getEventos(this.usuario?.id).subscribe(data => {
       this.eventos = data;
@@ -109,20 +99,77 @@ export class ListaEventosComponent implements OnInit {
     );
   }
 
+//Traer tipo recursos
+  nombreTipoRecursoSegunId(id: string|number) {
+    return this.tiposDeRecursos.find((t: any ) => t.id == id)?.nombre;
+  }
 
-  showPopupInvitado(nombreInvitado: string, apellidoInvitado: string, evento: Evento) {
-    this.invitadoSeleccionado = nombreInvitado;
+  private mockearTiposDeRecursos() {
+    this.tiposDeRecursos = [
+      { id: 1, nombre: 'Bebida' },
+      { id: 2, nombre: 'Mobiliario' },
+      { id: 3, nombre: 'Comida' },
+      { id: 4, nombre: 'Juego' },
+      { id: 5, nombre: 'Tecnología' },
+      { id: 6, nombre: 'Otro' },
+    ];
+  }
+
+// Métodos para mostrar pop-ups
+  showPopupInvitado(invitado: any, evento: Evento) {
+    this.invitadoSeleccionado = invitado;
     this.invitadosControlService.soyAdmin = this.esAdministrador(evento);
-    this.invitadosControlService.usuarioId = this.usuario?.id;
-    this.invitadosControlService.invitadoNombre = nombreInvitado;
-    this.invitadosControlService.invitadoApellido = apellidoInvitado;
+    this.invitadosControlService.invitado = invitado;
+    this.invitadosControlService.evento = evento;
+    this.invitadosControlService.invitadoNombre = invitado.nombre;
+    this.invitadosControlService.invitadoApellido = invitado.apellido;
     this.invitadosControlService.showPopupInvitado();
   }
 
-  mostrarInvitado(nombreInvitado: string) {
-    this.invitadoSeleccionado = nombreInvitado;
+  cartelIrAMaps(modal: any, ubicacion: any) {
+    const modalRef = this.modal.open(modal, { centered: true, size: 'sm'});
+    modalRef.result.then(
+      (result: any) => {
+          this.irAMaps(ubicacion)
+        },
+        
+      (reason: any) => {}
+    );
   }
 
+  mostrarCardAgregarRecurso(modal: any, evento: Evento) {
+    const index = this.eventos.findIndex(i => i===evento)
+    const modalRef = this.modal.open(modal, { centered: true, size: 'sm'});
+    modalRef.result.then(
+      (result: any) => {
+          const recurso = result.obtenerDatos();
+          const recursoAgregar = {
+          recursos: [recurso]
+          }
+          this.recursoService.postRecurso(evento.id,recursoAgregar).subscribe((response:any)=>{
+            console.log(response)
+            this.eventos[index].recursos.push(response.recursos[0]);
+          });
+        },
+        
+      (reason: any) => {}
+    );
+  }
+  validarYCerrarModal(componenteCrearRecurso: any) {
+    if ( componenteCrearRecurso.formulario.valid) {
+      return true;
+    } else {
+      
+      console.log("ERROR");
+      return false;
+    }
+  }
+
+  showPopupInvitacion() {
+    this.invitacionControlService.showPopup();
+  }
+
+//Sesgos para la visualización
   formatearHora(hora: string): string {
       return hora.slice(0, 5);
     }
@@ -136,10 +183,8 @@ export class ListaEventosComponent implements OnInit {
     this.router.navigate(['/eventos', 'crear']);
   }
 
-  agregarRecurso(evento: any): void {
-    this.router.navigate(['/eventos', evento.id, 'recursos', 'crear']);
-  }
 
+//Navegaciones a otros Componentes
   irAConfiguracion(): void {
     this.router.navigate(['/configuracion']);
   }
@@ -152,7 +197,7 @@ export class ListaEventosComponent implements OnInit {
     this.router.navigate(['/eventos', evento.id, 'recursos', recurso.id ], { state: { recurso: recurso, evento: evento } });
   }
 
-
+//Google Maps
   moveMap(event: google.maps.MapMouseEvent) {
     if (event.latLng != null){
       this.position = (event.latLng.toJSON());
@@ -168,17 +213,6 @@ export class ListaEventosComponent implements OnInit {
     this.mostrarMapa = false;
   }
 
-  cartelIrAMaps(modal: any, ubicacion: any) {
-    const modalRef = this.modal.open(modal, { centered: true, size: 'sm'});
-    modalRef.result.then(
-      (result: any) => {
-          this.irAMaps(ubicacion)
-        },
-        
-      (reason: any) => {}
-    );
-  }
-
   irAMaps(ubicacion: any) {
     var googleMapsLink: string = "";
     if(ubicacion.latitud!=null && ubicacion.longitud!=null){
@@ -190,53 +224,6 @@ export class ListaEventosComponent implements OnInit {
       googleMapsLink = `https://www.google.com/maps?q=${ubicacionString}`;
     }
     window.open(googleMapsLink, '_blank');
-  }
-
-  
-  mostrarCardAgregar(modal: any, evento: Evento) {
-    const index = this.eventos.findIndex(i => i===evento)
-    const modalRef = this.modal.open(modal, { centered: true, size: 'sm'});
-    modalRef.result.then(
-      (result: any) => {
-          // Si es una adición normal, agregar el nuevo recurso
-          const recurso = result.obtenerDatos();
-          const recursoAgregar = {
-          recursos: [recurso]
-          }
-          //this.eventos[index].recursos.push(recurso);
-          this.recursoService.postRecurso(evento.id,recursoAgregar).subscribe((response:any)=>{
-            console.log(response)
-            this.eventos[index].recursos.push(response.recursos[0]);
-          });
-        },
-        
-      (reason: any) => {}
-    );
-  }
-
-  private mockearTiposDeRecursos() {
-    this.tiposDeRecursos = [
-      { id: 1, nombre: 'Bebida' },
-      { id: 2, nombre: 'Mobiliario' },
-      { id: 3, nombre: 'Comida' },
-      { id: 4, nombre: 'Juego' },
-      { id: 5, nombre: 'Tecnología' },
-      { id: 6, nombre: 'Otro' },
-    ];
-  }
-
-  nombreTipoRecursoSegunId(id: string|number) {
-    return this.tiposDeRecursos.find((t: any ) => t.id == id)?.nombre;
-  }
-
-  validarYCerrarModal(componenteCrearRecurso: any) {
-    if ( componenteCrearRecurso.formulario.valid) {
-      return true;
-    } else {
-      
-      console.log("ERROR");
-      return false;
-    }
   }
 
   openMapDialog(evento:Evento) {
@@ -252,6 +239,8 @@ export class ListaEventosComponent implements OnInit {
     this.position.lng=evento.ubicacion.longitud;
   }
 
+
+//Abrir-Cerrar mat-panels
   abrirPanel(panel: string) {
     this.panelAbierto = panel;
   }

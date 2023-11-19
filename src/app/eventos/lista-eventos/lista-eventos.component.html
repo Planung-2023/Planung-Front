@@ -94,7 +94,7 @@
                     </div>
                   </li>
                 </ul>
-                <button mat-raised-button class="agregar-recurso-button text-black" (click)="mostrarCardAgregar(contenidoAgregar,evento)" *ngIf="esAdministrador(evento)">Agregar</button>
+                <button mat-raised-button class="agregar-recurso-button text-black" (click)="mostrarCardAgregarRecurso(contenidoAgregar,evento)" *ngIf="esAdministrador(evento)">Agregar</button>
               </mat-panel-description>
             </mat-expansion-panel>
 
@@ -110,7 +110,7 @@
                     <li *ngFor="let asistente of evento?.asistentes">
                       <div class="container-fluid d-flex align-items-center justify-content-between">
                         <span>{{asistente.participante.apellido}}, {{ asistente.participante?.nombre }}</span>
-                        <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado(asistente.participante?.nombre, asistente.participante?.apellido, evento)">
+                        <button mat-icon-button class="ver-participante-button" (click)="showPopupInvitado(asistente.participante, evento)">
                           <mat-icon>visibility</mat-icon>
                         </button>
                       </div>
@@ -133,7 +133,7 @@
           </div>
           <!-- Solo debería aparecer en casos específicos -->
           <div class="col-md-12 text-center" *ngIf="esAdministrador(evento)">
-            <button (click)="showPopup()" class="btn btn-danger m-2 py-2 px-3 text-white rounded-4 fw-bold">
+            <button (click)="showPopupInvitacion()" class="btn btn-danger m-2 py-2 px-3 text-white rounded-4 fw-bold">
               Invitar
             </button>
           </div>
@@ -151,7 +151,7 @@
       </div>
       <div class="modal-footer bg-secondary">
         <button type="button" class="btn btn-outline-danger" (click)='modal.dismiss()'>Cerrar</button>
-        <button class="btn btn-success" (click)="modal.close()">Seguro</button> <!--modal.validarYCerrarModal(componenteCrearRecurso);-->
+        <button class="btn btn-success" (click)="modal.close()">Seguro</button>
       </div>
     </div>
   </ng-template>

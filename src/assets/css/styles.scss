@@ -117,3 +117,10 @@ button[aria-checked = "true"] .mdc-switch__handle::after{
 button[aria-checked = "false"] .mdc-switch__handle::after{
     background-color: darken($secondary, 15%) !important;
 }
+
+[data-bs-theme="verde"]{
+    $primary: green;
+    $secondary: #F8DDA4;
+    $primary-rgb: #{to-rgb($primary)};
+    $secondary-rgb: #{to-rgb($secondary)};
+}

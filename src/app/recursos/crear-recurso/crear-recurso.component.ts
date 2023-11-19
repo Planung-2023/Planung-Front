@@ -12,6 +12,7 @@ export class CrearRecursoComponent implements OnInit {
     descripcion: new FormControl(''),
     categoria: new FormControl('', [Validators.required]),
     cantidadNecesaria: new FormControl('', [Validators.required]),
+    cantidadActual: new FormControl(0),
     colorTarjeta: new FormControl("#ef7d16"),
   });
   @Input() tiposDeRecursos: any = [];

@@ -1,4 +1,4 @@
-<div class="flip-card shadow" [ngClass]="{ 'flipped': isFlipped }">
+<div class="fondo flip-card shadow" [ngClass]="{ 'flipped': isFlipped }">
 
   <nav class="bg-dark-subtle fixed-top d-flex justify-content-start px-2 py-2 altura-nav">
     <button class="ms-2 rounded-2 border-0 bg-light-subtle px-5 py-2" type="button" routerLink="/eventos">
@@ -127,7 +127,7 @@
           
         </mat-expansion-panel>
         <div class="responsables-buttons" *ngIf="panelAbierto === 'responsables'">
-            <button class="boton-guardar" [ngStyle]="{ 'background-color': selectedColor }" (click)="guardarDescripcion()">
+            <button class="boton-guardar" [ngStyle]="{ 'background-color': selectedColor }" (click)="guardarDescripcion(); actualizarAsignaciones()">
               <i class="material-icons">save</i>
             </button>
           </div>
