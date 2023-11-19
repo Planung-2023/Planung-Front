@@ -3,7 +3,6 @@ $danger: #C72020;
 $warning: #FFD003;
 $primary: #D45113;
 $secondary: #F8DDA4;
-
 @import "/node_modules/bootstrap/scss/bootstrap";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
@@ -21,22 +20,18 @@ $contraste: var(--bs-body-color);
     color: $contraste;
 }
 
-html, body {
-    height: 100vh !important;
+html, body, app-root{
+    height: 100% !important;
     background-color: $fondo !important;
 }
 
-app-root, .fondo{
-    height: 100% !important;
+.fondo{
+    height: 100vh !important;
     background-color: $fondo !important;
 }
 
 .tarjeta{
     background-color: $tarjeta !important;
-}
-
-.boton{
-    background-color: $boton;
 }
 
 label input[type=radio]:checked + i, label input[type=radio]:checked + img{
@@ -117,3 +112,4 @@ button[aria-checked = "true"] .mdc-switch__handle::after{
 button[aria-checked = "false"] .mdc-switch__handle::after{
     background-color: darken($secondary, 15%) !important;
 }
+
