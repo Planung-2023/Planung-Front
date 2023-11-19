@@ -83,8 +83,8 @@ export class VisualizarRecursoComponent implements OnInit {
     });
     
     this.RecursoService.getAsignacionesByRecursoId(this.recurso.id).subscribe(
-      (info: Asignaciones[]|any) => {
-        this.asignaciones = info;
+      (asignaciones: Asignaciones[]|any) => {
+        this.asignaciones = asignaciones;
       }
     );
     
@@ -220,7 +220,7 @@ export class VisualizarRecursoComponent implements OnInit {
   actualizarAsignaciones(){
     this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);
     if(this.index !== -1){
-      this.RecursoService.actualizarAsignaciones(this.asignaciones[this.index])
+      this.RecursoService.actualizarAsignaciones(this.asignaciones[this.index]).subscribe()
     }
     else console.log('No hubo cambios')
   }
@@ -235,17 +235,26 @@ export class VisualizarRecursoComponent implements OnInit {
         
       if (this.index===-1){
           const nuevaAsignacion: Asignaciones = {
-          cantidad: 1, // You may adjust this as needed
+          id: 1,
+          cantidad: 1,
+          comentarios:'',
           asistente: this.asistente ,
-          recurso: this.recurso
+          recurso: this.recurso,
+          asistenteId: this.asistente?.id,
+          recursoId: this.recurso.id
         };
-        this.asignaciones.push(nuevaAsignacion);
+        
         this.recurso.cantidadActual ++;
         console.log(nuevaAsignacion);
-        this.RecursoService.postAsignaciones(nuevaAsignacion)
+        this.RecursoService.postAsignaciones(nuevaAsignacion).subscribe();
+        this.asignaciones.push(nuevaAsignacion);
+        this.RecursoService.getAsignacionesByRecursoId(this.recurso.id).subscribe(
+            (asignaciones: Asignaciones[]|any) => {
+            this.asignaciones = asignaciones;
+          }
+        );
       }
     }
-    //else alert('Cantidad máxima alcanzada');
     
     this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);;
   }
@@ -262,7 +271,6 @@ export class VisualizarRecursoComponent implements OnInit {
       }
       
     }
-    //else alert('Cantidad máxima alcanzada');
   }
   quitarUnRecurso(){
     if(this.asignaciones[this.index].cantidad>1){
@@ -275,8 +283,12 @@ export class VisualizarRecursoComponent implements OnInit {
   
 
   quitarRecurso(){
-    this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);
+    
+    
+    
     this.recurso.cantidadActual -= this.asignaciones[this.index].cantidad;
+    this.asignaciones[this.index].id;
+    console.log(this.asignaciones[this.index].id)
     this.asignaciones.splice(this.index);
     this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);
   }
@@ -316,9 +328,13 @@ interface Categoria {
 }
 
 interface Asignaciones {
+  id: number;
   cantidad: number;
+  comentarios: string;
   recurso: Recurso;
   asistente: Asistente|undefined;
+  asistenteId: number|undefined;
+  recursoId: number|undefined;
 }
 
 interface Asistente {

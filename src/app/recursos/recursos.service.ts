@@ -67,11 +67,12 @@ export class RecursosService {
   }
 
   postAsignaciones(asignacion:any){
+    console.log('aaaaaaaaa');
     return  this.http.post(`${ environment.url }/asignacion-recurso`, asignacion);
   }
 
   actualizarAsignaciones(asignacion:any){
-    return this.http.put(`${ environment.url }/asignacion-recurso`, asignacion)
+    return this.http.put(`${ environment.url }/asignacion-recurso/${asignacion.id}`, asignacion)
   }
 }
 

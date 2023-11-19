@@ -32,7 +32,7 @@ export class CrearRecursoComponent implements OnInit {
       nombre: recurso.nombre,
       descripcion: recurso.descripcion,
       categoria: recurso.categoria,
-      cantidadNecesaria: recurso.cantidad,
+      cantidadNecesaria: recurso.cantidadNecesaria,
     });
   }
   public obtenerDatos() {
