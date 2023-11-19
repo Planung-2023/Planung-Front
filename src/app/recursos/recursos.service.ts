@@ -65,6 +65,14 @@ export class RecursosService {
   postRecurso(idEvento:any, recurso: any){
     return  this.http.post(`${ environment.url }/eventos/${idEvento}/recursos`, recurso);
   }
+
+  postAsignaciones(asignacion:any){
+    return  this.http.post(`${ environment.url }/asignacion-recurso`, asignacion);
+  }
+
+  actualizarAsignaciones(asignacion:any){
+    return this.http.put(`${ environment.url }/asignacion-recurso`, asignacion)
+  }
 }
 
 interface RecursoApi {

@@ -46,8 +46,6 @@ export class CrearEventoComponent implements OnInit{
       numero: 4,
       titulo: ""
     }
-
-
   ];
   tituloPasoActual: string = this.titulos[this.pasoActual];
 

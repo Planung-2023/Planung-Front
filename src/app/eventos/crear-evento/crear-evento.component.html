@@ -18,8 +18,6 @@
       (crearEvento)="crearEvento()"
       (terminarEvento)="navegarAEventos()">
     </app-paso5>
-
-</div>
 <!-- Mensaje de error de Formulario Incompleto-->
   <ng-template #errorModalContent let-modal >
     <div class="modal-body bg-warning">
@@ -32,6 +30,8 @@
       </div>
     </div>
   </ng-template>
+</div>
+
 
 <div [ngClass]="{'justify-content-center' : pasoActual === 0, 'justify-content-around' : pasoActual != 0 }"class="footer bg-dark-subtle d-flex fixed-bottom justify-content-center px-2 pt-2">
   <button *ngIf="pasoActual != 0" (click)="pasoAnterior()" class="rounded-2 border-0 bg-light-subtle px-5 py-2"><i class="color-opuesto bi bi-arrow-left mx-3 display-5"></i></button>
