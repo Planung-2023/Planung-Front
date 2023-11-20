@@ -33,7 +33,6 @@ moveMap(event: google.maps.MapMouseEvent) {
     this.formulario.get('latitud')?.setValue(coordenadas.lat);
     this.formulario.get('longitud')?.setValue(coordenadas.lng);
   }
-  console.log(this.formulario.value);
 }
 
 actualizarTipoBusqueda(event: Event){

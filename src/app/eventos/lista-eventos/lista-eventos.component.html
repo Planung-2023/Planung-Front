@@ -35,7 +35,7 @@
 
       <div class="swiper-wrapper d-flex align-items-center">
         <div class="swiper-slide rounded-4 px-2 bg-primary shadow" *ngFor="let evento of eventos">
-          <p class="text-center m-3 fs-5 fw-bold">{{ evento.nombre }}</p>
+          <h1 class="text-center m-3 fw-bold">{{ evento.nombre }}</h1>
           <div class="container-texto container-fluid">
             
             <p class="p-1 my-0 mx-1"><strong>Fecha:</strong> {{ evento.fecha |date:"dd/MM/yyyy" }}</p>

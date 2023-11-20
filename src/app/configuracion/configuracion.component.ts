@@ -29,8 +29,10 @@ export class ConfiguracionComponent implements OnInit {
   cambiarModo(event: MatSlideToggleChange) {
     if (event.checked) {
       this.configuracionService.temaClaro = true;
+      localStorage.setItem('evento_tema_claro', 'true')
     } else { 
       this.configuracionService.temaClaro = false;
+      localStorage.setItem('evento_tema_claro', 'false')
     }
   }
 

@@ -280,8 +280,9 @@ export class VisualizarRecursoComponent implements OnInit {
   quitarRecurso(){
     this.recurso.cantidadActual -= this.asignaciones[this.index].cantidad;
     this.asignaciones[this.index].id;
-    console.log(this.asignaciones[this.index].id)
+    this.RecursoService.deleteAsignaciones(this.asignaciones[this.index]).subscribe();
     this.asignaciones.splice(this.index);
+    this.guardarRecurso(this.recurso);
     this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);
   }
 }
