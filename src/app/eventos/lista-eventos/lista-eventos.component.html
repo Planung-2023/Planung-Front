@@ -133,7 +133,7 @@
           </div>
           <!-- Solo debería aparecer en casos específicos -->
           <div class="col-md-12 text-center" *ngIf="esAdministrador(evento)">
-            <button (click)="showPopupInvitacion()" class="btn btn-danger m-2 py-2 px-3 text-white rounded-4 fw-bold">
+            <button (click)="showPopupInvitacion(evento.id)" class="btn btn-danger m-2 py-2 px-3 text-white rounded-4 fw-bold">
               Invitar
             </button>
           </div>
