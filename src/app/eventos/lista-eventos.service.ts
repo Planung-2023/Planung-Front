@@ -47,5 +47,13 @@ export class ListaEventosService {
     const data = '';
     return this.http.post(url,data);
   }
+
+  aceptarInvitado(evento: any, invitado: any, data: any){
+    return this.http.put(`${ environment.url }/eventos/${evento.id}/asistentes/${invitado.id}`, data)
+  }
+
+  eliminarInvitado(evento: any, invitado: any){
+    return this.http.delete(`${ environment.url }/eventos/${evento.id}/asistentes/${invitado.id}`)
+  }
 }
 

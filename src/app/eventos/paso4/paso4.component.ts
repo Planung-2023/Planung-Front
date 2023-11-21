@@ -32,7 +32,6 @@ export class Paso4Component implements OnInit {
         this.tiposDeRecursos = v;
       },
       error: e => {
-        console.log(e);
         this.mockearTiposDeRecursos();
       },
       complete: () => {},
@@ -66,11 +65,9 @@ export class Paso4Component implements OnInit {
         if (recurso!=null) {
           // Si es una edición, reemplazar el recurso existente con los nuevos datos
           this.recursos[index] = result.obtenerDatos();
-          console.log('Editar')
         } else {
           // Si es una adición normal, agregar el nuevo recurso
           this.recursos.push(result.obtenerDatos());
-          console.log('Agregar')
           this.recursoAEditar = null
         }
         this.formulario.get('recursos')?.setValue(this.recursos);
@@ -86,7 +83,6 @@ export class Paso4Component implements OnInit {
     } else {
       //alert('Completar los Campos');
       this.activarError();
-      console.log("ERROR");
       return false;
     }
   }

@@ -26,4 +26,8 @@ export class PerfilService {
   getDatosParticipante(participanteId: number): Observable<any> {
     return this.http.get(`${environment.url}/participantes/${participanteId}`);
   }
+
+  actualizarUsuario(usuario: any, datos: any){
+    return this.http.put(`${environment.url}/usuarios/${usuario.id}`, datos);
+  }
 }

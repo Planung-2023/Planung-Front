@@ -31,7 +31,6 @@ export class Paso1Component{
   
   cambiarTodoElDia(event: MatSlideToggleChange) {
     this.formulario.get('todoElDia')?.setValue(event.checked);
-    console.log(this.formulario.value);
     if(event.checked){
       this.formulario.get('horaInicio')?.clearValidators();
       this.formulario.get('horaFin')?.clearValidators();

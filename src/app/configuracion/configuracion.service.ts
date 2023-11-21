@@ -13,9 +13,9 @@ export class ConfiguracionService {
   getDatosUsuarioPorAuth(authIdentifier: string): Observable<any> {
     return this.http.get(`${environment.url}/usuarios/token/usuario`, {});
   }
-  inicializar(): void {}
   cambiarTema(tema: boolean): void {
     this.temaClaro = tema;
     this.cambioDeTema.emit(this.temaClaro); // Emitir el evento de cambio de tema
   }
+  
 }

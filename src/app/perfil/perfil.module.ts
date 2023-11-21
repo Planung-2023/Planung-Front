@@ -7,6 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { PerfilRoutingModule } from './perfil-routing.module';
 import { PerfilService } from './perfil.service';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -16,9 +19,11 @@ import { PerfilService } from './perfil.service';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     PerfilRoutingModule,
     MatIconModule,
   ],
-  providers: [PerfilService]
 })
 export class PerfilModule { }

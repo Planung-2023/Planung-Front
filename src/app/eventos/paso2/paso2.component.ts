@@ -17,12 +17,10 @@ export class Paso2Component {
   actualizarTipoEvento(event: Event) {
     const target = event.target as HTMLInputElement;
     this.formulario.get('tipoEvento')?.setValue(target.value);
-    console.log(this.formulario.value);
   }
   actualizarTipoInvitacion(event: Event){
     const target = event.target as HTMLInputElement;
     this.formulario.get('tipoInvitacion')?.setValue(target.value);
-    console.log(this.formulario.value);
   }
   getDatosPaso2(){
     return this.formulario.value

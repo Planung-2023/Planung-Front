@@ -101,7 +101,7 @@
               <tbody>
                 <tr *ngFor="let asignacion of asignaciones">
                   <td [ngClass]="{ 'color-naranja-td': selectedColor === '#ef7d16', 'color-verde-td': selectedColor === '#76b730', 'color-azul-td': selectedColor === '#4e5fa8', 'color-rosa-td': selectedColor === '#df3c65', 'color-gris-td': selectedColor === '#9f9f9e' }">
-                  {{ asignacion.asistente?.participante?.nombre }}</td>
+                  {{ asignacion.asistente?.participante?.usuario.nombre }}</td>
                   <td [ngClass]="{ 'color-naranja-td': selectedColor === '#ef7d16', 'color-verde-td': selectedColor === '#76b730', 'color-azul-td': selectedColor === '#4e5fa8', 'color-rosa-td': selectedColor === '#df3c65', 'color-gris-td': selectedColor === '#9f9f9e' }">
                   {{ asignacion.cantidad }}</td>
                 </tr>
