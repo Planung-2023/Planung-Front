@@ -9,7 +9,7 @@
           </div>
           <label class="editar-container col-4 d-flex justify-content-center align-items-center btn btn-secondary" routerLink="./cambiar-imagen">
             <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon>
-            <p class="m-0 fw-bold">editar</p>
+            <p class="m-0 fw-bold">Editar</p>
           </label>
       </div>
       <div class="container-fluid">
@@ -64,11 +64,11 @@
     <div class="modal-body bg-primary-darken">
       <label class="container-fluid">
         <p class="fw-bold text-white m-0">Nombre</p>
-        <input class="form-control border-0 bg-secondary text-black py-2" [value]="formulario.get('nombreUsuario')?.value" [formControlName]="'nombreUsuario'" type="text">
+        <input class="form-control border-0 bg-secondary text-black py-2" [value]="formulario.get('nombreUsuario')?.value" [formControlName]="'nombre'" type="text">
       </label>
       <label class="container-fluid">
         <p class="fw-bold text-white m-0">Apellido</p>
-        <input class="form-control border-0 bg-secondary text-black py-2" [value]="formulario.get('apellidoUsuario')?.value" [formControlName]="'apellidoUsuario'" type="text">
+        <input class="form-control border-0 bg-secondary text-black py-2" [value]="formulario.get('apellidoUsuario')?.value" [formControlName]="'apellido'" type="text">
       </label>
     </div>
     <div class="modal-footer bg-primary">
