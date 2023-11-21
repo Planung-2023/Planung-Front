@@ -1,37 +1,53 @@
 <!-- Perfil -->
-<div class="fondo padding-header-footer">
+<div class="fondo w-100 h-100 padding-header-footer">
   <h1 class="color-opuesto text-center fw-bold">Perfil</h1>
   <div class="col-11 mx-auto bg-primary p-2 rounded-4">
-      <h2 class="text-center subtitulo-perfil">Foto de Perfil</h2>
-      <div class="row justify-content-around align-items-center">
+      <h1 class="text-center subtitulo-perfil fw-bold mb-0">Foto de Perfil</h1>
+      <div class="row justify-content-around align-items-center my-4">
           <div class="foto-perfil col-5">
               <img *ngIf="fotoPerfilUsuario !== ''" [src]="'assets/'+ fotoPerfilUsuario" alt="Foto de perfil" class="img-fluid rounded-circle border border-3 border-secondary">
           </div>
-          <div class="editar-container col-4 text-center btn btn-secondary" routerLink="./cambiar-imagen">
-              <a class="text-center">Editar</a>
-              <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon>
+          <label class="editar-container col-4 d-flex justify-content-center align-items-center btn btn-secondary" routerLink="./cambiar-imagen">
+            <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon>
+            <p class="m-0 fw-bold">editar</p>
+          </label>
+      </div>
+      <div class="container-fluid">
+        <div class="row align-items-center my-2">
+          <div class="col-3">
+            <h2 class="m-0 fw-bold">Nombre</h2>
           </div>
-      </div>
-      <div class="container-fluid text-center px-0 d-flex flex-column justify-content-center w-90">
-        <h2 class="m-0">Nombre: </h2>
-        <h1 class="bg-secondary rounded-2">{{ nombreUsuario }}</h1>
-      </div>
-      <div class="container-fluid text-center px-0 d-flex flex-column justify-content-center w-90">
-        <h2 class="m-0">Apellido: </h2>
-        <h1 class="bg-secondary rounded-2">{{ apellidoUsuario }}</h1>
-      </div>
-      <div class="container-fluid text-center d-flex flex-column justify-content-center w-90 px-0 mb-2">
-        <button class="bg-primary-darken d-flex justify-content-center align-items-center py-1 border-0 rounded-2" (click)="mostrarCardAgregar(contenidoAgregar)">
-          <i class="text-black bi bi-pencil-fill px-2"></i>
-          Cambiar Nombre y Apellido
-        </button>
-      </div>
-      <div class="container-fluid text-center p-0 d-flex flex-column justify-content-center w-90">
-        <h2 class="m-0">Correo: </h2>
-        <h1 class="bg-secondary rounded-2">{{ correoUsuario }}</h1>
+          <div class="col">
+            <p class="bg-secondary rounded-2 m-0 text-center py-2">{{ nombreUsuario }}</p>
+          </div>
+        </div>
+        <div class="row align-items-center my-2">
+          <div class="col-3">
+            <h2 class="m-0 fw-bold">Apellido</h2>
+          </div>
+          <div class="col">
+            <p class="bg-secondary rounded-2 m-0 text-center py-2">{{ apellidoUsuario }}</p>
+          </div>
+        </div>
+        <div class="row my-2">
+          <div class="col">
+            <button class="btn btn-secondary d-flex justify-content-center align-items-center py-1 border-0 rounded-2 w-100" (click)="mostrarCardAgregar(contenidoAgregar)">
+              <mat-icon aria-hidden="false" fontIcon="edit"></mat-icon>
+              <p class="m-0 fw-bold">Editar Nombre y Apellido</p>
+            </button>
+          </div>
+        </div>
+        <div class="row mt-4 mb-2 align-items-center">
+          <div class="col-3">
+            <h2 class="m-0 fw-bold">Correo</h2>
+          </div>
+          <div class="col">
+            <p class="bg-secondary rounded-2 text-break py-2 text-center">{{ correoUsuario }}</p>
+          </div>
+        </div>
       </div>
       <div class="d-flex justify-content-center">
-        <button class="btn rounded-pill bg-black text-white text-center fw-bold" (click)="cartelCerrarSesion(cerrarSesion)">Cerrar Sesión</button>
+        <button class="btn rounded-pill bg-black text-white text-center fw-bold" (click)="cartelCerrarSesion(cerrarSesion)"><i class="bi bi-box-arrow-left align-items-center fs-3"><p class="ps-2 m-0 fst-normal fs-3">Cerrar sesión</p></i></button>
       </div>
   </div>
 </div>
