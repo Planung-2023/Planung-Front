@@ -10,16 +10,16 @@
  <div class="fondo col-md-12 h-100 overflow-x-hidden padding-header-footer">
     <h2 class="color-opuesto text-center fw-bold">Cambiar Imagen</h2>
     <div class="col-11 mx-auto perfil-container bg-primary rounded-4">
-       <h3 class="text-center col-12 subtitulo-perfil">Foto de Perfil</h3>
-       <div class="row justify-content-around align-items-center">
+       <h1 class="text-center fw-bold">Foto de Perfil</h1>
+       <div class="g-0 row justify-content-around align-items-center">
           <div class="foto-perfil col-5">
              <img *ngIf="fotoPerfilUsuario !== ''" [src]="'assets/'+ fotoPerfilUsuario" class="img-fluid">
           </div>
        </div>
        <div class="col-12 text-center">
-          <h3 class="subtitulo"> Seleccione una foto </h3>
+          <h3 class="m-0 fw-bold"> Seleccione una foto </h3>
        </div>
-       <div class="row justify-content-around align-items-center">
+       <div class="g-0 row justify-content-around align-items-center">
           <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto(2)">
              <a>
                 <img src="assets/gigachad1.jpg" class="img-fluid">
@@ -36,7 +36,7 @@
              </a>
           </div>
        </div>
-       <div class="row justify-content-around align-items-center">
+       <div class="g-0 row justify-content-around align-items-center">
           <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto(5)">
              <a>
                 <img src="assets/girl-chad.jpg" class="img-fluid">
@@ -53,7 +53,7 @@
              </a>
           </div>
        </div>
-       <div class="row justify-content-around align-items-center">
+       <div class="g-0 row justify-content-around align-items-center">
           <div class="foto-perfil-seleccion col-4 btn" (click)="cambiarFoto(1)">
              <a>
                 <img src="assets/foto-perfil-3.png" class="img-fluid">
@@ -70,10 +70,10 @@
              </a>
           </div>
        </div>
-       <div class="row justify-content-center align-items-center">
-          <div class="col-12 text-center">
-             <button class="btn btn-guardar" (click)="guardarCambios()">Guardar</button>
-          </div>
+       <div class="g-0 row mt-3">
+         <div class="d-flex justify-content-center align-items-center">
+            <button class="btn btn-danger d-flex align-items-center p-2" (click)="guardarCambios()"><i class="text-white material-icons pe-2">save</i> Guardar</button>
+         </div>
        </div>
     </div>
  </div>
