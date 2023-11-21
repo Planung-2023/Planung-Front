@@ -1,42 +1,88 @@
-<!-- Navbar -->
-<nav class="bg-dark-subtle fixed-top d-flex justify-content-start px-2 py-2 altura-nav">
-  <button class="ms-2 rounded-2 border-0 bg-light-subtle px-5 py-2" type="button" routerLink="../">
-    <i class="bi bi-arrow-left fs-2 color-opuesto"></i>
-  </button>
-</nav>
-
 <!-- Perfil -->
 <div class="fondo padding-header-footer">
   <h1 class="color-opuesto text-center fw-bold">Perfil</h1>
   <div class="col-11 mx-auto bg-primary p-2 rounded-4">
-    <div class="col-md-5 row justify-content-evenly row-perfil">
-      <div class="foto-perfil col-2">
-        <!--Aca deberia haber una variable que determine la ruta de la foto => (src="{ruta_foto}")-->
-        <img *ngIf="fotoPerfilUsuario !== ''" [src]="'assets/'+ fotoPerfilUsuario" alt="Foto de perfil">
+      <h2 class="text-center subtitulo-perfil">Foto de Perfil</h2>
+      <div class="row justify-content-around align-items-center">
+          <div class="foto-perfil col-5">
+              <img *ngIf="fotoPerfilUsuario !== ''" [src]="'assets/'+ fotoPerfilUsuario" alt="Foto de perfil" class="img-fluid rounded-circle border border-3 border-secondary">
+          </div>
+          <div class="editar-container col-4 text-center btn btn-secondary" routerLink="./cambiar-imagen">
+              <a class="text-center">Editar</a>
+              <mat-icon aria-hidden="false" aria-label="Example edit icon" fontIcon="edit"></mat-icon>
+          </div>
       </div>
-      <div class="col-7 info-perfil">
-        <p class="username" style="margin-bottom: 20px;">{{ nombreUsuario }}</p>
-        <a class="rounded-pill bg-secondary text-black p-3 fw-bold" routerLink="/perfil/ver-perfil">Editar perfil</a>
+      <div class="container-fluid text-center px-0 d-flex flex-column justify-content-center w-90">
+        <h2 class="m-0">Nombre: </h2>
+        <h1 class="bg-secondary rounded-2">{{ nombreUsuario }}</h1>
       </div>
-     <div class="col-1 mx-auto arrow-perfil">
-      <a>
-        <mat-icon style="font-size: 33px;">chevron_right</mat-icon>
-      </a>
-     </div>
-    </div>
-    <div class="info-de-perfil mx-auto text-center mt-5">
-      <div class="col-10 mx-auto">
-        <p class="bg-secondary text-center rounded-4 py-2">{{ nombrePersona }} {{ apellidoPersona }}</p>
+      <div class="container-fluid text-center px-0 d-flex flex-column justify-content-center w-90">
+        <h2 class="m-0">Apellido: </h2>
+        <h1 class="bg-secondary rounded-2">{{ apellidoUsuario }}</h1>
       </div>
-      <div class="col-10 mx-auto text-center">
-        <p class="bg-secondary text-center rounded-4 py-2">Correo electrónico{{ correoUsuario }}</p>
+      <div class="container-fluid text-center d-flex flex-column justify-content-center w-90 px-0 mb-2">
+        <button class="bg-primary-darken d-flex justify-content-center align-items-center py-1 border-0 rounded-2" (click)="mostrarCardAgregar(contenidoAgregar)">
+          <i class="text-black bi bi-pencil-fill px-2"></i>
+          Cambiar Nombre y Apellido
+        </button>
       </div>
-      <div class="col-10 mx-auto text-center">
-        <p class="bg-secondary text-center rounded-4 py-2">[historial_eventos_creados_cuenta]</p>
+      <div class="container-fluid text-center p-0 d-flex flex-column justify-content-center w-90">
+        <h2 class="m-0">Correo: </h2>
+        <h1 class="bg-secondary rounded-2">{{ correoUsuario }}</h1>
       </div>
-      <div class="col-10 mx-auto text-center">
-        <p class="bg-secondary text-center rounded-4 py-2">[historial_participacion_eventos_cuenta]</p>
+      <div class="d-flex justify-content-center">
+        <button class="btn rounded-pill bg-black text-white text-center fw-bold" (click)="cartelCerrarSesion(cerrarSesion)">Cerrar Sesión</button>
       </div>
-    </div>
   </div>
 </div>
+
+
+
+
+<ng-template #contenidoAgregar let-modal>
+  <form [formGroup]="formulario">
+    <div class="modal-content border-0">
+  <div class="modal-header bg-primary">
+      <h2 class="modal-title text-black m-0 fw-bolder">Editar Perfil</h2>
+    </div>
+    <div class="modal-body bg-primary-darken">
+      <label class="container-fluid">
+        <p class="fw-bold text-white m-0">Nombre</p>
+        <input class="form-control border-0 bg-secondary text-black py-2" [value]="formulario.get('nombreUsuario')?.value" [formControlName]="'nombreUsuario'" type="text">
+      </label>
+      <label class="container-fluid">
+        <p class="fw-bold text-white m-0">Apellido</p>
+        <input class="form-control border-0 bg-secondary text-black py-2" [value]="formulario.get('apellidoUsuario')?.value" [formControlName]="'apellidoUsuario'" type="text">
+      </label>
+    </div>
+    <div class="modal-footer bg-primary">
+      <button type="button" class="btn btn-outline-danger" (click)='modal.dismiss()'>Cerrar</button>
+      <button class="btn btn-success" (click)="validarYCerrarModal()? modal.close(contenidoAgregar) : null">Guardar</button> <!--modal.validarYCerrarModal(componenteCrearRecurso);-->
+    </div>
+  </div>
+</form>
+</ng-template>
+
+<ng-template #errorModalContent let-modal >
+  <div class="modal-body bg-warning">
+    <h2 class="m-0 text-dark">¡Atención!</h2>
+  </div>
+  <div class="container-fluid modal-footer bg-primary rounded-bottom">
+    <div class="row">
+      <h3 class="text-black text-center px-0">Por favor, complete los campos que quedaron incompletos 🙂</h3>
+      <button type="button" class="btn btn-outline-warning" (click)="modal.close(errorModalContent)">Cerrar</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #cerrarSesion let-modal>
+  <div class="modal-content border-0">
+    <div class="modal-header bg-primary">
+      <h2 class="modal-title m-0 text-black fw-bolder">¿Cerrar Sesion?</h2>
+    </div>
+    <div class="modal-footer bg-secondary">
+      <button type="button" class="btn btn-outline-danger" (click)='modal.dismiss()'>Cerrar</button>
+      <button class="btn btn-warning" (click)="modal.close()">Seguro</button>
+    </div>
+  </div>
+</ng-template>
