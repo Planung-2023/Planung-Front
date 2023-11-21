@@ -115,6 +115,13 @@ export class ListaEventosComponent implements OnInit {
     ];
   }
 
+  aceptarInvitado(asistente: any, evento: any){
+    console.log(asistente);
+    var data = {
+      estaAceptado: true,
+    }
+    this.listaEventosService.aceptarInvitado(evento, asistente, data).subscribe();
+  }
 // Métodos para mostrar pop-ups
   showPopupInvitado(invitado: any, evento: Evento) {
     this.invitadoSeleccionado = invitado;
@@ -169,6 +176,16 @@ export class ListaEventosComponent implements OnInit {
     this.invitacionControlService.showPopup();
   }
 
+  showPopupRechazarInvitado(modal: any, invitado: any, evento: any){
+    const modalRef = this.modal.open(modal, { centered: true, size: 'sm'});
+    modalRef.result.then(
+      (result: any) => {
+          this.listaEventosService.eliminarInvitado(evento, invitado).subscribe();
+        },
+        
+      (reason: any) => {}
+    );
+  }
 //Sesgos para la visualización
   formatearHora(hora: string): string {
       return hora.slice(0, 5);
@@ -315,6 +332,7 @@ interface Asistente {
   activo: boolean;
   participante: Participante;
   rol: Rol;
+  estaAceptado: boolean;
   esAdministrador: boolean;
 }
 
