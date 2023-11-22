@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, Output} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { Observable } from 'rxjs';
@@ -7,15 +7,20 @@ import { Observable } from 'rxjs';
   providedIn: "root",
 })
 export class ConfiguracionService {
-  constructor(private http: HttpClient) { }
-  temaClaro: boolean = false //en false, el tema predeterminado es oscuro
-  cambioDeTema = new EventEmitter<boolean>();
+  @Output() traerTema = new EventEmitter<string>();
+  tema: string //en false, el tema predeterminado es oscuro
+
+  constructor(private http: HttpClient) {
+    this.tema = localStorage.getItem('evento_tema') == null? 'dark': localStorage.getItem('evento_tema')!!;
+    this.traerTema.emit(this.tema);
+   }
   getDatosUsuarioPorAuth(authIdentifier: string): Observable<any> {
-    return this.http.get(`${environment.url}/usuarios/token/usuario`, {});
+    return this.http.get(`${environment.url}/usuarios/token/usuario`)
   }
-  cambiarTema(tema: boolean): void {
-    this.temaClaro = tema;
-    this.cambioDeTema.emit(this.temaClaro); // Emitir el evento de cambio de tema
+  pasarInfo(modo: string){
+    this.tema= modo
+    localStorage.setItem('evento_tema', modo);
+    this.traerTema.emit(modo)
   }
-  
+
 }

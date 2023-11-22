@@ -1,27 +1,27 @@
 <div class="fondo padding-header-footer d-flex justify-content-center w-100">
     <div class="container-fluid w-90">
         <div class="row">
-            <h1 *ngIf="evento?.tipoEvento === 'aprobacion'" class="text-center color-opuesto fw-bold">Solicitud de unión a evento</h1>
-            <h1 *ngIf="evento?.tipoEvento === 'directa'" class="text-center color-opuesto fw-bold">¿Desea unirse al siguiente evento?</h1>
+            <h1  class="text-center color-opuesto fw-bold">Solicitud de unión a evento</h1><!--*ngIf="evento?.tipoEvento === 'aprobacion'"-->
+            <h1  class="text-center color-opuesto fw-bold">¿Desea unirse al siguiente evento?</h1><!--*ngIf="evento?.tipoEvento === 'directa'"-->
         </div>
         <div class="row bg-primary rounded-4 justify-content-center">
             <div class="row mt-3 mb-2 align-items-center">
                 <h2 class="col-4 mb-0 fw-bold">Evento</h2>
-                <p class="col mb-0 bg-secondary p-2 rounded-3 text-end">{{evento.nombre}}</p>
+                <p class="col mb-0 bg-secondary p-2 rounded-3 text-end"></p><!--{{evento.nombre}}-->
             </div>
             <div class="row my-2 align-items-center">
                 <h2 class="col-4 mb-0 fw-bold">Creador</h2>
-                <p class="col mb-0 bg-secondary p-2 rounded-3 text-end">{{evento.creador}}</p>
+                <p class="col mb-0 bg-secondary p-2 rounded-3 text-end"></p><!--{{evento.creador}}-->
             </div>
             <div class="row my-2">
                 <h2 class="col text-center mb-0 fw-bold">Descripción del evento</h2>
             </div>
             <div class="row">
-                <p class="col justify-content-center mb-0 bg-secondary p-2 rounded-3 text-center">{{evento.descripcion}}</p>
+                <p class="col justify-content-center mb-0 bg-secondary p-2 rounded-3 text-center"></p><!--{{evento.descripcion}}-->
             </div>
             <div class="row mt-4 mb-3">
-                <button *ngIf="evento?.tipoEvento === 'directa'" class="border-0 btn btn-info rounded-pill col fw-bold" (click)="unirseEvento(evento.id)">Unirse al Evento</button>
-                <button *ngIf="evento?.tipoEvento === 'aprobacion'" class="border-0 btn btn-info rounded-pill col fw-bold" (click)="unirseEvento(evento.id)">Solicitar Unirse al Evento</button>
+                <button  class="border-0 btn btn-info rounded-pill col fw-bold" >Unirse al Evento</button><!--*ngIf="evento?.tipoEvento === 'directa'"  (click)="unirseEvento(evento.id)"-->
+                <button  class="border-0 btn btn-info rounded-pill col fw-bold" >Solicitar Unirse al Evento</button><!--*ngIf="evento?.tipoEvento === 'aprobacion'"  (click)="unirseEvento(evento.id)"-->
             </div>
         </div>
     </div>
