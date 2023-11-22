@@ -8,6 +8,7 @@ export class InvitacionControlService {
   private eventoIdSource = new BehaviorSubject<string>('');
   eventoId$ = this.eventoIdSource.asObservable();
   isVisible = false;
+  evento: any;
 
   showPopup() {
     this.isVisible = true;

@@ -60,7 +60,7 @@ export class ListaEventosComponent implements OnInit {
     this.listaEventosService.getUsuarioId(localStorage.getItem("evento_usuario_id")).subscribe(({usuario}: any) => {
       this.usuario = usuario;
     });
-    
+    this.recuperarEventos();
     this.recursoService.tiposDeRecursos().subscribe({
       next: v => {
         this.tiposDeRecursos = v;
@@ -71,7 +71,7 @@ export class ListaEventosComponent implements OnInit {
       },
       complete: () => {},
     });
-    this.recuperarEventos();
+    
     const swiper = new Swiper('.swiper-container', {
       slidesPerView: 1,
       spaceBetween: 10,
@@ -110,7 +110,6 @@ private recuperarEventos() {
           e.asistentes?.some(a => a.participante.usuario.id === this.usuario?.id && a.estaAceptado)
         );
 
-        console.log(estaAceptado);
         this.eventos = estaAceptado;
       });
     });

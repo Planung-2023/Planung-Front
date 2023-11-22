@@ -37,7 +37,7 @@
       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvpyvaW8UylnXWof2sdHjfObxsbNuBZIE"></script>
 
       <div class="swiper-wrapper d-flex align-items-center">
-          <div class="overflow-x-hidden swiper-slide rounded-4 px-2 bg-primary shadow" *ngFor="let evento of eventos">
+          <div class="swiper-slide overflow-x-hidden rounded-4 px-2 bg-primary shadow" *ngFor="let evento of eventos">
             <h1 class="text-center m-3 fw-bold">{{ evento.nombre }}</h1>
             <div class="container-texto container-fluid">
               <p class="p-1 my-0 mx-1"><strong>Fecha:</strong> {{ evento.fecha |date:"dd/MM/yyyy" }}</p>
@@ -115,13 +115,16 @@
                           <button *ngIf="asistente.estaAceptado === true" mat-icon-button class="ver-participante-button" (click)="showPopupInvitado(asistente.participante, evento)">
                             <i class="bi bi-eye-fill fs-4"></i>
                           </button>
-                          <div *ngIf="asistente.estaAceptado === false">
+                          <div *ngIf="asistente.estaAceptado === false && esAdministrador(evento)">
                             <button  mat-icon-button class="ver-participante-button text-success" (click)="aceptarInvitado(asistente, evento)">
                               <i class="bi bi-check fs-4"></i>
                             </button>
                             <button mat-icon-button class="ver-participante-button text-danger" (click)="showPopupRechazarInvitado(rechazarInvitado, asistente, evento)">
                               <i class="bi bi-x fs-4"></i>
                             </button>
+                          </div>
+                          <div *ngIf="asistente.estaAceptado === false && !esAdministrador(evento)" class="text-danger">
+                            Pendiente
                           </div>
                         </div>
                       </li>
