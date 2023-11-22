@@ -69,12 +69,3 @@ export class ConfiguracionComponent implements OnInit {
     this.auth.logout();
   }
 }
-
-
-
-interface Participante {
-  id: number;
-  apellido: string;
-  mail: string;
-  nombre: string;
-}

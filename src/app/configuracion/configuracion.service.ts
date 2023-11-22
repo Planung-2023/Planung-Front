@@ -22,5 +22,5 @@ export class ConfiguracionService {
     localStorage.setItem('evento_tema', modo);
     this.traerTema.emit(modo)
   }
-  
+
 }
