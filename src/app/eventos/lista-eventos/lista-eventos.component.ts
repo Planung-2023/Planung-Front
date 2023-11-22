@@ -189,8 +189,8 @@ private recuperarEventos() {
     }
   }
 
-  showPopupInvitacion(evento: any) {
-    this.invitacionControlService.evento = evento;
+  showPopupInvitacion(eventoId: string) {
+    this.invitacionControlService.setEventoId(eventoId);
     this.invitacionControlService.showPopup();
     
   }

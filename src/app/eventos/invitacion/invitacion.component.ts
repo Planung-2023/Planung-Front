@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { InvitacionControlService } from '../invitacion-control.service';
-import { enviromentFront } from 'src/environments/environment.development';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-invitacion',
@@ -8,20 +8,33 @@ import { enviromentFront } from 'src/environments/environment.development';
   styleUrls: ['./invitacion.component.css']
 })
 
-export class InvitacionComponent {
+export class InvitacionComponent implements OnInit, OnDestroy {
+  eventoId = '123';
+  eventoIdSubscription!: Subscription;
+
   constructor(public invitacionControlService: InvitacionControlService) {}
 
-  getLinkEvento(): string {
-    var evento= this.invitacionControlService.evento;
-    return `${enviromentFront.url}/unirse-evento`;
+  ngOnInit() {
+    this.eventoIdSubscription = this.invitacionControlService.eventoId$.subscribe(
+      (eventoId) => {
+        this.eventoId = eventoId;
+      }
+    );
   }
 
+  ngOnDestroy() {
+    this.eventoIdSubscription.unsubscribe();
+  }
+
+  getLinkEvento(eventoId: string): string {
+    return `http://localhost:4200/unirse-evento?eventoId=${encodeURIComponent(eventoId)}`;
+  }
   closePopup() {
     this.invitacionControlService.closePopup();
   }
 
   copyToClipboard() {
-    const link = this.getLinkEvento();
+    const link = this.getLinkEvento(this.eventoId);
 
     // Crear un elemento de texto temporal y copiar el enlace
     const textArea = document.createElement('textarea');
