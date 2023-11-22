@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 })
 
 export class InvitacionComponent implements OnInit, OnDestroy {
-  eventoId = '123';
+  eventoId = '';
   eventoIdSubscription!: Subscription;
 
   constructor(public invitacionControlService: InvitacionControlService) {}
