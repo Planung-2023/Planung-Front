@@ -76,7 +76,7 @@ export class RecursosService {
   }
 
   deleteAsignaciones(asignacion:any){
-    return this.http.delete(`${ environment.url }/asignacion-recurso/${asignacion.id}`, asignacion)
+    return this.http.delete(`${ environment.url }/asignacion-recurso/${asignacion.id}`)
   }
 }
 

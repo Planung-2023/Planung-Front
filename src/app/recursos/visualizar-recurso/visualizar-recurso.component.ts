@@ -144,7 +144,6 @@ export class VisualizarRecursoComponent implements OnInit {
 
   guardarRecurso(recurso: Recurso) {
     this.RecursoService.actualizarRecurso(recurso).subscribe();
-      
     this.mostrarMensajeGuardadoExitoso();
   }
 
@@ -244,14 +243,16 @@ export class VisualizarRecursoComponent implements OnInit {
             (asignaciones: Asignaciones[] | any) => {
               this.asignaciones = asignaciones;
               console.log('Asignaciones', this.asignaciones);
+              this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);
             }
           );
 
           this.guardarRecurso(this.recurso);
+          
         });
       }
     }
-    this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);;
+    this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);
   }
   agregarTodosLosRecursos(){
     if(this.recurso.cantidadActual<this.recurso.cantidadNecesaria){
@@ -280,10 +281,13 @@ export class VisualizarRecursoComponent implements OnInit {
   quitarRecurso(){
     this.recurso.cantidadActual -= this.asignaciones[this.index].cantidad;
     this.asignaciones[this.index].id;
-    this.RecursoService.deleteAsignaciones(this.asignaciones[this.index]).subscribe();
-    this.asignaciones.splice(this.index);
-    this.guardarRecurso(this.recurso);
-    this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);
+    this.RecursoService.deleteAsignaciones(this.asignaciones[this.index]).subscribe(()=>{
+      this.asignaciones.splice(this.index);
+      this.guardarRecurso(this.recurso);
+      this.index = this.asignaciones.findIndex(a => a.asistente?.participante.usuario.id === this.usuario?.id);
+    });
+    this.mostrarMensajeGuardadoExitoso();
+    
   }
 }
 

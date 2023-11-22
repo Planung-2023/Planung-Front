@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ConfiguracionService } from './configuracion.service';
 import { AuthService } from '@auth0/auth0-angular';
 import { PerfilService } from '../perfil/perfil.service';
@@ -12,12 +12,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 
 export class ConfiguracionComponent implements OnInit {
-
   usuario: any;
   user: any;
   correoParticipante: string = '';
   nombreUsuario: string = ''; // Agrega esta propiedad
   correoUsuario: any;
+  temaClaroActivado= this.configuracionService.tema=='light';
 
   constructor(
     private modal: NgbModal,
@@ -27,17 +27,23 @@ export class ConfiguracionComponent implements OnInit {
     ){} // Inyecta el servicio
 
   cambiarModo(event: MatSlideToggleChange) {
+    var modo = '';
     if (event.checked) {
-      this.configuracionService.temaClaro = true;
-      localStorage.setItem('evento_tema_claro', 'true')
+      modo = 'light';
     } else { 
-      this.configuracionService.temaClaro = false;
-      localStorage.setItem('evento_tema_claro', 'false')
+      modo = 'dark';
     }
+    this.configuracionService.pasarInfo(modo);
   }
 
   ngOnInit() {
     this.getDatosUsuarioPorAuth(localStorage.getItem("evento_usuario_id"));
+    this.configuracionService.traerTema.subscribe((modo:string)=>{
+      if(modo=='light'){
+        this.temaClaroActivado=true
+      }
+      else this.temaClaroActivado=false
+    })
   }
 
  getDatosUsuarioPorAuth(authIdentifier: any) {
@@ -45,7 +51,6 @@ export class ConfiguracionComponent implements OnInit {
       this.usuario = usuario;
       this.nombreUsuario = usuario.nombreUsuario;
       this.correoUsuario = usuario.email;
-      console.log('Detalles del usuario:', usuario);
     });
   }
 
