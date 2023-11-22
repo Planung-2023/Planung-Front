@@ -157,15 +157,8 @@ crearEvento(){
   });
   
   console.log(datosOrdenados.value);
-  this.service.crearEvento(datosOrdenados.value).subscribe({
-    next: (v:any) => {
-    },
-    error: (e:any) => {
-      console.log(e);
-    },
-    complete: () => {
-      
-    },
+  this.service.crearEvento(datosOrdenados.value).subscribe(()=>{
+    this.navegarAEventos();
   });
   
 }

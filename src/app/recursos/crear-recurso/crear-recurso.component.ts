@@ -27,7 +27,6 @@ export class CrearRecursoComponent implements OnInit {
     }
   }
   llenarFormulario(recurso: any) {
-    console.log('Llenando formulario con:', recurso);
     this.formulario.patchValue({
       nombre: recurso.nombre,
       descripcion: recurso.descripcion,

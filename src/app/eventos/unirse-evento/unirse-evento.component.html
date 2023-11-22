@@ -1,47 +1,29 @@
-<nav class="navbar navbar-expand-lg col-md-12" style="background-color: #262626">
-    <div class="container-fluid">
-        <button mat-icon-button style="background-color: #5a5a5a; color: white;" class="" type="button" routerLink="">
-          <mat-icon>arrow_back</mat-icon>
-        </button>
-    </div>
-  </nav>
-
-<div *ngIf="evento?.tipoEvento === 'aprobacion'; else directa">
-    <h2 class="col-8 mx-auto text-center tituloUnionEvento"><strong>¿Desea solicitar unirse al siguiente evento?</strong></h2>
-</div>
-<ng-template #directa>
-    <div #directa>
-        <h2 class="text-center tituloUnionEvento"><strong>¿Desea unirse al siguiente evento?</strong></h2>
-    </div>
-</ng-template>
-
-<div class="lista-eventos-container text-center">
-    <div class="row info-container">
-        <div>
-            <h2 style="color: white;">Nombre del evento</h2>
-            <h2 class="evento-nombre">{{evento.nombre}}</h2>
+<div class="fondo padding-header-footer d-flex justify-content-center w-100">
+    <div class="container-fluid w-90">
+        <div class="row">
+            <h1 *ngIf="evento?.tipoEvento === 'aprobacion'" class="text-center color-opuesto fw-bold">Solicitud de unión a evento</h1>
+            <h1 *ngIf="evento?.tipoEvento === 'directa'" class="text-center color-opuesto fw-bold">¿Desea unirse al siguiente evento?</h1>
         </div>
-    </div>
-    <div class="row info-container">
-        <div>
-            <h2 style="color: white">Creador del evento</h2>
-            <h2 class="evento-creador">{{evento.creador}}</h2>
-        </div>
-    </div>
-    <div class="row info-container">
-        <div>
-            <h2 style="color: white">Descripción del evento</h2>
-            <p class="evento-descripcion">{{evento.descripcion}}</p>
-        </div>
-    </div>
-    <div class="row">
-        <div *ngIf="evento?.tipoEvento === 'directa'; else aprobacion" class="evento-botones mx-auto">
-            <button class="boton-usuario col-12" (click)="unirseEvento(evento.id)">Unirse al Evento</button>
-        </div>
-        <ng-template #aprobacion>
-            <div #aprobacion class="evento-botones mx-auto">
-                <button class="boton-usuario col-12 mx-auto" (click)="unirseEvento(evento.id)">Solicitar Unirse al Evento</button>
+        <div class="row bg-primary rounded-4 justify-content-center">
+            <div class="row mt-3 mb-2 align-items-center">
+                <h2 class="col-4 mb-0 fw-bold">Evento</h2>
+                <p class="col mb-0 bg-secondary p-2 rounded-3 text-end">{{evento.nombre}}</p>
             </div>
-        </ng-template>
+            <div class="row my-2 align-items-center">
+                <h2 class="col-4 mb-0 fw-bold">Creador</h2>
+                <p class="col mb-0 bg-secondary p-2 rounded-3 text-end">{{evento.creador}}</p>
+            </div>
+            <div class="row my-2">
+                <h2 class="col text-center mb-0 fw-bold">Descripción del evento</h2>
+            </div>
+            <div class="row">
+                <p class="col justify-content-center mb-0 bg-secondary p-2 rounded-3 text-center">{{evento.descripcion}}</p>
+            </div>
+            <div class="row mt-4 mb-3">
+                <button *ngIf="evento?.tipoEvento === 'directa'" class="border-0 btn btn-info rounded-pill col fw-bold" (click)="unirseEvento(evento.id)">Unirse al Evento</button>
+                <button *ngIf="evento?.tipoEvento === 'aprobacion'" class="border-0 btn btn-info rounded-pill col fw-bold" (click)="unirseEvento(evento.id)">Solicitar Unirse al Evento</button>
+            </div>
+        </div>
     </div>
-</div>
+  </div>
+  

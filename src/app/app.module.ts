@@ -29,6 +29,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {} from 'googlemaps';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SpinnerComponent } from './loader/spinner/spinner.component';
+import { PerfilModule } from './perfil/perfil.module';
+import { PerfilComponent } from './perfil/perfil/perfil.component';
 
 @NgModule({
   declarations: [

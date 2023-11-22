@@ -1,8 +1,9 @@
 $success: #08A44D;
 $danger: #C72020;
 $warning: #FFD003;
-$primary: #D45113;
-$secondary: #F8DDA4;
+$primary: #EDAE49;
+$secondary: #F9DF74;
+$info: #089fa4;
 @import "/node_modules/bootstrap/scss/bootstrap";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
@@ -21,7 +22,7 @@ $contraste: var(--bs-body-color);
 }
 
 html, body, app-root{
-    height: 100% !important;
+    height: 100vh !important;
     background-color: $fondo !important;
 }
 
@@ -29,7 +30,7 @@ html, body, app-root{
     height: 100% !important;
     background-color: $fondo !important;
 }
-
+ 
 .tarjeta{
     background-color: $tarjeta !important;
 }
@@ -44,7 +45,7 @@ label input[type=radio]:checked + i, label input[type=radio]:checked + img{
 }
 
 .bg-primary-darken{
-    background-color: darken($primary, 15%);
+    background-color: darken($primary, 10%);
 }
 
 

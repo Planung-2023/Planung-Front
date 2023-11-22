@@ -74,6 +74,10 @@ export class RecursosService {
   actualizarAsignaciones(asignacion:any){
     return this.http.put(`${ environment.url }/asignacion-recurso/${asignacion.id}`, asignacion)
   }
+
+  deleteAsignaciones(asignacion:any){
+    return this.http.delete(`${ environment.url }/asignacion-recurso/${asignacion.id}`, asignacion)
+  }
 }
 
 interface RecursoApi {

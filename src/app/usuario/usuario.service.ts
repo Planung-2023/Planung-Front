@@ -11,7 +11,6 @@ export class UsuarioService{
   ) { 
     this.authIdentifier = auth0.user$.subscribe((user) => {
       this.authIdentifier = user?.sub,
-      console.log(this.authIdentifier),
       localStorage.setItem('evento_usuario_id', this.authIdentifier)
     }) 
   }
