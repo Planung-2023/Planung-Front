@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { InvitacionControlService } from '../invitacion-control.service';
+import { enviromentFront } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-invitacion',
@@ -11,7 +12,8 @@ export class InvitacionComponent {
   constructor(public invitacionControlService: InvitacionControlService) {}
 
   getLinkEvento(): string {
-    return 'http://localhost:4200/unirse-evento';
+    var evento= this.invitacionControlService.evento;
+    return `${enviromentFront.url}/unirse-evento`;
   }
 
   closePopup() {

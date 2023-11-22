@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class InvitacionControlService {
   isVisible = false;
+  evento: any;
 
   showPopup() {
     this.isVisible = true;

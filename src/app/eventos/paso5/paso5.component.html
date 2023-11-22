@@ -110,7 +110,7 @@
                     <!--Objetos-->
                     <div class="row">
                         <div class="col-4 p-1">
-                            <p class="d-flex h-100 w-100 align-items-center text-start rounded-2 p-2 text-white fw-bold bg-primary-darken">Objetos</p>
+                            <p class="d-flex h-100 w-100 align-items-center text-start rounded-2 p-2 text-white fw-bold bg-primary-darken">Recursos</p>
                         </div>
                         <div class="col-7 p-1">
                               <p *ngIf="datos?.paso4?.recursos?.length == 0" class="bg-secondary rounded-2 text-center text-black h-100 d-flex align-items-center justify-content-center m-0 p-0">No hay Recursos</p>
@@ -124,7 +124,7 @@
 
                     <!--Boton Crear-->
                     <div class="row">
-                        <button mat-stroked-button class="col border-0 btn btn-success" (click)="crearNuevoEvento(); irAListaEventos()">
+                        <button mat-stroked-button class="col border-0 btn btn-success" (click)="crearNuevoEvento()">
                             Crear Evento
                         </button>
                     </div>
