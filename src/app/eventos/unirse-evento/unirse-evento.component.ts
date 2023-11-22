@@ -6,6 +6,7 @@ import { Observable, EMPTY } from 'rxjs';
 import { Time } from '@angular/common';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-unirse-evento',
   templateUrl: './unirse-evento.component.html',
@@ -15,6 +16,7 @@ export class UnirseEventoComponent implements OnInit {
   evento$: Observable<Evento> = EMPTY;
   eventoNuevo: Evento | undefined; // Cambiado a opcional
   usuario: Usuario | undefined;
+
 
   constructor(
     public auth0: AuthService,
@@ -29,24 +31,21 @@ export class UnirseEventoComponent implements OnInit {
       console.log('ID del evento recibido:', eventoIdRecibido);
 
       // Suscribirse al observable evento$ y asignar los datos al evento directo
-      this.evento$ = this.listaEventoService.getEventoByID(eventoIdRecibido);
-      this.evento$.subscribe((respuesta: any) => {
-        console.log('Respuesta del servicio:', respuesta);
-      
-        if (respuesta && respuesta.evento) {
-          this.eventoNuevo = respuesta.evento;
-          console.log('Evento actual:', this.eventoNuevo);
-        } else {
-          console.error('La respuesta del servicio no contiene un evento válido.');
-        }
+      this.auth0.user$.subscribe((user) => {
+        this.evento$ = this.listaEventoService.getEventoByID(eventoIdRecibido);
+        this.evento$.subscribe((respuesta: any) => {
+          console.log('Respuesta del servicio:', respuesta);
+        
+          if (respuesta && respuesta.evento) {
+            this.eventoNuevo = respuesta.evento;
+            console.log('Evento actual:', this.eventoNuevo);
+          } else {
+            console.error('La respuesta del servicio no contiene un evento válido.');
+          }
+        });
+            
       });
-          
-    });
-
-    this.listaEventoService.getUsuarioId(localStorage.getItem("evento_usuario_id")).subscribe(({ usuario }: any) => {
-      this.usuario = usuario;
-      console.log(usuario);
-    });
+      })
   }
 
   unirseEvento() {
