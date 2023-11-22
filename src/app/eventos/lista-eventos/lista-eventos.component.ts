@@ -11,6 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MapDialogComponent } from './map-dialog/map-dialog.component';
 import { AuthService } from '@auth0/auth0-angular';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { forkJoin } from 'rxjs';
+import { presentador } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-lista-eventos',
@@ -21,7 +23,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class ListaEventosComponent implements OnInit {
   invitadoSeleccionado: string = '';
   usuario: Usuario|undefined;
-  eventos: any[] = [];
+  eventos: Evento[] = [];
   recursos: Recurso[] = [];
   tiposDeRecursos: any = [];
   asistentes: Asistente[] = [];
@@ -58,7 +60,7 @@ export class ListaEventosComponent implements OnInit {
     this.listaEventosService.getUsuarioId(localStorage.getItem("evento_usuario_id")).subscribe(({usuario}: any) => {
       this.usuario = usuario;
     });
-    
+    this.recuperarEventos();
     this.recursoService.tiposDeRecursos().subscribe({
       next: v => {
         this.tiposDeRecursos = v;
@@ -69,7 +71,7 @@ export class ListaEventosComponent implements OnInit {
       },
       complete: () => {},
     });
-    this.recuperarEventos();
+    
     const swiper = new Swiper('.swiper-container', {
       slidesPerView: 1,
       spaceBetween: 10,
@@ -78,26 +80,41 @@ export class ListaEventosComponent implements OnInit {
         prevEl: '.swiper-button-prev',
       },
     });
+    
   }
 
 //Traer Eventos
-  private recuperarEventos() {
-    this.listaEventosService.getEventos(this.usuario?.id).subscribe(data => {
-      this.eventos = data;
-      this.eventos.forEach(evento => this.listaEventosService.getRecursosByEventoId(evento.id).subscribe(
-        (data: Recurso[]) => {
-          evento.recursos = data;
-        }
-      ))
-  
-      this.eventos.forEach(evento => this.listaEventosService.getAsistentes(evento.id).subscribe(
-        (data: Asistente[]) => {
-          
-          evento.asistentes = data;
-      }))
-    }
+private recuperarEventos() {
+  this.listaEventosService.getEventos(this.usuario?.id).subscribe(data => {
+    this.eventos = data;
+
+    const recursosObservables = this.eventos.map(evento =>
+      this.listaEventosService.getRecursosByEventoId(evento.id)
     );
-  }
+
+    const asistentesObservables = this.eventos.map(evento =>
+      this.listaEventosService.getAsistentes(evento.id)
+    );
+
+    forkJoin(recursosObservables).subscribe(recursosData => {
+      recursosData.forEach((recursos, index) => {
+        this.eventos[index].recursos = recursos;
+      });
+
+      forkJoin(asistentesObservables).subscribe(asistentesData => {
+        asistentesData.forEach((asistentes, index) => {
+          this.eventos[index].asistentes = asistentes;
+        });
+
+        const estaAceptado = this.eventos.filter(e =>
+          e.asistentes?.some(a => a.participante.usuario.id === this.usuario?.id && a.estaAceptado)
+        );
+
+        this.eventos = estaAceptado;
+      });
+    });
+  });
+}
 
 //Traer tipo recursos
   nombreTipoRecursoSegunId(id: string|number) {
@@ -172,8 +189,10 @@ export class ListaEventosComponent implements OnInit {
     }
   }
 
-  showPopupInvitacion() {
+  showPopupInvitacion(eventoId: string) {
+    this.invitacionControlService.setEventoId(eventoId);
     this.invitacionControlService.showPopup();
+    
   }
 
   showPopupRechazarInvitado(modal: any, invitado: any, evento: any){
@@ -187,14 +206,17 @@ export class ListaEventosComponent implements OnInit {
     );
   }
 //Sesgos para la visualización
-  formatearHora(hora: string): string {
-      return hora.slice(0, 5);
+  formatearHora(hora: string){
+      return hora.slice(0, -3);;
     }
 
   esAdministrador(evento:Evento){
     return evento.asistentes?.find(a => a.participante.usuario.id === this.usuario?.id)?.esAdministrador; 
   }
 
+  usuarioEstaAceptado(evento: Evento){
+    return evento.asistentes?.find(a => a.participante.usuario.id === this.usuario?.id)?.estaAceptado;
+  }
 
   redireccionarCrearEvento(): void {
     this.router.navigate(['/eventos', 'crear']);
@@ -208,6 +230,10 @@ export class ListaEventosComponent implements OnInit {
 
   irANotificaciones(): void {
     this.router.navigate(['/notificaciones']);
+  }
+
+  irAPresentador(): void {
+    window.open(`${presentador.url}`);
   }
 
   visualizarRecurso(evento: any, recurso: Recurso): void {
@@ -275,14 +301,15 @@ interface Evento {
   nombre: string;
   creador: Participante;
   fecha: Date;
-  horaInicio: Date;
-  horaFin: Date;
+  horaInicio: any;
+  horaFin: any;
   ubicacion: ubicacion;
   calle: string;
   altura: number;
   tipoEvento: string;
   recursos: Recurso[];
   asistentes: Asistente[];
+  descripcion: string;
 }
 
 interface Usuario {
@@ -325,7 +352,8 @@ interface ubicacion{
   altura: number,
   localidad: string,
   latitud: number,
-  longitud: number
+  longitud: number,
+  ciudad: string
 }
 interface Asistente {
   id: number;

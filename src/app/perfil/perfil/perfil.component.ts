@@ -19,8 +19,8 @@ export class PerfilComponent implements OnInit {
   apellidoUsuario: string = '';
   usuario: any;
   formulario = new FormGroup({
-    nombreUsuario: new FormControl(this.nombreUsuario, [Validators.required]),
-    apellidoUsuario: new FormControl(this.apellidoUsuario, [Validators.required])
+    nombre: new FormControl(this.nombreUsuario, [Validators.required]),
+    apellido: new FormControl(this.apellidoUsuario, [Validators.required])
   });
   correoParticipante: string = '';
   fotoPerfilUsuario: string = '';
@@ -54,8 +54,9 @@ export class PerfilComponent implements OnInit {
     modalRef.result.then(
       (result: any) => {
         console.log(this.formulario.getRawValue())
-        this.perfilService.actualizarUsuario(this.usuario, this.formulario.getRawValue()).subscribe();
-        
+        this.perfilService.actualizarUsuario(this.usuario, this.formulario.getRawValue()).subscribe(()=>{
+          this.getUsuarioPorAuthIdentifier(localStorage.getItem("evento_usuario_id"))
+        });
       },
       (reason: any) => {}
     );
