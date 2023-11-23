@@ -117,3 +117,12 @@ button[aria-checked = "false"] .mdc-switch__handle::after{
     background-color: darken($secondary, 15%) !important;
 }
 
+app-lista-eventos .mat-expansion-indicator::after{
+    color: $contraste !important;
+}
+
+.mat-expansion-indicator::after{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
