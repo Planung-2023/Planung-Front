@@ -10,9 +10,9 @@ import { Evento } from './unirse-evento/unirse-evento.component';
   providedIn: 'root'
 })
 export class ListaEventosService {
-
-  constructor(private http: HttpClient) { }
   mail: string='';
+  constructor(private http: HttpClient) { }
+  
   getEventos(usuarioId:number|null = null): Observable<any> {
     const queryParams = usuarioId === null? undefined : { usuario_id: usuarioId };
 
@@ -48,15 +48,14 @@ export class ListaEventosService {
     return this.http.post(url,data);
   }
 
-  aceptarInvitado(evento: any, invitado: any, data: any){
-    return this.http.put(`${ environment.url }/eventos/${evento.id}/asistentes/${invitado.id}`, data)
+  aceptarInvitado(invitado: any, data: any){
+    console.log(data)
+    return this.http.put(`${ environment.url }/asistentes/${invitado.id}/cambiar-aceptacion`, data)
   }
 
   eliminarInvitado(evento: any, invitado: any){
-    var data = {
-      idAsistente: invitado.id
-    }
-    return this.http.delete(`${ environment.url }/asistentes/${data}`)
+    
+    return this.http.delete(`${ environment.url }/asistentes/${invitado.id}`)
   }
 }
 

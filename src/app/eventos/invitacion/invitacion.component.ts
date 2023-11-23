@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 export class InvitacionComponent implements OnInit, OnDestroy {
   eventoId = '';
   eventoIdSubscription!: Subscription;
-
+  usuario: any;
   constructor(public invitacionControlService: InvitacionControlService) {}
 
   ngOnInit() {

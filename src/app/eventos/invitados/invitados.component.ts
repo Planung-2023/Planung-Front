@@ -26,6 +26,7 @@ export class InvitadosComponent {
     }
     else this.usuarioAdmin = false;
     this.invitadosControlService.invitado.soyAdmin = this.usuarioAdmin;
+    console.log(this.invitadosControlService.invitado.soyAdmin)
   }
 
   guardarInvitado(){

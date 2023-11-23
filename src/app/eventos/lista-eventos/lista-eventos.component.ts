@@ -135,15 +135,18 @@ export class ListaEventosComponent implements OnInit {
   aceptarInvitado(asistente: any, evento: any){
     console.log(asistente);
     var data = {
-      estaAceptado: true,
+      nuevoEstado: true,
     }
-    this.listaEventosService.aceptarInvitado(evento, asistente, data).subscribe();
+    this.listaEventosService.aceptarInvitado(asistente, data).subscribe(()=>{
+      this.recuperarEventos();
+    });
   }
 // Métodos para mostrar pop-ups
   showPopupInvitado(invitado: any, evento: Evento) {
     this.invitadoSeleccionado = invitado;
     this.invitadosControlService.soyAdmin = this.esAdministrador(evento);
     this.invitadosControlService.invitado = invitado;
+    this.invitadosControlService.usuario = this.usuario;
     this.invitadosControlService.evento = evento;
     this.invitadosControlService.invitadoNombre = invitado.nombre;
     this.invitadosControlService.invitadoApellido = invitado.apellido;
