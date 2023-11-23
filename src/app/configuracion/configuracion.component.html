@@ -20,6 +20,9 @@
       </div>
     </div>
     <button class="btn rounded-pill bg-black text-white text-center fw-bold" (click)="cartelCerrarSesion(cerrarSesion)"><i class="bi bi-box-arrow-left align-items-center fs-3"><p class="ps-2 m-0 fst-normal fs-3">Cerrar sesión</p></i></button>
+    <button class="btn-a2hs"
+        type="button"
+        (click)="a2hs.addToHomeScreen(isPWA)" *ngIf="isPWA === false">Add Shortcut To Home/Apps Screen</button>
   </div>
   </div>
 </div>
