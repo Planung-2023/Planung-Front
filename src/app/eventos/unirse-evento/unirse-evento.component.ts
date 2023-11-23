@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, EMPTY } from 'rxjs';
 import { Time } from '@angular/common';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Creador } from 'src/app/recursos/visualizar-recurso/eventoInterface';
 import { PerfilService } from 'src/app/perfil/perfil.service';
 
@@ -17,18 +18,18 @@ export class UnirseEventoComponent implements OnInit {
   evento$: Observable<Evento> = EMPTY;
   eventoNuevo: Evento | undefined;
   usuario: Usuario | undefined;
-  accessToken: string | null = null; // Agrega una propiedad para almacenar el token
+  accessToken: string | null = null;
 
   constructor(
     public auth0: AuthService,
     private listaEventoService: ListaEventosService,
     private route: ActivatedRoute,
     private router: Router,
-    private perfilService: PerfilService
+    private perfilService: PerfilService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
-    // Obtiene el token de acceso del localStorage
     this.accessToken = localStorage.getItem('access_token');
 
     this.route.queryParams.subscribe(params => {
@@ -47,13 +48,33 @@ export class UnirseEventoComponent implements OnInit {
 
   unirseEvento() {
     if (this.accessToken) {
-      this.listaEventoService.unirseEvento(this.eventoNuevo!.id, this.accessToken).subscribe(res => {
-        console.log(res);
-        this.router.navigate(['/']);
-      });
+      this.listaEventoService.unirseEvento(this.eventoNuevo!.id, this.accessToken).subscribe(
+        (res: any) => {
+          console.log(res);
+          if (this.eventoNuevo?.tipoInvitacion === 'Por Aprobacion') {
+            this.mostrarSnackbar('Te has unido al evento. Esperando aceptación.');
+          } else if (this.eventoNuevo?.tipoInvitacion === 'Directa') {
+            this.mostrarSnackbar('Te has unido al evento exitosamente.');
+          } else {
+            console.error('Respuesta del backend no reconocida:', res);
+          }
+        },
+        (error: any) => {
+          console.error('Error al unirse al evento:', error);
+          this.mostrarSnackbar('Error al unirse al evento. Por favor, inténtalo nuevamente.');
+        }
+      );
     } else {
       console.error('No se encontró el token de acceso en el localStorage.');
     }
+  }
+
+  private mostrarSnackbar(mensaje: string): void {
+    this.snackBar.open(mensaje, 'Cerrar', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
   }
 }
 

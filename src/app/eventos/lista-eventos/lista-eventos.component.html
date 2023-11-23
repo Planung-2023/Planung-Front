@@ -137,7 +137,7 @@
             </div>
             <!-- Solo debería aparecer en casos específicos -->
             <div class="col-md-12 d-flex justify-content-center" *ngIf="esAdministrador(evento)">
-              <button (click)="showPopupInvitacion('{{evento.id}}')" class="btn btn-danger m-2 py-2 px-3 text-white rounded-4 fw-bold d-flex justify-content-center align-items-center">
+              <button (click)="showPopupInvitacion(evento.id.toString())" class="btn btn-danger m-2 py-2 px-3 text-white rounded-4 fw-bold d-flex justify-content-center align-items-center">
                 <i class="bi bi-person-plus-fill fs-3"></i>
                 <p class="m-0 ms-2">Invitar</p>
               </button>
