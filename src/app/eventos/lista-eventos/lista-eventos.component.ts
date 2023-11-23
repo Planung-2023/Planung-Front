@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import Swiper from 'swiper';
 import { ListaEventosService } from '../lista-eventos.service';
@@ -21,6 +21,7 @@ import { presentador } from 'src/environments/environment.development';
 })
 
 export class ListaEventosComponent implements OnInit {
+  @ViewChild('errorModalContent') errorModalContent: any;
   invitadoSeleccionado: string = '';
   usuario: Usuario|undefined;
   eventos: Evento[] = [];
@@ -186,8 +187,12 @@ export class ListaEventosComponent implements OnInit {
     if ( componenteCrearRecurso.formulario.valid) {
       return true;
     } else {
-      
-      console.log("ERROR");
+      this.modal.open(this.errorModalContent, { centered: true, size: 'md' }).result.then(
+        (result) => {
+        },
+        (reason) => {
+        }
+      )
       return false;
     }
   }

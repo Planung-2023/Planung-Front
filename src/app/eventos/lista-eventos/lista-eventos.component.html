@@ -187,3 +187,15 @@
       </div>
     </div>
   </ng-template>
+
+  <ng-template #errorModalContent let-modal >
+    <div class="modal-body bg-warning">
+      <h2 class="m-0 text-dark">¡Atención!</h2>
+    </div>
+    <div class="container-fluid modal-footer bg-primary rounded-bottom">
+      <div class="row">
+        <h3 class="text-black text-center px-0">Por favor, complete los campos que quedaron incompletos 🙂</h3>
+        <button type="button" class="btn btn-outline-warning" (click)="modal.close(errorModalContent)">Cerrar</button>
+      </div>
+    </div>
+  </ng-template>
