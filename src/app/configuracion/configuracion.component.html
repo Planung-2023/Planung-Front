@@ -1,7 +1,8 @@
 <!-- Configuracion -->
-<div #configuracion class="fondo h-100 overflow-x-hidden padding-navbar-inf">
-  <h1 class="color-opuesto text-center fw-bold pt-3">Configuración</h1>
-  <div class="container w-90 bg-primary rounded-5 p-4 shadow-lg">
+<div #configuracion class="fondo h-100 w-100 overflow-x-hidden padding-navbar-inf d-flex justify-content-center align-items-center">
+  <div class="container-fluid">
+    <h1 class="color-opuesto text-center fw-bold pt-3">Configuración</h1>
+  <div class="container-fluid w-90 bg-primary rounded-5 p-4 shadow-lg">
     <div class="d-flex align-items-center justify-content-between mb-3">
       <h2 class="mb-0">Cuenta:</h2>
       <p class="fs-6 mb-0">{{ correoUsuario }} ({{ nombreUsuario }})</p>
@@ -18,16 +19,8 @@
         <mat-slide-toggle class="bg-secondary p-2 rounded-3" (change)="cambiarModo($event)" [(ngModel)]="temaClaroActivado"></mat-slide-toggle>
       </div>
     </div>
-    <div>
-      <h2>Acerca de:</h2>
-      <h3>Versión</h3>
-      <h3>Terminos y condiciones</h3>
-      <h3>Politica de privacidad</h3>
-      <h3>Ayuda / FAQ</h3>
-      <h3>Estilos realizados por Lautaro Alvarez y Federico Madrid 🗿🗿</h3>
-    </div>
-      <h2>Otro</h2>
-      <button class="btn rounded-pill bg-black text-white text-center fw-bold" (click)="cartelCerrarSesion(cerrarSesion)"><i class="bi bi-box-arrow-left align-items-center fs-3"><p class="ps-2 m-0 fst-normal fs-3">Cerrar sesión</p></i></button>
+    <button class="btn rounded-pill bg-black text-white text-center fw-bold" (click)="cartelCerrarSesion(cerrarSesion)"><i class="bi bi-box-arrow-left align-items-center fs-3"><p class="ps-2 m-0 fst-normal fs-3">Cerrar sesión</p></i></button>
+  </div>
   </div>
 </div>
 
