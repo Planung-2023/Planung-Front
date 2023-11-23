@@ -42,8 +42,8 @@ export class UnirseEventoComponent implements OnInit {
       this.auth0.user$.subscribe((user) => {
         this.evento$ = this.listaEventoService.getEventoByID(eventoIdRecibido);
         this.evento$.subscribe((respuesta: any) => {
-          if (respuesta && respuesta.evento2) {
-            this.eventoNuevo = respuesta.evento2;
+          if (respuesta && respuesta.evento) {
+            this.eventoNuevo = respuesta.evento;
           }
         });
       });
