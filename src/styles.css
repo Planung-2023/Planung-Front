@@ -6,7 +6,7 @@
     font-style: normal;
 }
 
-html, .mat-typography h1, h2, h3, p, input, textarea, button, select, span{
+html, .mat-typography h1, h2, h3, p, input, textarea, button, select, span, div, label{
     font-family: Segoe UI, sans-serif !important;
 }
 
