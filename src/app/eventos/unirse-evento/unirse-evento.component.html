@@ -1,5 +1,6 @@
-<div class="fondo padding-header-footer d-flex justify-content-center w-100">
+<div class="align-items-center fondo padding-navbar-inf d-flex justify-content-center w-100">
     <div class="container-fluid w-90">
+        <h1 class="color-opuesto fw-bold text-center">Unirse a evento</h1>
         <div class="row">
             <h1 *ngIf="eventoNuevo?.tipoEvento === 'aprobacion'" class="text-center color-opuesto fw-bold">Solicitud de unión a evento</h1>
             <h1 *ngIf="eventoNuevo?.tipoEvento === 'directa'" class="text-center color-opuesto fw-bold">¿Desea unirse al siguiente evento?</h1>
@@ -7,11 +8,11 @@
         <div class="row bg-primary rounded-4 justify-content-center">
             <div class="row mt-3 mb-2 align-items-center">
                 <h2 class="col-4 mb-0 fw-bold">Evento</h2>
-                <p class="col mb-0 bg-secondary p-2 rounded-3 text-end">{{eventoNuevo?.nombre}}</p>
+                <p class="col mb-0 bg-secondary p-2 rounded-3 text-center">{{eventoNuevo?.nombre}}</p>
             </div>
             <div class="row my-2 align-items-center">
                 <h2 class="col-4 mb-0 fw-bold">Creador</h2>
-                <p class="col mb-0 bg-secondary p-2 rounded-3 text-end">{{eventoNuevo?.creador?.nombreUsuario}}</p>
+                <p class="col mb-0 bg-secondary p-2 rounded-3 text-center">{{eventoNuevo?.creador?.nombreUsuario}}</p>
             </div>
             <div class="row my-2">
                 <h2 class="col text-center mb-0 fw-bold">Descripción del evento</h2>
@@ -26,4 +27,3 @@
         </div>
     </div>
   </div>
-  
