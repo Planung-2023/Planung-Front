@@ -112,13 +112,13 @@
                         <button *ngIf="asistente.estaAceptado === true" mat-icon-button class="col-2 btn bg-none border-0 text-end" (click)="showPopupInvitado(asistente.participante, evento)">
                           <i class="bi bi-eye-fill fs-3"></i>
                         </button>
-                        <button *ngIf="asistente.estaAceptado === false && esAdministrador(evento)" mat-icon-button class="col-2 border-0 bg-none btn text-success m-0" (click)="aceptarInvitado(asistente, evento)">
+                        <button *ngIf="asistente.estaAceptado === false && esAdministrador(evento)" mat-icon-button class="col-2 border-0 bg-none btn text-success m-0 text-end" (click)="aceptarInvitado(asistente, evento)">
                           <i class="bi bi-check fs-3"></i>
                         </button>
-                        <button *ngIf="asistente.estaAceptado === false && esAdministrador(evento)" mat-icon-button class="col-2 border-0 btn bg-none text-danger m-0" (click)="showPopupRechazarInvitado(rechazarInvitado, asistente, evento)">
+                        <button *ngIf="asistente.estaAceptado === false && esAdministrador(evento)" mat-icon-button class="col-2 border-0 btn bg-none text-danger m-0 text-end" (click)="showPopupRechazarInvitado(rechazarInvitado, asistente, evento)">
                           <i class="bi bi-x fs-3"></i>
                         </button>
-                        <p *ngIf="asistente.estaAceptado === false && !esAdministrador(evento)" class="col-3 text-danger">Pendiente</p>
+                        <p *ngIf="asistente.estaAceptado === false && !esAdministrador(evento)" class="col-3 text-danger text-end">Pendiente</p>
                     </div>
                   </div>
                 </mat-panel-description>
