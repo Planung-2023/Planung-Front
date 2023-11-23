@@ -28,29 +28,7 @@ export class ConfiguracionComponent implements OnInit {
     private perfilService: PerfilService,
     public auth: AuthService,
     public a2hs: A2hsService
-    ){
-      // A2HS - START
-    a2hs.checkUserAgent();
-    a2hs.trackStandalone();
-    window.addEventListener('beforeinstallprompt', (e) => {
-
-      // show the add button
-      a2hs.promptIntercepted = true;
-      // Prevent Chrome 67 and earlier from automatically showing the prompt
-      // no matter what, the snack-bar shows in 68 (06/16/2018 11:05 AM)
-      e.preventDefault();
-      // Stash the event so it can be displayed when the user wants.
-      a2hs.deferredPrompt = e;
-      a2hs.promptSaved = true;
-
-    });
-    window.addEventListener('appinstalled', (evt) => {
-      a2hs.trackInstalled();
-      // hide the add button
-      // a2hs.promptIntercepted = false;
-    });
-    // A2HS - END
-    } // Inyecta el servicio
+    ){} // Inyecta el servicio
 
   cambiarModo(event: MatSlideToggleChange) {
     var modo = '';
@@ -71,6 +49,28 @@ export class ConfiguracionComponent implements OnInit {
       }
       else this.temaClaroActivado=false
     })
+    
+      // A2HS - START
+      this.a2hs.checkUserAgent();
+      this.a2hs.trackStandalone();
+      window.addEventListener('beforeinstallprompt', (e) => {
+  
+        // show the add button
+        this.a2hs.promptIntercepted = true;
+        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        // no matter what, the snack-bar shows in 68 (06/16/2018 11:05 AM)
+        e.preventDefault();
+        // Stash the event so it can be displayed when the user wants.
+        this.a2hs.deferredPrompt = e;
+        this.a2hs.promptSaved = true;
+  
+      });
+      window.addEventListener('appinstalled', (evt) => {
+        this.a2hs.trackInstalled();
+        // hide the add button
+        // a2hs.promptIntercepted = false;
+      });
+      // A2HS - END
   }
 
  getDatosUsuarioPorAuth(authIdentifier: any) {
