@@ -13,15 +13,15 @@ export class CambiarImagenComponent implements OnInit {
   nuevoIdFotoPerfil: number = 1;
   usuario: any;
   usuarioId: number = 5;
-  foto1='foto-perfil-pingüino.jpg';
-  foto2='foto1.jpg';
-  foto3='gigachad1.jpg';
-  foto4='chad1.jpeg';
-  foto5='girl-chad.jpg';
-  foto6='foto-perfil-6.jpg';
-  foto7='foto-perfil-5.jpg';
-  foto8='chad3.jpg';
-  foto9='foto-perfil-2.png';
+  foto1='foto1.jpg';
+  foto2='foto2.jpg';
+  foto3='foto3.jpg';
+  foto4='foto4.jpg';
+  foto5='foto5.jpg';
+  foto6='foto6.jpg';
+  foto7='foto7.jpg';
+  foto8='foto8.jpg';
+  foto9='foto9.jpg';
 
   constructor(private perfilService: PerfilService, public auth: AuthService, private router: Router) {
   }
