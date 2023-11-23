@@ -84,37 +84,37 @@ export class ListaEventosComponent implements OnInit {
   }
 
 //Traer Eventos
-private recuperarEventos() {
-  this.listaEventosService.getEventos(this.usuario?.id).subscribe(data => {
-    this.eventos = data;
+  private recuperarEventos() {
+    this.listaEventosService.getEventos(this.usuario?.id).subscribe(data => {
+      this.eventos = data;
 
-    const recursosObservables = this.eventos.map(evento =>
-      this.listaEventosService.getRecursosByEventoId(evento.id)
-    );
+      const recursosObservables = this.eventos.map(evento =>
+        this.listaEventosService.getRecursosByEventoId(evento.id)
+      );
 
-    const asistentesObservables = this.eventos.map(evento =>
-      this.listaEventosService.getAsistentes(evento.id)
-    );
+      const asistentesObservables = this.eventos.map(evento =>
+        this.listaEventosService.getAsistentes(evento.id)
+      );
 
-    forkJoin(recursosObservables).subscribe(recursosData => {
-      recursosData.forEach((recursos, index) => {
-        this.eventos[index].recursos = recursos;
-      });
-
-      forkJoin(asistentesObservables).subscribe(asistentesData => {
-        asistentesData.forEach((asistentes, index) => {
-          this.eventos[index].asistentes = asistentes;
+      forkJoin(recursosObservables).subscribe(recursosData => {
+        recursosData.forEach((recursos, index) => {
+          this.eventos[index].recursos = recursos;
         });
 
-        const estaAceptado = this.eventos.filter(e =>
-          e.asistentes?.some(a => a.participante.usuario.id === this.usuario?.id && a.estaAceptado)
-        );
+        forkJoin(asistentesObservables).subscribe(asistentesData => {
+          asistentesData.forEach((asistentes, index) => {
+            this.eventos[index].asistentes = asistentes;
+          });
 
-        this.eventos = estaAceptado;
+          const estaAceptado = this.eventos.filter(e =>
+            e.asistentes?.some(a => a.participante.usuario.id === this.usuario?.id && a.estaAceptado)
+          );
+          console.log(this.eventos);
+          this.eventos = estaAceptado;
+        });
       });
     });
-  });
-}
+  }
 
 //Traer tipo recursos
   nombreTipoRecursoSegunId(id: string|number) {

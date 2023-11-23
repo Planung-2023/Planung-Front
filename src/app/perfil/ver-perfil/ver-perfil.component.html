@@ -9,9 +9,9 @@
 <div class="fondo d-flex row w-100 justify-content-center padding-header-footer">
     <h2 class="color-opuesto text-center">Editar Perfil</h2>
     <div class="w-90 bg-primary rounded-4">
-        <h3 class="text-center col-7 subtitulo-perfil">Foto de Perfil</h3>
+        <h3 class="text-center col-7">Foto de Perfil</h3>
         <div class="row justify-content-around align-items-center">
-            <div class="foto-perfil col-5">
+            <div class="foto-perfil justify-content-center col-5">
                 <img *ngIf="fotoPerfilUsuario !== ''" [src]="'assets/'+ fotoPerfilUsuario" alt="Foto de perfil" class="img-fluid">
             </div>
             <div class="editar-container col-4 text-center btn btn-secondary" routerLink="../cambiar-imagen">

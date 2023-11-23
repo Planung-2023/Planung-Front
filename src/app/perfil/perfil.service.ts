@@ -14,12 +14,10 @@ export class PerfilService {
     });
   }
 
-  updateFotoPerfilIdUsuario(
-    usuarioId: number,
-    nuevoIdFotoPerfil: number
-  ): Observable<any> {
+  updateFotoPerfilIdUsuario(usuarioId: number, nuevoIdFotoPerfil: number) {
     const url = `${environment.url}/usuarios/${usuarioId}`;
-    const body = { foto_perfil_id: nuevoIdFotoPerfil };
+    const body = { fotoPerfil: nuevoIdFotoPerfil };
+    console.log('anda')
     return this.http.put(url, body);
   }
 

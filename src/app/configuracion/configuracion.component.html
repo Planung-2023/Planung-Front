@@ -1,6 +1,5 @@
-
 <!-- Configuracion -->
-<div class="fondo h-100 overflow-x-hidden padding-header-footer">
+<div #configuracion class="fondo h-100 overflow-x-hidden padding-header-footer">
   <h1 class="color-opuesto text-center fw-bold">Configuración</h1>
   <div class="container w-90 bg-primary rounded-5 p-4 shadow-lg">
     <div class="d-flex align-items-center justify-content-between mb-3">
@@ -16,7 +15,7 @@
     <div class="d-flex align-items-center justify-content-between mb-3">
       <h2 class="mb-0">Tema claro</h2>
       <div class="d-flex">
-        <mat-slide-toggle class="bg-secondary p-2 rounded-3" (change)="cambiarModo($event)" [(ngModel)]="configuracionService.temaClaro"></mat-slide-toggle>
+        <mat-slide-toggle class="bg-secondary p-2 rounded-3" (change)="cambiarModo($event)" [(ngModel)]="temaClaroActivado"></mat-slide-toggle>
       </div>
     </div>
     <div>

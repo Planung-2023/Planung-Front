@@ -40,11 +40,10 @@
           <div class="swiper-slide overflow-x-hidden rounded-4 px-2 bg-primary shadow" *ngFor="let evento of eventos">
             <h1 class="text-center m-3 fw-bold">{{ evento.nombre }}</h1>
             <div class="container-texto container-fluid">
-              <p class="p-1 my-0 mx-1"><strong>Fecha:</strong> {{ evento.fecha |date:"dd/MM/yyyy" }}</p>
-              <p class="p-1 my-0 mx-1" *ngIf="evento.horaFin===null"><strong>Horario:</strong> Todo el día</p>
-              <p class="p-1 my-0 mx-1" *ngIf="evento.horaFin!=null"><strong>Hora Inicio:</strong> {{  formatearHora(evento.horaInicio) }}hs</p>
-              <p class="p-1 my-0 mx-1" *ngIf="evento.horaFin!=null"><strong>Hora Fin:</strong> {{  formatearHora(evento.horaFin) }}hs</p>
-              <p class="p-1 my-0 mx-1"><strong>Tipo de evento:</strong> {{ evento.tipoEvento }}</p>
+              <p class="p-1 fs-5 my-0 mx-1"><strong>Fecha:</strong> {{ evento.fecha |date:"dd/MM/yyyy" }}</p>
+              <p class="p-1 fs-5 my-0 mx-1" *ngIf="evento.horaFin===null"><strong>Horario:</strong> Todo el día</p>
+              <p class="p-1 fs-5 my-0 mx-1" *ngIf="evento.horaFin!=null"><strong>Horario:</strong> {{  formatearHora(evento.horaInicio) }} - {{  formatearHora(evento.horaFin) }} hs</p>
+              <p class="p-1 fs-5 my-0 mx-1"><strong>Tipo de evento:</strong> {{ evento.tipoEvento }}</p>
             </div>
             <div class="container-panels">
               <mat-expansion-panel class="bg-secondary" *ngIf="evento.ubicacion != null && (panelAbierto === 'direccion' || panelAbierto === 'todos')" (opened)="abrirPanel('direccion')" (closed)="cerrarPanel('direccion')">
@@ -107,28 +106,20 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <mat-panel-description class="text-black d-flex align-items-center justify-content-between w-100">
-                  <div class="invitados-container w-100">
-                    <ul class="col-12 justify-content-evenly">
-                      <li *ngFor="let asistente of evento?.asistentes">
-                        <div class="container-fluid d-flex align-items-center justify-content-between">
-                          <span>{{asistente.participante.apellido}}, {{ asistente.participante.nombre }}</span>
-                          <button *ngIf="asistente.estaAceptado === true" mat-icon-button class="ver-participante-button" (click)="showPopupInvitado(asistente.participante, evento)">
-                            <i class="bi bi-eye-fill fs-4"></i>
-                          </button>
-                          <div *ngIf="asistente.estaAceptado === false && esAdministrador(evento)">
-                            <button  mat-icon-button class="ver-participante-button text-success" (click)="aceptarInvitado(asistente, evento)">
-                              <i class="bi bi-check fs-4"></i>
-                            </button>
-                            <button mat-icon-button class="ver-participante-button text-danger" (click)="showPopupRechazarInvitado(rechazarInvitado, asistente, evento)">
-                              <i class="bi bi-x fs-4"></i>
-                            </button>
-                          </div>
-                          <div *ngIf="asistente.estaAceptado === false && !esAdministrador(evento)" class="text-danger">
-                            Pendiente
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
+                  <div class="container-fluid">
+                    <div class="row align-items-center my-2" *ngFor="let asistente of evento?.asistentes">
+                        <p class="col text-start m-0">{{asistente.participante.apellido}}, {{ asistente.participante.nombre }}</p>
+                        <button *ngIf="asistente.estaAceptado === true" mat-icon-button class="col-2 btn bg-none border-0 text-end" (click)="showPopupInvitado(asistente.participante, evento)">
+                          <i class="bi bi-eye-fill fs-3"></i>
+                        </button>
+                        <button *ngIf="asistente.estaAceptado === false && esAdministrador(evento)" mat-icon-button class="col-2 border-0 bg-none btn text-success m-0 text-end" (click)="aceptarInvitado(asistente, evento)">
+                          <i class="bi bi-check fs-3"></i>
+                        </button>
+                        <button *ngIf="asistente.estaAceptado === false && esAdministrador(evento)" mat-icon-button class="col-2 border-0 btn bg-none text-danger m-0 text-end" (click)="showPopupRechazarInvitado(rechazarInvitado, asistente, evento)">
+                          <i class="bi bi-x fs-3"></i>
+                        </button>
+                        <p *ngIf="asistente.estaAceptado === false && !esAdministrador(evento)" class="col-3 text-danger text-end">Pendiente</p>
+                    </div>
                   </div>
                 </mat-panel-description>
               </mat-expansion-panel>
@@ -146,7 +137,7 @@
             </div>
             <!-- Solo debería aparecer en casos específicos -->
             <div class="col-md-12 d-flex justify-content-center" *ngIf="esAdministrador(evento)">
-              <button (click)="showPopupInvitacion(evento.id.toString())" class="btn btn-danger m-2 py-2 px-3 text-white rounded-4 fw-bold d-flex justify-content-center align-items-center">
+              <button (click)="showPopupInvitacion('{{evento.id}}')" class="btn btn-danger m-2 py-2 px-3 text-white rounded-4 fw-bold d-flex justify-content-center align-items-center">
                 <i class="bi bi-person-plus-fill fs-3"></i>
                 <p class="m-0 ms-2">Invitar</p>
               </button>

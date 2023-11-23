@@ -56,7 +56,10 @@ export class ListaEventosService {
   }
 
   eliminarInvitado(evento: any, invitado: any){
-    return this.http.delete(`${ environment.url }/eventos/${evento.id}/asistentes/${invitado.id}`)
+    var data = {
+      idAsistente: invitado.id
+    }
+    return this.http.delete(`${ environment.url }/asistentes/${data}`)
   }
 }
 
