@@ -159,18 +159,6 @@ mat-panel-description{
   justify-content: space-between;
 }
 */
-
-.ver-participante-button {
-  border: none;
-  background-color: transparent;
-  outline: none;
-  margin-left: 20px;
-}
-
-.ver-participante-button mat-icon {
-  margin-top: 5px;
-  font-size: 20px;
-}
 /*
 .invitados-container {
   display: flex;

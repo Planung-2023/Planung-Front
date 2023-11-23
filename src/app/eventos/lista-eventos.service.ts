@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders  } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { AuthService } from '@auth0/auth0-angular';
@@ -42,10 +42,13 @@ export class ListaEventosService {
     return this.http.get<Evento>(`${ environment.url }/eventos/${idEvento}`);
   }
 
-  unirseEvento(idEvento: number) {
-    const url = `${ environment.url }/eventos/${idEvento}/unirse`;
-    const data = '';
-    return this.http.post(url,data);
+  unirseEvento(idEvento: number, token: string): Observable<any> {
+    const url = `${environment.url}/eventos/${idEvento}/unirse`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post(url, '', { headers });
   }
 
   aceptarInvitado(invitado: any, data: any){

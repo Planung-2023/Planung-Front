@@ -109,7 +109,7 @@ export class ListaEventosComponent implements OnInit {
           const estaAceptado = this.eventos.filter(e =>
             e.asistentes?.some(a => a.participante.usuario.id === this.usuario?.id && a.estaAceptado)
           );
-
+          console.log(this.eventos);
           this.eventos = estaAceptado;
         });
       });

@@ -5,7 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, EMPTY } from 'rxjs';
 import { Time } from '@angular/common';
 import { Router } from '@angular/router';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Creador } from 'src/app/recursos/visualizar-recurso/eventoInterface';
+import { PerfilService } from 'src/app/perfil/perfil.service';
 
 @Component({
   selector: 'app-unirse-evento',
@@ -14,50 +16,72 @@ import { Router } from '@angular/router';
 })
 export class UnirseEventoComponent implements OnInit {
   evento$: Observable<Evento> = EMPTY;
-  eventoNuevo: Evento | undefined; // Cambiado a opcional
+  eventoNuevo: Evento | undefined;
   usuario: Usuario | undefined;
-
+  accessToken: string | null = null;
 
   constructor(
     public auth0: AuthService,
     private listaEventoService: ListaEventosService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private perfilService: PerfilService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
+    this.accessToken = localStorage.getItem('access_token');
+
     this.route.queryParams.subscribe(params => {
       const eventoIdRecibido = params['eventoId'];
-      console.log('ID del evento recibido:', eventoIdRecibido);
 
-      // Suscribirse al observable evento$ y asignar los datos al evento directo
       this.auth0.user$.subscribe((user) => {
         this.evento$ = this.listaEventoService.getEventoByID(eventoIdRecibido);
         this.evento$.subscribe((respuesta: any) => {
-          console.log('Respuesta del servicio:', respuesta);
-        
-          if (respuesta && respuesta.evento) {
-            this.eventoNuevo = respuesta.evento;
-            console.log('Evento actual:', this.eventoNuevo);
-          } else {
-            console.error('La respuesta del servicio no contiene un evento válido.');
+          if (respuesta && respuesta.evento2) {
+            this.eventoNuevo = respuesta.evento2;
           }
         });
-            
       });
-      })
+    });
   }
 
   unirseEvento() {
-    this.listaEventoService.unirseEvento(this.eventoNuevo!.id).subscribe(res => {console.log(res)});
-  
+    if (this.accessToken) {
+      this.listaEventoService.unirseEvento(this.eventoNuevo!.id, this.accessToken).subscribe(
+        (res: any) => {
+          console.log(res);
+          if (this.eventoNuevo?.tipoInvitacion === 'Por Aprobacion') {
+            this.mostrarSnackbar('Te has unido al evento. Esperando aceptación.');
+          } else if (this.eventoNuevo?.tipoInvitacion === 'Directa') {
+            this.mostrarSnackbar('Te has unido al evento exitosamente.');
+          } else {
+            console.error('Respuesta del backend no reconocida:', res);
+          }
+        },
+        (error: any) => {
+          console.error('Error al unirse al evento:', error);
+          this.mostrarSnackbar('Error al unirse al evento. Por favor, inténtalo nuevamente.');
+        }
+      );
+    } else {
+      console.error('No se encontró el token de acceso en el localStorage.');
+    }
+  }
+
+  private mostrarSnackbar(mensaje: string): void {
+    this.snackBar.open(mensaje, 'Cerrar', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
   }
 }
 
 export interface Evento {
   id: number;
   nombre: string;
-  creador: string;
+  creador: Creador;
   descripcion: string;
   tipoEvento: string;
   esVisible: boolean;
@@ -66,7 +90,6 @@ export interface Evento {
   horaInicio: Time;
   tipoInvitacion: string;
 }
-
 
 interface Usuario {
   id: number;
