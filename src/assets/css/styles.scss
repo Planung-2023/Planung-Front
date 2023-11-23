@@ -14,7 +14,11 @@ $contraste: var(--bs-body-color);
 
 .padding-creacion-evento{
     padding-top: ($spacer * 3.4) !important;
-    padding-bottom: ($spacer * 6.9) !important;
+    padding-bottom: ($spacer * 3.4) !important;
+}
+
+.padding-navbar-inf{
+    padding-bottom: ($spacer * 4.5) !important;
 }
 
 .color-opuesto{
@@ -22,12 +26,11 @@ $contraste: var(--bs-body-color);
 }
 
 html, body, app-root{
-    height: 100vh !important;
-    background-color: $fondo !important;
+    background-color: var(--bs-body-bg) !important;
 }
 
 .fondo{
-    height: 100% !important;
+    height:100%;
     background-color: $fondo !important;
 }
  
