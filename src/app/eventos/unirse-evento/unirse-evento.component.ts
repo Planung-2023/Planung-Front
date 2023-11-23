@@ -54,13 +54,17 @@ export class UnirseEventoComponent implements OnInit {
     if (this.accessToken) {
       this.listaEventoService.getAsistentes(this.eventoNuevo!.id).subscribe(
         (asistentes: any[]) => {
-          console.log(this.eventoNuevo?.tipoInvitacion)
+          const usuarioParticipante = asistentes.find((asistente) => asistente.participante.usuario.id === this.usuario?.usuario.id);
           const usuarioYaEnEvento = asistentes.some((asistente) => asistente.participante.usuario.id === this.usuario?.usuario.id);
           if (usuarioYaEnEvento && this.eventoNuevo?.tipoInvitacion === 'Directa') {
             // El usuario ya está en el evento, mostrar snackbar 
             this.mostrarSnackbar('Ya te encuentras en este evento.');
           }else if (usuarioYaEnEvento && this.eventoNuevo?.tipoInvitacion === 'Por Aprobacion'){
-            this.mostrarSnackbar('Tu solicitud ya ha sido envíada.');
+            if (usuarioParticipante.estaAceptado){
+              this.mostrarSnackbar('Ya te encuentras en este evento.');
+            } else{
+              this.mostrarSnackbar('Solicitud pendiente de aprobación.');
+            }        
           } else {
             // Si el usuario no está en la lista, unirse al evento
             this.listaEventoService.unirseEvento(this.eventoNuevo!.id, this.accessToken).subscribe(
