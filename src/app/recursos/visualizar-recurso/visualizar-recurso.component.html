@@ -1,11 +1,4 @@
 <div class="fondo flip-card shadow" [ngClass]="{ 'flipped': isFlipped }">
-
-  <nav class="bg-dark-subtle fixed-top d-flex justify-content-start px-2 py-2 altura-nav">
-    <button class="ms-2 rounded-2 border-0 bg-light-subtle px-5 py-2" type="button" routerLink="/eventos">
-      <i class="bi bi-arrow-left display-5 color-opuesto"></i>
-    </button>
-  </nav>
-
   <div class="flip-card-inner">
     <div class="flip-card-front" [ngClass]="{ 'color-naranja-front': selectedColor === '#ef7d16', 'color-verde-front': selectedColor === '#76b730', 'color-azul-front': selectedColor === '#4e5fa8', 'color-rosa-front': selectedColor === '#df3c65', 'color-gris-front': selectedColor === '#9f9f9e' }">
       <img class="icono-Recurso" 
