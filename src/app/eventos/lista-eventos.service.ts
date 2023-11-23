@@ -53,7 +53,7 @@ export class ListaEventosService {
     return this.http.put(`${ environment.url }/asistentes/${invitado.id}/cambiar-aceptacion`, data)
   }
 
-  eliminarInvitado(evento: any, invitado: any){
+  eliminarInvitado(invitado: any){
     return this.http.delete(`${ environment.url }/asistentes/${invitado.id}`)
   }
 }

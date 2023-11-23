@@ -11,8 +11,7 @@ import { Router } from '@angular/router';
 export class CambiarImagenComponent implements OnInit {
   fotoPerfilUsuario: any;
   nuevoIdFotoPerfil: number = 1;
-  usuario: any;
-  usuarioId: number = 5;
+  usuario: any;;
   foto1='foto1.jpg';
   foto2='foto2.jpg';
   foto3='foto3.jpg';
@@ -85,8 +84,9 @@ export class CambiarImagenComponent implements OnInit {
   }
 
   guardarCambios() {
-    this.perfilService.updateFotoPerfilIdUsuario(this.usuarioId, this.nuevoIdFotoPerfil).subscribe(()=>{
+    this.perfilService.updateFotoPerfilIdUsuario(this.usuario.id, this.nuevoIdFotoPerfil).subscribe(()=>{
       this.navegarAEventos();
+      console.log(this.usuario.id)
     });
   }  
   
