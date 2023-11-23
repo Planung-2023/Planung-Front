@@ -109,7 +109,7 @@
                 <mat-panel-description class="text-black d-flex align-items-center justify-content-between w-100">
                   <div class="container-fluid">
                     <div class="row align-items-center my-2" *ngFor="let asistente of evento?.asistentes">
-                        <p class="col text-start m-0">{{asistente.participante.apellido}}, {{ asistente.participante.nombre }}</p>
+                        <p class="col text-start m-0">{{asistente.participante.usuario.nombre}}, {{ asistente.participante.usuario.apellido }}</p>
                         <button *ngIf="asistente.estaAceptado === true" mat-icon-button class="col-2 btn bg-none border-0 text-end" (click)="showPopupInvitado(asistente.participante, evento)">
                           <i class="bi bi-eye-fill fs-3 text-black"></i>
                         </button>

@@ -1,12 +1,11 @@
 @font-face {
     font-family: 'Segoe UI';
-    src: url('/src/assets/fonts/SegoeUI-Regular.woff2') format('woff2'),
-         url('/fonts/SegoeUI-Regular.woff') format('woff');
+    src: url('/src/assets/fonts/SegoeUI-VF.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
-html, .mat-typography h1, h2, h3, p, input, textarea, button, select, span, div, label{
+html, .mat-typography h1, h2, h3, p, input, textarea, button, select, span, div, label, i{
     font-family: Segoe UI, sans-serif !important;
 }
 

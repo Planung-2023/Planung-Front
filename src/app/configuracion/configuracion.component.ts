@@ -4,6 +4,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import { PerfilService } from '../perfil/perfil.service';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { A2hsService } from 'src/a2hs.service';
 
 @Component({
   selector: 'app-configuracion',
@@ -18,13 +19,38 @@ export class ConfiguracionComponent implements OnInit {
   nombreUsuario: string = ''; // Agrega esta propiedad
   correoUsuario: any;
   temaClaroActivado= this.configuracionService.tema=='light';
+  prompt: any;
+  isPWA: boolean| undefined;
 
   constructor(
     private modal: NgbModal,
     public configuracionService: ConfiguracionService,
     private perfilService: PerfilService,
-    public auth: AuthService
-    ){} // Inyecta el servicio
+    public auth: AuthService,
+    public a2hs: A2hsService
+    ){
+      // A2HS - START
+    a2hs.checkUserAgent();
+    a2hs.trackStandalone();
+    window.addEventListener('beforeinstallprompt', (e) => {
+
+      // show the add button
+      a2hs.promptIntercepted = true;
+      // Prevent Chrome 67 and earlier from automatically showing the prompt
+      // no matter what, the snack-bar shows in 68 (06/16/2018 11:05 AM)
+      e.preventDefault();
+      // Stash the event so it can be displayed when the user wants.
+      a2hs.deferredPrompt = e;
+      a2hs.promptSaved = true;
+
+    });
+    window.addEventListener('appinstalled', (evt) => {
+      a2hs.trackInstalled();
+      // hide the add button
+      // a2hs.promptIntercepted = false;
+    });
+    // A2HS - END
+    } // Inyecta el servicio
 
   cambiarModo(event: MatSlideToggleChange) {
     var modo = '';
@@ -38,6 +64,7 @@ export class ConfiguracionComponent implements OnInit {
 
   ngOnInit() {
     this.getDatosUsuarioPorAuth(localStorage.getItem("evento_usuario_id"));
+    this.isPWA = this.a2hs.checkStandalone();
     this.configuracionService.traerTema.subscribe((modo:string)=>{
       if(modo=='light'){
         this.temaClaroActivado=true
