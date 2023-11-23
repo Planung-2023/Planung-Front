@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from "@angular/common/http";
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,12 @@ export class InvitacionControlService {
   isVisible = false;
   evento: any;
 
+  constructor(private http: HttpClient){}
+
+  getUsuarioId(auth: any){
+    return this.http.get(`${ environment.url }/usuarios/token/usuario`)
+  }
+
   showPopup() {
     this.isVisible = true;
   }
@@ -17,7 +25,6 @@ export class InvitacionControlService {
   closePopup() {
     this.isVisible = false;
   }
-  constructor() { }
 
   setEventoId(eventoId: string) {
     this.eventoIdSource.next(eventoId);
