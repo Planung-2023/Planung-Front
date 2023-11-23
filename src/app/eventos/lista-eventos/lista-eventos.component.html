@@ -44,6 +44,7 @@
               <p class="p-1 fs-5 my-0 mx-1" *ngIf="evento.horaFin===null"><strong>Horario:</strong> Todo el día</p>
               <p class="p-1 fs-5 my-0 mx-1" *ngIf="evento.horaFin!=null"><strong>Horario:</strong> {{  formatearHora(evento.horaInicio) }} - {{  formatearHora(evento.horaFin) }} hs</p>
               <p class="p-1 fs-5 my-0 mx-1"><strong>Tipo de evento:</strong> {{ evento.tipoEvento }}</p>
+              <p class="p-1 fs-5 my-0 mx-1"><strong>Invitación:</strong> {{ evento.tipoInvitacion }} </p>
             </div>
             <div class="container-panels">
               <mat-expansion-panel class="bg-secondary" *ngIf="evento.ubicacion != null && (panelAbierto === 'direccion' || panelAbierto === 'todos')" (opened)="abrirPanel('direccion')" (closed)="cerrarPanel('direccion')">
