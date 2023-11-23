@@ -31,7 +31,11 @@ export class UnirseEventoComponent implements OnInit {
 
   ngOnInit(): void {
     this.accessToken = localStorage.getItem('access_token');
-
+    this.listaEventoService.getUsuarioId(this.accessToken).subscribe(
+      (usuario: any) => {
+        this.usuario = usuario;
+      }
+    )
     this.route.queryParams.subscribe(params => {
       const eventoIdRecibido = params['eventoId'];
 
@@ -48,26 +52,45 @@ export class UnirseEventoComponent implements OnInit {
 
   unirseEvento() {
     if (this.accessToken) {
-      this.listaEventoService.unirseEvento(this.eventoNuevo!.id, this.accessToken).subscribe(
-        (res: any) => {
-          console.log(res);
-          if (this.eventoNuevo?.tipoInvitacion === 'Por Aprobacion') {
-            this.mostrarSnackbar('Te has unido al evento. Esperando aceptación.');
-          } else if (this.eventoNuevo?.tipoInvitacion === 'Directa') {
-            this.mostrarSnackbar('Te has unido al evento exitosamente.');
+      this.listaEventoService.getAsistentes(this.eventoNuevo!.id).subscribe(
+        (asistentes: any[]) => {
+          console.log(this.eventoNuevo?.tipoInvitacion)
+          const usuarioYaEnEvento = asistentes.some((asistente) => asistente.participante.usuario.id === this.usuario?.usuario.id);
+          if (usuarioYaEnEvento && this.eventoNuevo?.tipoInvitacion === 'Directa') {
+            // El usuario ya está en el evento, mostrar snackbar 
+            this.mostrarSnackbar('Ya te encuentras en este evento.');
+          }else if (usuarioYaEnEvento && this.eventoNuevo?.tipoInvitacion === 'Por Aprobacion'){
+            this.mostrarSnackbar('Tu solicitud ya ha sido envíada.');
           } else {
-            console.error('Respuesta del backend no reconocida:', res);
+            // Si el usuario no está en la lista, unirse al evento
+            this.listaEventoService.unirseEvento(this.eventoNuevo!.id, this.accessToken).subscribe(
+              (res: any) => {
+                console.log(res);
+                if (this.eventoNuevo?.tipoInvitacion === 'Por Aprobacion') {
+                  this.mostrarSnackbar('Solicitud envíada. Esperando aceptación.');
+                } else if (this.eventoNuevo?.tipoInvitacion === 'Directa') {
+                  this.mostrarSnackbar('Te has unido al evento exitosamente.');
+                } else {
+                  console.error('Respuesta del backend no reconocida:', res);
+                }
+              },
+              (error: any) => {
+                console.error('Error al unirse al evento:', error);
+                this.mostrarSnackbar('Error al unirse al evento. Por favor, inténtalo nuevamente.');
+              }
+            );
           }
         },
         (error: any) => {
-          console.error('Error al unirse al evento:', error);
-          this.mostrarSnackbar('Error al unirse al evento. Por favor, inténtalo nuevamente.');
+          console.error('Error al obtener la lista de asistentes:', error);
+          this.mostrarSnackbar('Error al obtener la lista de asistentes. Por favor, inténtalo nuevamente.');
         }
       );
     } else {
       console.error('No se encontró el token de acceso en el localStorage.');
     }
   }
+  
 
   private mostrarSnackbar(mensaje: string): void {
     this.snackBar.open(mensaje, 'Cerrar', {
@@ -99,4 +122,5 @@ interface Usuario {
   nombre: string;
   apellido: string;
   fotoPerfilId: any;
+  usuario: Usuario;
 }

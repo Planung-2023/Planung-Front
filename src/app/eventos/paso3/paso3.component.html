@@ -27,7 +27,7 @@
             </div>
           </div>
           <div  class="container-fluid" *ngIf="opcion==='mapa' && apiLoaded">
-            <google-map class="d-flex justify-content-center mw-100 w-100 rounded-2" height="300px" [options]="options" [center]="posicionAnterior" (mapClick)="moveMap($event)">
+            <google-map class="d-flex justify-content-center mw-100 w-100 rounded-2" height="400px" [options]="options" [center]="posicionAnterior" (mapClick)="moveMap($event)">
               <map-marker [position]= "position"></map-marker>
             </google-map>
           </div>
