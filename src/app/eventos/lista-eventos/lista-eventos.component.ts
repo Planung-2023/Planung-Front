@@ -310,6 +310,7 @@ interface Evento {
   calle: string;
   altura: number;
   tipoEvento: string;
+  tipoInvitacion: string;
   recursos: Recurso[];
   asistentes: Asistente[];
   descripcion: string;

@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'Segoe UI';
+    src: url('/src/assts/fonts/SegoeUI-Regular.woff2') format('woff2'),
+         url('/fonts/SegoeUI-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, .mat-typography h1, h2, h3, p, input, textarea, button, select, span{
+    font-family: Segoe UI, sans-serif !important;
+}
+
 i{
     display:flex;
 }
@@ -6,10 +18,6 @@ i{
     height: 60px;
 }
 
-.padding-header-footer{
-    padding-top: 5.7rem;
-    padding-bottom: 4rem;
-}
 
 .mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
     --mdc-tab-indicator-active-indicator-color: var(--bs-primary)!important;
