@@ -200,14 +200,20 @@ export class ListaEventosComponent implements OnInit {
   showPopupInvitacion(eventoId: string) {
     this.invitacionControlService.setEventoId(eventoId);
     this.invitacionControlService.showPopup();
-    
   }
 
   showPopupRechazarInvitado(modal: any, invitado: any, evento: any){
     const modalRef = this.modal.open(modal, { centered: true, size: 'sm'});
     modalRef.result.then(
       (result: any) => {
-          this.listaEventosService.eliminarInvitado(evento, invitado).subscribe();
+          this.listaEventosService.eliminarInvitado(invitado).subscribe((res: any)=>{
+            if(res.asistente){
+              console.log('Bien')
+              this.recuperarEventos()
+            }
+            else console.log('Mal')
+            
+          });
         },
         
       (reason: any) => {}
