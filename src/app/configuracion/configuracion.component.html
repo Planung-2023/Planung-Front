@@ -4,25 +4,25 @@
     <h1 class="color-opuesto text-center fw-bold pt-3">Configuración</h1>
   <div class="container-fluid w-90 bg-primary rounded-5 p-4 shadow-lg">
     <div class="d-flex align-items-center justify-content-between mb-3">
-      <h2 class="mb-0">Cuenta:</h2>
+      <h2 class="mb-0 fw-bold">Cuenta:</h2>
       <p class="fs-6 mb-0">{{ correoUsuario }} ({{ nombreUsuario }})</p>
     </div>
     <div class="d-flex align-items-center justify-content-between mb-3">
-      <h2 class="mb-0">Notificaciones</h2>
+      <h2 class="mb-0 fw-bold">Notificaciones</h2>
       <div class="d-flex">
         <mat-slide-toggle class="bg-secondary p-2 rounded-3"></mat-slide-toggle>
       </div>
     </div>
     <div class="d-flex align-items-center justify-content-between mb-3">
-      <h2 class="mb-0">Tema claro</h2>
+      <h2 class="mb-0 fw-bold">Tema claro</h2>
       <div class="d-flex">
         <mat-slide-toggle class="bg-secondary p-2 rounded-3" (change)="cambiarModo($event)" [(ngModel)]="temaClaroActivado"></mat-slide-toggle>
       </div>
     </div>
-    <button class="btn rounded-pill bg-black text-white text-center fw-bold" (click)="cartelCerrarSesion(cerrarSesion)"><i class="bi bi-box-arrow-left align-items-center fs-3"><p class="ps-2 m-0 fst-normal fs-3">Cerrar sesión</p></i></button>
-    <button class="btn-a2hs"
-        type="button"
-        (click)="a2hs.addToHomeScreen(isPWA)" *ngIf="isPWA === false">Add Shortcut To Home/Apps Screen</button>
+    <div class="d-flex">
+      <button class="btn rounded-pill bg-black text-white text-center fw-bold px-3" (click)="cartelCerrarSesion(cerrarSesion)"><i class="bi bi-box-arrow-left align-items-center fs-3"><p class="ps-2 m-0 fst-normal fw-bold fs-3">Cerrar sesión</p></i></button>
+      <button *ngIf="isPWA === false" class="ms-2 btn btn-info border-0 rounded-pill px-3" type="button" (click)="a2hs.addToHomeScreen(isPWA)"><i class="bi bi-download fs-3 align-items-center"><p class="m-0 fst-normal fw-bold ps-2 fs-3">Instalá la aplicación</p></i></button>
+    </div>
   </div>
   </div>
 </div>
