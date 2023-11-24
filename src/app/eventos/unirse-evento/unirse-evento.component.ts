@@ -27,15 +27,7 @@ export class UnirseEventoComponent implements OnInit {
     private router: Router,
     private perfilService: PerfilService,
     private snackBar: MatSnackBar
-  ) {}
-
-  ngOnInit(): void {
-    this.accessToken = localStorage.getItem('access_token');
-    this.listaEventoService.getUsuarioId(this.accessToken).subscribe(
-      (usuario: any) => {
-        this.usuario = usuario;
-      }
-    )
+  ) {
     this.route.queryParams.subscribe(params => {
       const eventoIdRecibido = params['eventoId'];
 
@@ -44,11 +36,21 @@ export class UnirseEventoComponent implements OnInit {
         this.evento$?.subscribe((respuesta: any) => {
           if (respuesta && respuesta.evento) {
             this.eventoNuevo = respuesta.evento;
-    console.log(this.eventoNuevo)
+            console.log(this.eventoNuevo)
           }
         });
       });
     });
+  }
+
+  ngOnInit(): void {
+    this.accessToken = localStorage.getItem('access_token');
+    this.listaEventoService.getUsuarioId(this.accessToken).subscribe(
+      (usuario: any) => {
+        this.usuario = usuario;
+      }
+    )
+    
   }
 
   unirseEvento() {
