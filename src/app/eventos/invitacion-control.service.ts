@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root'
 })
 export class InvitacionControlService {
-  private eventoIdSource = new BehaviorSubject<string>('');
+  private eventoIdSource = new BehaviorSubject<number>(0);
   eventoId$ = this.eventoIdSource.asObservable();
   isVisible = false;
   evento: any;
@@ -26,7 +26,8 @@ export class InvitacionControlService {
     this.isVisible = false;
   }
 
-  setEventoId(eventoId: string) {
+  setEventoId(eventoId: number) {
+    console.log('eventoId: '+eventoId);
     this.eventoIdSource.next(eventoId);
   }
 }

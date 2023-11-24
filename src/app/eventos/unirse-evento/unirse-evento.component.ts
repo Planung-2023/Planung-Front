@@ -48,6 +48,7 @@ export class UnirseEventoComponent implements OnInit {
         });
       });
     });
+    console.log('evento nuevo: '+this.eventoNuevo)
   }
 
   unirseEvento() {
