@@ -26,6 +26,10 @@ export class ListaEventosService {
     return  this.http.get(`${ environment.url }/eventos/${idEvento}/recursos`)
   }
 
+  getUsuarioById(usuario:any){
+    return this.http.get(`${ environment.url }/usuarios/${usuario.id}`)
+  }
+
   getUsuarioId(auth: any){
     return this.http.get(`${ environment.url }/usuarios/token/usuario`)
   }
@@ -54,6 +58,7 @@ export class ListaEventosService {
   }
 
   eliminarInvitado(invitado: any){
+    console.log(invitado)
     return this.http.delete(`${ environment.url }/asistentes/${invitado.id}`)
   }
 }

@@ -110,13 +110,13 @@
                   <div class="container-fluid">
                     <div class="row align-items-center my-2" *ngFor="let asistente of evento?.asistentes">
                         <p class="col text-start m-0">{{asistente.participante.usuario.nombre}}, {{ asistente.participante.usuario.apellido }}</p>
-                        <button *ngIf="asistente.estaAceptado === true" mat-icon-button class="col-2 btn bg-none border-0 text-end" (click)="showPopupInvitado(asistente.participante, evento)">
+                        <button *ngIf="asistente.estaAceptado === true" mat-icon-button class="col-2 btn bg-none border-0 text-end" (click)="cargarDatosInvitado(aInvitados, asistente, evento)">
                           <i class="bi bi-eye-fill fs-3 text-black"></i>
                         </button>
                         <button *ngIf="asistente.estaAceptado === false && esAdministrador(evento)" mat-icon-button class="col-2 border-0 bg-none btn text-success m-0 text-end" (click)="aceptarInvitado(asistente, evento)">
                           <i class="bi bi-check fs-3"></i>
                         </button>
-                        <button *ngIf="asistente.estaAceptado === false && esAdministrador(evento)" mat-icon-button class="col-2 border-0 btn bg-none text-danger m-0 text-end" (click)="showPopupRechazarInvitado(rechazarInvitado, asistente, evento)">
+                        <button *ngIf="asistente.estaAceptado === false && esAdministrador(evento)" mat-icon-button class="col-2 border-0 btn bg-none text-danger m-0 text-end" (click)="showPopupRechazarInvitado(rechazarInvitado, asistente)">
                           <i class="bi bi-x fs-3"></i>
                         </button>
                         <p *ngIf="asistente.estaAceptado === false && !esAdministrador(evento)" class="col-3 text-danger text-end">Pendiente</p>
@@ -160,6 +160,30 @@
         <button class="btn btn-success" (click)="modal.close()">Seguro</button>
       </div>
     </div>
+  </ng-template>
+
+  <ng-template #aInvitados let-modal class="d-flex flex-column justify-content-center align-items-center">
+      
+    <button (click)="modal.close(aInvitados)" class="border-0 bg-transparent p-3"><i class="color-opuesto bi bi-x display-1"></i></button>
+      <img [src]="'assets/'+fotoInvitadoSeleccionado" class="col-4 mx-auto rounded-circle border border-3 border-primary img-fluid rounded-circle">
+      
+      <h1 class="fw-bold color-opuesto text-center">{{ invitadoSeleccionado.participante.usuario.nombre }} {{invitadoSeleccionado.participante.usuario.apellido}}</h1>
+      <div class="col-7 mx-auto" *ngIf="soyAdmin">
+          <div class="d-flex justify-content-between align-items-center bg-secondary-subtle rounded-2 px-2 py-3">
+              <p class="color-opuesto fw-bold m-0">Administador</p>
+              <mat-slide-toggle (change)="administrador($event)" [(ngModel)]="invitadoSeleccionado.esAdministrador"></mat-slide-toggle>
+          </div>
+          <button (click)="showPopupRechazarInvitado(rechazarInvitado, invitadoSeleccionado)" class="btn border-0 bg-danger d-flex w-100 align-items-center justify-content-center py-2 my-3">
+              <i class="bi bi-person-dash-fill text-white fs-3"></i>
+              <p class="ms-2 text-white m-0">Eliminar participante</p>
+          </button>
+          <div class="d-flex justify-content-center mb-3">
+              <button (click)="modal.close(aInvitados)" class="btn border-0 bg-success d-flex align-items-center py-2">
+                  <i class="bi bi-floppy-fill"></i>
+                  <p class="ms-2 text-black m-0">Guardar</p>
+              </button>
+          </div>
+      </div>
   </ng-template>
 
   <ng-template #rechazarInvitado let-modal>
