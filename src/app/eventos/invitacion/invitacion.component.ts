@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 })
 
 export class InvitacionComponent implements OnInit, OnDestroy {
-  eventoId = '';
+  eventoId = 0;
   eventoIdSubscription!: Subscription;
   usuario: any;
   constructor(public invitacionControlService: InvitacionControlService) {}
@@ -26,8 +26,9 @@ export class InvitacionComponent implements OnInit, OnDestroy {
     this.eventoIdSubscription.unsubscribe();
   }
 
-  getLinkEvento(eventoId: string): string {
-    return `http://localhost:4200/unirse-evento?eventoId=${encodeURIComponent(eventoId)}`;
+  getLinkEvento(string: number): string {
+    console.log('eventoId: '+ string)
+    return `http://localhost:4200/unirse-evento?eventoId=${string}`;
   }
   closePopup() {
     this.invitacionControlService.closePopup();

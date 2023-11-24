@@ -15,7 +15,7 @@ import { PerfilService } from 'src/app/perfil/perfil.service';
   styleUrls: ['./unirse-evento.component.css']
 })
 export class UnirseEventoComponent implements OnInit {
-  evento$: Observable<Evento> = EMPTY;
+  evento$: any|undefined;
   eventoNuevo: Evento | undefined;
   usuario: Usuario | undefined;
   accessToken: string | null = null;
@@ -27,7 +27,21 @@ export class UnirseEventoComponent implements OnInit {
     private router: Router,
     private perfilService: PerfilService,
     private snackBar: MatSnackBar
-  ) {}
+  ) {
+    this.route.queryParams.subscribe(params => {
+      const eventoIdRecibido = params['eventoId'];
+
+      this.auth0.user$.subscribe((user) => {
+        this.evento$ = this.listaEventoService.getEventoByID(eventoIdRecibido);
+        this.evento$?.subscribe((respuesta: any) => {
+          if (respuesta && respuesta.evento) {
+            this.eventoNuevo = respuesta.evento;
+            console.log(this.eventoNuevo)
+          }
+        });
+      });
+    });
+  }
 
   ngOnInit(): void {
     this.accessToken = localStorage.getItem('access_token');
@@ -36,18 +50,7 @@ export class UnirseEventoComponent implements OnInit {
         this.usuario = usuario;
       }
     )
-    this.route.queryParams.subscribe(params => {
-      const eventoIdRecibido = params['eventoId'];
-
-      this.auth0.user$.subscribe((user) => {
-        this.evento$ = this.listaEventoService.getEventoByID(eventoIdRecibido);
-        this.evento$.subscribe((respuesta: any) => {
-          if (respuesta && respuesta.evento) {
-            this.eventoNuevo = respuesta.evento;
-          }
-        });
-      });
-    });
+    
   }
 
   unirseEvento() {

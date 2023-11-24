@@ -225,7 +225,7 @@ export class ListaEventosComponent implements OnInit {
     }
   }
 
-  showPopupInvitacion(eventoId: string) {
+  showPopupInvitacion(eventoId: number) {
     this.invitacionControlService.setEventoId(eventoId);
     this.invitacionControlService.showPopup();
   }

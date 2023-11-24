@@ -42,8 +42,8 @@ export class ListaEventosService {
     return  this.http.get(`${ environment.url }/eventos/${idEvento}/asistentes`);
   }
 
-  getEventoByID(idEvento: number): Observable<Evento> {
-    return this.http.get<Evento>(`${ environment.url }/eventos/${idEvento}`);
+  getEventoByID(idEvento: number){
+    return this.http.get(`${ environment.url }/eventos/${idEvento}`);
   }
 
   unirseEvento(idEvento: number, token?:any) {
