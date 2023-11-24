@@ -1,4 +1,10 @@
-<button (click)="getDatos()"></button>
+<label *ngIf="datos===false" class="align-items-center fondo d-flex justify-content-center w-100">
+    <button (click)="getDatos()" class="d-none"></button>
+    <div class="d-flex row g-0 justify-content-center">
+        <h1 class="text-center fw-bolder color-opuesto">¡Presioná para abrir!</h1>
+        <i id="regalo" class="color-opuesto bi bi-gift-fill d-flex justify-content-center"></i>
+    </div>
+</label>
 
 <div *ngIf="datos===true" class="container align-items-center fondo padding-navbar-inf d-flex justify-content-center w-100">
     <div class="container-fluid w-90">
