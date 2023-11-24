@@ -16,6 +16,7 @@ import { PerfilService } from 'src/app/perfil/perfil.service';
 })
 export class UnirseEventoComponent implements OnInit {
   evento$: any|undefined;
+  datos=false;
   eventoNuevo: Evento | undefined;
   usuario: Usuario | undefined;
   accessToken: string | null = null;
@@ -41,6 +42,10 @@ export class UnirseEventoComponent implements OnInit {
         });
       });
     });
+  }
+
+  getDatos(){
+    this.datos=true
   }
 
   ngOnInit(): void {
