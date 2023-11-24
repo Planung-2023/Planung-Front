@@ -15,7 +15,7 @@ import { PerfilService } from 'src/app/perfil/perfil.service';
   styleUrls: ['./unirse-evento.component.css']
 })
 export class UnirseEventoComponent implements OnInit {
-  evento$: Observable<Evento> = EMPTY;
+  evento$: any|undefined;
   eventoNuevo: Evento | undefined;
   usuario: Usuario | undefined;
   accessToken: string | null = null;
@@ -41,7 +41,7 @@ export class UnirseEventoComponent implements OnInit {
 
       this.auth0.user$.subscribe((user) => {
         this.evento$ = this.listaEventoService.getEventoByID(eventoIdRecibido);
-        this.evento$.subscribe((respuesta: any) => {
+        this.evento$?.subscribe((respuesta: any) => {
           if (respuesta && respuesta.evento) {
             this.eventoNuevo = respuesta.evento;
           }

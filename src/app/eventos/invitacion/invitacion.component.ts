@@ -26,8 +26,8 @@ export class InvitacionComponent implements OnInit, OnDestroy {
     this.eventoIdSubscription.unsubscribe();
   }
 
-  getLinkEvento(eventoId: string): string {
-    return `http://localhost:4200/unirse-evento?eventoId=${encodeURIComponent(eventoId)}`;
+  getLinkEvento(string: string): string {
+    return `http://localhost:4200/unirse-evento?eventoId=${encodeURIComponent(string)}`;
   }
   closePopup() {
     this.invitacionControlService.closePopup();
