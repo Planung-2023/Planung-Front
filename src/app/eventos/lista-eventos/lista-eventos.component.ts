@@ -13,6 +13,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { forkJoin } from 'rxjs';
 import { presentador } from 'src/environments/environment.development';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-lista-eventos',
@@ -22,12 +23,14 @@ import { presentador } from 'src/environments/environment.development';
 
 export class ListaEventosComponent implements OnInit {
   @ViewChild('errorModalContent') errorModalContent: any;
-  invitadoSeleccionado: string = '';
+  fotoInvitadoSeleccionado: string|undefined;
   usuario: Usuario|undefined;
+  soyAdmin: boolean|undefined;
   eventos: Evento[] = [];
   recursos: Recurso[] = [];
   tiposDeRecursos: any = [];
   asistentes: Asistente[] = [];
+  invitadoSeleccionado: Asistente= this.asistentes[1];
   mostrarMapa: boolean = false;
   mostrarPopupInvitados = false;
   panelAbierto: string = 'todos';
@@ -142,17 +145,42 @@ export class ListaEventosComponent implements OnInit {
       this.recuperarEventos();
     });
   }
-// Métodos para mostrar pop-ups
-  showPopupInvitado(invitado: any, evento: Evento) {
-    this.invitadoSeleccionado = invitado;
-    this.invitadosControlService.soyAdmin = this.esAdministrador(evento);
-    this.invitadosControlService.invitado = invitado;
-    this.invitadosControlService.usuario = this.usuario;
-    this.invitadosControlService.evento = evento;
-    this.invitadosControlService.invitadoNombre = invitado.nombre;
-    this.invitadosControlService.invitadoApellido = invitado.apellido;
-    this.invitadosControlService.showPopupInvitado();
+
+  cargarDatosInvitado(modal:any, asistente: Asistente, evento:Evento){
+    this.soyAdmin = this.esAdministrador(evento);
+    this.invitadoSeleccionado = asistente;
+    this.fotoInvitadoSeleccionado = asistente.participante.usuario.fotoPerfil.nombre;
+   
+    this.listaEventosService.getUsuarioById(asistente.participante.usuario).subscribe((data:any)=>{
+      this.showPopupInvitado(modal,asistente,evento);
+    })
+    
+    console.log(this.invitadoSeleccionado)
+    if(this.invitadoSeleccionado){
+      return true
+    }
+    else return false
   }
+// Métodos para mostrar pop-ups
+  showPopupInvitado(modal:any, invitado: any, evento: Evento) {
+    const modalRef = this.modal.open(modal, { centered: true, size: 'sm'});
+    modalRef.result.then(
+      (result: any) => {
+        },
+        
+      (reason: any) => {}
+    );
+  }
+  administrador(event: MatSlideToggleChange){
+    if(this.invitacionControlService){
+      if(event.checked){
+      this.invitadoSeleccionado.esAdministrador = true
+    }
+    else this.invitadoSeleccionado.esAdministrador = false;
+  }
+    }
+    
+  
 
   cartelIrAMaps(modal: any, ubicacion: any) {
     const modalRef = this.modal.open(modal, { centered: true, size: 'sm'});
@@ -202,8 +230,9 @@ export class ListaEventosComponent implements OnInit {
     this.invitacionControlService.showPopup();
   }
 
-  showPopupRechazarInvitado(modal: any, invitado: any, evento: any){
+  showPopupRechazarInvitado(modal: any, invitado: any){
     const modalRef = this.modal.open(modal, { centered: true, size: 'sm'});
+    var siOno;
     modalRef.result.then(
       (result: any) => {
           this.listaEventosService.eliminarInvitado(invitado).subscribe((res: any)=>{
@@ -212,12 +241,13 @@ export class ListaEventosComponent implements OnInit {
               this.recuperarEventos()
             }
             else console.log('Mal')
-            
+            siOno = false
           });
         },
         
-      (reason: any) => {}
+      (reason: any) => {siOno = true}
     );
+    return siOno;
   }
 //Sesgos para la visualización
   formatearHora(hora: string){
@@ -334,7 +364,7 @@ interface Usuario {
   email: string;
   nombre: string;
   apellido: string;
-  fotoPerfilId: any;
+  fotoPerfil: any;
 }
 
 interface Recurso {

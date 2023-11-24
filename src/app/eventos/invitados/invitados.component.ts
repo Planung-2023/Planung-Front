@@ -53,10 +53,93 @@ export class InvitadosComponent {
   }
 
   getFotoPerfil(){
-    return 'assets/foto-perfil-3.png';
+    this.invitadosControlService.getUsuario()
+    return 'assets/foto1.jpg';
   }
 
   eliminarUsuario(invitado: any){
     this.invitadosControlService.eliminarInvitado(invitado)
   }
+}
+
+interface Evento {
+  id: number;
+  nombre: string;
+  creador: Participante;
+  fecha: Date;
+  horaInicio: any;
+  horaFin: any;
+  ubicacion: ubicacion;
+  calle: string;
+  altura: number;
+  tipoEvento: string;
+  tipoInvitacion: string;
+  recursos: Recurso[];
+  asistentes: Asistente[];
+  descripcion: string;
+}
+
+interface Usuario {
+  id: number;
+  idAuth0: string;
+  nombreUsuario: string;
+  email: string;
+  nombre: string;
+  apellido: string;
+  fotoPerfil: any;
+}
+
+interface Recurso {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  cantidadActual: number;
+  cantidadNecesaria: number;
+  proveedor: string;
+  recursoCategoriaId: number;
+  colorTarjeta: string;
+  eventoId: number;
+  categoria: Categoria;
+}
+
+interface Categoria {
+  id: number;
+  nombre: string;
+  icono: string;
+}
+
+interface Creador{
+  id: number;
+  nombreUsuario: string;
+}
+
+interface ubicacion{
+  id: number,
+  calle: string,
+  altura: number,
+  localidad: string,
+  latitud: number,
+  longitud: number,
+  ciudad: string
+}
+interface Asistente {
+  id: number;
+  activo: boolean;
+  participante: Participante;
+  rol: Rol;
+  estaAceptado: boolean;
+  esAdministrador: boolean;
+}
+
+interface Participante {
+  id: number;
+  apellido: string;
+  mail: string;
+  nombre: string;
+  usuario: any;
+}
+
+interface Rol {
+  id: number;
+  nombre: string;
 }
