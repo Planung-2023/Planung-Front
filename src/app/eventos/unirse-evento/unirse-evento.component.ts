@@ -44,11 +44,11 @@ export class UnirseEventoComponent implements OnInit {
         this.evento$?.subscribe((respuesta: any) => {
           if (respuesta && respuesta.evento) {
             this.eventoNuevo = respuesta.evento;
+    console.log(this.eventoNuevo)
           }
         });
       });
     });
-    console.log('evento nuevo: '+this.eventoNuevo)
   }
 
   unirseEvento() {
