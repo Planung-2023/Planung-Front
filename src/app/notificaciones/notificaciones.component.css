@@ -1,15 +1,101 @@
 .lista-notificaciones-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: center;
-    height: 100%;
-    padding-top: 50px;
-    margin-bottom: -16px;
-    background-color: #3a3a3a;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  height: 100%;
+  padding-top: 50px;
+  margin-bottom: -16px;
+  background-color: #3a3a3a;
+}
 
-#cruz{
+#cruz {
   font-size: 20vh;
+}
+
+.smaller-icon {
+  font-size: 1.2rem;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.fondo {
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden; /* Hide the main scrollbar */
+}
+
+/* Estilos personalizados para la lista de notificaciones */
+
+.notificaciones-container {
+  overflow-y: auto;
+  max-height: calc(100vh - 80px - 60px); /* Adjust the max-height based on your layout, subtracting navbar and footer heights */
+  margin-right: -16px;
+  padding-right: 16px;
+}
+
+.notificacion-container {
+  margin-bottom: 15px;
+}
+
+.notificacion-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.notificacion-mensaje {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.notificacion-fecha {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #888;
+}
+
+.close-button {
+  margin-left: 95%;
+  margin-bottom: 5px;
+  margin-top: -5px;
+}
+
+.notification-counter {
+  background-color: #ff5454;
+  /* Background color */
+  color: #fff;
+  /* Text color */
+  border-radius: 50%;
+  /* Make it circular */
+  width: 45px;
+  /* Adjust the width and height as needed */
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+/* Style the scrollbar for Webkit browsers (Chrome, Safari) */
+.notificaciones-container::-webkit-scrollbar {
+  width: 0.1em;
+}
+
+.notificaciones-container::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.notificaciones-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.notificaciones-container {
+  scrollbar-width: thin;
 }

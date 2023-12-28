@@ -1,12 +1,33 @@
-<!-- Navbar -->
-<div class="fondo w-100">
+<!-- Contenido principal -->
+<div class="fondo w-100" style="padding-top: 80px;">
+  <!-- Navbar -->
+  <div class="bg-dark-subtle fixed-top d-flex align-items-center justify-content-between p-3">
+    <mat-button-toggle class="rounded-2 border-0 bg-light-subtle px-3 py-2" routerLink="../">
+      <i class="color-opuesto bi bi-arrow-left mx-1 smaller-icon"></i>
+    </mat-button-toggle>
+    <div class="notification-counter my-auto py-2">{{contadorNotificaciones}}</div>
+  </div>
+  <!-- Sección de notificaciones -->
   <div *ngIf="notificaciones.length === 0; else notificacionesLista" class="d-flex align-items-center justify-content-center h-100">
     <div class="row g-0">
       <p class="text-center fs-1 fw-bold color-opuesto">No hay notificaciones</p>
       <i id="cruz" class="bi bi-x-circle justify-content-center color-opuesto mt-4"></i>
     </div>
-  </div>     
-      <ng-template #notificacionesLista>
-    
-      </ng-template>
+  </div>
+
+  <ng-template #notificacionesLista>
+    <!-- Estructura de la lista de notificaciones -->
+    <div class="notificaciones-container">
+      <div *ngFor="let notificacion of notificaciones" class="notificacion-container mx-auto mt-3 col-11">
+        <div class="notificacion-card">
+          <a>
+            <mat-icon class="close-button">close</mat-icon>
+          </a>
+          <p class="notificacion-mensaje text-center">{{ notificacion.mensaje }}</p>
+          <p class="notificacion-fecha">{{ notificacion.fechaRecibida | date: 'dd/MM/yyyy HH:mm' }}</p>
+          <mat-button-toggle style="font-size: 12px; background-color: lightgra;">Marcar como leída</mat-button-toggle>
+        </div>
+      </div>
+    </div>
+  </ng-template>
 </div>
