@@ -50,11 +50,6 @@ export class NotificacionesComponent implements OnInit {
         mensaje: 'Notificación 7',
         fechaRecibida: new Date('2023-12-31 08:44')
       },
-      {
-        id: 8,
-        mensaje: 'Notificación 8',
-        fechaRecibida: new Date('2023-12-31 08:44')
-      }
     ]
 
     this.contadorNotificaciones = this.notificaciones.length

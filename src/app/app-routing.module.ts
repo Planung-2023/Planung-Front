@@ -6,9 +6,11 @@ import { AuthGuard } from '@auth0/auth0-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerComponent } from './loader/spinner/spinner.component';
 import { LoadingInterceptor } from './loader/loading.interceptor';
+import { CalendarioComponent } from './calendario/calendario.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'eventos', pathMatch: 'full' },
+  { path: 'calendario', component: CalendarioComponent},
   { path: 'configuracion', component: ConfiguracionComponent},
   { path: 'notificaciones', component: NotificacionesComponent},
   { path: 'eventos', loadChildren: () => import('./eventos/eventos.module').then(m => m.EventosModule), canActivate: [AuthGuard]},

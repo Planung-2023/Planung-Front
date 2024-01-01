@@ -31,14 +31,18 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { SpinnerComponent } from './loader/spinner/spinner.component';
 import { PerfilModule } from './perfil/perfil.module';
 import { PerfilComponent } from './perfil/perfil/perfil.component';
+import { CalendarioComponent } from './calendario/calendario.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     NavbarComponent,
     ConfiguracionComponent,
     NotificacionesComponent,
     SpinnerComponent,
+    CalendarioComponent,
    ],
   imports: [
     FormsModule,
@@ -60,6 +64,8 @@ import { PerfilComponent } from './perfil/perfil/perfil.component';
     MatFormFieldModule,
     GoogleMapsModule,
     HttpClientModule,
+    CalendarModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     AuthModule.forRoot({
       domain: 'dev-jr3a6576vnf4x0e6.us.auth0.com',
       clientId: 'x2bhBlJfZpZTBRG3qqRL0F5XP8f2SZLW',
@@ -83,6 +89,7 @@ import { PerfilComponent } from './perfil/perfil/perfil.component';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
   ],
   providers: [
     ListaEventosService,

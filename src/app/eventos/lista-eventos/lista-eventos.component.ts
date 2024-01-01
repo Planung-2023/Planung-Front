@@ -276,6 +276,10 @@ export class ListaEventosComponent implements OnInit {
     this.router.navigate(['/notificaciones']);
   }
 
+  irACalendario(): void {
+    this.router.navigate(['/calendario']);
+  }
+
   irAPresentador(): void {
     window.open(`${presentador.url}`);
   }

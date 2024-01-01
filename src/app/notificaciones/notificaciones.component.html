@@ -5,6 +5,9 @@
     <mat-button-toggle class="rounded-2 border-0 bg-light-subtle px-3 py-2" routerLink="../">
       <i class="color-opuesto bi bi-arrow-left mx-1 smaller-icon"></i>
     </mat-button-toggle>
+    <div class="text-white" style="font-size: 20px; font-weight: bold;">
+      Notificaciones
+    </div>
     <div class="notification-counter my-auto py-2">{{contadorNotificaciones}}</div>
   </div>
   <!-- Sección de notificaciones -->
@@ -23,9 +26,13 @@
           <a>
             <mat-icon class="close-button">close</mat-icon>
           </a>
-          <p class="notificacion-mensaje text-center">{{ notificacion.mensaje }}</p>
-          <p class="notificacion-fecha">{{ notificacion.fechaRecibida | date: 'dd/MM/yyyy HH:mm' }}</p>
-          <mat-button-toggle style="font-size: 12px; background-color: lightgra;">Marcar como leída</mat-button-toggle>
+          <mat-card-header>
+            <p class="notificacion-mensaje text-center">{{ notificacion.mensaje }}</p>
+          </mat-card-header>
+          <mat-card-content>
+            <p class="notificacion-fecha">{{ notificacion.fechaRecibida | date: 'dd/MM/yyyy HH:mm' }}</p>
+          </mat-card-content>
+          <mat-button-toggle style="font-size: 12px; background-color: lightgray;">Marcar como leída</mat-button-toggle>
         </div>
       </div>
     </div>
