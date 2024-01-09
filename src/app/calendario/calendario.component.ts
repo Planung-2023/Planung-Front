@@ -43,5 +43,9 @@ export class CalendarioComponent implements OnInit {
       start: new Date('2024-01-05'),
       title: 'Evento 3'
     },
+    {
+      start: new Date('2024-01-08'),
+      title: 'Evento 5'
+    },
   ];
 }
